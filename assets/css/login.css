@@ -51,11 +51,6 @@ body{
     }
 }
 
-h1 {
-    font-size: 48px;
-    margin: 38px 0 8px 0;
-}
-
 .underline{
     margin-bottom: 16px;
 }
@@ -220,7 +215,6 @@ footer {
 
 footer a {
     color: var(--clr-menu);
-    text-decoration: none;
 
     &:hover {
         color: var(--clr-blue);
