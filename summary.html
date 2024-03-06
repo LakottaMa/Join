@@ -10,23 +10,88 @@
 
 <body onload="init()">
     <div template="/assets/templates/desktop_template.html"></div>
-
     <div class="main-section">
         <div class="sum-selection">
             <div class="sum-head">
                 <h1>Good morning</h1>
             </div>
             <div class="sum-overview">
-                    <a href="/board.html" class="sum-button cp">lulu</a>
-                    <a href="/board.html" class="sum-button cp">Task in Board</a>
-                    <a href="/board.html" class="sum-button cp">Task To-do</a>
-                    <a href="/board.html" class="sum-button cp">Task in Progrress</a>
-                    <a href="/board.html" class="sum-button cp">Awaiting Feedback</a>
-                    <a href="/board.html" class="sum-button cp">Tasks Done</a>
+                <a href="/board.html" class="sum-button">
+                    <div class="sum-counter">
+                        <div class="img-counter">
+                            <div class="sum-ellipse">
+                                <img src="/assets/img/urgent.png">
+                            </div>
+                            <span>1</span>
+                        </div>
+                        <span>Tasks Urgent</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="deadline-first-urgent">
+                        <span>März 06.03.2024</span>
+                        <span>Upcoming Deadline</span>
+                    </div>
+                </a>
+                <a href="/board.html" class="sum-button">
+                    <div class="sum-counter">
+                        <div class="img-counter">
+                            <div class="sum-ellipse">
+                                <img src="/assets/img/urgent.png">
+                            </div>
+                            <span>5</span>
+                        </div>
+                        <span>Task in Board</span>
+                    </div>
+                </a>
+                <a href="/board.html" class="sum-button">
+                    <div class="sum-counter">
+                        <div class="img-counter">
+                            <div class="sum-ellipse">
+                                <img src="/assets/img/todo.png">
+                            </div>
+                            <span>1</span>
+                        </div>
+                        <span>Task To-do</span>
+                    </div>
+                </a>
+                <a href="/board.html" class="sum-button">
+                    <div class="sum-counter">
+                        <div class="img-counter">
+                            <div class="sum-ellipse">
+                                <img src="/assets/img/progress.png">
+                            </div>
+                            <span>2</span>
+                        </div>
+                        <span>Task in Progrress</span>
+                    </div>
+                </a>
+                <a href="/board.html" class="sum-button">
+                    <div class="sum-counter">
+                        <div class="img-counter">
+                            <div class="sum-ellipse">
+                                <img src="/assets/img/afeedback.png">
+                            </div>
+                            <span>2</span>
+                        </div>
+                        <span>Awaiting Feedback</span>
+                    </div>
+                </a>
+                <a href="/board.html" class="sum-button">
+                    <div class="sum-counter">
+                        <div class="img-counter">
+                            <div class="sum-ellipse">
+                                <img src="/assets/img/done.png">
+                            </div>
+                            <span>1</span>
+                        </div>
+                        <span>Tasks Done</span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
     <script src="/js/templates.js"></script>
     <script src="/script.js"></script>
 </body>
+
 </html>

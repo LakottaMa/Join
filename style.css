@@ -44,7 +44,6 @@ a{
     justify-content: center;
     height: 100vh;
     margin-left: 232px;
-    /* background-color: aqua; */
 }
 .sum-head {
     width: 100%;
@@ -57,7 +56,7 @@ a{
 }
 
 .sum-overview {
-    width: 912px;
+    max-width: 912px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +71,7 @@ a{
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     transition-duration: 120ms;
-    color: var(--clr-main1);
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,15 +92,80 @@ a{
     &:hover {
         background-color: white;
         color: var(--clr-main1);
+        .line {
+            background-color: var(--clr-lightblue);
+        }
     }
 }
 
 .sum-button:nth-child(3) {
     background-color: var(--clr-main2);
-    color: var(--clr-main1);
-
+    .sum-ellipse{
+        border-color: var(--clr-main2);
+    }
     &:hover {
         background-color: white;
         color: var(--clr-lightblue);
+        .sum-ellipse{
+            border-color: white;
+        }
     }
+}
+
+.sum-counter{
+    height: 113px;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    :nth-child(1){
+        font-size: 64px;
+    }
+}
+
+.deadline-first-urgent{
+    display: flex;
+    flex-direction: column;
+    :nth-child(1){
+        font-size: 33px;
+        font-weight: 700;
+    }
+    :nth-child(2){
+        font-size: 23px;
+    }
+}
+
+.img-counter{
+    width: 124px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span{
+        font-size: 48px;
+        font-weight: 700;
+    }
+}
+
+.sum-ellipse{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66px;
+    width: 66px;
+    border: solid 3px white;
+    border-radius: 50%;
+    img{
+        width: 73px;
+        height: 73px;
+    }
+}
+
+.line{
+    height: 145px;
+    width: 3px;
+    margin: 0 35px;
+    border-radius: 2px;
+    background-color: white;
 }
