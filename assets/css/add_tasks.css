@@ -1,0 +1,66 @@
+.content {
+    margin-top: 100px;
+    margin-left: 230px;
+    display: flex;
+    height: 60%;
+}
+
+.addTaskForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+
+    input {
+        border: none;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        width: 100%;
+    }
+
+    textarea {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        padding: 8px;
+    }
+}
+
+
+.priority {
+    display: flex;
+    gap: 32px;
+}
+
+.priorityBox {
+    display: flex;
+    gap: 8px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.priorityImg {
+    display: flex;
+    flex-direction: column;
+}
+
+.addTaskBtns {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.addTaskBtns button {
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.addTaskBtns button:nth-child(2) {
+    background-color: blue;
+    color: white;
+}
+
+.addTaskBtns button:nth-child(1) {
+    color: black;
+    background-color: white;
+}
