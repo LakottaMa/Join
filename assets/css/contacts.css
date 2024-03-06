@@ -1,0 +1,28 @@
+.contactSection {
+    display: flex;
+    gap: 30px;
+}
+
+.contactList {
+    width: 456px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+#addContact {
+    background-color: var(--clr-main1);
+    border: none;
+    padding: 16px 10px;
+    border-radius: 10px;
+    color: white;
+    font-size: 28px;
+}
+
+.letterBox {
+    border: solid white;
+    border-bottom-color: #E3E3E3;
+    height: 56px;
+    font-size: 22px;
+    padding: 17px 6px;
+}
