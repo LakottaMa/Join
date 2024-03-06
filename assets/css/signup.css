@@ -1,14 +1,14 @@
-body{
+body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;    
+    justify-content: center;
     background-color: var(--clr-main1);
 }
 
-.sign-up-container{
+.sign-up-container {
     display: flex;
-    align-items: center;    
+    align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -30,18 +30,19 @@ footer a {
     width: 598px;
 }
 
-.arrow_left{
+.arrow_left {
     position: absolute;
     margin-left: -240px;
     margin-top: 48px;
     border-radius: 50%;
-    &:hover{
+
+    &:hover {
         scale: 1.1;
         background-color: var(--clr-main2);
     }
 }
 
-.underline{
+.underline {
     width: 40%;
 }
 
@@ -49,15 +50,18 @@ footer a {
     .form-box {
         width: 396px;
     }
-    .arrow_left{
+
+    .arrow_left {
         margin-left: -160px;
         margin-top: 48px;
     }
-    .btn-box{
+
+    .btn-box {
         margin: 24px 0 12px 0;
         height: 50px;
     }
-    h1{
+
+    h1 {
         margin: 28px 0 8px 0;
     }
 }
