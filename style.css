@@ -42,8 +42,17 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 100vh;
     margin-left: 232px;
+}
+
+/*** help, legal notice, privacy policy ***/
+.text-section {
+    position: absolute;
+    width: 50%;
+    top: 196px;
+    left: 332px;
 }
 
 .sum-head {
@@ -80,7 +89,7 @@ a {
 
     &:hover {
         border-radius: 0px 30px 30px 30px;
-        scale: 1.05;
+        scale: 1.03;
         background-color: var(--clr-lightblue);
         color: white;
 
@@ -94,6 +103,7 @@ a {
     width: 672px;
     background-color: var(--clr-main1);
     color: white;
+    transform-origin: left;
 
     &:hover {
         background-color: white;
@@ -102,6 +112,13 @@ a {
         .line {
             background-color: var(--clr-lightblue);
         }
+    }
+}
+
+.sum-button:nth-child(2) {
+    transform-origin: top right;
+    &:hover {
+        transform: scaleY(1.05) scaleX(1.3);        
     }
 }
 
@@ -122,8 +139,11 @@ a {
     }
 }
 
+
+
 .sum-counter {
     width: 140px;
+    height: 104px;
     display: flex;
     align-items: center;
     justify-content: space-between;

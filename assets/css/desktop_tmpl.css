@@ -138,6 +138,10 @@ nav {
     &:hover {
         background-color: var(--clr-main2);
     }
+    &:visited{
+        background-color: var(--clr-main2);
+
+    }
 }
 
 .links a span {
@@ -160,4 +164,8 @@ nav {
             color: var(--clr-lightblue);
         }
     }
+}
+
+.bg-clr{
+    background-color: var(--clr-menu-hover);
 }
