@@ -6,6 +6,10 @@ body {
     background-color: var(--clr-main1);
 }
 
+h1{
+    margin: 0px 0 8px 0;
+}
+
 .sign-up-container {
     display: flex;
     align-items: center;
@@ -27,7 +31,13 @@ footer a {
 }
 
 .form-box {
+    display: flex;
     width: 598px;
+    .back-btn{
+        position: relative;
+        top: 40px;
+        right: 248px;
+    }
 }
 
 .underline {
@@ -50,6 +60,6 @@ footer a {
     }
 
     h1 {
-        margin: 28px 0 8px 0;
+        margin: 8px 0 8px 0;
     }
 }
