@@ -37,13 +37,37 @@ a {
     text-decoration: none;
 }
 
+.back-btn {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+        scale: 1.1;
+        background-color: var(--clr-main2);
+    }
+}
+
 /*** style the different tmpl ***/
 .main-section {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 100vh;
     margin-left: 232px;
+}
+
+/*** help, legal notice, privacy policy ***/
+.text-section {
+    position: absolute;
+    max-width: 1024px;
+    top: 200px;
+    left: 320px;
+    margin-right: 88px;
 }
 
 .sum-head {
@@ -66,13 +90,14 @@ a {
     gap: 30px;
 }
 
+/*** mit "order" im responsive items neu anordnen ***/
 .sum-button {
     height: 190px;
     width: 204px;
     border: none;
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
-    transition-duration: 120ms;
+    transition-duration: 75ms;
     color: black;
     display: flex;
     align-items: center;
@@ -83,7 +108,6 @@ a {
         scale: 1.05;
         background-color: var(--clr-lightblue);
         color: white;
-
         .clr {
             color: white;
         }
@@ -94,6 +118,7 @@ a {
     width: 672px;
     background-color: var(--clr-main1);
     color: white;
+    transform-origin: left;
 
     &:hover {
         background-color: white;
@@ -102,12 +127,25 @@ a {
         .line {
             background-color: var(--clr-lightblue);
         }
+        .img-counter, div{
+            scale: 1.1;
+        }
+    }
+}
+
+.sum-button:nth-child(2) {
+    transform-origin: top right;
+    &:hover {
+        .img-counter, div{
+            transform: scaleX(0.94)
+        }
+        transform: scaleY(1.05) scaleX(1.25);        
     }
 }
 
 .sum-button:nth-child(3) {
+    transform-origin: top left;
     background-color: var(--clr-main2);
-
     .sum-ellipse {
         border-color: var(--clr-main2);
     }
@@ -119,11 +157,26 @@ a {
         .sum-ellipse {
             border-color: white;
         }
+        .img-counter, div{
+            transform: scaleY(1.1) scaleX(1)
+        }
+        transform: scaleY(0.94) scaleX(1.25); 
+    }
+}
+
+.sum-button:nth-child(6) {
+    transform-origin: top right;
+    &:hover {
+        .img-counter, div{
+            transform: scaleX(1.02)
+        }
+        transform: scaleX(1.02) scaleY(1.09);        
     }
 }
 
 .sum-counter {
     width: 140px;
+    height: 104px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -157,7 +210,7 @@ a {
     align-items: center;
     justify-content: space-around;
 
-    span {
+    div {
         font-size: 48px;
         font-weight: 700;
     }
