@@ -1,13 +1,21 @@
 .contactSection {
     display: flex;
+    flex-direction: row;
     gap: 30px;
+    height: 928px;
+    margin: 100px 0 0 232px;
 }
 
 .contactList {
     width: 456px;
     display: flex;
     flex-direction: column;
+    margin: 0 27px;
     overflow-y: scroll;
+}
+
+.contactList:nth-child(1) {
+    padding: 20px;
 }
 
 #addContact {
@@ -17,12 +25,22 @@
     border-radius: 10px;
     color: white;
     font-size: 28px;
+    margin: 32px 0 16px 0;
+
+    &:hover {
+        background-color:var(--clr-blue);
+    }
 }
 
 .letterBox {
-    border: solid white;
-    border-bottom-color: #E3E3E3;
     height: 56px;
     font-size: 22px;
     padding: 17px 6px;
+    margin-left: 10px;
+}
+
+.seperator {
+    background-color: #E3E3E3;
+    width: 100%;
+    height: 2px;
 }
