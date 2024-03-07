@@ -13,4 +13,5 @@ function toggleCustomSelect(id) {
 function selectElement(getId, setId) {
    let choice = document.getElementById(getId).innerText;
    document.getElementById(setId).innerHTML = `${choice}`;
+   toggleCustomSelect('taskCategory');
 }
