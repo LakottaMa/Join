@@ -39,8 +39,8 @@ a {
 
 .back-btn {
     position: absolute;
-    top: 204px;
-    right: 106px;
+    top: -8px;
+    right: 0;
     border-radius: 50%;
     border: none;
     background-color: rgba(0, 0, 0, 0);
@@ -64,9 +64,10 @@ a {
 /*** help, legal notice, privacy policy ***/
 .text-section {
     position: absolute;
-    width: 60%;
+    max-width: 1024px;
     top: 200px;
     left: 320px;
+    margin-right: 88px;
 }
 
 .sum-head {
