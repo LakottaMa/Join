@@ -30,18 +30,6 @@ footer a {
     width: 598px;
 }
 
-.arrow_left {
-    position: absolute;
-    margin-left: -240px;
-    margin-top: 48px;
-    border-radius: 50%;
-
-    &:hover {
-        scale: 1.1;
-        background-color: var(--clr-main2);
-    }
-}
-
 .underline {
     width: 40%;
 }
