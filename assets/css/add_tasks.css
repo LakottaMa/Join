@@ -5,11 +5,19 @@
     height: 60%;
 }
 
+.addTaskSection {
+    display: flex;
+    flex-direction: column;
+    padding: 64px 24px;
+    gap: 24px;
+}
+
 .addTaskForm {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 32px;
+    width: 100%;
+    gap: 24px;
 
     input {
         border: none;
@@ -23,13 +31,20 @@
         border-bottom-right-radius: 8px;
         border-bottom-left-radius: 8px;
         padding: 8px;
+        width: 100%;
     }
 }
 
 
 .priority {
     display: flex;
-    gap: 32px;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.priority div {
+    display: flex;
+    gap: 16px;
 }
 
 .priorityBox {
@@ -40,9 +55,15 @@
     padding: 6px;
 }
 
-.priorityImg {
+.category {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+}
+
+.priorityBox svg {
+    height: 16;
+    width: 16;
 }
 
 .addTaskBtns {
@@ -64,3 +85,53 @@
     color: black;
     background-color: white;
 }
+
+/* custom select box */
+.customSelect {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 24px;
+}
+
+.customSelect img {
+    margin-left: auto;
+}
+
+.customSelect:hover {
+    cursor: pointer;
+}
+
+.dividerHorizontal {
+    border-top: 1px solid gray;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.customSelect:hover + .dividerHorizontal {
+    border-top: 1px solid blue !important;
+}
+
+
+/* custom select box */
+
+/* custom select box options */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 24px;
+    margin-top: 8px;
+}
+
+.options span {
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.options span:hover {
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+/* custom select box options */
