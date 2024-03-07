@@ -14,7 +14,8 @@
     </header>
     <div class="sign-up-container">
         <div class="form-box">
-            <form class="input-box">                
+            <!-- action="./summary.html" zur form hinzufürgen -->
+            <form class="input-box" return false>                
                 <a href="/index.html"><img class="back-btn" src="assets/img/arrow_left.png"></a>
                 <h1>Sign up</h1>
                 <img class="underline" src="assets/img/underline_login.png">
@@ -31,7 +32,7 @@
                     <img id="login-password-icon" src="assets/img/lock.png">
                 </div>
                 <div class="input-field">
-                    <input id="signup-password" type="password" autocomplete placeholder="Confirm Password">
+                    <input id="confirm-signup-password" type="password" autocomplete placeholder="Confirm Password">
                     <img id="login-password-icon" src="assets/img/lock.png">
                 </div>
                 <div class="checkbox cp" onclick="checkedSignup()">
@@ -39,7 +40,7 @@
                     <div>I accept the <a href="/privacy_policy.html">Privacy policy</a></div>
                 </div>
                 <div class="btn-box">
-                    <a href="/summary.html"><button id="signup-btn" class="login-btn" disabled>Sign up</button></a>
+                    <button type="submit" onclick="signup()" id="signup-btn" class="login-btn" disabled>Sign up</button>
                 </div>
             </form>
         </div>
@@ -49,7 +50,7 @@
         <a href="./privacy_policy.html">Privacy Policy</a>
         <a href="./legal_notice.html">Legal notice</a>
     </footer>
-    <div class="sign-up-popover">You Signed Up successfully</div>
+    <div id="sign-up-popover">You Signed Up successfully</div>
 
     <script src="/js/sign_up.js"></script>
     <script src="/js/login.js"></script>
