@@ -17,3 +17,6 @@ function showLogoutMenu() {
   logoutMenu.classList.toggle('d-none');
 }
 
+function goBack() {
+  window.history.back();
+}

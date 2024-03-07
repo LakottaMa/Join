@@ -44,7 +44,6 @@ a {
     border-radius: 50%;
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    z-index: 1;
 
     &:hover {
         scale: 1.1;
