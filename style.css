@@ -21,7 +21,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     height: 100vh;
 }
@@ -38,6 +37,21 @@ a {
     text-decoration: none;
 }
 
+.back-btn {
+    position: absolute;
+    top: 204px;
+    right: 106px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 1;
+
+    &:hover {
+        scale: 1.1;
+        background-color: var(--clr-main2);
+    }
+}
+
 /*** style the different tmpl ***/
 .main-section {
     display: flex;
@@ -51,9 +65,9 @@ a {
 /*** help, legal notice, privacy policy ***/
 .text-section {
     position: absolute;
-    width: 50%;
-    top: 196px;
-    left: 332px;
+    width: 60%;
+    top: 200px;
+    left: 320px;
 }
 
 .sum-head {

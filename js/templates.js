@@ -12,9 +12,8 @@ async function includeHTML() {
     }
   }
 
-
-
 function showLogoutMenu() {
   let logoutMenu = document.getElementById('logout-menu');
   logoutMenu.classList.toggle('d-none');
 }
+
