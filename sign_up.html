@@ -19,19 +19,19 @@
                 <h1>Sign up</h1>
                 <img class="underline" src="assets/img/underline_login.png">
                 <div class="input-field">
-                    <input id="signup-name" type="text" required="" placeholder="Email">
+                    <input id="signup-name" type="text" autocomplete placeholder="Email">
                     <img src="assets/img/person.png">
                 </div>
                 <div class="input-field">
-                    <input id="login-email" type="email" required="" placeholder="Email">
+                    <input id="login-email" type="email" autocomplete placeholder="Email">
                     <img src="assets/img/mail.png">
                 </div>
                 <div class="input-field">
-                    <input id="signup-password" type="password" required="" placeholder="Password">
+                    <input id="signup-password" type="password" autocomplete placeholder="Password">
                     <img id="login-password-icon" src="assets/img/lock.png">
                 </div>
                 <div class="input-field">
-                    <input id="signup-password" type="password" required="" placeholder="Confirm Password">
+                    <input id="signup-password" type="password" autocomplete placeholder="Confirm Password">
                     <img id="login-password-icon" src="assets/img/lock.png">
                 </div>
                 <div class="checkbox cp" onclick="checkedSignup()">
@@ -44,11 +44,13 @@
             </form>
         </div>
     </div>
+
     <footer class="legal-topics">
         <a href="./privacy_policy.html">Privacy Policy</a>
         <a href="./legal_notice.html">Legal notice</a>
     </footer>
-    <div id="msBox"></div>
+    <div class="sign-up-popover">You Signed Up successfully</div>
+
     <script src="/js/sign_up.js"></script>
     <script src="/js/login.js"></script>
 </body>

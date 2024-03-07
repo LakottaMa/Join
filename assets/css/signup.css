@@ -44,6 +44,20 @@ footer a {
     width: 40%;
 }
 
+.sign-up-popover{
+    cursor: none;
+    position: absolute;
+    text-align: center;
+    font-size: 23px;
+    width: 326px;
+    height: 74px;
+    padding: 23px;
+    background-color: var(--clr-main1);
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+
 @media screen and (max-width:720px) {
     .form-box {
         width: 396px;

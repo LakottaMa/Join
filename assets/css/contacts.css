@@ -10,7 +10,7 @@
     width: 456px;
     display: flex;
     flex-direction: column;
-    margin: 0 27px;
+    margin: 96px 0;
     overflow-y: scroll;
 }
 
