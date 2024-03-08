@@ -14,7 +14,7 @@
     padding: 0 24px 0 49px;
 }
 
-.addButtonDiv{
+.addButtonDiv {
     display: flex;
     justify-content: center;
     position: sticky;
@@ -53,7 +53,7 @@
     height: 2px;
 }
 
-.addContactPopup{
+.addContactPopup {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -62,12 +62,10 @@
     flex-direction: column;
     width: 584px;
     height: 100vh;
-    border-radius: 30px 0px 30px 30px;
-    border: solid;
-    z-index: 5;    
+    z-index: 5;
 }
 
-.topPopup{
+.topPopup {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -79,43 +77,72 @@
     font-size: 58px;
 }
 
-#closeAddContact{
+.closePopup {
     display: flex;
     justify-content: flex-end;
-    padding: 31px;
     background-color: var(--clr-lightblue);
-    color: white;
     border-top-left-radius: 30px;
+    padding: 24px 24px 35px 0;
 }
 
-.bottomPopup{
+.closePopup img:hover {
+    border-radius: 16px;
+    background-color: var(--clr-main1);
+    cursor: pointer;
+}
+
+.bottomPopup {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border: solid #E3E3E3; 
-    
+    border: solid 1px #E3E3E3;
+    border-top: none;
+    height: 100%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
-.avatar{
+.avatar {
     height: 120px;
     width: 120px;
     margin: 72px 0 32px 0;
 }
 
-.input {
+.input-field {
     display: flex;
-    justify-content: center;
-    gap: ;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
 }
 
-.addContactBtn{
+input {
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    padding: 12px 21px;
+    margin: 16px 0 16px 0;
+    align-items: center;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(209, 209, 209, 1);
+
+    &:focus {
+        border-bottom: 1px solid var(--clr-lightblue);
+    }
+}
+
+.input-field img {
+    position: absolute;
+    margin-right: 16px;
+}
+
+.addContactBtn {
     display: flex;
     gap: 25px;
     padding-top: 32px;
 }
 
-.btnCancel{
+.btnCancel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,9 +157,14 @@
     img {
         height: 24px;
     }
+
+    &:hover {
+        color: var(--clr-main1);
+        border-color: var(--clr-lightblue);
+    }
 }
 
-.btnCreate{
+.btnCreate {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,5 +178,9 @@
 
     img {
         height: 24px;
+    }
+
+    &:hover {
+        background-color: var(--clr-lightblue);
     }
 }
