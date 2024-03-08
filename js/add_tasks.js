@@ -21,3 +21,8 @@ function selectElement(getId, setId) {
 function addTask() {
     console.log('addTask Button pressed');
 }
+
+function showSubtaskInput() {
+    document.getElementById('subtaskInput').classList.remove('d-none');
+    document.getElementById('subtaskText').classList.add('d-none');
+}
