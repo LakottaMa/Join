@@ -27,6 +27,14 @@ input {
     width: 100%;
 }
 
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
 input:hover {
     cursor: pointer;
 }
@@ -209,3 +217,21 @@ textarea {
     border: none;
     padding: 0;
 }
+
+.checkAndCloseIcons {
+    display: flex;
+    gap: 8px;
+}
+
+.checkAndCloseIcons svg {
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: var( --clr-main2);
+    }
+
+}
+
