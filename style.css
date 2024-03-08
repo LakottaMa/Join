@@ -33,8 +33,22 @@ body {
     display: none !important;
 }
 
-a{
+a {
     text-decoration: none;
+}
+
+.back-btn {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+        scale: 1.1;
+        background-color: var(--clr-main2);
+    }
 }
 
 /*** style the different tmpl ***/
@@ -42,10 +56,20 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
     margin-left: 232px;
-    /* background-color: aqua; */
 }
+
+/*** help, legal notice, privacy policy ***/
+.text-section {
+    position: absolute;
+    max-width: 1024px;
+    top: 200px;
+    left: 320px;
+    margin-right: 88px;
+}
+
 .sum-head {
     width: 100%;
     margin-bottom: 77px;
@@ -56,8 +80,9 @@ a{
     }
 }
 
+/*** Summary area ***/
 .sum-overview {
-    width: 912px;
+    max-width: 912px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,14 +90,15 @@ a{
     gap: 30px;
 }
 
+/*** mit "order" im responsive items neu anordnen ***/
 .sum-button {
     height: 190px;
     width: 204px;
     border: none;
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
-    transition-duration: 120ms;
-    color: var(--clr-main1);
+    transition-duration: 75ms;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,28 +108,141 @@ a{
         scale: 1.05;
         background-color: var(--clr-lightblue);
         color: white;
+        .clr {
+            color: white;
+        }
     }
 }
 
-
-/*** Summary area ***/
 .sum-button:nth-child(1) {
     width: 672px;
     background-color: var(--clr-main1);
     color: white;
+    transform-origin: left;
 
     &:hover {
         background-color: white;
         color: var(--clr-main1);
+
+        .line {
+            background-color: var(--clr-lightblue);
+        }
+        .img-counter, div{
+            scale: 1.1;
+        }
+    }
+}
+
+.sum-button:nth-child(2) {
+    transform-origin: top right;
+    &:hover {
+        .img-counter, div{
+            transform: scaleX(0.94)
+        }
+        transform: scaleY(1.05) scaleX(1.25);        
     }
 }
 
 .sum-button:nth-child(3) {
+    transform-origin: top left;
     background-color: var(--clr-main2);
-    color: var(--clr-main1);
+    .sum-ellipse {
+        border-color: var(--clr-main2);
+    }
 
     &:hover {
         background-color: white;
         color: var(--clr-lightblue);
+
+        .sum-ellipse {
+            border-color: white;
+        }
+        .img-counter, div{
+            transform: scaleY(1.1) scaleX(1)
+        }
+        transform: scaleY(0.94) scaleX(1.25); 
     }
+}
+
+.sum-button:nth-child(6) {
+    transform-origin: top right;
+    &:hover {
+        .img-counter, div{
+            transform: scaleX(1.02)
+        }
+        transform: scaleX(1.02) scaleY(1.09);        
+    }
+}
+
+.sum-counter {
+    width: 140px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 64px;
+    text-align: center;
+
+    span {
+        font-size: 23px;
+    }
+}
+
+.deadline-first-urgent {
+    display: flex;
+    flex-direction: column;
+
+    :nth-child(1) {
+        font-size: 33px;
+        font-weight: 700;
+    }
+
+    :nth-child(2) {
+        font-size: 23px;
+    }
+}
+
+.img-counter {
+    width: 124px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    div {
+        font-size: 48px;
+        font-weight: 700;
+    }
+}
+
+.sum-ellipse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66px;
+    width: 66px;
+    border: solid 3px white;
+    border-radius: 50%;
+
+    img {
+        width: 73px;
+        height: 73px;
+    }
+}
+
+.clr {
+    color: var(--clr-main1);
+}
+
+.clrtodo {
+    color: var(--clr-main1);
+}
+
+.line {
+    height: 145px;
+    width: 3px;
+    margin: 0 35px;
+    border-radius: 2px;
+    background-color: white;
 }

@@ -1,14 +1,18 @@
-body{
+body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;    
+    justify-content: center;
     background-color: var(--clr-main1);
 }
 
-.sign-up-container{
+h1{
+    margin: 0px 0 8px 0;
+}
+
+.sign-up-container {
     display: flex;
-    align-items: center;    
+    align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -27,37 +31,51 @@ footer a {
 }
 
 .form-box {
+    display: flex;
     width: 598px;
-}
-
-.arrow_left{
-    position: absolute;
-    margin-left: -240px;
-    margin-top: 48px;
-    border-radius: 50%;
-    &:hover{
-        scale: 1.1;
-        background-color: var(--clr-main2);
+    .back-btn{
+        position: relative;
+        top: 40px;
+        right: 248px;
     }
 }
 
-.underline{
+.underline {
     width: 40%;
+}
+
+#sign-up-popover{
+    cursor: none;
+    position: absolute;
+    text-align: center;
+    font-size: 23px;
+    width: 326px;
+    height: 74px;
+    padding: 23px;
+    background-color: var(--clr-main1);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    transform: translateY(150vw);
+    transition: all 250ms ease-in-out;
 }
 
 @media screen and (max-width:720px) {
     .form-box {
         width: 396px;
     }
-    .arrow_left{
+
+    .arrow_left {
         margin-left: -160px;
         margin-top: 48px;
     }
-    .btn-box{
+
+    .btn-box {
         margin: 24px 0 12px 0;
         height: 50px;
     }
-    h1{
-        margin: 28px 0 8px 0;
+
+    h1 {
+        margin: 8px 0 8px 0;
     }
 }

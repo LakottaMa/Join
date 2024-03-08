@@ -19,11 +19,12 @@ header {
     width: 433px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-right: 20px;
 
     span {
         font-size: 19px;
+        text-align: center;
         color: white;
     }
 }
@@ -138,6 +139,10 @@ nav {
     &:hover {
         background-color: var(--clr-main2);
     }
+    &:visited{
+        background-color: var(--clr-main2);
+
+    }
 }
 
 .links a span {
@@ -160,4 +165,8 @@ nav {
             color: var(--clr-lightblue);
         }
     }
+}
+
+.bg-clr{
+    background-color: var(--clr-menu-hover);
 }
