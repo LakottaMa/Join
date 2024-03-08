@@ -15,12 +15,12 @@
 
     <section class="content">
         <div class="addTaskSection">
-            <form class="addTaskForm">
-                <input type="text" placeholder="Enter a title">
+            <form id="addTaskForm" class="addTaskForm" onsubmit="addTask(); return false">
+                <input type="text" placeholder="Enter a title" required>
                 <label for="description"><b>Description</b> (optional)</label>
                 <textarea name="" id="description" cols="30" rows="5" placeholder="Enter a Description"></textarea>
                 <label for="date"><b>Due date</b></label>
-                <input type="date" id="date">
+                <input type="date" id="date" required>
             </form>
             <div class="priority">
                 <span><b>Priority</b></span>
@@ -70,21 +70,27 @@
             </div>
             <div class="category">
                 <span><b>Assigned to</b> (optional)</span>
-                <select name="test" id="contact">
-                    <option value="">User 1</option>
-                    <option value="">User 2</option>
-                    <option value="">User 3</option>
-                </select>
+                <!-- custom select box -->
+                <div>
+                    <div onclick="toggleCustomSelect('userCategory')" class="customSelect"><span id="selectedUser">Select contacts to assign</span><img src="./assets/img/arrow_drop_down_only_arrow.png" alt=""></div>
+                    <hr class="dividerHorizontal">
+                    <div id="userCategory" class="options d-none">
+                        <span id="user1" onclick="selectElement('user1', 'selectedUser')">Manuel Braun</span>
+                        <span id="user2" onclick="selectElement('user2', 'selectedUser')">Sebastian Torney</span>
+                        <span id="user3" onclick="selectElement('user3', 'selectedUser')">Marcel Lakotta</span>
+                    </div>
+                </div>
+                <!-- custom select box -->
             </div>
             <div class="category">
                 <span><b>Category</b></span>
                 <!-- custom select box -->
                 <div>
-                    <div onclick="toggleCustomSelect('taskCategory')" class="customSelect"><span id="selCat">Select task category</span><img src="./assets/img/arrow_drop_down_only_arrow.png" alt=""></div>
+                    <div onclick="toggleCustomSelect('taskCategory')" class="customSelect"><span id="selectedCategory">Select task category</span><img src="./assets/img/arrow_drop_down_only_arrow.png" alt=""></div>
                     <hr class="dividerHorizontal">
                     <div id="taskCategory" class="options d-none">
-                        <span id="cat1" onclick="selectElement('cat1', 'selCat')">Technical Task</span>
-                        <span id="cat2" onclick="selectElement('cat2', 'selCat')">User Story</span>
+                        <span id="cat1" onclick="selectElement('cat1', 'selectedCategory')">Technical Task</span>
+                        <span id="cat2" onclick="selectElement('cat2', 'selectedCategory')">User Story</span>
                     </div>
                 </div>
                 <!-- custom select box -->
@@ -95,7 +101,7 @@
         </div>
         <div class="addTaskBtns">
             <button>Clear</button>
-            <button>Create Task</button>
+            <button type="submit" form="addTaskForm">Create Task</button>
         </div>
     </section>
 

@@ -5,6 +5,7 @@
 function toggleCustomSelect(id) {
     document.getElementById(id).classList.toggle('d-none');
 }
+
 /**
  * select option
  * @param {string} getId get the text form id
@@ -13,5 +14,10 @@ function toggleCustomSelect(id) {
 function selectElement(getId, setId) {
    let choice = document.getElementById(getId).innerText;
    document.getElementById(setId).innerHTML = `${choice}`;
-   toggleCustomSelect('taskCategory');
+   let cat = setId == 'selectedCategory' ? 'taskCategory' : 'userCategory';
+   toggleCustomSelect(cat);
+}
+
+function addTask() {
+    console.log('addTask Button pressed');
 }
