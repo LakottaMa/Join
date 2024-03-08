@@ -53,7 +53,7 @@ footer a {
     backdrop-filter: blur(20px);
     opacity: 1;
     animation: change-background 0.3s forwards;
-    animation-delay: 1.5s;
+    animation-delay: 1s;
     z-index: 100;
 }
 
@@ -62,7 +62,7 @@ footer a {
     top: 94%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: move-to-middle 0.5s forwards linear;
+    animation: move-to-middle 0.3s forwards linear;
     cursor: none;
     text-align: center;
     font-size: 23px;

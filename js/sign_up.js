@@ -11,9 +11,13 @@ function checkedSignup() {
 }
 
 /** btn zum registrieren */
-function signup() {
-
-  // signUpOkay();
+function signup(event) { 
+  event.preventDefault();
+  const animation = document.getElementById('popup');
+  animation.classList.remove('d-none');
+  setTimeout(() => {
+    window.location.href = './summary.html';
+  }, 1000);
 }
 
 /** check ob push in web-storage erfolgreich */
