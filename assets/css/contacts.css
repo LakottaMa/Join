@@ -20,7 +20,7 @@
     position: sticky;
     top: 0;
     background-color: white;
-    padding: 32px 0;
+    padding-top: 32px;
 }
 
 .addContact {
@@ -35,16 +35,24 @@
     align-items: center;
     gap: 10px;
     width: 100%;
+    margin-bottom: 17px;
 
     &:hover {
         background-color: var(--clr-blue);
     }
 }
 
-.letter {
-    height: 56px;
+.letterBox {
+    width: 100%;
     font-size: 22px;
-    padding: 17px 36px;
+    border-bottom: 1px solid rgba(209, 209, 209, 1);
+}
+
+.letter{
+    font-size: 22px;
+    margin: 17px 0 25px 36px;
+    outline: none;
+    
 }
 
 .seperator {
@@ -62,8 +70,10 @@
     flex-direction: column;
     width: 584px;
     height: 100vh;
-    z-index: 5;
-    transition: 1000ms ease-in-out;
+    z-index: 5;    
+    transform: translateX(0px);
+    transition: all 225ms ease-in-out;  
+    
 }
 
 .topPopup {
@@ -101,6 +111,7 @@
     height: 100%;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+    background-color: white;
 }
 
 .avatar {
@@ -163,9 +174,6 @@ input {
         color: var(--clr-main1);
         border-color: var(--clr-main1);
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
-        svg {
-            fill:var(--clr-main1);
-        }
     }
 }
 

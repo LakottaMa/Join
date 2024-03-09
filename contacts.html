@@ -11,7 +11,7 @@
     <title>Join</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); initContacts()">
     <div template="/assets/templates/desktop_template.html"></div>
 
     <div class="contactSection">
@@ -20,139 +20,7 @@
                 <button class="addContact cp" onclick="addNewContact()">Add new contact <img src="./assets/img/person_add.png"
                         alt="addlogo"></button>
             </div>
-            <div>
-                <div class="letterBox">
-                    <div class="letter">A</div>
-                    <div class="seperator"></div>
-                    <div id="A-content"></div>
-                </div>
-                <div>
-                    <div class="letter">B</div>
-                    <div class="seperator"></div>
-                    <div id="B-content"></div>
-                </div>
-                <div>
-                    <div class="letter">C</div>
-                    <div class="seperator"></div>
-                    <div id="C-content"></div>
-                </div>
-                <div>
-                    <div class="letter">D</div>
-                    <div class="seperator"></div>
-                    <div id="D-content"></div>
-                </div>
-                <div>
-                    <div class="letter">E</div>
-                    <div class="seperator"></div>
-                    <div id="E-content"></div>
-                </div>
-                <div>
-                    <div class="letter">F</div>
-                    <div class="seperator"></div>
-                    <div id="F-content"></div>
-                </div>
-                <div>
-                    <div class="letter">G</div>
-                    <div class="seperator"></div>
-                    <div id="G-content"></div>
-                </div>
-                <div>
-                    <div class="letter">H</div>
-                    <div class="seperator"></div>
-                    <div id="H-content"></div>
-                </div>
-                <div>
-                    <div class="letter">I</div>
-                    <div class="seperator"></div>
-                    <div id="I-content"></div>
-                </div>
-                <div>
-                    <div class="letter">J</div>
-                    <div class="seperator"></div>
-                    <div id="J-content"></div>
-                </div>
-                <div>
-                    <div class="letter">K</div>
-                    <div class="seperator"></div>
-                    <div id="K-content"></div>
-                </div>
-                <div>
-                    <div class="letter">L</div>
-                    <div class="seperator"></div>
-                    <div id="L-content"></div>
-                </div>
-                <div>
-                    <div class="letter">M</div>
-                    <div class="seperator"></div>
-                    <div id="M-content"></div>
-                </div>
-                <div>
-                    <div class="letter">N</div>
-                    <div class="seperator"></div>
-                    <div id="N-content"></div>
-                </div>
-                <div>
-                    <div class="letter">O</div>
-                    <div class="seperator"></div>
-                    <div id="O-content"></div>
-                </div>
-                <div>
-                    <div class="letter">P</div>
-                    <div class="seperator"></div>
-                    <div id="P-content"></div>
-                </div>
-                <div>
-                    <div class="letter">Q</div>
-                    <div class="seperator"></div>
-                    <div id="Q-content"></div>
-                </div>
-                <div>
-                    <div class="letter">R</div>
-                    <div class="seperator"></div>
-                    <div id="R-content"></div>
-                </div>
-                <div>
-                    <div class="letter">S</div>
-                    <div class="seperator"></div>
-                    <div id="S-content"></div>
-                </div>
-                <div>
-                    <div class="letter">T</div>
-                    <div class="seperator"></div>
-                    <div id="T-content"></div>
-                </div>
-                <div>
-                    <div class="letter">U</div>
-                    <div class="seperator"></div>
-                    <div id="U-content"></div>
-                </div>
-                <div>
-                    <div class="letter">V</div>
-                    <div class="seperator"></div>
-                    <div id="V-content"></div>
-                </div>
-                <div>
-                    <div class="letter">W</div>
-                    <div class="seperator"></div>
-                    <div id="W-content"></div>
-                </div>
-                <div>
-                    <div class="letter">X</div>
-                    <div class="seperator"></div>
-                    <div id="X-content"></div>
-                </div>
-                <div>
-                    <div class="letter">Y</div>
-                    <div class="seperator"></div>
-                    <div id="Y-content"></div>
-                </div>
-                <div>
-                    <div class="letter">Z</div>
-                    <div class="seperator"></div>
-                    <div id="Z-content"></div>
-                </div>
-
-            </div>
+            <div id="allContacts"></div>            
         </section>
 
         <section id="addContactPopup" class="d-none">
@@ -168,15 +36,15 @@
                 <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
                 <form action="">
                     <div class="input-field">
-                        <input type="text" placeholder="Name">
+                        <input id="contactName" type="text"  placeholder="Name">
                         <img src="./assets/img/person.png" alt="avatar">
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Email">
+                        <input id="contactEmail" type="email"  placeholder="Email">
                         <img src="./assets/img/mail.png" alt="avatar">
                     </div>
                     <div class="input-field">
-                        <input type="tel" placeholder="Phone">
+                        <input id="contactPhone" type="tel"  placeholder="Phone">
                         <img src="./assets/img/call.png" alt="avatar">
                     </div>
                     <div class="addContactBtn">
@@ -196,6 +64,8 @@
 
         <section id="floatingContact"></section>
     </div>
+
+
 
     <script src="/js/templates.js"></script>
     <script src="./script.js"></script>
