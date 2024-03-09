@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/contacts.css">
     <link rel="stylesheet" href="./style.css">
+    <script src="./js/contacs.js"></script>
     <title>Join</title>
 </head>
 
@@ -16,7 +17,7 @@
     <div class="contactSection">
         <section class="contactList">
             <div class="addButtonDiv">
-                <button class="cp" id="addContact">Add new contact <img src="./assets/img/person_add.png"
+                <button class="addContact cp" onclick="addNewContact()">Add new contact <img src="./assets/img/person_add.png"
                         alt="addlogo"></button>
             </div>
             <div>
@@ -154,7 +155,7 @@
             </div>
         </section>
 
-        <section class="addContactPopup">
+        <section id="addContactPopup" class="d-none">
             <div class="closePopup">
                 <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
             </div>
@@ -180,7 +181,7 @@
                     </div>
                     <div class="addContactBtn">
                         <button class="btnCancel cp" onclick="closePopup()">Cancel<img
-                                src="./assets/img/close_black.png" alt="close">
+                                src="./assets/img/close_black.svg" alt="close">
                         </button>
                         <button class="btnCreate cp" onclick="createNewContact()">Create contact<img
                                 src="./assets/img/check._white.png" alt="check">
@@ -198,6 +199,7 @@
 
     <script src="/js/templates.js"></script>
     <script src="./script.js"></script>
+    
 </body>
 
 </html>

@@ -23,7 +23,7 @@
     padding: 32px 0;
 }
 
-#addContact {
+.addContact {
     background-color: var(--clr-main1);
     border: none;
     padding: 16px 10px;
@@ -53,7 +53,7 @@
     height: 2px;
 }
 
-.addContactPopup {
+#addContactPopup {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -63,6 +63,7 @@
     width: 584px;
     height: 100vh;
     z-index: 5;
+    transition: 1000ms ease-in-out;
 }
 
 .topPopup {
@@ -152,7 +153,7 @@ input {
     gap: 10px;
     font-size: 28px;
     color: #B1B8C3;
-    border-color: #B1B8C3;
+    border: 1px solid rgba(100, 113, 136, 1);
 
     img {
         height: 24px;
@@ -160,7 +161,11 @@ input {
 
     &:hover {
         color: var(--clr-main1);
-        border-color: var(--clr-lightblue);
+        border-color: var(--clr-main1);
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+        svg {
+            fill:var(--clr-main1);
+        }
     }
 }
 
@@ -182,5 +187,6 @@ input {
 
     &:hover {
         background-color: var(--clr-lightblue);
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
     }
 }
