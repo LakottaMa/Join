@@ -1,0 +1,249 @@
+:root {
+    --clr-main1: rgba(69, 137, 255, 1);
+    --clr-main2: rgba(210, 227, 255, 1);
+    --clr-lightblue: rgba(0, 93, 255, 1);
+    --clr-blue: rgba(0, 56, 255, 1);
+    --clr-orange: rgba(255, 122, 0, 1);
+    --clr-menu: rgba(66, 82, 110, 1);
+    --clr-menu-hover: rgba(227, 238, 255, 1);
+    --clr-urgent: rgba(255, 61, 0, 1);
+    --clr-medium: rgba(255, 168, 0, 1);
+    --clr-low: rgba(122, 226, 41, 1);
+    --clr-error: rgba(255, 129, 144, 1);
+    --clr-profil-hover: rgba(181, 219, 255, 0.2);
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Open Sans';
+}
+
+.cp {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.back-btn {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+        scale: 1.1;
+        background-color: var(--clr-main2);
+    }
+}
+
+/*** style the different tmpl ***/
+.main-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-left: 232px;
+}
+
+/*** help, legal notice, privacy policy ***/
+.text-section {
+    position: absolute;
+    max-width: 1024px;
+    top: 200px;
+    left: 320px;
+    margin-right: 88px;
+}
+
+.sum-head {
+    width: 100%;
+    margin-bottom: 77px;
+    text-align: center;
+
+    h1 {
+        font-size: 64px;
+    }
+}
+
+/*** Summary area ***/
+.sum-overview {
+    max-width: 912px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/*** mit "order" im responsive items neu anordnen ***/
+.sum-button {
+    height: 190px;
+    width: 204px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+    transition-duration: 75ms;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        border-radius: 0px 30px 30px 30px;
+        scale: 1.05;
+        background-color: var(--clr-lightblue);
+        color: white;
+        .clr {
+            color: white;
+        }
+    }
+}
+
+.sum-button:nth-child(1) {
+    width: 672px;
+    background-color: var(--clr-main1);
+    color: white;
+    transform-origin: left;
+
+    &:hover {
+        background-color: white;
+        color: var(--clr-main1);
+
+        .line {
+            background-color: var(--clr-lightblue);
+        }
+        .img-counter, div{
+            scale: 1.1;
+        }
+    }
+}
+
+.sum-button:nth-child(2) {
+    transform-origin: top right;
+    &:hover {
+        .img-counter, div{
+            transform: scaleX(0.94)
+        }
+        transform: scaleY(1.05) scaleX(1.25);        
+    }
+}
+
+.sum-button:nth-child(3) {
+    transform-origin: top left;
+    background-color: var(--clr-main2);
+    .sum-ellipse {
+        border-color: var(--clr-main2);
+    }
+
+    &:hover {
+        background-color: white;
+        color: var(--clr-lightblue);
+
+        .sum-ellipse {
+            border-color: white;
+        }
+        .img-counter, div{
+            transform: scaleY(1.1) scaleX(1)
+        }
+        transform: scaleY(0.94) scaleX(1.25); 
+    }
+}
+
+.sum-button:nth-child(6) {
+    transform-origin: top right;
+    &:hover {
+        .img-counter, div{
+            transform: scaleX(1.02)
+        }
+        transform: scaleX(1.02) scaleY(1.09);        
+    }
+}
+
+.sum-counter {
+    width: 140px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 64px;
+    text-align: center;
+
+    span {
+        font-size: 23px;
+    }
+}
+
+.deadline-first-urgent {
+    display: flex;
+    flex-direction: column;
+
+    :nth-child(1) {
+        font-size: 33px;
+        font-weight: 700;
+    }
+
+    :nth-child(2) {
+        font-size: 23px;
+    }
+}
+
+.img-counter {
+    width: 124px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    div {
+        font-size: 48px;
+        font-weight: 700;
+    }
+}
+
+.sum-ellipse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66px;
+    width: 66px;
+    border: solid 3px white;
+    border-radius: 50%;
+
+    img {
+        width: 73px;
+        height: 73px;
+    }
+}
+
+.clr {
+    color: var(--clr-main1);
+}
+
+.clrtodo {
+    color: var(--clr-main1);
+}
+
+.line {
+    height: 145px;
+    width: 3px;
+    margin: 0 35px;
+    border-radius: 2px;
+    background-color: white;
+}
