@@ -45,21 +45,53 @@
 .letterBox {
     width: 100%;
     font-size: 22px;
-    border-bottom: 1px solid rgba(209, 209, 209, 1);
+    
 }
 
 .letter{
     font-size: 22px;
-    margin: 17px 0 25px 36px;
+    padding: 10px 0 25px 36px;
     outline: none;
-    
+    border-bottom: 1px solid rgba(209, 209, 209, 1);
 }
 
-.seperator {
-    background-color: #E3E3E3;
-    width: 100%;
-    height: 2px;
+.contactSmall{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    padding: 15px 24px;
+    gap: 35px;
+    font-size: 19px;
+
+    &:hover{
+        background-color: var(--clr-main2);
+        border-radius: 10px;
+    }
+
+    &:active{
+        background-color: var(--clr-main2);
+    }
+
+    p {
+        font-size: 16px;
+        color: var(--clr-main1);
+        padding-top: 5px;
+    }
 }
+
+.initials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    height: 42px;
+    width: 42px;
+    border: 2px solid #FFFFFF;
+    border-radius: 21px;
+}
+
+/*********************** Start Addpopup ***********************/
 
 #addContactPopup {
     position: fixed;
