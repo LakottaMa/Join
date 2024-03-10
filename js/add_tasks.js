@@ -1,4 +1,6 @@
 let subTasks = [];
+let searchedUsers = [];
+let arrayToRender = true; // true = users | false = searchedUsers
 
 /**
  * toggle display: 'none'; to show or hide element
@@ -133,6 +135,8 @@ function showEditSubTaskInputField(index) {
     document.getElementById(`dividerHorizontal${index}`).style.borderBottomColor = "var(--clr-main2)";
 }
 
+//==============================
+
 /**
  * render User
  */
@@ -147,6 +151,42 @@ function renderUsers() {
     }
 }
 
+
+function renderSearchedUsers() {
+    let userContainer = document.getElementById('userCategory');
+    userContainer.innerHTML = '';
+    for (let i = 0; i < searchedUsers.length; i++) {
+        const userName = searchedUsers[i]['name'];
+        let index = users.findIndex(u => u.name === userName);
+        let user = users[index]['name'];
+        let isSelected = users[index]['isSelected'];
+        userContainer.innerHTML += printUsers(user, index);
+        isUserSelected(isSelected, index);
+    }
+}
+
+function checkRenderArr() {
+    if (searchedUsers == null || searchedUsers == "" || searchedUsers < 1) {
+        renderUsers();
+        arrayToRender = true;
+    } else {
+        renderSearchedUsers();
+        arrayToRender = false;
+    }
+}
+
+function searchUsers() {
+    let input = document.getElementById('searchUserInput');
+    let filteredUsers = users.filter(user => user.name.toLowerCase().includes(input.value.toLowerCase()));
+    searchedUsers = filteredUsers;
+    checkRenderArr();
+}
+
+/**
+ * show checked or unchecked image
+ * @param {boolean} isSelected true = selected | false = unselected
+ * @param {Int} index for the user
+ */
 function isUserSelected(isSelected, index) {
     if (isSelected == true) {
         document.getElementById(`imgUncheck${index}`).classList.add('d-none');
@@ -173,30 +213,27 @@ function printUsers(user, index) {
     `;
 }
 
-/**
- * push to selectedUsers Array and set the bool to true
- * @param {Int} index for the user
- */
+
 function selectUser(index) {
     let user = users[index]['name'];
     users[index]['isSelected'] = true;
     selectedUsers.push(user);
-    renderUsers();
+    checkRenderArr();
     renderSelectedUsers();
 }
 
-/**
- * remove from selectedusers Array and set the bool to false
- * @param {Int} index for the user
- */
 function unselectUser(index) {
     let user = users[index]['name'];
     users[index]['isSelected'] = false;
-    let indexToRemove = selectedUsers.indexOf(user);
-    indexToRemove !== -1 ? selectedUsers.splice(indexToRemove, 1) : console.log('user not found');
+    let userIndexInSelectedUsers = selectedUsers.findIndex(u => u.toLowerCase() === user.toLocaleLowerCase());
+    if (userIndexInSelectedUsers !== -1) { 
+        selectedUsers.splice(userIndexInSelectedUsers, 1);  
+    }
+    checkRenderArr();
     renderSelectedUsers();
-    renderUsers();
 }
+
+
 
 /**
  * split the string in two strings, get the first letter from each string
@@ -207,7 +244,7 @@ function getInitials(string) {
     let words = string.split(" ");
     let initials = "";
     words.forEach(word => {
-        initials += word.charAt(0);
+        initials += word.charAt(0).toUpperCase();
     });
     return initials;
 }
