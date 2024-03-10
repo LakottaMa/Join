@@ -141,7 +141,19 @@ function renderUsers() {
     userContainer.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         const user = users[i]['name'];
+        const isSelected = users[i]['isSelected'];
         userContainer.innerHTML += printUsers(user, i);
+        isUserSelected(isSelected, i);
+    }
+}
+
+function isUserSelected(isSelected, index) {
+    if (isSelected == true) {
+        document.getElementById(`imgUncheck${index}`).classList.add('d-none');
+        document.getElementById(`imgCheck${index}`).classList.remove('d-none');
+    } else {
+        document.getElementById(`imgUncheck${index}`).classList.remove('d-none');
+        document.getElementById(`imgCheck${index}`).classList.add('d-none');
     }
 }
 
@@ -162,28 +174,28 @@ function printUsers(user, index) {
 }
 
 /**
- * select user with index, push to array and render
- * @param {Int} index from the user
+ * push to selectedUsers Array and set the bool to true
+ * @param {Int} index for the user
  */
 function selectUser(index) {
-    document.getElementById(`imgUncheck${index}`).classList.add('d-none');
-    document.getElementById(`imgCheck${index}`).classList.remove('d-none');
     let user = users[index]['name'];
+    users[index]['isSelected'] = true;
     selectedUsers.push(user);
+    renderUsers();
     renderSelectedUsers();
 }
 
 /**
- * unselect user with index, remove from array and render
- * @param {Int} index from user
+ * remove from selectedusers Array and set the bool to false
+ * @param {Int} index for the user
  */
 function unselectUser(index) {
-    document.getElementById(`imgUncheck${index}`).classList.remove('d-none');
-    document.getElementById(`imgCheck${index}`).classList.add('d-none');
     let user = users[index]['name'];
+    users[index]['isSelected'] = false;
     let indexToRemove = selectedUsers.indexOf(user);
     indexToRemove !== -1 ? selectedUsers.splice(indexToRemove, 1) : console.log('user not found');
     renderSelectedUsers();
+    renderUsers();
 }
 
 /**
@@ -208,8 +220,8 @@ function renderSelectedUsers() {
     container.innerHTML = '';
     for (let i = 0; i < selectedUsers.length; i++) {
         const user = selectedUsers[i];
-            container.innerHTML += printSelectedUsers(user, i);
-            document.getElementById(`selectedUser${i}`).style.backgroundColor = getRandomColor();
+        container.innerHTML += printSelectedUsers(user, i);
+        document.getElementById(`selectedUser${i}`).style.backgroundColor = getRandomColor();
     }
 }
 
@@ -247,30 +259,35 @@ let users = [
         "name": "Tim Cook",
         "email": "tim.cook@example.com",
         "password": "Cook#Apple5",
+        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Steve Jobs",
         "email": "steve.jobs@example.com",
         "password": "Jobs#Apple1",
+        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Bill Gates",
         "email": "bill.gates@example.com",
         "password": "Gates@Microsoft2",
+        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Linus Torvalds",
         "email": "linus.torvalds@example.com",
         "password": "Torvalds#Linux3",
+        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Sam Altman",
         "email": "sam.altman@example.com",
         "password": "Altman#YCombinator4",
+        "isSelected": false,
         "tasks": []
     }
 ];
