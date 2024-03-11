@@ -1,5 +1,4 @@
-let signUpCheck = false;
-let loginCheck = false;
+
 
 function checkedSignup() {
   const checkbox = document.getElementById('accept-policy');

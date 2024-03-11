@@ -38,6 +38,16 @@ a {
     text-decoration: none;
 }
 
+.active-site{
+    background-color: var(--clr-menu-hover);
+}
+
+.active-site-legal-topics{
+    background-color: var(--clr-lightblue);
+    color: white !important;
+    font-weight: 700;
+}
+
 .back-btn {
     position: absolute;
     top: -8px;
