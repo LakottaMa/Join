@@ -1,22 +1,63 @@
 let subTasks = [];
 let searchedUsers = [];
+let selectedUsers = [];
 let tasks = [];
+let category = "";
+let priority = "";
 
-function taskObject() {
+/**
+ * create template for task
+ * @param {string} title 
+ * @param {string} description 
+ * @param {date} date 
+ * @param {string} taskPriority 
+ * @param {Array} assignedTo 
+ * @param {string} taskCategory 
+ * @param {Array} subtasks 
+ * @returns 
+ */
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks) {
     return {
-        "title": title,
-        "description": description,
-        "date": date,
-        "priority": priority,
-        "assignedTo": [],
-        "category": category,
-        "subtasks": []
+        "title": title.value,
+        "description": description.value,
+        "date": new Date(date.value),
+        "priority": taskPriority,
+        "assignedTo": assignedTo,
+        "category": taskCategory,
+        "subtasks": subtasks
     }
 }
 
+/**
+ * push new Task to tasks array
+ */
 function addTask() {
-    
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
+    let taskPriority = priority;
+    let assignedTo = selectedUsers;
+    let subtasks = subTasks;
+    let taskCategory = category;
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks);
+    tasks.push(newTask);
+    resetInputsAndSelections();
 
+}
+
+/**
+ * clear input and reset global variables
+ */
+function resetInputsAndSelections() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('date').value = '';
+    selectedUsers = [];
+    renderSelectedUsers();
+    subTasks = [];
+    renderSubTasks();
+    priority = "";
+    category = "";
 }
 
 
@@ -28,12 +69,10 @@ function toggleCustomSelect(id) {
     document.getElementById(id).classList.toggle('d-none');
 }
 
-function showSearchUserInput() {
-    document.getElementById('searchUserInput').classList.remove('d-none');
-    document.getElementById('searchUserText').classList.add('d-none');
-    document.getElementById('userCategory').classList.remove('d-none');
-}
 
+/**
+ * toogle input field for search user
+ */
 function toggleSearchUserInput() {
     document.getElementById('searchUserInput').classList.toggle('d-none');
     document.getElementById('searchUserText').classList.toggle('d-none');
@@ -45,16 +84,23 @@ function toggleSearchUserInput() {
  * @param {string} getId get the text form id
  * @param {string} setId set the text to the id
  */
-function selectElement(getId, setId) {
+function selectElement_OLD(getId, setId) {
     let choice = document.getElementById(getId).innerText;
     document.getElementById(setId).innerHTML = `${choice}`;
     let cat = setId == 'selectedCategory' ? 'taskCategory' : 'userCategory';
     toggleCustomSelect(cat);
 }
 
-function addTask() {
-    console.log('addTask Button pressed');
+/**
+ * selcect category for task and push to global variable
+ * @param {string} cat selected category
+ */
+function selectCategory(cat) {
+    category = cat;
+    document.getElementById('selectedCategory').innerHTML = cat;
+    toggleCustomSelect('taskCategory');
 }
+
 /**
  * show the input field for adding subtasks
  */
@@ -325,7 +371,7 @@ function getRandomColor() {
 
 let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
-let selectedUsers = [];
+
 /**
  * just examples
  */
