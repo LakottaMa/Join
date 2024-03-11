@@ -1,5 +1,6 @@
 let subTasks = [];
 let searchedUsers = [];
+let tasks = [];
 
 function taskObject() {
     return {
@@ -13,7 +14,10 @@ function taskObject() {
     }
 }
 
-let tasks = [];
+function addTask() {
+    
+
+}
 
 
 /**
@@ -22,6 +26,18 @@ let tasks = [];
  */
 function toggleCustomSelect(id) {
     document.getElementById(id).classList.toggle('d-none');
+}
+
+function showSearchUserInput() {
+    document.getElementById('searchUserInput').classList.remove('d-none');
+    document.getElementById('searchUserText').classList.add('d-none');
+    document.getElementById('userCategory').classList.remove('d-none');
+}
+
+function toggleSearchUserInput() {
+    document.getElementById('searchUserInput').classList.toggle('d-none');
+    document.getElementById('searchUserText').classList.toggle('d-none');
+    document.getElementById('userCategory').classList.toggle('d-none');
 }
 
 /**
