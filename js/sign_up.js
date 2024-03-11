@@ -5,22 +5,23 @@ function checkedSignup() {
     checkbox.src = 'assets/img/check_checked.png',
     button.disabled = false, button.classList.add('cp')
   ) : (
-      checkbox.src = 'assets/img/check_unchecked.png',
-      button.disabled = true
-    );
+    checkbox.src = 'assets/img/check_unchecked.png',
+    button.disabled = true
+  );
 }
 
 /** btn zum registrieren */
-function signup() {
-
-  signUpOkay();
+function signup(event) { 
+  event.preventDefault();
+  const animation = document.getElementById('popup');
+  animation.classList.remove('d-none');
+  setTimeout(() => {
+    window.location.href = './summary.html';
+  }, 1000);
 }
 
 /** check ob push in web-storage erfolgreich */
 function signUpOkay() {
-  const popover = document.getElementById('sign-up-popover');
-
-
 
   resetForm();
 }
@@ -32,4 +33,3 @@ function resetForm() {
   document.getElementById('signup-password').value = '';
   document.getElementById('confirm-signup-password').value = '';
 }
-
