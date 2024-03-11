@@ -1,3 +1,39 @@
+/**
+ * just examples
+ */
+let users = [
+    {
+        "name": "Tim Cook",
+        "email": "tim.cook@example.com",
+        "password": "Cook#Apple5",
+        "tasks": []
+    },
+    {
+        "name": "Steve Jobs",
+        "email": "steve.jobs@example.com",
+        "password": "Jobs#Apple1",
+        "tasks": []
+    },
+    {
+        "name": "Bill Gates",
+        "email": "bill.gates@example.com",
+        "password": "Gates@Microsoft2",
+        "tasks": []
+    },
+    {
+        "name": "Linus Torvalds",
+        "email": "linus.torvalds@example.com",
+        "password": "Torvalds#Linux3",
+        "tasks": []
+    },
+    {
+        "name": "Sam Altman",
+        "email": "sam.altman@example.com",
+        "password": "Altman#YCombinator4",
+        "tasks": []
+    }
+];
+
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
@@ -371,40 +407,48 @@ function getRandomColor() {
 
 let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
+// event listener for priority buttons
+let prioUrgent = document.getElementById('prioUrgent');
+let prioMedium = document.getElementById('prioMedium');
+let prioLow = document.getElementById('prioLow');
 
-/**
- * just examples
- */
-let users = [
-    {
-        "name": "Tim Cook",
-        "email": "tim.cook@example.com",
-        "password": "Cook#Apple5",
-        "tasks": []
-    },
-    {
-        "name": "Steve Jobs",
-        "email": "steve.jobs@example.com",
-        "password": "Jobs#Apple1",
-        "tasks": []
-    },
-    {
-        "name": "Bill Gates",
-        "email": "bill.gates@example.com",
-        "password": "Gates@Microsoft2",
-        "tasks": []
-    },
-    {
-        "name": "Linus Torvalds",
-        "email": "linus.torvalds@example.com",
-        "password": "Torvalds#Linux3",
-        "tasks": []
-    },
-    {
-        "name": "Sam Altman",
-        "email": "sam.altman@example.com",
-        "password": "Altman#YCombinator4",
-        "tasks": []
+prioUrgent.addEventListener('click', () => {
+    prioUrgent.classList.add('prioUrgentClicked');
+    prioLow.classList.remove('prioLowClicked');
+    prioMedium.classList.remove('prioMediumClicked');
+    priority = 'Urgent';
+});
+
+prioMedium.addEventListener('click', () => {
+    prioMedium.classList.add('prioMediumClicked');
+    prioUrgent.classList.remove('prioUrgentClicked');
+    prioLow.classList.remove('prioLowClicked');
+    priority = 'Medium';
+})
+
+prioLow.addEventListener('click', () => {
+    prioLow.classList.add('prioLowClicked');
+    prioUrgent.classList.remove('prioUrgentClicked');
+    prioMedium.classList.remove('prioMediumClicked');
+    priority = 'Low';
+})
+
+// event listener for input fields
+
+let inputToFocus = document.getElementById('subtaskInput');
+let btnToWatch = document.getElementById('addSubTaskBtn');
+btnToWatch.addEventListener('click', () => {
+    if (inputToFocus) {
+        inputToFocus.focus();
     }
-];
+})
+
+let searchInputToFocus = document.getElementById('searchUserInput');
+let searchBtnToWatch = document.getElementById('searchUserBtn');
+searchBtnToWatch.addEventListener('click', () => {
+    if (searchInputToFocus) {
+        searchInputToFocus.focus();
+    }
+})
+
 
