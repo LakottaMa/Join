@@ -1,6 +1,20 @@
 let subTasks = [];
 let searchedUsers = [];
-let arrayToRender = true; // true = users | false = searchedUsers
+
+function taskObject() {
+    return {
+        "title": title,
+        "description": description,
+        "date": date,
+        "priority": priority,
+        "assignedTo": [],
+        "category": category,
+        "subtasks": []
+    }
+}
+
+let tasks = [];
+
 
 /**
  * toggle display: 'none'; to show or hide element
@@ -135,8 +149,6 @@ function showEditSubTaskInputField(index) {
     document.getElementById(`dividerHorizontal${index}`).style.borderBottomColor = "var(--clr-main2)";
 }
 
-//==============================
-
 /**
  * render User
  */
@@ -145,13 +157,14 @@ function renderUsers() {
     userContainer.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         const user = users[i]['name'];
-        const isSelected = users[i]['isSelected'];
         userContainer.innerHTML += printUsers(user, i);
-        isUserSelected(isSelected, i);
+        isUserSelected(i);
     }
 }
 
-
+/**
+ * render only the users that exist in the searchedUser Array
+ */
 function renderSearchedUsers() {
     let userContainer = document.getElementById('userCategory');
     userContainer.innerHTML = '';
@@ -159,22 +172,25 @@ function renderSearchedUsers() {
         const userName = searchedUsers[i]['name'];
         let index = users.findIndex(u => u.name === userName);
         let user = users[index]['name'];
-        let isSelected = users[index]['isSelected'];
         userContainer.innerHTML += printUsers(user, index);
-        isUserSelected(isSelected, index);
+        isUserSelected(index);
     }
 }
 
+/**
+ * check whether users were searched
+ */
 function checkRenderArr() {
     if (searchedUsers == null || searchedUsers == "" || searchedUsers < 1) {
         renderUsers();
-        arrayToRender = true;
     } else {
         renderSearchedUsers();
-        arrayToRender = false;
     }
 }
 
+/**
+ * filter user that are searched
+ */
 function searchUsers() {
     let input = document.getElementById('searchUserInput');
     let filteredUsers = users.filter(user => user.name.toLowerCase().includes(input.value.toLowerCase()));
@@ -182,19 +198,22 @@ function searchUsers() {
     checkRenderArr();
 }
 
+
 /**
- * show checked or unchecked image
- * @param {boolean} isSelected true = selected | false = unselected
- * @param {Int} index for the user
+ * check if user exist in selected array
+ * @param {Int} index of selected or unselected user
  */
-function isUserSelected(isSelected, index) {
-    if (isSelected == true) {
-        document.getElementById(`imgUncheck${index}`).classList.add('d-none');
-        document.getElementById(`imgCheck${index}`).classList.remove('d-none');
-    } else {
+function isUserSelected(index) {
+    let user = users[index]['name'];
+    let selectedUsersIndex = selectedUsers.findIndex(u => u === user);
+    if (selectedUsersIndex === -1) {
         document.getElementById(`imgUncheck${index}`).classList.remove('d-none');
         document.getElementById(`imgCheck${index}`).classList.add('d-none');
+    } else {
+        document.getElementById(`imgUncheck${index}`).classList.add('d-none');
+        document.getElementById(`imgCheck${index}`).classList.remove('d-none');
     }
+    
 }
 
 /**
@@ -213,18 +232,23 @@ function printUsers(user, index) {
     `;
 }
 
-
+/**
+ * select user -> push in selectedUser array
+ * @param {Int} index of user
+ */
 function selectUser(index) {
     let user = users[index]['name'];
-    users[index]['isSelected'] = true;
     selectedUsers.push(user);
     checkRenderArr();
     renderSelectedUsers();
 }
 
+/**
+ * unselect user, remove from selectedUser array
+ * @param {Int} index of user
+ */
 function unselectUser(index) {
     let user = users[index]['name'];
-    users[index]['isSelected'] = false;
     let userIndexInSelectedUsers = selectedUsers.findIndex(u => u.toLowerCase() === user.toLocaleLowerCase());
     if (userIndexInSelectedUsers !== -1) { 
         selectedUsers.splice(userIndexInSelectedUsers, 1);  
@@ -232,8 +256,6 @@ function unselectUser(index) {
     checkRenderArr();
     renderSelectedUsers();
 }
-
-
 
 /**
  * split the string in two strings, get the first letter from each string
@@ -296,35 +318,30 @@ let users = [
         "name": "Tim Cook",
         "email": "tim.cook@example.com",
         "password": "Cook#Apple5",
-        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Steve Jobs",
         "email": "steve.jobs@example.com",
         "password": "Jobs#Apple1",
-        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Bill Gates",
         "email": "bill.gates@example.com",
         "password": "Gates@Microsoft2",
-        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Linus Torvalds",
         "email": "linus.torvalds@example.com",
         "password": "Torvalds#Linux3",
-        "isSelected": false,
         "tasks": []
     },
     {
         "name": "Sam Altman",
         "email": "sam.altman@example.com",
         "password": "Altman#YCombinator4",
-        "isSelected": false,
         "tasks": []
     }
 ];
