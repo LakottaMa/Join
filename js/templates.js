@@ -23,16 +23,6 @@ function goBack() {
   window.history.back();
 }
 
-function sitesActive() {
-  let activePage = window.location.pathname;
-  let navLinks = document.querySelectorAll('nav a');
-  navLinks.forEach(link => {
-    if (link.href.includes(`${activePage}`)) {
-      link.classList.add('active-site');
-    }
-  })
-}
-
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {
