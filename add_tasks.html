@@ -17,7 +17,7 @@
     <section class="content">
         <div class="addTaskSection">
             <form id="addTaskForm" class="addTaskForm" onsubmit="addTask(); return false">
-                <input type="text" placeholder="Enter a title" required>
+                <input type="text" placeholder="Enter a title" required id="title">
                 <label for="description"><b>Description</b> (optional)</label>
                 <textarea name="" id="description" placeholder="Enter a Description"></textarea>
                 <label for="date"><b>Due date</b></label>
@@ -73,9 +73,9 @@
                 <span><b>Assigned to</b> (optional)</span>
                 <!-- custom select box -->
                 <div>
-                    <div onclick="toggleCustomSelect('userCategory')" class="customSelect">
-                        <span>Select contacts to assign</span>
-                        <input type="text" name="" id="searchUserInput" onkeyup="searchUsers()">
+                    <div onclick="toggleSearchUserInput()" class="customSelect" id="searchUserBtn">
+                        <span id="searchUserText">Select contacts to assign</span>
+                        <input type="text" name="" id="searchUserInput" onkeyup="searchUsers()" placeholder="Select contacts to assign" class="d-none">
                         <img src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
                     </div>
                     <hr class="dividerHorizontal">
@@ -93,8 +93,8 @@
                             src="./assets/img/arrow_drop_down_only_arrow.png" alt=""></div>
                     <hr class="dividerHorizontal">
                     <div id="taskCategory" class="options d-none">
-                        <span id="cat1" onclick="selectElement('cat1', 'selectedCategory')">Technical Task</span>
-                        <span id="cat2" onclick="selectElement('cat2', 'selectedCategory')">User Story</span>
+                        <span id="cat1" onclick="selectCategory('Technical Task')">Technical Task</span>
+                        <span id="cat2" onclick="selectCategory('User Story')">User Story</span>
                     </div>
                 </div>
                 <!-- custom select box -->
@@ -165,18 +165,21 @@
             prioUrgent.classList.add('prioUrgentClicked');
             prioLow.classList.remove('prioLowClicked');
             prioMedium.classList.remove('prioMediumClicked');
+            priority = 'Urgent';
         });
 
         prioMedium.addEventListener('click', () => {
             prioMedium.classList.add('prioMediumClicked');
             prioUrgent.classList.remove('prioUrgentClicked');
             prioLow.classList.remove('prioLowClicked');
+            priority = 'Medium';
         })
 
         prioLow.addEventListener('click', () => {
             prioLow.classList.add('prioLowClicked');
             prioUrgent.classList.remove('prioUrgentClicked');
             prioMedium.classList.remove('prioMediumClicked');
+            priority = 'Low';
         })
 
         let inputToFocus = document.getElementById('subtaskInput');
@@ -184,6 +187,14 @@
         btnToWatch.addEventListener('click', () => {
             if (inputToFocus) {
                 inputToFocus.focus();
+            }
+        })
+
+        let searchInputToFocus = document.getElementById('searchUserInput');
+        let searchBtnToWatch = document.getElementById('searchUserBtn');
+        searchBtnToWatch.addEventListener('click', () => {
+            if (searchInputToFocus) {
+                searchInputToFocus.focus();
             }
         })
     </script>
