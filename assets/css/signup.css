@@ -28,6 +28,18 @@ footer a {
     gap: 8px;
     justify-content: center;
     width: 100%;
+    div{
+        width: 178px;
+    }
+    a {
+        color: var(--clr-main1);
+
+        &:hover {
+            font-weight: bold;
+            text-decoration: underline;
+            color: var(--clr-lightblue);
+        }
+    }
 }
 
 .form-box {
@@ -52,7 +64,7 @@ footer a {
     width: 100%;
     backdrop-filter: blur(20px);
     opacity: 1;
-    animation: change-background 0.3s forwards;
+    animation: change-background 1s forwards;
     animation-delay: 1s;
     z-index: 100;
 }
@@ -62,7 +74,7 @@ footer a {
     top: 94%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: move-to-middle 0.3s forwards linear;
+    animation: move-to-middle 0.2s forwards linear;
     cursor: none;
     text-align: center;
     font-size: 23px;
