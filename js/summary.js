@@ -1,7 +1,3 @@
-function init(){
-    greetingMessage();
-}
-
 function greetingMessage() {
     let currentHour = checkHour();
     let greeting = document.getElementById('greeting');
