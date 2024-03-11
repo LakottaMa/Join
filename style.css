@@ -107,7 +107,7 @@ a {
     &:hover {
         border-radius: 0px 30px 30px 30px;
         scale: 1.05;
-        background-color: var(--clr-lightblue);
+        background-color: var(--clr-blue);
         color: white;
         .clr {
             color: white;
