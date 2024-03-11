@@ -3,13 +3,14 @@
     flex-direction: row;
     gap: 30px;
     height: 928px;
-    margin: 100px 0 0 232px;
+    margin: 96px 0 0 232px;
 }
 
 .contactList {
     width: 456px;
     display: flex;
     flex-direction: column;
+    margin: 96px 0;
     overflow-y: scroll;
     padding: 0 24px 0 49px;
 }
