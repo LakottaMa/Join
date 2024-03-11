@@ -71,7 +71,7 @@ function contactsHTML(letter, x) {
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in ein ezeichenkette zu verwandeln
 
     return `
-        <div class="contactSmall cp" onklick="showFloatContact">
+        <div class="contactSmall cp" onclick="showFloatContact()">
             <div id="${x}"class="initials">${initials}</div>
             <div>
                 <span>${allContacts[letter][x]['name']}</span>
@@ -81,7 +81,11 @@ function contactsHTML(letter, x) {
     `;
 }
 
-//Überpruft ob die ID für die Div schon vergeben ist un erhöht sie dann
+function showFloatContact (){
+    document.getElementById('floatingContact').classList.remove('d-none');
+}
+
+//Überprüft ob die ID für die Div schon vergeben ist un erhöht sie dann
 function checkId(id) {
     for (let y = 0; y < allContacts.length; y++) {
         const element = array[y];
