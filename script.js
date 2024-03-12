@@ -3,11 +3,12 @@ let guestActive = false;
 let userLoggedIn = false;
 
 /*** first load over all */
-async function init(){
+async function init() {
    await includeHTML();
-   greetingMessage();
+   
 }
 
-
-
+function logout() {
+   sessionStorage.clear();
+}
 
