@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="./assets/css/add_tasks.css">
-    <script src="./js/add_tasks.js"></script>
+    
     <link rel="stylesheet" href="./assets/css/fonts.css">
     <title>Join</title>
 </head>
@@ -18,7 +18,7 @@
     <section class="content">
         <div class="addTaskSection">
             <form id="addTaskForm" class="addTaskForm" onsubmit="addTask(); return false">
-                <input type="text" placeholder="Enter a title" required>
+                <input type="text" placeholder="Enter a title" required id="title">
                 <label for="description"><b>Description</b> (optional)</label>
                 <textarea name="" id="description" placeholder="Enter a Description"></textarea>
                 <label for="date"><b>Due date</b></label>
@@ -74,9 +74,9 @@
                 <span><b>Assigned to</b> (optional)</span>
                 <!-- custom select box -->
                 <div>
-                    <div onclick="toggleCustomSelect('userCategory')" class="customSelect">
-                        <span>Select contacts to assign</span>
-                        <input type="text" name="" id="searchUserInput" onkeyup="searchUsers()">
+                    <div onclick="toggleSearchUserInput()" class="customSelect" id="searchUserBtn">
+                        <span id="searchUserText">Select contacts to assign</span>
+                        <input type="text" name="" id="searchUserInput" onkeyup="searchUsers()" placeholder="Select contacts to assign" class="d-none">
                         <img src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
                     </div>
                     <hr class="dividerHorizontal">
@@ -94,8 +94,8 @@
                             src="./assets/img/arrow_drop_down_only_arrow.png" alt=""></div>
                     <hr class="dividerHorizontal">
                     <div id="taskCategory" class="options d-none">
-                        <span id="cat1" onclick="selectElement('cat1', 'selectedCategory')">Technical Task</span>
-                        <span id="cat2" onclick="selectElement('cat2', 'selectedCategory')">User Story</span>
+                        <span id="cat1" onclick="selectCategory('Technical Task')">Technical Task</span>
+                        <span id="cat2" onclick="selectCategory('User Story')">User Story</span>
                     </div>
                 </div>
                 <!-- custom select box -->
@@ -155,40 +155,7 @@
 
     <script src="/js/templates.js"></script>
     <script src="/script.js"></script>
-    <script>
-
-        // event listener for priority buttons
-        let prioUrgent = document.getElementById('prioUrgent');
-        let prioMedium = document.getElementById('prioMedium');
-        let prioLow = document.getElementById('prioLow');
-
-        prioUrgent.addEventListener('click', () => {
-            prioUrgent.classList.add('prioUrgentClicked');
-            prioLow.classList.remove('prioLowClicked');
-            prioMedium.classList.remove('prioMediumClicked');
-        });
-
-        prioMedium.addEventListener('click', () => {
-            prioMedium.classList.add('prioMediumClicked');
-            prioUrgent.classList.remove('prioUrgentClicked');
-            prioLow.classList.remove('prioLowClicked');
-        })
-
-        prioLow.addEventListener('click', () => {
-            prioLow.classList.add('prioLowClicked');
-            prioUrgent.classList.remove('prioUrgentClicked');
-            prioMedium.classList.remove('prioMediumClicked');
-        })
-
-        let inputToFocus = document.getElementById('subtaskInput');
-        let btnToWatch = document.getElementById('addSubTaskBtn');
-        btnToWatch.addEventListener('click', () => {
-            if (inputToFocus) {
-                inputToFocus.focus();
-            }
-        })
-    </script>
-
+    <script src="./js/add_tasks.js"></script>
 </body>
 
 </html>
