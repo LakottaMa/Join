@@ -13,6 +13,7 @@
 </head>
 
 <body onload="init(); initContacts()">
+    <div id="background"></div>
     <div template="/assets/templates/desktop_template.html"></div>
 
     <div class="contactSection">
@@ -70,8 +71,8 @@
                 <div class="floatingInteracts">
                     <span>Anton Mayer</span>
                     <div class="floatingBtn">
-                        <div class="cp" onclick="editContact()"><img src="./assets/img/edit.png" alt="edit">Edit</div>
-                        <div class="cp" onclick="deleteContact()"><img src="./assets/img/delete.png" alt="trashcan">Delete</div>
+                        <p class="cp" onclick="editContact()"><img src="./assets/img/edit.png" alt="edit">Edit</p>
+                        <p class="cp" onclick="deleteContact()"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
                     </div>
                 </div>
             </div>

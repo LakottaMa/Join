@@ -132,8 +132,12 @@ function checkId(id) {
 
 function addNewContact() {
     document.getElementById('addContactPopup').classList.remove('d-none');
+    document.getElementById('addContactPopup').style.transform ='translateX (584px)';
+    document.getElementById('background').classList.add('back');
 }
 
 function closePopup() {
     document.getElementById('addContactPopup').classList.add('d-none');
+    document.getElementById('background').classList.remove('back');
+    document.getElementById('addContactPopup').style.transform ='translateX (0px)';
 }
