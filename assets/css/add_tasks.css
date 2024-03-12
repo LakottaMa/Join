@@ -161,6 +161,8 @@ textarea {
     margin-left: auto;
     display: flex;
     gap: 24px;
+    margin-bottom: 48px;
+    margin-right: 32px;
 }
 
 .addTaskBtns button {
