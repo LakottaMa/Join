@@ -1,3 +1,8 @@
+async function init() {
+    await includeHTML();
+    greetingMessage();
+}
+
 function greetingMessage() {
     let currentHour = checkHour();
     let greeting = document.getElementById('greeting');
