@@ -68,7 +68,7 @@ function addBgColor(div) {
 
 function contactsHTML(letter, x) {
     let names = allContacts[letter][x]['name'].split(' '); //map iteriert durch jedes wort im array names
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in ein ezeichenkette zu verwandeln
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in ein zeichenkette zu verwandeln
 
     return `
         <div class="contactSmall cp" onclick="showFloatContact()">
