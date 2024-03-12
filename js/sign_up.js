@@ -41,6 +41,33 @@ let users = [
   }
 ];
 
+
+async function init() {
+  loadUsers();
+}
+
+async function loadUsers() {
+  try {
+    users = JSON.parse(await getItem('users'));
+  } catch (e) {
+    console.error('Loading error:', e);
+  }
+  console.log(users);
+}
+
+/** register new user */
+async function register() {
+  let name = document.getElementById('name').value;
+  let email = document.getElementById('email').value;
+  let password = document.getElementById('password').value;
+  if (name && email && password) {
+    users.push({ name: name, email: email, password: password });
+    await setItem('users', JSON.stringify(users));
+  }
+  resetForm();
+  signup();
+}
+
 function checkedSignup() {
   const checkbox = document.getElementById('accept-policy');
   let button = document.getElementById('signupBtn');
