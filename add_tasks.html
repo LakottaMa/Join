@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="./assets/css/add_tasks.css">
-    <script src="./js/add_tasks.js"></script>
+    
     <link rel="stylesheet" href="./assets/css/fonts.css">
     <title>Join</title>
 </head>
@@ -154,51 +155,7 @@
 
     <script src="/js/templates.js"></script>
     <script src="/script.js"></script>
-    <script>
-
-        // event listener for priority buttons
-        let prioUrgent = document.getElementById('prioUrgent');
-        let prioMedium = document.getElementById('prioMedium');
-        let prioLow = document.getElementById('prioLow');
-
-        prioUrgent.addEventListener('click', () => {
-            prioUrgent.classList.add('prioUrgentClicked');
-            prioLow.classList.remove('prioLowClicked');
-            prioMedium.classList.remove('prioMediumClicked');
-            priority = 'Urgent';
-        });
-
-        prioMedium.addEventListener('click', () => {
-            prioMedium.classList.add('prioMediumClicked');
-            prioUrgent.classList.remove('prioUrgentClicked');
-            prioLow.classList.remove('prioLowClicked');
-            priority = 'Medium';
-        })
-
-        prioLow.addEventListener('click', () => {
-            prioLow.classList.add('prioLowClicked');
-            prioUrgent.classList.remove('prioUrgentClicked');
-            prioMedium.classList.remove('prioMediumClicked');
-            priority = 'Low';
-        })
-
-        let inputToFocus = document.getElementById('subtaskInput');
-        let btnToWatch = document.getElementById('addSubTaskBtn');
-        btnToWatch.addEventListener('click', () => {
-            if (inputToFocus) {
-                inputToFocus.focus();
-            }
-        })
-
-        let searchInputToFocus = document.getElementById('searchUserInput');
-        let searchBtnToWatch = document.getElementById('searchUserBtn');
-        searchBtnToWatch.addEventListener('click', () => {
-            if (searchInputToFocus) {
-                searchInputToFocus.focus();
-            }
-        })
-    </script>
-
+    <script src="./js/add_tasks.js"></script>
 </body>
 
 </html>
