@@ -29,7 +29,7 @@ footer a {
     justify-content: center;
     width: 100%;
     div{
-        width: 178px;
+        width: 204px;
     }
     a {
         color: var(--clr-main1);
@@ -80,7 +80,7 @@ footer a {
     font-size: 23px;
     width: 326px;
     height: 74px;
-    padding: 23px;
+    padding: 23px 18px;
     background-color: var(--clr-main1);
     color: white;
     border: none;
@@ -127,6 +127,13 @@ footer a {
     }
 
     h1 {
-        margin: 8px 0 8px 0;
+        margin-bottom: 8px;
+    }
+
+    .form-box{
+        .back-btn{
+            top: 40px;
+            right: 148px;
+        }
     }
 }

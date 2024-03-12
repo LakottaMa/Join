@@ -209,6 +209,10 @@ textarea {
     justify-content: flex-start;
     width: 100%;
     padding-left: 24px;
+
+    & input {
+        border: none;
+    }
 }
 
 .customSelect img {

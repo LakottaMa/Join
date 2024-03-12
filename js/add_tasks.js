@@ -1,6 +1,101 @@
+/**
+ * just examples
+ */
+let users = [
+    {
+        "name": "Tim Cook",
+        "email": "tim.cook@example.com",
+        "password": "Cook#Apple5",
+        "tasks": []
+    },
+    {
+        "name": "Steve Jobs",
+        "email": "steve.jobs@example.com",
+        "password": "Jobs#Apple1",
+        "tasks": []
+    },
+    {
+        "name": "Bill Gates",
+        "email": "bill.gates@example.com",
+        "password": "Gates@Microsoft2",
+        "tasks": []
+    },
+    {
+        "name": "Linus Torvalds",
+        "email": "linus.torvalds@example.com",
+        "password": "Torvalds#Linux3",
+        "tasks": []
+    },
+    {
+        "name": "Sam Altman",
+        "email": "sam.altman@example.com",
+        "password": "Altman#YCombinator4",
+        "tasks": []
+    }
+];
+
 let subTasks = [];
 let searchedUsers = [];
-let arrayToRender = true; // true = users | false = searchedUsers
+let selectedUsers = [];
+let tasks = [];
+let category = "";
+let priority = "";
+
+/**
+ * create template for task
+ * @param {string} title 
+ * @param {string} description 
+ * @param {date} date 
+ * @param {string} taskPriority 
+ * @param {Array} assignedTo 
+ * @param {string} taskCategory 
+ * @param {Array} subtasks 
+ * @returns 
+ */
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks) {
+    return {
+        "title": title.value,
+        "description": description.value,
+        "date": new Date(date.value),
+        "priority": taskPriority,
+        "assignedTo": assignedTo,
+        "category": taskCategory,
+        "subtasks": subtasks
+    }
+}
+
+/**
+ * push new Task to tasks array
+ */
+function addTask() {
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
+    let taskPriority = priority;
+    let assignedTo = selectedUsers;
+    let subtasks = subTasks;
+    let taskCategory = category;
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks);
+    tasks.push(newTask);
+    resetInputsAndSelections();
+
+}
+
+/**
+ * clear input and reset global variables
+ */
+function resetInputsAndSelections() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('date').value = '';
+    selectedUsers = [];
+    renderSelectedUsers();
+    subTasks = [];
+    renderSubTasks();
+    priority = "";
+    category = "";
+}
+
 
 /**
  * toggle display: 'none'; to show or hide element
@@ -10,21 +105,38 @@ function toggleCustomSelect(id) {
     document.getElementById(id).classList.toggle('d-none');
 }
 
+
+/**
+ * toogle input field for search user
+ */
+function toggleSearchUserInput() {
+    document.getElementById('searchUserInput').classList.toggle('d-none');
+    document.getElementById('searchUserText').classList.toggle('d-none');
+    document.getElementById('userCategory').classList.toggle('d-none');
+}
+
 /**
  * select option
  * @param {string} getId get the text form id
  * @param {string} setId set the text to the id
  */
-function selectElement(getId, setId) {
+function selectElement_OLD(getId, setId) {
     let choice = document.getElementById(getId).innerText;
     document.getElementById(setId).innerHTML = `${choice}`;
     let cat = setId == 'selectedCategory' ? 'taskCategory' : 'userCategory';
     toggleCustomSelect(cat);
 }
 
-function addTask() {
-    console.log('addTask Button pressed');
+/**
+ * selcect category for task and push to global variable
+ * @param {string} cat selected category
+ */
+function selectCategory(cat) {
+    category = cat;
+    document.getElementById('selectedCategory').innerHTML = cat;
+    toggleCustomSelect('taskCategory');
 }
+
 /**
  * show the input field for adding subtasks
  */
@@ -135,8 +247,6 @@ function showEditSubTaskInputField(index) {
     document.getElementById(`dividerHorizontal${index}`).style.borderBottomColor = "var(--clr-main2)";
 }
 
-//==============================
-
 /**
  * render User
  */
@@ -145,13 +255,14 @@ function renderUsers() {
     userContainer.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         const user = users[i]['name'];
-        const isSelected = users[i]['isSelected'];
         userContainer.innerHTML += printUsers(user, i);
-        isUserSelected(isSelected, i);
+        isUserSelected(i);
     }
 }
 
-
+/**
+ * render only the users that exist in the searchedUser Array
+ */
 function renderSearchedUsers() {
     let userContainer = document.getElementById('userCategory');
     userContainer.innerHTML = '';
@@ -159,22 +270,25 @@ function renderSearchedUsers() {
         const userName = searchedUsers[i]['name'];
         let index = users.findIndex(u => u.name === userName);
         let user = users[index]['name'];
-        let isSelected = users[index]['isSelected'];
         userContainer.innerHTML += printUsers(user, index);
-        isUserSelected(isSelected, index);
+        isUserSelected(index);
     }
 }
 
+/**
+ * check whether users were searched
+ */
 function checkRenderArr() {
     if (searchedUsers == null || searchedUsers == "" || searchedUsers < 1) {
         renderUsers();
-        arrayToRender = true;
     } else {
         renderSearchedUsers();
-        arrayToRender = false;
     }
 }
 
+/**
+ * filter user that are searched
+ */
 function searchUsers() {
     let input = document.getElementById('searchUserInput');
     let filteredUsers = users.filter(user => user.name.toLowerCase().includes(input.value.toLowerCase()));
@@ -182,19 +296,22 @@ function searchUsers() {
     checkRenderArr();
 }
 
+
 /**
- * show checked or unchecked image
- * @param {boolean} isSelected true = selected | false = unselected
- * @param {Int} index for the user
+ * check if user exist in selected array
+ * @param {Int} index of selected or unselected user
  */
-function isUserSelected(isSelected, index) {
-    if (isSelected == true) {
-        document.getElementById(`imgUncheck${index}`).classList.add('d-none');
-        document.getElementById(`imgCheck${index}`).classList.remove('d-none');
-    } else {
+function isUserSelected(index) {
+    let user = users[index]['name'];
+    let selectedUsersIndex = selectedUsers.findIndex(u => u === user);
+    if (selectedUsersIndex === -1) {
         document.getElementById(`imgUncheck${index}`).classList.remove('d-none');
         document.getElementById(`imgCheck${index}`).classList.add('d-none');
+    } else {
+        document.getElementById(`imgUncheck${index}`).classList.add('d-none');
+        document.getElementById(`imgCheck${index}`).classList.remove('d-none');
     }
+    
 }
 
 /**
@@ -213,18 +330,23 @@ function printUsers(user, index) {
     `;
 }
 
-
+/**
+ * select user -> push in selectedUser array
+ * @param {Int} index of user
+ */
 function selectUser(index) {
     let user = users[index]['name'];
-    users[index]['isSelected'] = true;
     selectedUsers.push(user);
     checkRenderArr();
     renderSelectedUsers();
 }
 
+/**
+ * unselect user, remove from selectedUser array
+ * @param {Int} index of user
+ */
 function unselectUser(index) {
     let user = users[index]['name'];
-    users[index]['isSelected'] = false;
     let userIndexInSelectedUsers = selectedUsers.findIndex(u => u.toLowerCase() === user.toLocaleLowerCase());
     if (userIndexInSelectedUsers !== -1) { 
         selectedUsers.splice(userIndexInSelectedUsers, 1);  
@@ -232,8 +354,6 @@ function unselectUser(index) {
     checkRenderArr();
     renderSelectedUsers();
 }
-
-
 
 /**
  * split the string in two strings, get the first letter from each string
@@ -287,45 +407,48 @@ function getRandomColor() {
 
 let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
-let selectedUsers = [];
-/**
- * just examples
- */
-let users = [
-    {
-        "name": "Tim Cook",
-        "email": "tim.cook@example.com",
-        "password": "Cook#Apple5",
-        "isSelected": false,
-        "tasks": []
-    },
-    {
-        "name": "Steve Jobs",
-        "email": "steve.jobs@example.com",
-        "password": "Jobs#Apple1",
-        "isSelected": false,
-        "tasks": []
-    },
-    {
-        "name": "Bill Gates",
-        "email": "bill.gates@example.com",
-        "password": "Gates@Microsoft2",
-        "isSelected": false,
-        "tasks": []
-    },
-    {
-        "name": "Linus Torvalds",
-        "email": "linus.torvalds@example.com",
-        "password": "Torvalds#Linux3",
-        "isSelected": false,
-        "tasks": []
-    },
-    {
-        "name": "Sam Altman",
-        "email": "sam.altman@example.com",
-        "password": "Altman#YCombinator4",
-        "isSelected": false,
-        "tasks": []
+// event listener for priority buttons
+let prioUrgent = document.getElementById('prioUrgent');
+let prioMedium = document.getElementById('prioMedium');
+let prioLow = document.getElementById('prioLow');
+
+prioUrgent.addEventListener('click', () => {
+    prioUrgent.classList.add('prioUrgentClicked');
+    prioLow.classList.remove('prioLowClicked');
+    prioMedium.classList.remove('prioMediumClicked');
+    priority = 'Urgent';
+});
+
+prioMedium.addEventListener('click', () => {
+    prioMedium.classList.add('prioMediumClicked');
+    prioUrgent.classList.remove('prioUrgentClicked');
+    prioLow.classList.remove('prioLowClicked');
+    priority = 'Medium';
+})
+
+prioLow.addEventListener('click', () => {
+    prioLow.classList.add('prioLowClicked');
+    prioUrgent.classList.remove('prioUrgentClicked');
+    prioMedium.classList.remove('prioMediumClicked');
+    priority = 'Low';
+})
+
+// event listener for input fields
+
+let inputToFocus = document.getElementById('subtaskInput');
+let btnToWatch = document.getElementById('addSubTaskBtn');
+btnToWatch.addEventListener('click', () => {
+    if (inputToFocus) {
+        inputToFocus.focus();
     }
-];
+})
+
+let searchInputToFocus = document.getElementById('searchUserInput');
+let searchBtnToWatch = document.getElementById('searchUserBtn');
+searchBtnToWatch.addEventListener('click', () => {
+    if (searchInputToFocus) {
+        searchInputToFocus.focus();
+    }
+})
+
 
