@@ -5,6 +5,7 @@ let users = [
       "email": "tim.cook@example.com",
       "password": "Cook#Apple5",
       "phone": "017852546",
+      "id": "1",
       "tasks": []
   },
   {
@@ -12,6 +13,7 @@ let users = [
       "email": "steve.jobs@example.com",
       "password": "Jobs#Apple1",
       "phone": "017852546",
+      "id": "2",
       "tasks": []
   },
   {
@@ -19,6 +21,7 @@ let users = [
       "email": "bill.gates@example.com",
       "password": "Gates@Microsoft2",
       "phone": "017852546",
+      "id": "3",
       "tasks": []
   },
   {
@@ -26,6 +29,7 @@ let users = [
       "email": "linus.torvalds@example.com",
       "password": "Torvalds#Linux3",
       "phone": "017852546",
+      "id": "4",
       "tasks": []
   },
   {
@@ -33,6 +37,7 @@ let users = [
       "email": "sam.altman@example.com",
       "password": "Altman#YCombinator4",
       "phone": "017852546",
+      "id": "5",
       "tasks": []
   }
 ];
