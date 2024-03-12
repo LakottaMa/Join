@@ -6,6 +6,7 @@ let users = [
         "name": "Tim Cook",
         "email": "tim.cook@example.com",
         "password": "Cook#Apple5",
+        "phone": "017852546",
         "tasks": []
     },
     {

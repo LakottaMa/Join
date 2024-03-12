@@ -1,4 +1,41 @@
 
+let users = [
+  {
+      "name": "Tim Cook",
+      "email": "tim.cook@example.com",
+      "password": "Cook#Apple5",
+      "phone": "017852546",
+      "tasks": []
+  },
+  {
+      "name": "Steve Jobs",
+      "email": "steve.jobs@example.com",
+      "password": "Jobs#Apple1",
+      "phone": "017852546",
+      "tasks": []
+  },
+  {
+      "name": "Bill Gates",
+      "email": "bill.gates@example.com",
+      "password": "Gates@Microsoft2",
+      "phone": "017852546",
+      "tasks": []
+  },
+  {
+      "name": "Linus Torvalds",
+      "email": "linus.torvalds@example.com",
+      "password": "Torvalds#Linux3",
+      "phone": "017852546",
+      "tasks": []
+  },
+  {
+      "name": "Sam Altman",
+      "email": "sam.altman@example.com",
+      "password": "Altman#YCombinator4",
+      "phone": "017852546",
+      "tasks": []
+  }
+];
 
 function checkedSignup() {
   const checkbox = document.getElementById('accept-policy');
