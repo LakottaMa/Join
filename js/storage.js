@@ -37,5 +37,8 @@ async function resetRemote(key) {
  }
 
  async function clearLoggedInEmail() {
-    await resetRemote('loggedInEmail');
+    await resetRemote('id');
   }
+
+
+  

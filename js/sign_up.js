@@ -41,9 +41,8 @@ let users = [
   }
 ];
 
-
 async function init() {
-  loadUsers();
+  await loadUsers();   
 }
 
 async function loadUsers() {
@@ -60,6 +59,11 @@ async function register() {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
+  let confirmedPassword = document.getElementById('confirmedPassword').value;
+  if (password !== confirmedPassword) {
+    alert('Passwörter stimmen nicht überein!');
+    return;
+    }
   if (name && email && password) {
     users.push({ name: name, email: email, password: password });
     await setItem('users', JSON.stringify(users));
@@ -91,4 +95,19 @@ function signup() {
 function resetForm() {
   const formFields = ['name', 'email', 'password', 'confirmedPassword'];
   formFields.forEach(field => document.getElementById(field).value = '');
+}
+
+
+function deleteContact(users, email) {
+  // Find the index of the contact to delete
+  const index = users.findIndex(users => users.email === email);
+
+  // Check if contact with the email exists
+  if (index !== -1) {
+    // Remove the contact at the found index
+    users.splice(index, 1);
+    console.log(`Contact with email "${email}" deleted successfully.`);
+  } else {
+    console.log(`Contact with email "${email}" not found.`);
+  }
 }

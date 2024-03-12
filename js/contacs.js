@@ -1,3 +1,7 @@
+async function init() {
+    await loadUsers();  
+ }
+
 
 function initContacts() {
     renderContactList();

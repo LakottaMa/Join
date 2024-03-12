@@ -1,6 +1,3 @@
-async function init() {
-  loadUsers();
-}
 
 let checkBoxLogin = false;
 function rememberMe() {
@@ -26,3 +23,5 @@ function logIn(users) {
     window.location.href = './summary.html';
   }
 }
+
+let currentUser;
