@@ -1,7 +1,6 @@
 
 function initContacts() {
     renderContactList();
-    
     console.log('all Contacts Array', allContacts); //wieder löschen!!
 }
 
@@ -22,10 +21,10 @@ function renderContactList() {
         }
         currentLetter = firstLetter;
         document.getElementById(`${firstLetter}-content`).innerHTML +=
-        contactsHTML(contact);
-        // addBgColor(x);        
+            contactsHTML(contact);
+        addBgColor(contact);
     }
-    
+
 }
 function contactsHTML(contact) {
     let names = contact['name'].split(' '); //map iteriert durch jedes wort im array names
@@ -33,7 +32,7 @@ function contactsHTML(contact) {
     let id = contact['id'];
 
     return `
-        <div class="contactSmall cp" onclick="showFloatContact()">
+        <div class="contactSmall cp" onclick="showFloatContact("${contact})">
             <div id="${id}"class="initials">${initials}</div>
             <div>
                 <span>${contact['name']}</span>
@@ -43,38 +42,52 @@ function contactsHTML(contact) {
     `;
 }
 
-function addBgColor(div) {
+function addBgColor(contact) {
+    let id = contact['id'];
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
     let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-    document.getElementById(`${div}`).style.backgroundColor = bgColor;
+    document.getElementById(`${id}`).style.backgroundColor = bgColor;
 }
 
-function showFloatContact() {
+function showFloatContact(contact) {
+    let name = contact['name'];
+    let email = contact['email'];
+    let phone = contact['phone'];
+    let id = contact['id'];
+    let names = contact['name'].split(' '); 
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
+
     document.getElementById('floatingContact').classList.remove('d-none');
-}
+    document.getElementById('floatingContact').innerHTML ='';
+    document.getElementById('floatingContact').innerHTML =`
+        <div class="floatingTop">
+            <div class="initialsFloating">${initials}</div>
+            <div class="floatingInteracts">
+            <span>${name}</span>
+            <div class="floatingBtn">
+                <p class="cp" onclick="editContact()"><img src="./assets/img/edit.png" alt="edit">Edit</p>
+                <p class="cp" onclick="deleteContact()"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
+            </div>
+        </div>
+</div>
+<div class="floatingBottom">
+    <h2>Contact Information</h2>
+    <div>
+        <h3>Email</h3>
+        <div id="emailFloating">anton@mail.com</div>
+    </div>
+    <div>
+        <h3>Phone</h3>
+        <div id="phoneFloating">+49154627</div>
+    </div>
 
-//Überprüft ob die ID für die Div schon vergeben ist un erhöht sie dann
-function checkId(id) {
-    for (let y = 0; y < allContacts.length; y++) {
-        const element = array[y];
+</div>
+    
+    
+    `;
 
-    }
-    //     for (let y = 0; y < alphabet.length; y++) {
-    //         let currentLetter = alphabet[y];
-
-    //         let letterArray = allContacts[currentLetter];
-    //         if (letterArray.length === 0) {
-    //             return id
-    //         }
-    //         else
-    //             // for (let z = 1; z < letterArray.length; z++) {
-    //             //     if (id === letterArray.length + 1) {
-    //             //         id++;
-    //             //     }
-    //             // } return id
-    //     }
 }
 
 // function createNewContact() {

@@ -11,6 +11,7 @@ let users = [
       "name": "Steve Jobs",
       "email": "steve.jobs@example.com",
       "password": "Jobs#Apple1",
+      "phone": "017852546",
       "id": "2",
       "tasks": []
   },
@@ -18,6 +19,7 @@ let users = [
       "name": "Bill Gates",
       "email": "bill.gates@example.com",
       "password": "Gates@Microsoft2",
+      "phone": "017852546",
       "id": "3",
       "tasks": []
   },
@@ -25,6 +27,7 @@ let users = [
       "name": "Linus Torvalds",
       "email": "linus.torvalds@example.com",
       "password": "Torvalds#Linux3",
+      "phone": "017852546",
       "id": "4",
       "tasks": []
   },
@@ -32,6 +35,7 @@ let users = [
       "name": "Sam Altman",
       "email": "sam.altman@example.com",
       "password": "Altman#YCombinator4",
+      "phone": "017852546",
       "id": "5",
       "tasks": []
   }
