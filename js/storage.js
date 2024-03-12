@@ -1,10 +1,6 @@
-const STORAGE_TOKEN = 'Q9WOOSU9Y423XH6NT7LTTFAFDNZ3EXH9ZNOH5V44';
+const STORAGE_TOKEN = 'FOQ59STJFAGBFPPP9W1RP2EHAKEF90DYTULV2A3Q';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
-let users = [
-    { 'user': 'Guest', 'email': 'guest@guest.de', 'password': '12345', 'tasks': [] }
-  ];
-  
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload)})
@@ -19,7 +15,6 @@ async function getItem(key) {
         } throw `Could not find data with key "${key}".`;
     });
 }
-
 
 /** lösch function */
 async function deleteItem(key) {
@@ -36,3 +31,11 @@ async function deleteItem(key) {
         return response;
       });
 }
+
+async function resetRemote(key) {
+    await setItem(key, []).then();
+ }
+
+ async function clearLoggedInEmail() {
+    await resetRemote('loggedInEmail');
+  }

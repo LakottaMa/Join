@@ -1,38 +1,38 @@
 /**
  * just examples
  */
-let users = [
-    {
-        "name": "Tim Cook",
-        "email": "tim.cook@example.com",
-        "password": "Cook#Apple5",
-        "tasks": []
-    },
-    {
-        "name": "Steve Jobs",
-        "email": "steve.jobs@example.com",
-        "password": "Jobs#Apple1",
-        "tasks": []
-    },
-    {
-        "name": "Bill Gates",
-        "email": "bill.gates@example.com",
-        "password": "Gates@Microsoft2",
-        "tasks": []
-    },
-    {
-        "name": "Linus Torvalds",
-        "email": "linus.torvalds@example.com",
-        "password": "Torvalds#Linux3",
-        "tasks": []
-    },
-    {
-        "name": "Sam Altman",
-        "email": "sam.altman@example.com",
-        "password": "Altman#YCombinator4",
-        "tasks": []
-    }
-];
+// let users = [
+//     {
+//         "name": "Tim Cook",
+//         "email": "tim.cook@example.com",
+//         "password": "Cook#Apple5",
+//         "tasks": []
+//     },
+//     {
+//         "name": "Steve Jobs",
+//         "email": "steve.jobs@example.com",
+//         "password": "Jobs#Apple1",
+//         "tasks": []
+//     },
+//     {
+//         "name": "Bill Gates",
+//         "email": "bill.gates@example.com",
+//         "password": "Gates@Microsoft2",
+//         "tasks": []
+//     },
+//     {
+//         "name": "Linus Torvalds",
+//         "email": "linus.torvalds@example.com",
+//         "password": "Torvalds#Linux3",
+//         "tasks": []
+//     },
+//     {
+//         "name": "Sam Altman",
+//         "email": "sam.altman@example.com",
+//         "password": "Altman#YCombinator4",
+//         "tasks": []
+//     }
+// ];
 
 let subTasks = [];
 let searchedUsers = [];

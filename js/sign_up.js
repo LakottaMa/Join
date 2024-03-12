@@ -1,4 +1,47 @@
+let users = [
+  {
+    'name': 'Guest',
+    'email': 'guest@guest.de',
+    'password': '12345',
+    'tasks': []
+  },
 
+  {
+    "name": "Tim Cook",
+    "email": "tim.cook@example.com",
+    "password": "Cook#Apple5",
+    "phone": "0177515789",
+    "tasks": []
+  },
+  {
+    "name": "Steve Jobs",
+    "email": "steve.jobs@example.com",
+    "password": "Jobs#Apple1",
+    "phone": "0177515789",
+    "tasks": []
+  },
+  {
+    "name": "Bill Gates",
+    "email": "bill.gates@example.com",
+    "password": "Gates@Microsoft2",
+    "phone": "0177515789",
+    "tasks": []
+  },
+  {
+    "name": "Linus Torvalds",
+    "email": "linus.torvalds@example.com",
+    "password": "Torvalds#Linux3",
+    "phone": "0177515789",
+    "tasks": []
+  },
+  {
+    "name": "Sam Altman",
+    "email": "sam.altman@example.com",
+    "password": "Altman#YCombinator4",
+    "phone": "0177515789",
+    "tasks": []
+  }
+];
 
 async function init() {
   loadUsers();
@@ -19,7 +62,7 @@ async function register() {
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
   if (name && email && password) {
-    users.push({ user: name, email: email, password: password });
+    users.push({ name: name, email: email, password: password });
     await setItem('users', JSON.stringify(users));
   }
   resetForm();
