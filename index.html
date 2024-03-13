@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="./assets/css/fonts.css">
     <link rel="stylesheet" href="./assets/css/login.css">
     <title>Join</title>
 
 </head>
-
-<body>
+<body onload="init()">
     <header class="login-header">
         <img class="logo" src="./assets/img/logo_blue.png">
         <div class="signup">
@@ -24,15 +22,15 @@
         <div class="loading-animation"><img class="loding-logo" src="./assets/img/loding_logo.png"></div>
         <div class="mobile">
             <div class="form-box">
-                <form class="input-box" action="./summary.html" method="get" return false>
+                <form class="input-box" onsubmit="logIn(users); return false;">
                     <h1>Log in</h1>
                     <img class="underline" src="./assets/img/underline_login.png">
                     <div class="input-field">
-                        <input type="email" placeholder="Email">
+                        <input type="email" id="email" required placeholder="Email">
                         <img src="./assets/img/mail.png">
                     </div>
                     <div class="input-field">
-                        <input type="password" placeholder="Password">
+                        <input type="password" id="password" required placeholder="Password">
                         <img id="login-password-icon" src="./assets/img/lock.png">
                     </div>
                     <div class="checkbox cp" onclick="rememberMe()">
@@ -40,8 +38,8 @@
                         <span>Remember me</span>
                     </div>
                     <div class="btn-box">
-                        <button type="submit" class="login-btn cp">Log in</button>
-                        <button type="submit" class="guestlogin-btn cp" onclick="GuestLogIn()">Guest Log in</button>
+                        <button class="login-btn cp">Log in</button>
+                        <button type="button" class="guestlogin-btn cp" onclick="guestLogIn(users)">Guest Log in</button>
                     </div>
                 </form>
             </div>
@@ -55,8 +53,8 @@
         <a href="./privacy_policy.html">Privacy Policy</a>
         <a href="./legal_notice.html">Legal notice</a>
     </footer>
+    <script src="./js/storage.js"></script>
+    <script src="./js/sign_up.js"></script>
     <script src="./script.js"></script>
-    <script src="./js/login.js"></script>
 </body>
-
 </html>

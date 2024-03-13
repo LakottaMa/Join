@@ -1,9 +1,13 @@
+h2, h3{
+    color: black !important;
+}
+
 .contactSection {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    height: 928px;
-    margin: 96px 0 0 232px;
+    height: 100vh;
+    margin-left: 232px;
 }
 
 .contactList {
@@ -11,6 +15,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    margin-top: 96px;
     padding: 0 24px 0 49px;
 }
 
@@ -45,17 +50,17 @@
 .letterBox {
     width: 100%;
     font-size: 22px;
-    
+
 }
 
-.letter{
+.letter {
     font-size: 22px;
     padding: 10px 0 25px 36px;
     outline: none;
     border-bottom: 1px solid rgba(209, 209, 209, 1);
 }
 
-.contactSmall{
+.contactSmall {
     display: flex;
     align-items: center;
     margin-top: 8px;
@@ -63,12 +68,12 @@
     gap: 35px;
     font-size: 19px;
 
-    &:hover{
+    &:hover {
         background-color: var(--clr-main2);
         border-radius: 10px;
     }
 
-    &:active{
+    &:active {
         background-color: var(--clr-main2);
     }
 
@@ -79,19 +84,107 @@
     }
 }
 
-.initials{
+.initials {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 12px;
     color: white;
-    height: 42px;
     width: 42px;
+    aspect-ratio: 1/1;
     border: 2px solid #FFFFFF;
-    border-radius: 21px;
+    border-radius: 50%;
+}
+
+/*********************** Start floatingContact ***********************/
+
+#floatingContact {
+    display: flex;
+    flex-direction: column;
+    padding: 72px 0 0 62px;
+    gap: 21px;
+}
+
+.initialsFloating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 47px;
+    color: white;
+    width: 120px;
+    aspect-ratio: 1/1;
+    border: 3px solid #FFFFFF;
+    border-radius: 50%;
+    background-color: orange;
+    /* automatisieren per JS!! */
+}
+
+.floatingTop {
+    display: flex;
+    align-items: center;
+    gap: 54px;
+}
+
+.floatingInteracts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    span {
+        font-size: 47px;
+        font-weight: 500;
+        gap: 5px;
+    }
+}
+
+.floatingBtn {
+    display: flex;
+    gap: 16px;
+
+}
+
+.floatingBtn p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: 0.1s;
+
+    &:hover {
+        color: var(--clr-blue);
+        font-weight: 700;
+    }
+}
+
+.floatingBottom {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+#emailFloating {
+    font-size: 16px;
+    color: var(--clr-main1);
 }
 
 /*********************** Start Addpopup ***********************/
+
+.back{
+    width: 100%;
+    height: 100%;    
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 500ms ease-in-out;   
+    background-color: #ffffff6a;
+    z-index: 2;
+}
 
 #addContactPopup {
     position: fixed;
@@ -102,10 +195,9 @@
     flex-direction: column;
     width: 584px;
     height: 100vh;
-    z-index: 5;    
+    z-index: 999;
     transform: translateX(0px);
-    transition: all 225ms ease-in-out;  
-    
+    transition: all 500ms ease-in-out;
 }
 
 .topPopup {
@@ -230,3 +322,5 @@ input {
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
     }
 }
+
+  
