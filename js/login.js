@@ -24,4 +24,3 @@ function logIn(users) {
   }
 }
 
-let currentUser;

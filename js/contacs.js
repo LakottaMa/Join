@@ -1,13 +1,9 @@
-async function init() {
-    await loadUsers();  
- }
-
-
-function initContacts() {
+async function initContacts() {
     renderContactList();
+    await includeHTML();
+    await loadUsers();
     console.log('all Contacts Array', allContacts); //wieder löschen!!
-}
-
+ }
 
 function renderContactList() {
     users.sort((a, b) => a.name.localeCompare(b.name));

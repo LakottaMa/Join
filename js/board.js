@@ -1,3 +1,4 @@
-async function init() {
+async function initBoard() {
+    await includeHTML();
     await loadUsers();  
  }

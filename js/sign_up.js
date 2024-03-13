@@ -41,7 +41,7 @@ let users = [
   }
 ];
 
-async function init() {
+async function initSignUp() {
   await loadUsers();   
 }
 

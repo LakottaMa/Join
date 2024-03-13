@@ -1,3 +1,9 @@
+async function initSummary() {
+    await includeHTML();
+    await loadUsers();
+    greetingMessage();
+}
+
 
 function greetingMessage() {
     let currentHour = checkHour();
