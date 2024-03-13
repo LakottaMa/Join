@@ -3,27 +3,6 @@ async function initContacts() {
     await loadUsers();
     renderContactList();
 }
-/** diese function hat nur das vordefinierte ussers array lesen können */
-// function renderContactList() {
-//     users.sort((a, b) => a.name.localeCompare(b.name));
-//     let currentLetter = '';
-//     for (let i = 0; i < users.length; i++) {
-//         let contact = users[i];
-//         let firstLetter = contact['name'][0].toUpperCase();
-//         if (firstLetter !== currentLetter) {
-//             document.getElementById('allContacts').innerHTML += `
-//              <div class="letterBox">
-//                 <div class="letter">${firstLetter}</div>
-//                 <div id="${firstLetter}-content"></div>
-//             </div>
-//             `;
-//         }
-//         currentLetter = firstLetter;
-//         document.getElementById(`${firstLetter}-content`).innerHTML +=
-//             contactsHTML(contact);
-//         addBgColor(contact);
-//     }
-// }
 
 function renderContactList() {
     try {
@@ -31,7 +10,7 @@ function renderContactList() {
         let currentLetter = '';
         for (let i = 0; i < users.length; i++) {
             let contact = users[i];
-            let firstLetter = contact['name'][0].toUpperCase();
+            let firstLetter = contact['email'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
              <div class="letterBox">

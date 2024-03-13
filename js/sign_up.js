@@ -49,15 +49,16 @@ let users = [
 ];
 
 /**  Function to check if id exists in users array on remote Storage and then loadUsers */
-async function  stored() {
+async function stored() {
   let storedUser = users.find(user => user.id === users.id);
   if (storedUser) {
     setItem('users', JSON.stringify(users));
   }
-  loadUsers();
+  await loadUsers();
 }
 
 async function initSignUp() {
+  await loadUsers();
 }
 
 async function loadUsers() {
@@ -69,7 +70,6 @@ async function loadUsers() {
   console.log(users);
 }
 
-/** register new user */
 async function register() {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
@@ -80,18 +80,23 @@ async function register() {
     return;
   }
   if (name && email && password) {
-    users.push({
-      id: users.length,
-      name: name,
-      email: email,
-      password: password,
-      phone: null,
-      tasks: []
-    });
-    await setItem('users', JSON.stringify(users));
+    const isIdAvailable = !users.some(user => user.id === users.length);
+    if (isIdAvailable) {
+      users.push({
+        id: users.length,
+        name: name,
+        email: email,
+        password: password,
+        phone: null,
+        tasks: []
+      });
+      await setItem('users', JSON.stringify(users));
+    } else {
+      alert('ID already in use. Please try a different one.');
+    }
   }
   resetForm();
-  signup();
+  signupPopup();
 }
 
 function checkedSignup() {
@@ -104,8 +109,8 @@ function checkedSignup() {
   );
 }
 
-/** btn zum registrieren */
-function signup() {
+/** Popup nach erfolgreicher Registrierung */
+function signupPopup() {
   const animation = document.getElementById('popup');
   animation.classList.remove('d-none');
   setTimeout(() => {
@@ -133,6 +138,11 @@ async function logIn(users) {
   const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
   if (foundUser) {
     sessionStorage.setItem('isLoggedIn', foundUser.name);
+    let initialcontainer = document.getElementById('userInitial');
+    let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    initialcontainer.innerHTML = `${isLoggedIn}`;
     window.location.href = './summary.html';
+
   }
 }
+/** login isloggedin überarbeiten */
