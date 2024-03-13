@@ -16,29 +16,13 @@ async function getItem(key) {
   });
 }
 
-async function loadUsers() {
-  try {
-    users = JSON.parse(await getItem('users'));
-  } catch (e) {
-    console.error('Loading error:', e);
-  }
-  console.log(users);
-}
-
-/** lösch function ??? */
-
-
-async function resetRemote(key) {
-  await setItem(key, []).then();
-}
-
-async function clearLoggedInEmail() {
-  await resetRemote('id');
-}
-
 function logout() {
   sessionStorage.clear();
+  deleteStorage();
 }
-
-
-
+/** lösch function ??? */
+function deleteStorage(){
+let deleteStorage = [];
+users.push();
+setItem('users', JSON.stringify(deleteStorage));
+}

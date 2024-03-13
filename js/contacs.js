@@ -1,6 +1,6 @@
 async function initContacts() {
-    await loadUsers();
     await includeHTML();
+    await loadUsers();
     await renderContactList();
 }
 /** diese function hat nur das vordefinierte ussers array lesen können */
@@ -45,10 +45,9 @@ async function renderContactList() {
                 contactsHTML(contact);
             addBgColor(contact);
         }
-        console.log(users);
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
-      }
+    }
 }
 
 function contactsHTML(contact) {

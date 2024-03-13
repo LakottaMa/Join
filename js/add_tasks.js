@@ -282,7 +282,7 @@ function isUserSelected(index) {
         document.getElementById(`imgUncheck${index}`).classList.add('d-none');
         document.getElementById(`imgCheck${index}`).classList.remove('d-none');
     }
-    
+
 }
 
 /**
@@ -319,8 +319,8 @@ function selectUser(index) {
 function unselectUser(index) {
     let user = users[index]['name'];
     let userIndexInSelectedUsers = selectedUsers.findIndex(u => u.toLowerCase() === user.toLocaleLowerCase());
-    if (userIndexInSelectedUsers !== -1) { 
-        selectedUsers.splice(userIndexInSelectedUsers, 1);  
+    if (userIndexInSelectedUsers !== -1) {
+        selectedUsers.splice(userIndexInSelectedUsers, 1);
     }
     checkRenderArr();
     renderSelectedUsers();
