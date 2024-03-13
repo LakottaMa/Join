@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/assets/css/fonts.css">
-    <link rel="stylesheet" href="./assets/css/add_tasks.css">    
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
+    <link rel="stylesheet" href="./assets/css/add_tasks.css">
     <title>Join</title>
 </head>
 
-<body onload="init(), renderUsers()">
+<body onload="initAddTask()">
     <div template="/assets/templates/desktop_template.html"></div>
 
     <section class="content">
@@ -26,7 +25,7 @@
             <div class="priority">
                 <span><b>Priority</b></span>
                 <div>
-                    <div id="prioUrgent" class="priorityBox prioUrgent">
+                    <div onclick="setPrio('urgent')" id="prioUrgent" class="priorityBox prioUrgent">
                         <span>Urgent</span>
                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -37,7 +36,7 @@
                                 fill="#FF3D00" />
                         </svg>
                     </div>
-                    <div id="prioMedium" class="priorityBox prioMedium">
+                    <div onclick="setPrio('medium')" id="prioMedium" class="priorityBox prioMedium">
                         <span>Medium</span>
                         <svg width="20" height="9" viewBox="0 0 20 9" fill="" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_36481_4722)">
@@ -56,7 +55,7 @@
                         </svg>
 
                     </div>
-                    <div id="prioLow" class="priorityBox prioLow">
+                    <div onclick="setPrio('low')" id="prioLow" class="priorityBox prioLow">
                         <span>Low</span>
                         <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -149,11 +148,13 @@
             </button>
         </div>
     </section>
-    
     <script src="./js/storage.js"></script>
     <script src="./js/templates.js"></script>
-    <script src="/script.js"></script>
+    <script src="./js/sign_up.js"></script>
     <script src="./js/add_tasks.js"></script>
-</body>
+    <script src="./script.js"></script>
 
+    
+
+</body>
 </html>

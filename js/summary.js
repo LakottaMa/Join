@@ -1,7 +1,8 @@
-async function init() {
+async function initSummary() {
     await includeHTML();
     greetingMessage();
 }
+
 
 function greetingMessage() {
     let currentHour = checkHour();
