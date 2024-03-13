@@ -1,3 +1,4 @@
+let storedContacs = []
 let users = [
   {
       "name": "Tim Cook",
@@ -45,15 +46,6 @@ async function initSignUp() {
   await loadUsers();   
 }
 
-async function loadUsers() {
-  try {
-    users = JSON.parse(await getItem('users'));
-  } catch (e) {
-    console.error('Loading error:', e);
-  }
-  console.log(users);
-}
-
 /** register new user */
 async function register() {
   let name = document.getElementById('name').value;
@@ -95,19 +87,4 @@ function signup() {
 function resetForm() {
   const formFields = ['name', 'email', 'password', 'confirmedPassword'];
   formFields.forEach(field => document.getElementById(field).value = '');
-}
-
-
-function deleteContact(users, email) {
-  // Find the index of the contact to delete
-  const index = users.findIndex(users => users.email === email);
-
-  // Check if contact with the email exists
-  if (index !== -1) {
-    // Remove the contact at the found index
-    users.splice(index, 1);
-    console.log(`Contact with email "${email}" deleted successfully.`);
-  } else {
-    console.log(`Contact with email "${email}" not found.`);
-  }
 }

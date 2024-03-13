@@ -1,33 +1,58 @@
 async function initContacts() {
-    renderContactList();
-    await includeHTML();
     await loadUsers();
-    console.log('all Contacts Array', allContacts); //wieder löschen!!
- }
+    await includeHTML();
+    await renderContactList();
+}
+/** diese function hat nur das vordefinierte ussers array lesen können */
+// function renderContactList() {
+//     users.sort((a, b) => a.name.localeCompare(b.name));
+//     let currentLetter = '';
+//     for (let i = 0; i < users.length; i++) {
+//         let contact = users[i];
+//         let firstLetter = contact['name'][0].toUpperCase();
+//         if (firstLetter !== currentLetter) {
+//             document.getElementById('allContacts').innerHTML += `
+//              <div class="letterBox">
+//                 <div class="letter">${firstLetter}</div>
+//                 <div id="${firstLetter}-content"></div>
+//             </div>
+//             `;
+//         }
+//         currentLetter = firstLetter;
+//         document.getElementById(`${firstLetter}-content`).innerHTML +=
+//             contactsHTML(contact);
+//         addBgColor(contact);
+//     }
+// }
 
-function renderContactList() {
-    users.sort((a, b) => a.name.localeCompare(b.name));
-    let currentLetter = '';
-    for (let i = 0; i < users.length; i++) {
-        let contact = users[i];
-        let firstLetter = contact['name'][0].toUpperCase();
-        if (firstLetter !== currentLetter) {
-            document.getElementById('allContacts').innerHTML += `
+async function renderContactList() {
+    try {
+        // users.sort((a, b) => a.name.localeCompare(b.name)); /** spuckt noch fehler aus */
+        let currentLetter = '';
+        for (let i = 0; i < users.length; i++) {
+            let contact = users[i];
+            let firstLetter = contact['email'][0].toUpperCase(); /** contact['email'] email iterieren(mit "name" gibs noch probleme im web storage) */
+            if (firstLetter !== currentLetter) {
+                document.getElementById('allContacts').innerHTML += `
              <div class="letterBox">
                 <div class="letter">${firstLetter}</div>
                 <div id="${firstLetter}-content"></div>
             </div>
             `;
+            }
+            currentLetter = firstLetter;
+            document.getElementById(`${firstLetter}-content`).innerHTML +=
+                contactsHTML(contact);
+            addBgColor(contact);
         }
-        currentLetter = firstLetter;
-        document.getElementById(`${firstLetter}-content`).innerHTML +=
-            contactsHTML(contact);
-        addBgColor(contact);
-    }
-
+        console.log(users);
+    } catch (error) {
+        console.error("Error fetching or parsing users data:", error);
+      }
 }
+
 function contactsHTML(contact) {
-    let names = contact['name'].split(' '); //map iteriert durch jedes wort im array names
+    let names = contact['email'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
     let id = contact['id'];
     return `
@@ -41,21 +66,19 @@ function contactsHTML(contact) {
     `;
 }
 
-function showFloatContact(contact) { 
-    
+function showFloatContact(contact) {
     let name = contact['name'];
     let email = contact['email'];
     let phone = contact['phone'];
     let id = contact['id'];
-    let names = contact['name'].split(' '); 
+    let names = contact['name'].split(' ');
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-
     document.getElementById('floatingContact').classList.remove('d-none');
-    document.getElementById('floatingContact').innerHTML ='';
+    document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, phone, id, initials);
 }
 
-function floatContactHTML (name, email, phone, id, initials){
+function floatContactHTML(name, email, phone, id, initials) {
     return `
         <div class="floatingTop">
             <div id="${id}" class="initialsFloating">${initials}</div>

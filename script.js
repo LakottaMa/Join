@@ -1,9 +1,9 @@
 async function init() {
-   loadUsers();
+  await loadUsers();
 }
 
-function logout() {
-   sessionStorage.clear();
+async function initLegalTopics(){
+   await includeHTML();
 }
 
 
