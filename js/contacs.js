@@ -1,7 +1,7 @@
 async function initContacts() {
     await includeHTML();
     await loadUsers();
-    await renderContactList();
+    renderContactList();
 }
 /** diese function hat nur das vordefinierte ussers array lesen können */
 // function renderContactList() {
@@ -25,13 +25,13 @@ async function initContacts() {
 //     }
 // }
 
-async function renderContactList() {
+function renderContactList() {
     try {
-        // users.sort((a, b) => a.name.localeCompare(b.name)); /** spuckt noch fehler aus */
+        users.sort((a, b) => a.name.localeCompare(b.name));
         let currentLetter = '';
         for (let i = 0; i < users.length; i++) {
             let contact = users[i];
-            let firstLetter = contact['email'][0].toUpperCase(); /** contact['email'] email iterieren(mit "name" gibs noch probleme im web storage) */
+            let firstLetter = contact['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
              <div class="letterBox">
@@ -51,7 +51,7 @@ async function renderContactList() {
 }
 
 function contactsHTML(contact) {
-    let names = contact['email'].split(' '); //map iteriert durch jedes wort im array name
+    let names = contact['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
     let id = contact['id'];
     return `

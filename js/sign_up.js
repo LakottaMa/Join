@@ -1,55 +1,63 @@
-let storedContacs = []
 let users = [
   {
+    "id": 1,
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
     "tasks": []
   },
   {
+    "id": 2,
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
     "phone": "017852546",
-    "id": "1",
     "tasks": []
   },
   {
+    "id": 3,
     "name": "Steve Jobs",
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
     "phone": "017852546",
-    "id": "2",
     "tasks": []
   },
   {
+    "id": 4,
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
     "phone": "017852546",
-    "id": "3",
     "tasks": []
   },
   {
+    "id": 5,
     "name": "Linus Torvalds",
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
-    "id": "4",
     "tasks": []
   },
   {
+    "id": 6,
     "name": "Sam Altman",
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
     "phone": "017852546",
-    "id": "5",
     "tasks": []
   }
 ];
 
+/**  Function to check if id exists in users array on remote Storage and then loadUsers */
+async function  stored() {
+  let storedUser = users.find(user => user.id === users.id);
+  if (storedUser) {
+    setItem('users', JSON.stringify(users));
+  }
+  loadUsers();
+}
+
 async function initSignUp() {
-  await loadUsers();
 }
 
 async function loadUsers() {
@@ -72,7 +80,14 @@ async function register() {
     return;
   }
   if (name && email && password) {
-    users.push({ name: name, email: email, password: password });
+    users.push({
+      id: users.length,
+      name: name,
+      email: email,
+      password: password,
+      phone: null,
+      tasks: []
+    });
     await setItem('users', JSON.stringify(users));
   }
   resetForm();
@@ -102,13 +117,6 @@ function signup() {
 function resetForm() {
   const formFields = ['name', 'email', 'password', 'confirmedPassword'];
   formFields.forEach(field => document.getElementById(field).value = '');
-}
-
-let checkBoxLogin = false;
-function rememberMe() {
-  const checkBoxImage = document.getElementById('remember-me');
-  checkBoxImage.src = checkBoxImage.src.includes('unchecked') ? './assets/img/check_checked.png' : './assets/img/check_unchecked.png';
-  checkBoxLogin = !checkBoxLogin;
 }
 
 function guestLogIn(users) {

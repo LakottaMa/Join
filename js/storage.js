@@ -18,11 +18,12 @@ async function getItem(key) {
 
 function logout() {
   sessionStorage.clear();
-  deleteStorage();
+  unrememberMe();
+  // deleteStorage();  /** kommentieren wenn der remote Storage geleert werden soll */
 }
-/** lösch function ??? */
+/** lösch function aus dem remote storage beim logout */
 function deleteStorage(){
 let deleteStorage = [];
-users.push();
+users.push(id6);
 setItem('users', JSON.stringify(deleteStorage));
 }
