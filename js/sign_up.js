@@ -4,6 +4,7 @@ let users = [
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
+    "bg": "rgb(44,75,17)",
     "tasks": []
   },
   {
@@ -12,6 +13,7 @@ let users = [
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
     "phone": "017852546",
+    "bg": "rgb(44,80,99)",
     "tasks": []
   },
   {
@@ -20,6 +22,7 @@ let users = [
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
     "phone": "017852546",
+    "bg": "rgb(44,75,17)",
     "tasks": []
   },
   {
@@ -27,7 +30,8 @@ let users = [
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
-    "phone": "017852546",
+    "phone": "017852546",    
+    "bg": "rgb(86,97,95)",
     "tasks": []
   },
   {
@@ -36,6 +40,7 @@ let users = [
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
+    "bg": "rgb(20,75,95)",
     "tasks": []
   },
   {
@@ -44,6 +49,7 @@ let users = [
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
     "phone": "017852546",
+    "bg": "rgb(20,75,95)",
     "tasks": []
   }
 ];
@@ -58,6 +64,7 @@ async function  stored() {
 }
 
 async function initSignUp() {
+  await loadUsers();
 }
 
 async function loadUsers() {
