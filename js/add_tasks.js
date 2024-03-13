@@ -1,10 +1,12 @@
 
+
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
 let tasks = [];
 let category = "";
 let priority = "";
+let status = "To Do";
 
 async function initAddTask() {
     await includeHTML();
@@ -23,7 +25,7 @@ async function initAddTask() {
  * @param {Array} subtasks 
  * @returns 
  */
-function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks) {
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus) {
     return {
         "title": title.value,
         "description": description.value,
@@ -31,7 +33,8 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "priority": taskPriority,
         "assignedTo": assignedTo,
         "category": taskCategory,
-        "subtasks": subtasks
+        "subtasks": subtasks,
+        "status": taskStatus
     }
 }
 
@@ -46,7 +49,8 @@ function addTask() {
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
     let taskCategory = category;
-    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks);
+    let taskStatus = status;
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
     resetInputsAndSelections();
 
@@ -65,6 +69,8 @@ function resetInputsAndSelections() {
     renderSubTasks();
     priority = "";
     category = "";
+    checkRenderArr();
+    setPrio();
 }
 
 
@@ -86,17 +92,6 @@ function toggleSearchUserInput() {
     document.getElementById('userCategory').classList.toggle('d-none');
 }
 
-/**
- * select option
- * @param {string} getId get the text form id
- * @param {string} setId set the text to the id
- */
-function selectElement_OLD(getId, setId) {
-    let choice = document.getElementById(getId).innerText;
-    document.getElementById(setId).innerHTML = `${choice}`;
-    let cat = setId == 'selectedCategory' ? 'taskCategory' : 'userCategory';
-    toggleCustomSelect(cat);
-}
 
 /**
  * selcect category for task and push to global variable
@@ -378,31 +373,58 @@ function getRandomColor() {
 
 let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
-// event listener for priority buttons
 let prioUrgent = document.getElementById('prioUrgent');
 let prioMedium = document.getElementById('prioMedium');
 let prioLow = document.getElementById('prioLow');
 
-prioUrgent.addEventListener('click', () => {
+
+/**
+ * set priority for task
+ * @param {string} prio priority
+ */
+function setPrio(prio) {
+    switch (prio) {
+        case 'urgent':
+            priorityUrgent();
+            break;
+        case 'medium':
+            priorityMedium();
+            break;
+        case 'low':
+            priorityLow();
+            break;
+        default:
+            priorityDefault();
+    }
+}
+
+function priorityUrgent() {
     prioUrgent.classList.add('prioUrgentClicked');
     prioLow.classList.remove('prioLowClicked');
     prioMedium.classList.remove('prioMediumClicked');
     priority = 'Urgent';
-});
+}
 
-prioMedium.addEventListener('click', () => {
+function priorityMedium() {
     prioMedium.classList.add('prioMediumClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioLow.classList.remove('prioLowClicked');
     priority = 'Medium';
-})
+}
 
-prioLow.addEventListener('click', () => {
+function priorityLow() {
     prioLow.classList.add('prioLowClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioMedium.classList.remove('prioMediumClicked');
     priority = 'Low';
-})
+}
+
+function priorityDefault() {
+    prioLow.classList.remove('prioLowClicked');
+    prioUrgent.classList.remove('prioUrgentClicked');
+    prioMedium.classList.remove('prioMediumClicked');
+    priority = '';
+}
 
 // event listener for input fields
 

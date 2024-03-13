@@ -161,6 +161,8 @@ textarea {
     margin-left: auto;
     display: flex;
     gap: 24px;
+    margin-bottom: 48px;
+    margin-right: 32px;
 }
 
 .addTaskBtns button {
@@ -196,6 +198,7 @@ textarea {
     background-color: var(--clr-main1);
     color: white;
     border: none;
+    font-weight: 400;
 
     &:hover {
         background-color: var(--clr-blue);
