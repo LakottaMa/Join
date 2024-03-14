@@ -41,8 +41,28 @@ function contactsHTML(contact) {
                 <p>${contact['email']}</p>
             </div>
         </div>
+        <button id="loeschButton" onclick="deleteUser(${id})" class="login-btn">löschen</button>
     `;
 }
+
+/** test function zum löschen */
+function deleteUser(userId) {
+    if (userId) {
+        const userIdNumber = parseInt(userId); // Convert ID to number
+        const userIndex = users.findIndex(user => user.id === userIdNumber);
+        if (userIndex !== -1) {
+            users.splice(userIndex, 1);
+            alert("User deleted successfully!");
+        } else {
+            alert("User with ID " + userId + " not found.");
+        }
+    }
+    setItem('users', JSON.stringify(users));
+    window.location.reload();
+    console.log(userId);
+    console.log(users);
+}
+
 
 function showFloatContact(contact) {
     let name = contact['name'];

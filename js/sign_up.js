@@ -1,4 +1,4 @@
-let users = [
+let localUsers = [
   {
     "id": 1,
     "name": "Guest",
@@ -48,11 +48,14 @@ let users = [
   }
 ];
 
-/**  Function to check if id exists in users array on remote Storage and then loadUsers */
+/** JSON im remote storage */
+let users = [];
+
+/**  Function to reset the remote Storage */
 async function stored() {
-  let storedUser = users.find(user => user.id === users.id);
-  if (storedUser) {
-    setItem('users', JSON.stringify(users));
+  let storedUser = localUsers.find(user => user.email === users.email);
+  if (storedUser) { /**bei problemen -- !storedUser verwenden um users array neu auf dem server zu laden, wenn index.html neu geladen wird */
+    setItem('users', JSON.stringify(localUsers));
   }
   await loadUsers();
 }
