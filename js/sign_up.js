@@ -78,12 +78,11 @@ async function register() {
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
   let confirmedPassword = document.getElementById('confirmedPassword').value;
-  const isIdAvailable = !users.some(user => user.id === users.length);
-  const isEmailAvailable = !users.some(user => user.email === email);
-  if (isIdAvailable && isEmailAvailable) {
+  const isEmailAvailable = !users.some(user => user.email === email); // Check if the email is available
+  if (isEmailAvailable == true) {
     if (errorMsgPasswordConfirm(confirmedPassword, password)) {
       users.push({
-        id: users.length,
+        id: users.length + 1,
         name: name,
         email: email,
         password: password,
@@ -93,11 +92,14 @@ async function register() {
       await setItem('users', JSON.stringify(users));
       resetForm();
       signupPopup();
+    } else {
+      alert('Password does not match the confirmed password.'); // Provide appropriate error message
     }
   } else {
-    alert('ID or EMail already in use. Please try a different one.'); /** msg nach mockup!! */
+    alert('ID or Email already in use. Please try a different one.'); // Provide appropriate error message
   }
 }
+
 
 /** Updated to "return true" when passwords match */
 function errorMsgPasswordConfirm(confirmedPassword, password) {
