@@ -127,7 +127,7 @@ function resetForm() {
 function guestLogIn(users) {
   let guestUser = users.find(user => user.name === 'Guest');
   if (guestUser) {
-    sessionStorage.setItem('isLoggedIn', 'guest');
+    sessionStorage.setItem('isLoggedIn', 'G');
     window.location.href = './summary.html';
   }
 }
@@ -138,11 +138,6 @@ async function logIn(users) {
   const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
   if (foundUser) {
     sessionStorage.setItem('isLoggedIn', foundUser.name);
-    let initialcontainer = document.getElementById('userInitial');
-    let isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    initialcontainer.innerHTML = `${isLoggedIn}`;
-    window.location.href = './summary.html';
-
   }
+  window.location.href = './summary.html';
 }
-/** login isloggedin überarbeiten */
