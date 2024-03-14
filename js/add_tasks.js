@@ -12,7 +12,16 @@ async function initAddTask() {
     await includeHTML();
     await loadUsers();
     renderUsers()
+    prioUrgent = document.getElementById('prioUrgent');
+    prioMedium = document.getElementById('prioMedium');
+    prioLow = document.getElementById('prioLow');
+    focusInputField('subtaskInput', 'addSubTaskBtn');
+    focusInputField('searchUserInput', 'searchUserBtn');
 }
+
+let prioUrgent;
+let prioMedium;
+let prioLow;
 
 /**
  * create template for task
@@ -373,10 +382,6 @@ function getRandomColor() {
 
 let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
-let prioUrgent = document.getElementById('prioUrgent');
-let prioMedium = document.getElementById('prioMedium');
-let prioLow = document.getElementById('prioLow');
-
 
 /**
  * set priority for task
@@ -428,20 +433,25 @@ function priorityDefault() {
 
 // event listener for input fields
 
-let inputToFocus = document.getElementById('subtaskInput');
-let btnToWatch = document.getElementById('addSubTaskBtn');
-btnToWatch.addEventListener('click', () => {
-    if (inputToFocus) {
-        inputToFocus.focus();
-    }
-})
+function focusInputField(input, btn) {
+    let inputToFocus = document.getElementById(input); // 'subtaskInput'
+    let btnToWatch = document.getElementById(btn); // 'addSubTaskBtn'
+    btnToWatch.addEventListener('click', () => {
+        if (inputToFocus) {
+            inputToFocus.focus();
+        }
+    })
+}
 
-let searchInputToFocus = document.getElementById('searchUserInput');
-let searchBtnToWatch = document.getElementById('searchUserBtn');
-searchBtnToWatch.addEventListener('click', () => {
-    if (searchInputToFocus) {
-        searchInputToFocus.focus();
-    }
-})
+
+
+
+// let searchInputToFocus = document.getElementById('searchUserInput');
+// let searchBtnToWatch = document.getElementById('searchUserBtn');
+// searchBtnToWatch.addEventListener('click', () => {
+//     if (searchInputToFocus) {
+//         searchInputToFocus.focus();
+//     }
+// })
 
 

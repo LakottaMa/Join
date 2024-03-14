@@ -58,6 +58,7 @@ async function  stored() {
 }
 
 async function initSignUp() {
+  await loadUsers();
 }
 
 async function loadUsers() {
