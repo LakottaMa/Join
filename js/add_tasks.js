@@ -431,7 +431,6 @@ function priorityDefault() {
     priority = '';
 }
 
-// event listener for input fields
 
 function focusInputField(input, btn) {
     let inputToFocus = document.getElementById(input); // 'subtaskInput'
@@ -443,15 +442,5 @@ function focusInputField(input, btn) {
     })
 }
 
-
-
-
-// let searchInputToFocus = document.getElementById('searchUserInput');
-// let searchBtnToWatch = document.getElementById('searchUserBtn');
-// searchBtnToWatch.addEventListener('click', () => {
-//     if (searchInputToFocus) {
-//         searchInputToFocus.focus();
-//     }
-// })
 
 
