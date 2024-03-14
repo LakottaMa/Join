@@ -93,10 +93,10 @@ async function register() {
       resetForm();
       signupPopup();
     } else {
-      alert('Password does not match the confirmed password.'); // Provide appropriate error message
+      alert('Password does not match the confirmed password.'); // msg greate!!
     }
   } else {
-    alert('ID or Email already in use. Please try a different one.'); // Provide appropriate error message
+    alert('Email already in use. Please try a different one.'); // msg greate!!
   }
 }
 
