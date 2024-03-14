@@ -15,15 +15,17 @@ async function includeHTML() {
   showInitials();
 }
 
-function showLogoutMenu() {
+function showLogoutMenu(event) {
   let logoutMenu = document.getElementById('logout-menu');
-  logoutMenu.classList.toggle('d-none');
+  logoutMenu.classList.toggle('d-none');  
 }
+
 
 function goBack() {
   window.history.back();
 }
 
+/** aktive html mit ensprechender bg-color des links */
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {

@@ -78,7 +78,6 @@ function floatContactHTML(name, email, phone, id, initials) {
             <h3>Phone</h3>
             <div id="phoneFloating">${phone}</div>
         </div>
-
 `;
 }
 

@@ -75,13 +75,10 @@ async function register() {
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
   let confirmedPassword = document.getElementById('confirmedPassword').value;
-  if (password !== confirmedPassword) {
-    alert('Passwörter stimmen nicht überein!');
-    return;
-  }
-  if (name && email && password) {
-    const isIdAvailable = !users.some(user => user.id === users.length);
-    if (isIdAvailable) {
+  const isIdAvailable = !users.some(user => user.id === users.length);
+  const isEmailAvailable = !users.some(user => user.email === email);
+  if (isIdAvailable && isEmailAvailable) {
+    if (errorMsgPasswordConfirm(confirmedPassword, password)) {
       users.push({
         id: users.length,
         name: name,
@@ -91,12 +88,26 @@ async function register() {
         tasks: []
       });
       await setItem('users', JSON.stringify(users));
-    } else {
-      alert('ID already in use. Please try a different one.');
+      resetForm();
+      signupPopup();
     }
+  } else {
+    alert('ID or EMail already in use. Please try a different one.'); /** msg nach mockup!! */
   }
-  resetForm();
-  signupPopup();
+}
+
+/** Updated to "return true" when passwords match */
+function errorMsgPasswordConfirm(confirmedPassword, password) {
+  if (password !== confirmedPassword) {
+    alert('Passwörter stimmen nicht überein!'); /** msg nach mockup!! */
+    return false;
+  }
+  return true;
+}
+
+
+function backButton() {
+  window.location.href = '/index.html';
 }
 
 function checkedSignup() {
@@ -141,3 +152,19 @@ async function logIn(users) {
   }
   window.location.href = './summary.html';
 }
+
+function togglePasswordVisibility(elementId) {
+  const element = document.getElementById(elementId);
+  if (element) { // Check if element exists before accessing its type
+    if (element.type === "password") {
+      // icon visibillity-off
+      element.type = "text";
+      // icon visibillity
+    } else {
+      element.type = "password";
+    }
+  }
+}
+
+
+// login-password-icon
