@@ -1,4 +1,4 @@
-let users = [
+let localUsers = [
   {
     "id": 1,
     "name": "Guest",
@@ -48,13 +48,16 @@ let users = [
   }
 ];
 
-/**  Function to check if id exists in users array on remote Storage and then loadUsers */
-async function  stored() {
-  let storedUser = users.find(user => user.id === users.id);
-  if (storedUser) {
-    setItem('users', JSON.stringify(users));
+/** JSON im remote storage */
+let users = [];
+
+/**  Function to reset the remote Storage */
+async function stored() {
+  let storedUser = localUsers.find(user => user.email === users.email);
+  if (storedUser) { /**bei problemen -- !storedUser verwenden um users array neu auf dem server zu laden, wenn index.html neu geladen wird */
+    setItem('users', JSON.stringify(localUsers));
   }
-  loadUsers();
+  await loadUsers();
 }
 
 async function initSignUp() {
@@ -70,29 +73,44 @@ async function loadUsers() {
   console.log(users);
 }
 
-/** register new user */
 async function register() {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
   let confirmedPassword = document.getElementById('confirmedPassword').value;
+  const isIdAvailable = !users.some(user => user.id === users.length);
+  const isEmailAvailable = !users.some(user => user.email === email);
+  if (isIdAvailable && isEmailAvailable) {
+    if (errorMsgPasswordConfirm(confirmedPassword, password)) {
+      users.push({
+        id: users.length,
+        name: name,
+        email: email,
+        password: password,
+        phone: null,
+        tasks: []
+      });
+      await setItem('users', JSON.stringify(users));
+      resetForm();
+      signupPopup();
+    }
+  } else {
+    alert('ID or EMail already in use. Please try a different one.'); /** msg nach mockup!! */
+  }
+}
+
+/** Updated to "return true" when passwords match */
+function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
-    alert('Passwörter stimmen nicht überein!');
-    return;
+    alert('Passwörter stimmen nicht überein!'); /** msg nach mockup!! */
+    return false;
   }
-  if (name && email && password) {
-    users.push({
-      id: users.length,
-      name: name,
-      email: email,
-      password: password,
-      phone: null,
-      tasks: []
-    });
-    await setItem('users', JSON.stringify(users));
-  }
-  resetForm();
-  signup();
+  return true;
+}
+
+
+function backButton() {
+  window.location.href = '/index.html';
 }
 
 function checkedSignup() {
@@ -105,8 +123,8 @@ function checkedSignup() {
   );
 }
 
-/** btn zum registrieren */
-function signup() {
+/** Popup nach erfolgreicher Registrierung */
+function signupPopup() {
   const animation = document.getElementById('popup');
   animation.classList.remove('d-none');
   setTimeout(() => {
@@ -123,7 +141,7 @@ function resetForm() {
 function guestLogIn(users) {
   let guestUser = users.find(user => user.name === 'Guest');
   if (guestUser) {
-    sessionStorage.setItem('isLoggedIn', 'guest');
+    sessionStorage.setItem('isLoggedIn', 'G');
     window.location.href = './summary.html';
   }
 }
@@ -134,6 +152,22 @@ async function logIn(users) {
   const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
   if (foundUser) {
     sessionStorage.setItem('isLoggedIn', foundUser.name);
-    window.location.href = './summary.html';
+  }
+  window.location.href = './summary.html';
+}
+
+function togglePasswordVisibility(elementId) {
+  const element = document.getElementById(elementId);
+  if (element) { // Check if element exists before accessing its type
+    if (element.type === "password") {
+      // icon visibillity-off
+      element.type = "text";
+      // icon visibillity
+    } else {
+      element.type = "password";
+    }
   }
 }
+
+
+// login-password-icon
