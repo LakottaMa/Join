@@ -70,7 +70,7 @@ async function loadUsers() {
   } catch (e) {
     console.error('Loading error:', e);
   }
-  console.log(users);
+  console.table(users);
 }
 
 async function register() {
@@ -100,7 +100,6 @@ async function register() {
   }
 }
 
-
 /** Updated to "return true" when passwords match */
 function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
@@ -109,7 +108,6 @@ function errorMsgPasswordConfirm(confirmedPassword, password) {
   }
   return true;
 }
-
 
 function backButton() {
   window.location.href = '/index.html';
@@ -170,6 +168,5 @@ function togglePasswordVisibility(elementId) {
     }
   }
 }
-
 
 // login-password-icon

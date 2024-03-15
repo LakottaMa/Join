@@ -5,12 +5,13 @@ async function initContacts() {
 }
 
 function renderContactList() {
+    document.getElementById('allContacts').innerHTML = '';
     try {
         users.sort((a, b) => a.name.localeCompare(b.name));
         let currentLetter = '';
         for (let i = 0; i < users.length; i++) {
             let contact = users[i];
-            let firstLetter = contact['email'][0].toUpperCase();
+            let firstLetter = contact['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
              <div class="letterBox">
@@ -44,7 +45,7 @@ function contactsHTML(contact) {
         <button id="loeschButton" onclick="deleteUser(${id})" class="login-btn">löschen</button>
     `;
 }
-
+/***************************** */
 /** test function zum löschen */
 function deleteUser(userId) {
     if (userId) {
@@ -58,10 +59,11 @@ function deleteUser(userId) {
         }
     }
     setItem('users', JSON.stringify(users));
-    window.location.reload();
-    console.log(userId);
-    console.log(users);
+    renderContactList();
+    console.log('user mit der', userId, 'wurde gelöscht');
+    console.table(users);
 }
+/**************************** */
 
 
 function showFloatContact(contact) {
