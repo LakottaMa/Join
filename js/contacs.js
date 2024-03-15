@@ -94,7 +94,7 @@ function checkPhone(i) {
 }
 
 function addBgColor(i) {
-    let bgColor = users[i]['bg'];
+    let bgColor = users[i];
     console.log('c', bgColor);
     return bgColor
         // let x = Math.floor(Math.random() * 256);
