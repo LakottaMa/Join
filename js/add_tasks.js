@@ -4,17 +4,22 @@ let selectedUsers = [];
 let tasks = [];
 let category = "";
 let priority = "";
-let status = "To Do";
+let status = "To do";
 
 async function initAddTask() {
     await includeHTML();
     await loadUsers();
-    renderUsers()
+    initializeAndListen();
+}
+
+function initializeAndListen() {
+    renderUsers();
     prioUrgent = document.getElementById('prioUrgent');
     prioMedium = document.getElementById('prioMedium');
     prioLow = document.getElementById('prioLow');
     focusInputField('subtaskInput', 'addSubTaskBtn');
     focusInputField('searchUserInput', 'searchUserBtn');
+
 }
 
 let prioUrgent;
@@ -60,7 +65,8 @@ function addTask() {
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
     resetInputsAndSelections();
-
+    // document.location.href = '/board.html', true;
+    // renderTasksInBoard();
 }
 
 /**
@@ -80,23 +86,36 @@ function resetInputsAndSelections() {
     setPrio();
 }
 
-
 /**
- * toggle display: 'none'; to show or hide element
- * @param {string} id 
+ * toggle arrow image and task category div
  */
-function toggleCustomSelect(id) {
-    document.getElementById(id).classList.toggle('d-none');
+function toggleTaskCategory() {
+    document.getElementById('taskCategory').classList.toggle('d-none');
+    let images = document.querySelectorAll('.catCon img');
+    images.forEach(function(img) {
+        img.classList.toggle('d-none');
+    })
 }
+
 
 
 /**
  * toogle input field for search user
  */
-function toggleSearchUserInput() {
-    document.getElementById('searchUserInput').classList.toggle('d-none');
-    document.getElementById('searchUserText').classList.toggle('d-none');
-    document.getElementById('userCategory').classList.toggle('d-none');
+function showSearchUserInput() {
+    document.getElementById('searchUserInput').classList.remove('d-none');
+    document.getElementById('searchUserText').classList.add('d-none');
+    document.getElementById('userCategory').classList.remove('d-none');
+    document.getElementById('dropDownImg').classList.add('d-none');
+    document.getElementById('dropUpImg').classList.remove('d-none');
+}
+
+function hideSearchUserInput() {
+    document.getElementById('searchUserInput').classList.add('d-none');
+    document.getElementById('searchUserText').classList.remove('d-none');
+    document.getElementById('userCategory').classList.add('d-none');
+    document.getElementById('dropDownImg').classList.remove('d-none');
+    document.getElementById('dropUpImg').classList.add('d-none');
 }
 
 
@@ -107,7 +126,7 @@ function toggleSearchUserInput() {
 function selectCategory(cat) {
     category = cat;
     document.getElementById('selectedCategory').innerHTML = cat;
-    toggleCustomSelect('taskCategory');
+    toggleTaskCategory();
 }
 
 /**
