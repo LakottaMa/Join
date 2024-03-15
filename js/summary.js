@@ -3,7 +3,6 @@ async function initSummary() {
     greetingMessage();
 }
 
-
 function greetingMessage() {
     let currentHour = checkHour();
     let greeting = document.getElementById('greeting');

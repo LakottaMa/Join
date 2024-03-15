@@ -5,6 +5,7 @@ async function initContacts() {
 }
 
 function renderContactList() {
+    document.getElementById('allContacts').innerHTML = '';
     try {
         users.sort((a, b) => a.name.localeCompare(b.name));
         let currentLetter = '';
@@ -42,8 +43,29 @@ function contactsHTML(i) {
                 <p>${users[i]['email']}</p>
             </div>
         </div>
+        <button id="loeschButton" onclick="deleteUser(${id})" class="login-btn">löschen</button>
     `;
 }
+/***************************** */
+/** test function zum löschen */
+function deleteUser(userId) {
+    if (userId) {
+        const userIdNumber = parseInt(userId); // Convert ID to number
+        const userIndex = users.findIndex(user => user.id === userIdNumber);
+        if (userIndex !== -1) {
+            users.splice(userIndex, 1);
+            alert("User deleted successfully!");
+        } else {
+            alert("User with ID " + userId + " not found.");
+        }
+    }
+    setItem('users', JSON.stringify(users));
+    renderContactList();
+    console.log('user mit der', userId, 'wurde gelöscht');
+    console.table(users);
+}
+/**************************** */
+
 
 function showFloatContact(i) {
     let name = users[i]['name'];
@@ -79,7 +101,6 @@ function floatContactHTML(name, email, id, initials, i) {
             <h3>Phone</h3>
             <div id="phoneFloating">${checkPhone(i)}</div>
         </div>
-
 `;
 }
 

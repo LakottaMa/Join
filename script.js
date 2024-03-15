@@ -1,5 +1,5 @@
 async function init() {
-  stored();
+  await stored();
 }
 
 async function initLegalTopics() {
