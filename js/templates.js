@@ -12,17 +12,20 @@ async function includeHTML() {
   }
   setActiveSiteClass('nav a', 'active-site');
   setActiveSiteClass('li a', 'active-site-legal-topics');
+  showInitials();
 }
 
-function showLogoutMenu() {
+function showLogoutMenu(event) {
   let logoutMenu = document.getElementById('logout-menu');
-  logoutMenu.classList.toggle('d-none');
+  logoutMenu.classList.toggle('d-none');  
 }
+
 
 function goBack() {
   window.history.back();
 }
 
+/** aktive html mit ensprechender bg-color des links */
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {
@@ -30,4 +33,13 @@ function setActiveSiteClass(selector, activeClass) {
       link.classList.add(activeClass);
     }
   });
+}
+
+/** Anfangsbuchstaben der Namen werden gefiltert */
+function showInitials() {
+  let initialcontainer = document.getElementById('userInitial');
+  let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+  let names = isLoggedIn.split(' ');
+  let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
+  initialcontainer.innerHTML = `${initials}`;
 }
