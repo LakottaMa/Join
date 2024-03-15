@@ -23,6 +23,17 @@
 
 body {
     height: 100vh;
+    font-family: 'Open Sans';
+}
+
+h1 {
+    font-size: 61px;
+}
+
+h2,
+h3,
+h4 {
+    color: var(--clr-lightblue);
 }
 
 .cp {
@@ -35,6 +46,32 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.color-lb {
+    color: var(--clr-main1);
+}
+
+.btn-disabled {
+    background-color: rgba(69, 137, 255, 1) !important;
+    cursor: default !important;
+    box-shadow: none !important;
+
+    &:hover {
+        box-shadow: none !important;
+        background-color: rgba(69, 137, 255, 1) !important;
+
+    }
+}
+
+.active-site {
+    background-color: var(--clr-menu-hover);
+}
+
+.active-site-legal-topics {
+    background-color: var(--clr-lightblue);
+    color: white !important;
+    font-weight: 700;
 }
 
 .back-btn {
@@ -57,7 +94,7 @@ a {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     margin-left: 232px;
 }
 
@@ -65,9 +102,20 @@ a {
 .text-section {
     position: absolute;
     max-width: 1024px;
-    top: 200px;
+    top: 168px;
     left: 320px;
     margin-right: 88px;
+
+    li,
+    p {
+        font-size: 19px;
+    }
+
+    ::marker {
+        color: var(--clr-lightblue);
+        font-size: 33px;
+        font-weight: 700;
+    }
 }
 
 .sum-head {
@@ -106,8 +154,9 @@ a {
     &:hover {
         border-radius: 0px 30px 30px 30px;
         scale: 1.05;
-        background-color: var(--clr-lightblue);
+        background-color: var(--clr-blue);
         color: white;
+
         .clr {
             color: white;
         }
@@ -127,7 +176,9 @@ a {
         .line {
             background-color: var(--clr-lightblue);
         }
-        .img-counter, div{
+
+        .img-counter,
+        div {
             scale: 1.1;
         }
     }
@@ -135,17 +186,22 @@ a {
 
 .sum-button:nth-child(2) {
     transform-origin: top right;
+
     &:hover {
-        .img-counter, div{
+
+        .img-counter,
+        div {
             transform: scaleX(0.94)
         }
-        transform: scaleY(1.05) scaleX(1.25);        
+
+        transform: scaleY(1.05) scaleX(1.25);
     }
 }
 
 .sum-button:nth-child(3) {
     transform-origin: top left;
     background-color: var(--clr-main2);
+
     .sum-ellipse {
         border-color: var(--clr-main2);
     }
@@ -157,20 +213,27 @@ a {
         .sum-ellipse {
             border-color: white;
         }
-        .img-counter, div{
+
+        .img-counter,
+        div {
             transform: scaleY(1.1) scaleX(1)
         }
-        transform: scaleY(0.94) scaleX(1.25); 
+
+        transform: scaleY(0.94) scaleX(1.25);
     }
 }
 
 .sum-button:nth-child(6) {
     transform-origin: top right;
+
     &:hover {
-        .img-counter, div{
+
+        .img-counter,
+        div {
             transform: scaleX(1.02)
         }
-        transform: scaleX(1.02) scaleY(1.09);        
+
+        transform: scaleX(1.02) scaleY(1.09);
     }
 }
 
