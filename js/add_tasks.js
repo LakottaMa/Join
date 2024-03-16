@@ -4,7 +4,7 @@ let selectedUsers = [];
 let tasks = [];
 let category = "";
 let priority = "";
-let status = "To do";
+let statusObj = { status: 'To Do'};
 
 async function initAddTask() {
     await includeHTML();
@@ -20,7 +20,6 @@ function initializeAndListen() {
     prioLow = document.getElementById('prioLow');
     focusInputField('subtaskInput', 'addSubTaskBtn');
     focusInputField('searchUserInput', 'searchUserBtn');
-
 }
 
 let prioUrgent;
@@ -47,7 +46,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "assignedTo": assignedTo,
         "category": taskCategory,
         "subtasks": subtasks,
-        "status": taskStatus
+        "status": statusObj.status
     }
 }
 
@@ -67,8 +66,15 @@ async function addTask() {
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
-    window.location.href = '/board.html';
+    redirectToBoard();
     renderTasksInBoard();
+    hideAddTaskBox();
+}
+
+function redirectToBoard() {
+    if(window.location.href.indexOf('/board.html') === -1) {
+        window.location.href = '/board.html';
+    }
 }
 
 /**
@@ -99,8 +105,6 @@ function toggleTaskCategory() {
     })
 }
 
-
-
 /**
  * toogle input field for search user
  */
@@ -119,7 +123,6 @@ function hideSearchUserInput() {
     document.getElementById('dropDownImg').classList.remove('d-none');
     document.getElementById('dropUpImg').classList.add('d-none');
 }
-
 
 /**
  * selcect category for task and push to global variable
@@ -164,7 +167,6 @@ function addSubTasks(event) {
     input.value = '';
     renderSubTasks();
     hideSubtaskInput(event);
-
 }
 
 /**
@@ -173,7 +175,6 @@ function addSubTasks(event) {
 function renderSubTasks() {
     let task = document.getElementById('subTaskContainer');
     task.innerHTML = '';
-
     for (let i = 0; i < subTasks.length; i++) {
         const subTask = subTasks[i];
         task.innerHTML += printSubTasks(subTask, i);
@@ -199,7 +200,6 @@ function printSubTasks(subTask, index) {
                 </div>
                 <hr id="dividerHorizontal${index}" class="dividerHorizontal d-none">
             </div>
-           
             <div id="deleteAndEditIcons${index}" class="deleteAndEditIcons">
                 <img onclick="showEditSubTaskInputField(${index})" src="./assets/img/edit.png" alt="">
                 <hr class="dividerVertical">
@@ -401,7 +401,6 @@ function getRandomColor() {
 
 let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
-
 /**
  * set priority for task
  * @param {string} prio priority
@@ -450,10 +449,9 @@ function priorityDefault() {
     priority = '';
 }
 
-
 function focusInputField(input, btn) {
-    let inputToFocus = document.getElementById(input); // 'subtaskInput'
-    let btnToWatch = document.getElementById(btn); // 'addSubTaskBtn'
+    let inputToFocus = document.getElementById(input);
+    let btnToWatch = document.getElementById(btn);
     btnToWatch.addEventListener('click', () => {
         if (inputToFocus) {
             inputToFocus.focus();
