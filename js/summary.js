@@ -1,5 +1,7 @@
 async function initSummary() {
     await includeHTML();
+    await loadUsers();
+    await loadTasks();
     greetingMessage();
 }
 

@@ -1,0 +1,103 @@
+.addTaskbox {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    transition-duration: 225ms;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    margin-top: 96px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.addTaskHeadline {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mainContent {
+    min-height: calc(100vh - 96px);
+    margin-top: 96px;
+    margin-left: 232px;
+    padding: 24px;
+}
+
+.findAndAdd {
+    display: flex;
+    gap: 32px;
+
+    & input {
+        width: 250px;
+        border: 1px solid black;
+    }
+}
+
+.taskContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid red;
+    min-height: calc(100vh - 96px);
+    gap: 8px;
+}
+
+.taskBox {
+    border: 1px solid green;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* todo Box */
+.todoBox {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid blue;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.toDoDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 16px;
+}
+
+#todoCategory {
+
+}
+
+#todoTitle {
+
+}
+
+#todoDescription {
+
+}
+
+#todoSubtasks {
+
+}
+
+.assignedAndPrio {
+
+}
+
+#todoAssignedTo {
+
+}
+
+#todoPriority{
+
+}
+
+/* todo Box */

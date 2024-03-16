@@ -276,8 +276,10 @@ textarea {
     border-top: 1px solid var(--clr-main1);
 }
 
-.subtask svg {
+.subtask img {
     margin-left: auto;
+    height: 30px;
+    width: 30px;
 }
 
 .subtask input {
