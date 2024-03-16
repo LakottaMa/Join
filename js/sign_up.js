@@ -33,7 +33,6 @@ async function register() {
 /** Updated to "return true" when passwords match */
 function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
-    alert('Passwörter stimmen nicht überein!'); /** msg nach mockup!! */
     return false;
   }
   return true;
@@ -68,23 +67,16 @@ function resetForm() {
   formFields.forEach(field => document.getElementById(field).value = '');
 }
 
-// async function logIn(users) {
-//   const emailInput = document.getElementById("email");
-//   const passwordInput = document.getElementById("password");
-//   const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
-//   if (foundUser) {
-//     sessionStorage.setItem('isLoggedIn', foundUser.name);
-//   }
-//   window.location.href = './summary.html';
-// }
-
 function togglePasswordVisibility(elementId) {
   const element = document.getElementById(elementId);
   if (element.type === "password") {
-    // icon visibillity-off
+    visibillityOffIcon = document.getElementById('login-password-icon');
+    visibillityOffIcon.src='./assets/img/visibility_off.png';
     element.type = "text";
     // icon visibillity
   } else {
     element.type = "password";
   }
 }
+
+
