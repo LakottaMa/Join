@@ -1,6 +1,7 @@
 async function initBoard() {
    await includeHTML();
    await loadUsers();
+   await loadTasks();
    initializeAndListen();
    renderTasksInBoard();
 }

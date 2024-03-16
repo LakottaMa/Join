@@ -9,6 +9,7 @@ let status = "To do";
 async function initAddTask() {
     await includeHTML();
     await loadUsers();
+    await loadTasks();
     initializeAndListen();
 }
 
@@ -92,7 +93,7 @@ function resetInputsAndSelections() {
 function toggleTaskCategory() {
     document.getElementById('taskCategory').classList.toggle('d-none');
     let images = document.querySelectorAll('.catCon img');
-    images.forEach(function(img) {
+    images.forEach(function (img) {
         img.classList.toggle('d-none');
     })
 }
