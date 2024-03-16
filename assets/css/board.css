@@ -25,6 +25,9 @@
     margin-top: 96px;
     margin-left: 232px;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .findAndAdd {
@@ -41,7 +44,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid red;
     gap: 8px;
 }
 
