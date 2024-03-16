@@ -12,7 +12,6 @@ async function register() {
   if (isEmailAvailable == true) {
     if (errorMsgPasswordConfirm(confirmedPassword, password)) {
       users.push({
-        id: users.length + 1,
         name: name,
         email: email,
         password: password,
