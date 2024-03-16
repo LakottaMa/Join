@@ -1,7 +1,7 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-let tasks = [];
+// let tasks = [];
 let category = "";
 let priority = "";
 let status = "To do";
