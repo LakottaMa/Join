@@ -54,7 +54,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
 /**
  * push new Task to tasks array
  */
-function addTask() {
+async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
@@ -65,9 +65,10 @@ function addTask() {
     let taskStatus = status;
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
+    await saveTasks(tasks);
     resetInputsAndSelections();
-    // document.location.href = '/board.html', true;
-    // renderTasksInBoard();
+    window.location.href = '/board.html';
+    renderTasksInBoard();
 }
 
 /**
