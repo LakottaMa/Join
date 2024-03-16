@@ -80,13 +80,11 @@ function resetForm() {
 
 function togglePasswordVisibility(elementId) {
   const element = document.getElementById(elementId);
-  if (element) { // Check if element exists before accessing its type
-    if (element.type === "password") {
-      // icon visibillity-off
-      element.type = "text";
-      // icon visibillity
-    } else {
-      element.type = "password";
-    }
+  if (element.type === "password") {
+    // icon visibillity-off
+    element.type = "text";
+    // icon visibillity
+  } else {
+    element.type = "password";
   }
 }
