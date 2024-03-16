@@ -1,24 +1,4 @@
 
-let localUsers = [
-  {
-    "id": 1,
-    "name": "Guest",
-    "email": "guest@guest.de",
-    "password": "12345",
-    "bg": "rgb(44,75,17)",
-    "tasks": []
-  },
-  {
-    "id": 2,
-    "name": "Tim Cook",
-    "email": "tim.cook@example.com",
-    "password": "Cook#Apple5",
-    "phone": "017852546",
-    "bg": "rgb(44,80,99)",
-    "tasks": []
-  },
-];
-
 
 async function initSignUp() {
   await loadUsers();
