@@ -79,4 +79,13 @@ function togglePasswordVisibility(elementId) {
   }
 }
 
+document.getElementById("eingabefeld").addEventListener("focus", function() {
+  var eingabeWert = document.getElementById("eingabefeld").value;
+  if (eingabeWert) {
+      console.log("Eingabe erfolgt: true");
+  } else {
+      console.log("Keine Eingabe erfolgt: false");
+  }
+});
+
 
