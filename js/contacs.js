@@ -66,7 +66,6 @@ function deleteUser(userId) {
 }
 /**************************** */
 
-
 function showFloatContact(contact) {
     let name = contact['name'];
     let email = contact['email'];
@@ -112,29 +111,6 @@ function addBgColor(contact) {
     let bgColor = "rgb(" + x + "," + y + "," + z + ")";
     document.getElementById(`${id}`).style.backgroundColor = bgColor;
 }
-
-// function createNewContact() {
-//     let name = document.getElementById('contactName').value;
-//     let email = document.getElementById('contactEmail').value;
-//     let phone = document.getElementById('contactPhone').value;
-
-//     let letter = name.charAt(0).toUpperCase();
-
-//     for (let x = 0; x < alphabet.length; x++) {
-//         if (alphabet[x] === letter) {
-//             allContacts[letter].push({
-//                 "name": name,
-//                 "email": email,
-//                 "phone": phone
-//             })
-//             break;
-//         }
-
-//     }
-
-//     console.log('r', allContacts); //wieder löschen!!
-// }
-
 
 function addNewContact() {
     document.getElementById('addContactPopup').classList.remove('d-none');

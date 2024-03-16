@@ -17,7 +17,6 @@ async function register() {
         email: email,
         password: password,
         phone: null,
-        tasks: []
       });
       await setItem('users', JSON.stringify(users));
       resetForm();
@@ -63,29 +62,31 @@ function signupPopup() {
 
 /** zum leeren der Form und default checkBtn */
 function resetForm() {
-  const formFields = ['name', 'email', 'password', 'confirmedPassword'];
+  const formFields = ['name', 'email', 'password', 'password'];
   formFields.forEach(field => document.getElementById(field).value = '');
 }
 
-function togglePasswordVisibility(elementId) {
-  const element = document.getElementById(elementId);
-  if (element.type === "password") {
-    visibillityOffIcon = document.getElementById('login-password-icon');
-    visibillityOffIcon.src='./assets/img/visibility_off.png';
-    element.type = "text";
-    // icon visibillity
-  } else {
-    element.type = "password";
+function togglePasswordEye(inputId) {
+  const inputValue = document.getElementById(inputId).value.trim();
+  if (inputValue) {
+    if (inputId === 'password') {
+      document.getElementById('password-icon').src = './assets/img/visibility_off.png';
+    } else if (inputId === 'confirmedPassword') {
+      document.getElementById('confirmedPassword-icon').src = './assets/img/visibility_off.png';
+    }
   }
 }
 
-document.getElementById("eingabefeld").addEventListener("focus", function() {
-  var eingabeWert = document.getElementById("eingabefeld").value;
-  if (eingabeWert) {
-      console.log("Eingabe erfolgt: true");
-  } else {
-      console.log("Keine Eingabe erfolgt: false");
+function togglePasswordVisibility(inputId) {
+  const input = document.getElementById(inputId);
+  const inputValue = input.value.trim();
+  if (inputValue) {
+    if (input.type === "password") {
+      input.type = "text";
+      document.getElementById(inputId + '-icon').src = './assets/img/visibility.png';
+    } else {
+      input.type = "password";
+      document.getElementById(inputId + '-icon').src = './assets/img/visibility_off.png';
+    }
   }
-});
-
-
+}

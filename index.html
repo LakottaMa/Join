@@ -30,8 +30,8 @@
                         <img src="./assets/img/mail.png">
                     </div>
                     <div class="input-field">
-                        <input type="password" id="password" required placeholder="Password">
-                        <img id="login-password-icon" onclick="togglePasswordVisibility('password')" src="./assets/img/lock.png">
+                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" required placeholder="Password">
+                        <img id="password-icon" onclick="togglePasswordVisibility('password')" src="./assets/img/lock.png">
                     </div>
                     <div class="checkbox cp" onclick="rememberMe()">
                         <img id="remember-me" src="./assets/img/check_unchecked.png">
