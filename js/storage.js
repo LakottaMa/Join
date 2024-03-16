@@ -98,7 +98,7 @@ let localTasks = [
      "description": "Create database structure for the application.",
      "date": "Mon Mar 19 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
      "priority": "Medium",
-     "assignedTo": ["Jeff Bezos", "Larry Page"],
+     "assignedTo": ["Tim Cook", "Linus Torvalds"],
      "category": "Technical Task",
      "subtasks": [],
      "status": "In progress"
@@ -108,7 +108,7 @@ let localTasks = [
      "description": "Improve user interface and experience.",
      "date": "Tue Mar 20 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
      "priority": "Low",
-     "assignedTo": ["Satya Nadella", "Sundar Pichai"],
+     "assignedTo": ["Bill Gates"],
      "category": "User Story",
      "subtasks": ["Update color scheme", "Optimize navigation menu"],
      "status": "Await feedback"
@@ -118,7 +118,7 @@ let localTasks = [
      "description": "Develop login and registration functionality.",
      "date": "Sun Mar 18 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
      "priority": "High",
-     "assignedTo": ["Elon Musk", "Mark Zuckerberg"],
+     "assignedTo": ["Sam Altman"],
      "category": "Technical Task",
      "subtasks": ["Create login form", "Implement user registration"],
      "status": "To Do"
@@ -153,4 +153,8 @@ async function loadTasks() {
     console.error('Loading error:', e);
   }
   console.table(tasks);
+}
+
+async function saveTasks(tasks) {
+  await setItem('tasks', JSON.stringify(tasks));
 }
