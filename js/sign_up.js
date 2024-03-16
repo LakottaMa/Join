@@ -1,76 +1,6 @@
-let localUsers = [
-  {
-    "id": 1,
-    "name": "Guest",
-    "email": "guest@guest.de",
-    "password": "12345",
-    "tasks": []
-  },
-  {
-    "id": 2,
-    "name": "Tim Cook",
-    "email": "tim.cook@example.com",
-    "password": "Cook#Apple5",
-    "phone": "017852546",
-    "tasks": []
-  },
-  {
-    "id": 3,
-    "name": "Steve Jobs",
-    "email": "steve.jobs@example.com",
-    "password": "Jobs#Apple1",
-    "phone": "017852546",
-    "tasks": []
-  },
-  {
-    "id": 4,
-    "name": "Bill Gates",
-    "email": "bill.gates@example.com",
-    "password": "Gates@Microsoft2",
-    "phone": "017852546",
-    "tasks": []
-  },
-  {
-    "id": 5,
-    "name": "Linus Torvalds",
-    "email": "linus.torvalds@example.com",
-    "password": "Torvalds#Linux3",
-    "phone": "017852546",
-    "tasks": []
-  },
-  {
-    "id": 6,
-    "name": "Sam Altman",
-    "email": "sam.altman@example.com",
-    "password": "Altman#YCombinator4",
-    "phone": "017852546",
-    "tasks": []
-  }
-];
-
-/** JSON im remote storage */
-let users = [];
-
-/**  Function to reset the remote Storage */
-async function stored() {
-  let storedUser = localUsers.find(user => user.email === users.email);
-  if (storedUser) { /**bei problemen -- !storedUser verwenden um users array neu auf dem server zu laden, wenn index.html neu geladen wird */
-    setItem('users', JSON.stringify(localUsers));
-  }
-  await loadUsers();
-}
-
 async function initSignUp() {
   await loadUsers();
-}
-
-async function loadUsers() {
-  try {
-    users = JSON.parse(await getItem('users'));
-  } catch (e) {
-    console.error('Loading error:', e);
-  }
-  console.log(users);
+  await loadTasks();
 }
 
 async function register() {
@@ -100,7 +30,6 @@ async function register() {
   }
 }
 
-
 /** Updated to "return true" when passwords match */
 function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
@@ -109,7 +38,6 @@ function errorMsgPasswordConfirm(confirmedPassword, password) {
   }
   return true;
 }
-
 
 function backButton() {
   window.location.href = '/index.html';
@@ -140,23 +68,15 @@ function resetForm() {
   formFields.forEach(field => document.getElementById(field).value = '');
 }
 
-function guestLogIn(users) {
-  let guestUser = users.find(user => user.name === 'Guest');
-  if (guestUser) {
-    sessionStorage.setItem('isLoggedIn', 'G');
-    window.location.href = './summary.html';
-  }
-}
-
-async function logIn(users) {
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
-  if (foundUser) {
-    sessionStorage.setItem('isLoggedIn', foundUser.name);
-  }
-  window.location.href = './summary.html';
-}
+// async function logIn(users) {
+//   const emailInput = document.getElementById("email");
+//   const passwordInput = document.getElementById("password");
+//   const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
+//   if (foundUser) {
+//     sessionStorage.setItem('isLoggedIn', foundUser.name);
+//   }
+//   window.location.href = './summary.html';
+// }
 
 function togglePasswordVisibility(elementId) {
   const element = document.getElementById(elementId);
@@ -170,6 +90,5 @@ function togglePasswordVisibility(elementId) {
     }
   }
 }
-
 
 // login-password-icon

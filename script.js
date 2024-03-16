@@ -1,5 +1,6 @@
 async function init() {
-  await stored();
+  await loadUsers();
+  await loadTasks();
 }
 
 async function initLegalTopics() {
