@@ -6,21 +6,15 @@ async function initBoard() {
    renderTasksInBoard();
 }
 
-function showAddTaskBox() {
+function showAddTaskBox(status) {
    let box = document.getElementById('addTaskBox');
    box.style.right = 0;
+   statusObj.status = `${status}`;
 }
 
 function hideAddTaskBox() {
    let box = document.getElementById('addTaskBox');
    box.style.right = '-450px';
-}
-
-
-
-function showExamples() {
-   pushExamplesToTasks();
-   renderTasksInBoard();
 }
 
 function printTasks(task) {

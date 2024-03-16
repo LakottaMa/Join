@@ -42,7 +42,6 @@
     flex-wrap: wrap;
     justify-content: center;
     border: 1px solid red;
-    min-height: calc(100vh - 96px);
     gap: 8px;
 }
 
@@ -52,6 +51,12 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.taskHeadline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* todo Box */
