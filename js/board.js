@@ -11,7 +11,6 @@ function showAddTaskBox() {
    box.style.right = 0;
 }
 
-
 function hideAddTaskBox() {
    let box = document.getElementById('addTaskBox');
    box.style.right = '-450px';

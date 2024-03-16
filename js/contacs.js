@@ -50,20 +50,20 @@ function contactsHTML(contact) {
 }
 /***************************** */
 /** test function zum löschen */
-function deleteUser(userId) {
-    if (userId) {
+function deleteUser(userIndex) {
+    if (userIndex) {
         const userIdNumber = parseInt(userId); // Convert ID to number
-        const userIndex = users.findIndex(user => user.id === userIdNumber);
+        const userIndex = users.findIndex(user => user.userIndex === userIdNumber);
         if (userIndex !== -1) {
             users.splice(userIndex, 1);
             alert("User deleted successfully!");
         } else {
-            alert("User with ID " + userId + " not found.");
+            alert("User with ID " + userIndex + " not found.");
         }
     }
     setItem('users', JSON.stringify(users));
     renderContactList();
-    console.log('user mit der', userId, 'wurde gelöscht');
+    console.log('user mit der', userIndex, 'wurde gelöscht');
     console.table(users);
 }
 /**************************** */

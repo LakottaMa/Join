@@ -90,5 +90,3 @@ function togglePasswordVisibility(elementId) {
     }
   }
 }
-
-// login-password-icon

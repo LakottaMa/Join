@@ -23,74 +23,62 @@ function logout() {
 
 let localUsers = [
   {
-    "id": 1,
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
-    "tasks": []
   },
   {
-    "id": 2,
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
     "phone": "017852546",
-    "tasks": []
   },
   {
-    "id": 3,
     "name": "Steve Jobs",
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
     "phone": "017852546",
-    "tasks": []
   },
   {
-    "id": 4,
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
     "phone": "017852546",
-    "tasks": []
   },
   {
-    "id": 5,
     "name": "Linus Torvalds",
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
-    "tasks": []
   },
   {
-    "id": 6,
     "name": "Sam Altman",
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
     "phone": "017852546",
-    "tasks": []
   }
 ];
 
 let localTasks = [
   {
-     "title": "Kochwelt Page & Recipe Recommender",
-     "description": "Build start page with recipe recommandation.",
-     "date": "Sat Mar 16 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-     "priority": "Medium",
-     "assignedTo": ["Linus Torvalds", "Sam Altman"],
-     "category": "User Story",
-     "subtasks": ["Implement Recipe Recommendation"],
-     "status": "In progress"
+    "title": "Kochwelt Page & Recipe Recommender",
+    "description": "Build start page with recipe recommandation.",
+    "date": "Sat Mar 16 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "priority": "Medium",
+    "assignedTo": ["Linus Torvalds", "Sam Altman"],
+    "category": "User Story",
+    "subtasks": ["Implement Recipe Recommendation"],
+    "status": "In progress"
   },
   {
-     "title": "HTML Base Template Creation",
-     "description": "Create reusable HTML base templates.",
-     "date": "Sat Mar 17 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-     "priority": "Urgent",
-     "assignedTo": ["Tim Cook", "Bill Gates"],
-     "category": "Technical Task",
-     "subtasks": [],
-     "status": "In progress"
+    "title": "HTML Base Template Creation",
+    "description": "Create reusable HTML base templates.",
+    "date": "Sat Mar 17 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "priority": "Urgent",
+    "assignedTo": ["Tim Cook", "Bill Gates"],
+    "category": "Technical Task",
+    "subtasks": [],
+    "status": "In progress"
   },
 
   {
@@ -125,15 +113,17 @@ let localTasks = [
   }
 ];
 
-/** JSON im remote storage */
-// 
-
-/**  Function to reset the remote Storage */
-async function stored() {
-  let storedUser = localUsers.find(user => user.email === users.email);
-  if (storedUser) { /**bei problemen -- !storedUser verwenden um users array neu auf dem server zu laden, wenn index.html neu geladen wird */
-    setItem('users', JSON.stringify(localUsers));
-    setItem('tasks', JSON.stringify(hgjkghjkghj));
+/**  Function to reset the remote Storage: with shift + click on Logo in Landing Page */
+function resetStorage(event) {
+  resetButton = document.getElementById('resetStorage');
+  if (event.shiftKey) {
+    const confirmation = confirm("Are you sure you want to reset remote storage? This action cannot be undone.");
+    if (confirmation) {
+      setItem('users', JSON.stringify(localUsers));
+      setItem('tasks', JSON.stringify(localTasks));
+      alert('remote Storage is resetet!');
+      location.reload();
+    }
   }
 }
 
