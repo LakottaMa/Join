@@ -78,31 +78,38 @@
 }
 
 #todoCategory {
-
+    background-color: blue;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: white;
+    padding: 4px;
 }
 
 #todoTitle {
-
+    font-size: 0.7rem;
 }
 
-#todoDescription {
+#todoDescription {}
 
+#todoSubtasks {}
+
+.assignedAndPrio div:nth-child(1) {
+    display: flex;
+    gap: 4px;
+
+    & span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid blue;
+    }
 }
 
-#todoSubtasks {
+#todoAssignedTo {}
 
-}
-
-.assignedAndPrio {
-
-}
-
-#todoAssignedTo {
-
-}
-
-#todoPriority{
-
-}
+#todoPriority {}
 
 /* todo Box */
