@@ -108,6 +108,7 @@ h3 {
     display: flex;
     flex-direction: column;
     padding: 72px 0 0 62px;
+    margin-top: 96px;
     gap: 21px;
 }
 
