@@ -1,3 +1,4 @@
+
 let localUsers = [
   {
     "id": 1,
@@ -66,17 +67,10 @@ async function stored() {
   await loadUsers();
 }
 
+
 async function initSignUp() {
   await loadUsers();
-}
-
-async function loadUsers() {
-  try {
-    users = JSON.parse(await getItem('users'));
-  } catch (e) {
-    console.error('Loading error:', e);
-  }
-  console.table(users);
+  await loadTasks();
 }
 
 async function register() {
@@ -88,7 +82,6 @@ async function register() {
   if (isEmailAvailable == true) {
     if (errorMsgPasswordConfirm(confirmedPassword, password)) {
       users.push({
-        id: users.length + 1,
         name: name,
         email: email,
         password: password,
@@ -144,35 +137,23 @@ function resetForm() {
   formFields.forEach(field => document.getElementById(field).value = '');
 }
 
-function guestLogIn(users) {
-  let guestUser = users.find(user => user.name === 'Guest');
-  if (guestUser) {
-    sessionStorage.setItem('isLoggedIn', 'G');
-    window.location.href = './summary.html';
-  }
-}
-
-async function logIn(users) {
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
-  if (foundUser) {
-    sessionStorage.setItem('isLoggedIn', foundUser.name);
-  }
-  window.location.href = './summary.html';
-}
+// async function logIn(users) {
+//   const emailInput = document.getElementById("email");
+//   const passwordInput = document.getElementById("password");
+//   const foundUser = users.find(user => user.email == emailInput.value && user.password == passwordInput.value);
+//   if (foundUser) {
+//     sessionStorage.setItem('isLoggedIn', foundUser.name);
+//   }
+//   window.location.href = './summary.html';
+// }
 
 function togglePasswordVisibility(elementId) {
   const element = document.getElementById(elementId);
-  if (element) { // Check if element exists before accessing its type
-    if (element.type === "password") {
-      // icon visibillity-off
-      element.type = "text";
-      // icon visibillity
-    } else {
-      element.type = "password";
-    }
+  if (element.type === "password") {
+    // icon visibillity-off
+    element.type = "text";
+    // icon visibillity
+  } else {
+    element.type = "password";
   }
 }
-
-// login-password-icon
