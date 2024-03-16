@@ -1,6 +1,9 @@
+let users = [];
+
 async function initContacts() {
     await includeHTML();
     await loadUsers();
+    await loadTasks();
     renderContactList();
 }
 
