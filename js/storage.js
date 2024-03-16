@@ -22,36 +22,36 @@ function logout() {
 }
 
 let localUsers = [
-  {
+  {  "id":  0,
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
   },
-  {
+  {  "id":  1,
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
     "phone": "017852546",
   },
-  {
+  {  "id":  2,
     "name": "Steve Jobs",
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
     "phone": "017852546",
   },
-  {
+  {  "id":  3,
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
     "phone": "017852546",
   },
-  {
+  {  "id":  4,
     "name": "Linus Torvalds",
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
   },
-  {
+  {  "id":  5,
     "name": "Sam Altman",
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
@@ -82,34 +82,34 @@ let localTasks = [
   },
 
   {
-     "title": "Design Database Schema",
-     "description": "Create database structure for the application.",
-     "date": "Mon Mar 19 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-     "priority": "Medium",
-     "assignedTo": ["Tim Cook", "Linus Torvalds"],
-     "category": "Technical Task",
-     "subtasks": [],
-     "status": "In progress"
+    "title": "Design Database Schema",
+    "description": "Create database structure for the application.",
+    "date": "Mon Mar 19 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "priority": "Medium",
+    "assignedTo": ["Jeff Bezos", "Larry Page"],
+    "category": "Technical Task",
+    "subtasks": [],
+    "status": "In progress"
   },
   {
-     "title": "UI/UX Enhancement",
-     "description": "Improve user interface and experience.",
-     "date": "Tue Mar 20 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-     "priority": "Low",
-     "assignedTo": ["Bill Gates"],
-     "category": "User Story",
-     "subtasks": ["Update color scheme", "Optimize navigation menu"],
-     "status": "Await feedback"
+    "title": "UI/UX Enhancement",
+    "description": "Improve user interface and experience.",
+    "date": "Tue Mar 20 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "priority": "Low",
+    "assignedTo": ["Satya Nadella", "Sundar Pichai"],
+    "category": "User Story",
+    "subtasks": ["Update color scheme", "Optimize navigation menu"],
+    "status": "Await feedback"
   },
   {
-     "title": "Implement User Authentication",
-     "description": "Develop login and registration functionality.",
-     "date": "Sun Mar 18 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-     "priority": "High",
-     "assignedTo": ["Sam Altman"],
-     "category": "Technical Task",
-     "subtasks": ["Create login form", "Implement user registration"],
-     "status": "To Do"
+    "title": "Implement User Authentication",
+    "description": "Develop login and registration functionality.",
+    "date": "Sun Mar 18 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "priority": "High",
+    "assignedTo": ["Elon Musk", "Mark Zuckerberg"],
+    "category": "Technical Task",
+    "subtasks": ["Create login form", "Implement user registration"],
+    "status": "To Do"
   }
 ];
 
@@ -143,8 +143,4 @@ async function loadTasks() {
     console.error('Loading error:', e);
   }
   console.table(tasks);
-}
-
-async function saveTasks(tasks) {
-  await setItem('tasks', JSON.stringify(tasks));
 }

@@ -1,5 +1,3 @@
-let users = [];
-
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -50,20 +48,20 @@ function contactsHTML(contact) {
 }
 /***************************** */
 /** test function zum löschen */
-function deleteUser(userIndex) {
-    if (userIndex) {
+function deleteUser(userId) {
+    if (userId) {
         const userIdNumber = parseInt(userId); // Convert ID to number
-        const userIndex = users.findIndex(user => user.userIndex === userIdNumber);
+        const userIndex = users.findIndex(user => user.id === userIdNumber);
         if (userIndex !== -1) {
             users.splice(userIndex, 1);
             alert("User deleted successfully!");
         } else {
-            alert("User with ID " + userIndex + " not found.");
+            alert("User with ID " + userId + " not found.");
         }
     }
     setItem('users', JSON.stringify(users));
     renderContactList();
-    console.log('user mit der', userIndex, 'wurde gelöscht');
+    console.log('user mit der', userId, 'wurde gelöscht');
     console.table(users);
 }
 /**************************** */
