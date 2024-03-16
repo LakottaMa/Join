@@ -65,7 +65,7 @@ function addTask() {
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
     resetInputsAndSelections();
-    // document.location.href = '/board.html', true;
+    // window.location.href = '/board.html';
     // renderTasksInBoard();
 }
 
