@@ -90,7 +90,7 @@ function floatContactHTML(name, email, id, initials, i) {
                 <span>${name}</span>
                 <div class="floatingBtn">
                      <p class="cp" onclick="editContact(${i})"><img src="./assets/img/edit.png" alt="edit">Edit</p>
-                     <p class="cp" onclick="deleteContact(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
+                     <p class="cp" onclick="deleteUser(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
                 </div>
             </div>
         </div>
@@ -149,12 +149,12 @@ async function createNewContact() {
         });
         await setItem('users', JSON.stringify(users));
         renderContactList()
+        closePopup()
 
     } else {
         console.error('Please fill out all fields');
     }
-    closePopup()
-    renderContactList();
+    
 }
 
 
