@@ -17,29 +17,15 @@ function hideAddTaskBox() {
    box.style.right = '-450px';
 }
 
-function printTasks(task) {
-   return /*html*/ `
-      <div class="todoBox">
-         <div id="todoCategory">${task.category}</div>                         
-         <div id="todoTitle">${task.title}</div>
-         <div id="todoDescription">${task.description}</div>
-         <div id="todoSubtasks"></div>
-         <div class="assignedAndPrio">
-            <div id="todoAssignedTo"></div>
-            <div id="todoPriority">${task.priority}</div>
-         </div>
-      </div>
-   `;
-}
 
 function clearContainer() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
-      ids.forEach(id => {
-         let container = document.getElementById(id);
-         if(container) {
-            container.innerHTML = '';
-         }
-      });
+   ids.forEach(id => {
+      let container = document.getElementById(id);
+      if (container) {
+         container.innerHTML = '';
+      }
+   });
 }
 
 function renderTasksInBoard() {
@@ -47,9 +33,48 @@ function renderTasksInBoard() {
    for (let i = 0; i < tasks.length; i++) {
       const task = tasks[i];
       let status = task['status'];
+      let contacts = task['assignedTo'];
+      let subTasksLength = task['subtasks'].length;
       let container = checkContainer(status);
-      container.innerHTML += printTasks(task);
+      container.innerHTML += printTasksInBoard(task, i, subTasksLength);
+      renderAssignedTo(contacts, i);
    }
+}
+
+function renderSubTasks(subTasksLength, i) {
+   let subTaskContainer = document.getElementById(`todoSubtasks${i}`);
+   subTaskContainer.innerHTML = '';
+   console.log(subTasksLength);
+   subTaskContainer.innerHTML += printSubTasks(subTasksLength);
+}
+
+function renderAssignedTo(contacts, i) {
+   let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
+   assignedToContainer.innerHTML = '';
+   for (let j = 0; j < contacts.length; j++) {
+      const contact = contacts[j];
+      assignedToContainer.innerHTML += printAssignedTo(contact)
+   }
+}
+
+function printTasksInBoard(task, index, subTasksLength) {
+   return /*html*/ `
+      <div class="todoBox">
+         <div id="todoCategory">${task.category}</div>                         
+         <div id="todoTitle"><h2>${task.title}</h2></div>
+         <div id="todoDescription">${task.description}</div>
+         <div id="todoSubtasks">0 / ${subTasksLength} subtasks</div>
+         <div class="assignedAndPrio">
+            <div id="todoAssignedTo${index}"></div>
+            <div id="todoPriority">${task.priority}</div>
+         </div>
+      </div>
+   `;
+}
+
+
+function printAssignedTo(contact) {
+   return /*html*/ `<span>${getInitials(contact)}</span>`;
 }
 
 function checkContainer(status) {
