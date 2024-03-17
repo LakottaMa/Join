@@ -75,6 +75,7 @@ let localTasks = [
     "assignedTo": ["Linus Torvalds", "Sam Altman"],
     "category": "User Story",
     "subtasks": ["Implement Recipe Recommendation"],
+    "subtasksDone": [],
     "status": "In progress"
   },
   {
@@ -85,6 +86,7 @@ let localTasks = [
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
     "subtasks": [],
+    "subtasksDone": [],
     "status": "In progress"
   },
 
@@ -96,6 +98,7 @@ let localTasks = [
     "assignedTo": ["Jeff Bezos", "Larry Page"],
     "category": "Technical Task",
     "subtasks": [],
+    "subtasksDone": [],
     "status": "In progress"
   },
   {
@@ -106,6 +109,7 @@ let localTasks = [
     "assignedTo": ["Satya Nadella", "Sundar Pichai"],
     "category": "User Story",
     "subtasks": ["Update color scheme", "Optimize navigation menu"],
+    "subtasksDone": ["Style Sidebar"],
     "status": "Await feedback"
   },
   {
@@ -116,6 +120,7 @@ let localTasks = [
     "assignedTo": ["Elon Musk", "Mark Zuckerberg"],
     "category": "Technical Task",
     "subtasks": ["Create login form", "Implement user registration"],
+    "subtasksDone": ["Style login form"],
     "status": "To Do"
   }
 ];

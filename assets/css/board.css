@@ -59,6 +59,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    & span {
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+    & img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 /* todo Box */
@@ -85,15 +95,39 @@
     border-radius: 8px;
     color: white;
     padding: 4px 16px;
+    font-weight: 400;
+    font-size: 16px;
+
 }
 
 #todoTitle {
-    font-size: 0.7rem;
+    font-size: 16px;
+    font-weight: 700;
 }
 
-#todoDescription {}
+#todoDescription {
+    font-size: 16px;
+    font-weight: 400;
+}
 
-#todoSubtasks {}
+#todoSubtasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    & span {
+        font-size: 13px;
+        font-weight: 400px;
+    }
+}
+
+.assignedAndPrio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
 .assignedAndPrio div:nth-child(1) {
     display: flex;
@@ -106,7 +140,10 @@
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        border: 1px solid blue;
+        font-size: 12px;
+        font-weight: 400;
+        color: white;
+        background-color: blue;
     }
 }
 
@@ -115,3 +152,8 @@
 #todoPriority {}
 
 /* todo Box */
+
+progress[value] {
+    width: 128px;
+    height: 16px;
+}

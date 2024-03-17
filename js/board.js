@@ -39,7 +39,26 @@ function renderTasksInBoard() {
       container.innerHTML += printTasksInBoard(task, i, subTasksLength);
       renderAssignedTo(contacts, i);
       getColorForCategory(i);
+      //changeProgressValue(i);
    }
+}
+
+function changeProgressValue(index) {
+   debugger;
+   let progressInPercent;
+   let progressBar = document.getElementById(`progressBar${index}`);
+   let subtasksDone = tasks[index]['subtasksDone'].length;
+   let subtasksOpen = tasks[index]['subtasks'].length;
+   let allSubtasks = subtasksDone + subtasksOpen;
+   let calcPercent = (subtasksDone / allSubtasks) * 100;
+   if(calcPercent == NaN) {
+      progressInPercent = 0;
+   } else {
+      progressInPercent = calcPercent;
+   }
+   
+
+   progressBar.value = progressInPercent;   
 }
 
 function getColorForCategory(index) {
@@ -65,7 +84,10 @@ function printTasksInBoard(task, index, subTasksLength) {
          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
-         <div id="todoSubtasks">0 / ${subTasksLength} subtasks</div>
+         <div id="todoSubtasks">
+            <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
+            <span>0/${subTasksLength} Subtasks</span>
+         </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
             <div id="todoPriority">${task.priority}</div>
