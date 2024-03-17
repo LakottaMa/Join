@@ -79,7 +79,7 @@ function showFloatContact(i) {
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, id, initials, i);
-   }
+}
 
 function floatContactHTML(name, email, id, initials, i) {
     let bgColor = addBgColor(i);
@@ -117,29 +117,24 @@ function checkPhone(i) {
     return phone
 }
 
-function addBgColor(i) { //async + await bei setItem hinzufügen
+function addBgColor(i) { 
     let bgColor = users[i]['bg'];
     if (bgColor) {
-        // console.log('bg',bgColor) //wieder löschen!!
         return bgColor
+    } 
+}
 
-    } else{    
-        let x = Math.floor(Math.random() * 256);
-        let y = Math.floor(Math.random() * 256);
-        let z = Math.floor(Math.random() * 256);
-        let bgColor = `rgb(${x}, ${y}, ${z})`;
+function newBgColor(){
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    let bgColor = `rgb(${x},${y},${z})`;
 
-        users.push({//users[i].push funktioniert nicht
-            bg: bgColor,
-        });
-        setItem('users', JSON.stringify(users));
-        
-        return bgColor
-    }
-    
+    return bgColor
 }
 
 async function createNewContact() {
+    let bgColor = newBgColor();
     let name = document.getElementById('NewContactName').value;
     let email = document.getElementById('NewContactEmail').value;
     let phone = document.getElementById('NewContactPhone').value;
@@ -150,15 +145,16 @@ async function createNewContact() {
             name: name,
             email: email,
             phone: phone,
+            bg: bgColor,
         });
         await setItem('users', JSON.stringify(users));
         renderContactList()
-        
+
     } else {
         console.error('Please fill out all fields');
     }
     closePopup()
-    renderContactList();    
+    renderContactList();
 }
 
 
