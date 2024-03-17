@@ -34,22 +34,28 @@ function renderTasksInBoard() {
       const task = tasks[i];
       let status = task['status'];
       let contacts = task['assignedTo'];
-      let subTasksLength = task['subtasks'].length;
+      let subTasksDoneLength = task['subtasksDone'].length;
       let container = checkContainer(status);
-      container.innerHTML += printTasksInBoard(task, i, subTasksLength);
+      container.innerHTML += printTasksInBoard(task, i, subTasksDoneLength);
       renderAssignedTo(contacts, i);
       getColorForCategory(i);
       changeProgressValue(i);
    }
 }
 
+function calculateAllSubTasks(index) {
+   let subtasksOpen = tasks[index]['subtasks'].length;
+   let subtasksDone = tasks[index]['subtasksDone'].length;
+   let allSubtasks = subtasksDone + subtasksOpen;
+   return allSubtasks
+}
+
 function changeProgressValue(index) {
    let progressInPercent;
-   let progressBar = document.getElementById(`progressBar${index}`); // progress id
-   let subtasksDone = tasks[index]['subtasksDone'].length;  // erledigte tasks anzahl
-   let subtasksOpen = tasks[index]['subtasks'].length;   // offe tasks anzahl
-   let allSubtasks = subtasksDone + subtasksOpen;  // all tasks anzahl
-   let calcPercent = (subtasksDone / allSubtasks) * 100; // prozent der erledigten
+   let progressBar = document.getElementById(`progressBar${index}`);
+   let subtasksDone = tasks[index]['subtasksDone'].length;
+   let allSubtasks = calculateAllSubTasks(index);
+   let calcPercent = (subtasksDone / allSubtasks) * 100;
    if(isNaN(calcPercent) == true) {
       progressInPercent = 0;
    } else {
@@ -84,7 +90,7 @@ function printTasksInBoard(task, index, subTasksLength) {
          <div id="todoDescription">${task.description}</div>
          <div id="todoSubtasks">
             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
-            <span>0/${subTasksLength} Subtasks</span>
+            <span>${subTasksLength}/${calculateAllSubTasks(index)} Subtasks</span>
          </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
@@ -135,12 +141,12 @@ function renderSearchedTasks() {
    for (let i = 0; i < searchedTasks.length; i++) {
       const taskTitle = searchedTasks[i]['title'];
       let index = tasks.findIndex(t => t.title === taskTitle);
-      let subTasksLength = tasks[index]['subtasks'].length;
+      let subTasksDoneLength = tasks[index]['subtasksDone'].length;
       let task = tasks[index];
       let status = tasks[index]['status'];
       let contacts = tasks[index]['assignedTo'];
       let container = checkContainer(status);
-      container.innerHTML += printTasksInBoard(task, index, subTasksLength);
+      container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
       renderAssignedTo(contacts, index);
       getColorForCategory(index);
       changeProgressValue(index);
