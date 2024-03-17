@@ -1,7 +1,6 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-// let tasks = [];
 let category = "";
 let priority = "";
 let statusObj = { status: 'To Do'};
@@ -31,7 +30,7 @@ let prioLow;
  * @param {string} title 
  * @param {string} description 
  * @param {date} date 
- * @param {string} taskPriority 
+ * @param {string} taskPriority
  * @param {Array} assignedTo 
  * @param {string} taskCategory 
  * @param {Array} subtasks 
