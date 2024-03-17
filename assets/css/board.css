@@ -132,6 +132,7 @@
 .assignedAndPrio div:nth-child(1) {
     display: flex;
     gap: 4px;
+    flex-wrap: wrap;
 
     & span {
         display: flex;

@@ -41,6 +41,7 @@ function renderTasksInBoard() {
       getColorForCategory(i);
       changeProgressValue(i);
    }
+   checkContainerEmpty();
 }
 
 function calculateAllSubTasks(index) {
@@ -127,6 +128,16 @@ function checkRenderTasks() {
    }
 }
 
+function checkContainerEmpty() {
+   let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
+   ids.forEach(id => {
+      let container = document.getElementById(id);
+      if(container.hasChildNodes() === false) {
+         container.innerHTML = `<h2>is empty</h2>`;
+      }
+   });
+}
+
 let searchedTasks;
 
 function searchTasks() {
@@ -149,6 +160,7 @@ function renderSearchedTasks() {
       container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
       renderAssignedTo(contacts, index);
       getColorForCategory(index);
-      changeProgressValue(index);
+      changeProgressValue(index); 
    }
+   checkContainerEmpty();
 }
