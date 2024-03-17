@@ -1,15 +1,4 @@
 @media screen and (max-width:720px) {
-    body{
-        /* overflow-y:hidden; */
-    }
-    .form-box {
-        width: 396px;     
-    }
-
-    .input-box {
-        width: calc(100% - 32px)
-    }
-
     .btn-box {
         flex-direction: column;
         align-items: center;
@@ -26,6 +15,13 @@
 
     .signup {
         display: none;
+    }
+
+    .input-box {
+        width: calc(100% - 24px);
+        img{
+            margin-right: 8px;
+        }
     }
 
     .su-mobile {
@@ -59,13 +55,19 @@
 @media screen and (max-width:480px) {
     h1 {
         font-size: 46px;
+        margin: 32px 0 8px 0;
     }
 
     .btn-signup, .login-btn, .guestlogin-btn, .signup span{
         font-size: 19px !important;
     }
 
+    .input-box {
+        width: calc(100% - 16px);
+    }
+
     input{
+        width: 100%;
         font-size: 19px;
         margin: 12px 0 8px 0;
     }
@@ -81,8 +83,8 @@
         font-size: 42px;
     }
 
-    .form-box {
-        width: 304px;      
+    input{
+        font-size: 16px;
     }
 
     .form-box {

@@ -25,6 +25,9 @@
 body {
     height: 100dvh;
     font-family: 'Open Sans';
+    max-width: 2160px;
+    display: flex;
+    margin: 0 auto;
 }
 
 h1 {
@@ -65,16 +68,17 @@ a {
 }
 
 /** style error messages */
-.error-msg-box{
+.error-msg-box {
     position: absolute;
     bottom: -18px;
-    left: 0;    
+    left: 0;
     color: var(--clr-error);
 }
 
-.inputerror{
+.inputerror {
     border-bottom: 1px solid var(--clr-error);
 }
+
 /**************************/
 
 .active-site {

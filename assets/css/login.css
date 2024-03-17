@@ -69,8 +69,9 @@ h1 {
 .signup {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 315px;
+    justify-content: center;
+    gap: 35px;
+    width: 100%;
     height: 48px;
 }
 
@@ -101,21 +102,23 @@ h1 {
     }
 }
 
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.login-container > div{
+    width: 90%;
+
 }
 
-.mobile {
+.login-container {
+    width: 90%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .form-box {
-    width: 652px;
+    max-width: 598px;
+    margin: 0 auto;
+    min-width: 304px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -135,7 +138,7 @@ form ::placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 422px;
+    width: calc(100% - 88px);
 }
 
 .input-field {

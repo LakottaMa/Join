@@ -1,18 +1,10 @@
 body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
     background-color: var(--clr-main1);
 }
 
 h1 {
-    margin: 0px 0 8px 0;
+    margin: 48px 0 8px 0;
 }
-
-.sign-up-container {
-}
-
 
 footer a {
     color: white;
@@ -42,16 +34,18 @@ footer a {
     }
 }
 
-.form-box {
+.sign-up-container {
+    width: 90%;
+}
+
+.arrow-left {
     position: relative;
-    display: flex;
-    width: 598px;
 
     .back-btn {
         position: absolute;
         width: 32px;
-        top: 40px;
-        left: 40px;
+        top: 64px;
+        left: 48px;
         z-index: 9;
     }
 }
