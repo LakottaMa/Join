@@ -71,7 +71,6 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 35px;
-    width: 100%;
     height: 48px;
 }
 
@@ -103,12 +102,12 @@ h1 {
 }
 
 .login-container > div{
-    width: 90%;
+    width: 96%;
 
 }
 
 .login-container {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

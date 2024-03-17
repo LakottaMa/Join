@@ -19,7 +19,8 @@
 
     .input-box {
         width: calc(100% - 24px);
-        img{
+
+        img {
             margin-right: 8px;
         }
     }
@@ -58,23 +59,30 @@
         margin: 32px 0 8px 0;
     }
 
-    .btn-signup, .login-btn, .guestlogin-btn, .signup span{
-        font-size: 19px !important;
+    .btn-signup,
+    .login-btn,
+    .guestlogin-btn,
+    .signup span {
+        font-size: 19px;
     }
 
     .input-box {
         width: calc(100% - 16px);
     }
 
-    input{
+    input {
         width: 100%;
         font-size: 19px;
         margin: 12px 0 8px 0;
     }
 
     .su-mobile {
-        justify-content: space-evenly;
+        justify-content: center;
         margin: 18px 0 18px 0;
+    }
+
+    .signup {
+        gap: 24px;
     }
 }
 
@@ -83,7 +91,7 @@
         font-size: 42px;
     }
 
-    input{
+    input {
         font-size: 16px;
     }
 
@@ -94,4 +102,7 @@
         }
     }
 
+    .signup span {
+        font-size: 16px !important;
+    }
 }
