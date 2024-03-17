@@ -75,7 +75,7 @@ let localTasks = [
     "assignedTo": ["Linus Torvalds", "Sam Altman"],
     "category": "User Story",
     "subtasks": ["Implement Recipe Recommendation"],
-    "subtasksDone": [],
+    "subtasksDone": ["Style Recipe"],
     "status": "In progress"
   },
   {
@@ -86,7 +86,7 @@ let localTasks = [
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
     "subtasks": [],
-    "subtasksDone": [],
+    "subtasksDone": ["Clean Code"],
     "status": "In progress"
   },
 
@@ -95,7 +95,7 @@ let localTasks = [
     "description": "Create database structure for the application.",
     "date": "Mon Mar 19 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
     "priority": "Medium",
-    "assignedTo": ["Jeff Bezos", "Larry Page"],
+    "assignedTo": ["Linus Torvalds", "Bill Gates"],
     "category": "Technical Task",
     "subtasks": [],
     "subtasksDone": [],
@@ -106,7 +106,7 @@ let localTasks = [
     "description": "Improve user interface and experience.",
     "date": "Tue Mar 20 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
     "priority": "Low",
-    "assignedTo": ["Satya Nadella", "Sundar Pichai"],
+    "assignedTo": ["Linus Torvalds", "Bill Gates"],
     "category": "User Story",
     "subtasks": ["Update color scheme", "Optimize navigation menu"],
     "subtasksDone": ["Style Sidebar"],
@@ -117,7 +117,7 @@ let localTasks = [
     "description": "Develop login and registration functionality.",
     "date": "Sun Mar 18 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
     "priority": "High",
-    "assignedTo": ["Elon Musk", "Mark Zuckerberg"],
+    "assignedTo": ["Linus Torvalds", "Tim Cook"],
     "category": "Technical Task",
     "subtasks": ["Create login form", "Implement user registration"],
     "subtasksDone": ["Style login form"],
