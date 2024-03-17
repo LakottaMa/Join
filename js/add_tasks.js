@@ -36,7 +36,7 @@ let prioLow;
  * @param {Array} subtasks 
  * @returns 
  */
-function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus) {
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks) {
     return {
         "title": title.value,
         "description": description.value,
@@ -45,6 +45,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "assignedTo": assignedTo,
         "category": taskCategory,
         "subtasks": subtasks,
+        "subtasksDone": [],
         "status": statusObj.status
     }
 }
@@ -60,8 +61,8 @@ async function addTask() {
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
     let taskCategory = category;
-    let taskStatus = status;
-    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
+    statusObj.status = "To Do";
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks);
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
