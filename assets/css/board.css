@@ -49,7 +49,7 @@
 
 .taskBox {
     border: 1px solid green;
-    width: 20%;
+    min-width: 252px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -66,10 +66,12 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    gap: 16px;
-    border: 1px solid blue;
-    padding: 8px;
-    border-radius: 10px;
+    gap: 10px;
+    width: 252px;
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+
 }
 
 .toDoDiv {
