@@ -38,15 +38,36 @@ function renderTasksInBoard() {
       let container = checkContainer(status);
       container.innerHTML += printTasksInBoard(task, i, subTasksLength);
       renderAssignedTo(contacts, i);
+      getColorForCategory(i);
+      //changeProgressValue(i);
    }
 }
 
-function renderSubTasks(subTasksLength, i) {
-   let subTaskContainer = document.getElementById(`todoSubtasks${i}`);
-   subTaskContainer.innerHTML = '';
-   console.log(subTasksLength);
-   subTaskContainer.innerHTML += printSubTasks(subTasksLength);
+function changeProgressValue(index) {
+   debugger;
+   let progressInPercent;
+   let progressBar = document.getElementById(`progressBar${index}`);
+   let subtasksDone = tasks[index]['subtasksDone'].length;
+   let subtasksOpen = tasks[index]['subtasks'].length;
+   let allSubtasks = subtasksDone + subtasksOpen;
+   let calcPercent = (subtasksDone / allSubtasks) * 100;
+   if(calcPercent == NaN) {
+      progressInPercent = 0;
+   } else {
+      progressInPercent = calcPercent;
+   }
+   
+
+   progressBar.value = progressInPercent;   
 }
+
+function getColorForCategory(index) {
+   let category = tasks[index]['category'];
+   let container = document.getElementById(`todoCategory${index}`);
+   category == 'User Story' ? container.style.backgroundColor = 'var(--clr-orange)' : container.style.backgroundColor = 'var(--clr-blue)';
+}
+
+
 
 function renderAssignedTo(contacts, i) {
    let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
@@ -60,10 +81,13 @@ function renderAssignedTo(contacts, i) {
 function printTasksInBoard(task, index, subTasksLength) {
    return /*html*/ `
       <div class="todoBox">
-         <div id="todoCategory">${task.category}</div>                         
+         <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
-         <div id="todoSubtasks">0 / ${subTasksLength} subtasks</div>
+         <div id="todoSubtasks">
+            <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
+            <span>0/${subTasksLength} Subtasks</span>
+         </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
             <div id="todoPriority">${task.priority}</div>
