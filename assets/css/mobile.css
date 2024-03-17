@@ -1,0 +1,95 @@
+@media screen and (max-width:720px) {
+    body{
+        /* overflow-y:hidden; */
+    }
+    .form-box {
+        width: 396px;     
+    }
+
+    .input-box {
+        width: calc(100% - 32px)
+    }
+
+    .btn-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+
+        button {
+            width: 180px;
+        }
+    }
+
+    .checkbox {
+        width: 90%;
+    }
+
+    .signup {
+        display: none;
+    }
+
+    .su-mobile {
+        display: flex;
+        margin: 36px 0 36px 0;
+    }
+
+    .login-header {
+        padding: 37px 38px 0 38px;
+    }
+
+    .logo {
+        height: 78px;
+
+    }
+
+    @keyframes move-to-top-left {
+        from {
+            top: 50%;
+            left: 50%;
+        }
+
+        to {
+            scale: 0.26;
+            top: -42px;
+            left: -28px;
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+    h1 {
+        font-size: 46px;
+    }
+
+    .btn-signup, .login-btn, .guestlogin-btn, .signup span{
+        font-size: 19px !important;
+    }
+
+    input{
+        font-size: 19px;
+        margin: 12px 0 8px 0;
+    }
+
+    .su-mobile {
+        justify-content: space-evenly;
+        margin: 18px 0 18px 0;
+    }
+}
+
+@media screen and (max-width:440px) {
+    h1 {
+        font-size: 42px;
+    }
+
+    .form-box {
+        width: 304px;      
+    }
+
+    .form-box {
+        .back-btn {
+            top: 32px;
+            left: 32px;
+        }
+    }
+
+}

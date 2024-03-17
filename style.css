@@ -11,6 +11,7 @@
     --clr-low: rgba(122, 226, 41, 1);
     --clr-error: rgba(255, 129, 144, 1);
     --clr-profil-hover: rgba(181, 219, 255, 0.2);
+    --clr-error: rgba(255, 129, 144, 1);
 }
 
 *,
@@ -22,7 +23,7 @@
 }
 
 body {
-    height: 100vh;
+    height: 100dvh;
     font-family: 'Open Sans';
 }
 
@@ -60,9 +61,21 @@ a {
     &:hover {
         box-shadow: none !important;
         background-color: rgba(69, 137, 255, 1) !important;
-
     }
 }
+
+/** style error messages */
+.error-msg-box{
+    position: absolute;
+    bottom: -18px;
+    left: 0;    
+    color: var(--clr-error);
+}
+
+.inputerror{
+    border-bottom: 1px solid var(--clr-error);
+}
+/**************************/
 
 .active-site {
     background-color: var(--clr-menu-hover);
@@ -88,7 +101,7 @@ a {
     }
 }
 
-/*** style the different tmpl ***/
+/** style the different tmpl */
 .main-section {
     display: flex;
     align-items: center;

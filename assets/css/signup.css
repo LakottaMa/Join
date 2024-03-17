@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     background-color: var(--clr-main1);
 }
 
@@ -11,11 +11,8 @@ h1 {
 }
 
 .sign-up-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
 }
+
 
 footer a {
     color: white;
@@ -28,9 +25,12 @@ footer a {
     gap: 8px;
     justify-content: center;
     width: 100%;
-    div{
+    margin-top: 28px;
+
+    div {
         width: 204px;
     }
+
     a {
         color: var(--clr-main1);
 
@@ -43,13 +43,16 @@ footer a {
 }
 
 .form-box {
+    position: relative;
     display: flex;
     width: 598px;
 
     .back-btn {
-        position: relative;
+        position: absolute;
+        width: 32px;
         top: 40px;
-        right: 248px;
+        left: 40px;
+        z-index: 9;
     }
 }
 
@@ -108,32 +111,5 @@ footer a {
     to {
         opacity: 0;
         z-index: -100;
-    }
-}
-
-@media screen and (max-width:720px) {
-    .form-box {
-        width: 396px;
-    }
-
-    .arrow_left {
-        margin-left: -160px;
-        margin-top: 48px;
-    }
-
-    .btn-box {
-        margin: 24px 0 12px 0;
-        height: 50px;
-    }
-
-    h1 {
-        margin-bottom: 8px;
-    }
-
-    .form-box{
-        .back-btn{
-            top: 40px;
-            right: 148px;
-        }
     }
 }

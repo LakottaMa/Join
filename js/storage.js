@@ -151,3 +151,7 @@ async function loadTasks() {
   }
   console.table(tasks);
 }
+
+async function saveTasks(tasks) {
+  await setItem('tasks', JSON.stringify(tasks));
+}
