@@ -8,18 +8,17 @@ async function initContacts() {
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
-        users.sort((a, b) => a.name.localeCompare(b.name));
+        //users.sort((a, b) => a.name.localeCompare(b.name));//zu früh sortiert!!!!
         let currentLetter = '';
         for (let i = 0; i < users.length; i++) {
-            let contact = users[i];
-            let firstLetter = contact['name'][0].toUpperCase();
+            let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
-             <div class="letterBox">
-                <div class="letter">${firstLetter}</div>
-                <div id="${firstLetter}-content"></div>
-            </div>
-            `;
+                    <div class="letterBox">
+                        <div class="letter">${firstLetter}</div>
+                        <div id="${firstLetter}-content"></div>
+                    </div>
+                    `;
             }
             currentLetter = firstLetter;
             document.getElementById(`${firstLetter}-content`).innerHTML +=
@@ -28,6 +27,13 @@ function renderContactList() {
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
+    sortContactList();
+}
+
+function sortContactList() {
+    let allContacts = document.getElementById('allContacts');
+    let letterBoxes = Array.from(allContacts.getElementsByClassName('letterbox'));
+    console.log('boxes', letterBoxes);
 }
 
 // console.log('contact',contact) //wieder löschen!!
@@ -36,7 +42,7 @@ function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
     let id = users[i]['id'];
-    let bgColor = addBgColor(i);
+    let bgColor = users[i]['bg'];
     return `
         <div class="contactSmall cp" onclick="showFloatContact(${i})">
             <div id="${id}"class="initials" style="background-color:${bgColor};">${initials}</div>
@@ -82,7 +88,7 @@ function showFloatContact(i) {
 }
 
 function floatContactHTML(name, email, id, initials, i) {
-    let bgColor = addBgColor(i);
+    let bgColor = users[i]['bg'];
     return `
         <div class="floatingTop">
             <div id="${id}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
@@ -117,14 +123,7 @@ function checkPhone(i) {
     return phone
 }
 
-function addBgColor(i) { 
-    let bgColor = users[i]['bg'];
-    if (bgColor) {
-        return bgColor
-    } 
-}
-
-function newBgColor(){
+function newBgColor() {
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
@@ -146,14 +145,15 @@ async function createNewContact() {
             phone: phone,
             bg: bgColor,
         });
+        users.sort((a, b) => a.id - b.id);
         await setItem('users', JSON.stringify(users));
-        renderContactList()
-        closePopup()
+        renderContactList();
+        closePopup();
 
     } else {
         console.error('Please fill out all fields');
     }
-    
+
 }
 
 

@@ -76,7 +76,7 @@ h3 {
     }
 
     &:hover {
-        background-color: var(--clr-main1);
+        background-color: var(--clr-main2);
         border-radius: 10px;
         color: white;
 
@@ -85,9 +85,6 @@ h3 {
         }
     }
 
-    &:active {
-        background-color: var(--clr-main2);
-    }
 }
 
 .initials {
