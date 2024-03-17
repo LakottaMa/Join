@@ -79,9 +79,7 @@
     padding: 16px;
 }
 
-#todoCategory {
-    background-color: blue;
-    border: 1px solid black;
+.todoCategory {
     border-radius: 8px;
     color: white;
     padding: 4px;

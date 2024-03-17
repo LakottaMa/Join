@@ -38,15 +38,17 @@ function renderTasksInBoard() {
       let container = checkContainer(status);
       container.innerHTML += printTasksInBoard(task, i, subTasksLength);
       renderAssignedTo(contacts, i);
+      getColorForCategory(i);
    }
 }
 
-function renderSubTasks(subTasksLength, i) {
-   let subTaskContainer = document.getElementById(`todoSubtasks${i}`);
-   subTaskContainer.innerHTML = '';
-   console.log(subTasksLength);
-   subTaskContainer.innerHTML += printSubTasks(subTasksLength);
+function getColorForCategory(index) {
+   let category = tasks[index]['category'];
+   let container = document.getElementById(`todoCategory${index}`);
+   category == 'User Story' ? container.style.backgroundColor = 'var(--clr-orange)' : container.style.backgroundColor = 'var(--clr-blue)';
 }
+
+
 
 function renderAssignedTo(contacts, i) {
    let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
@@ -60,7 +62,7 @@ function renderAssignedTo(contacts, i) {
 function printTasksInBoard(task, index, subTasksLength) {
    return /*html*/ `
       <div class="todoBox">
-         <div id="todoCategory">${task.category}</div>                         
+         <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
          <div id="todoSubtasks">0 / ${subTasksLength} subtasks</div>
