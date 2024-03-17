@@ -1,5 +1,3 @@
-
-
 async function initSignUp() {
   await loadUsers();
   await loadTasks();
@@ -10,33 +8,52 @@ async function register() {
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
   let confirmedPassword = document.getElementById('confirmedPassword').value;
-  const isEmailAvailable = !users.some(user => user.email === email); // Check if the email is available
+  const isEmailAvailable = !users.some(user => user.email === email);
   if (isEmailAvailable == true) {
     if (errorMsgPasswordConfirm(confirmedPassword, password)) {
-      users.push({
-        name: name,
-        email: email,
-        password: password,
-        phone: null,
-      });
+      users.push({id: users.length + 1, name: name, email: email, password: password, phone: null});
       await setItem('users', JSON.stringify(users));
       resetForm();
       signupPopup();
     } else {
-      alert('Password does not match the confirmed password.'); // msg greate!!
+      displayPasswordMatchError();
     }
   } else {
-    alert('Email already in use. Please try a different one.'); // msg greate!!
+    displayEmailInUseError();
   }
 }
 
-/** Updated to "return true" when passwords match */
 function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
     return false;
   }
   return true;
 }
+
+function displayPasswordMatchError() {
+  const confirmedPassword = document.getElementById('confirmedPassword');
+  const errorMsgBox = document.getElementById('password-match');
+  confirmedPassword.classList.add('inputerror');
+  errorMsgBox.textContent = 'Ups! your password don’t match';
+  document.getElementById('confirmedPassword').addEventListener('keyup', () => {
+    errorMsgBox.textContent = '';
+    confirmedPassword.classList.remove('inputerror');
+  });
+}
+
+function displayEmailInUseError() {
+  const emailInput = document.getElementById('email');
+  const errorMsgBox = document.getElementById('email-exist');
+  emailInput.classList.add('inputerror');
+  errorMsgBox.textContent = 'Email already in use. Please try a different one.';
+  emailInput.addEventListener('keyup', () => {
+    errorMsgBox.textContent = '';
+    emailInput.classList.remove('inputerror');
+
+  });
+}
+
+
 
 function backButton() {
   window.location.href = '/index.html';

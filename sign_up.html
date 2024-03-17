@@ -23,9 +23,10 @@
                     <img src="./assets/img/person.png">
                 </div>
                 <div class="input-field">
-                    <input id="email" type="email" required placeholder="Email">
+                    <input id="email" class="" type="email" required placeholder="Email">
                     <img src="./assets/img/mail.png">
-                </div>
+                    <div class="error-msg-box" id="email-exist"></div>
+                </div>                
                 <div class="input-field">
                     <input id="password" type="password" onkeyup="togglePasswordEye('password')" required placeholder="Password">
                     <img id="password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
@@ -33,7 +34,9 @@
                 <div class="input-field">
                     <input id="confirmedPassword" type="password" onkeyup="togglePasswordEye('confirmedPassword')" required placeholder="Confirm Password">
                     <img id="confirmedPassword-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('confirmedPassword')">
+                    <div class="error-msg-box" id="password-match"></div>
                 </div>
+                
                 <div class="checkbox" >
                     <img class="cp" onclick="checkedSignup()" id="accept-policy" src="./assets/img/check_unchecked.png">
                     <div>I accept the <a href="./privacy_policy.html">Privacy policy</a></div>
