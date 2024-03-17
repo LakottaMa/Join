@@ -1,20 +1,9 @@
 body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
     background-color: var(--clr-main1);
 }
 
 h1 {
-    margin: 0px 0 8px 0;
-}
-
-.sign-up-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 48px 0 8px 0;
 }
 
 footer a {
@@ -28,9 +17,12 @@ footer a {
     gap: 8px;
     justify-content: center;
     width: 100%;
-    div{
+    margin-top: 28px;
+
+    div {
         width: 204px;
     }
+
     a {
         color: var(--clr-main1);
 
@@ -42,14 +34,19 @@ footer a {
     }
 }
 
-.form-box {
-    display: flex;
-    width: 598px;
+.sign-up-container {
+    width: 96%;
+}
+
+.arrow-left {
+    position: relative;
 
     .back-btn {
-        position: relative;
-        top: 40px;
-        right: 248px;
+        position: absolute;
+        width: 32px;
+        top: 64px;
+        left: 48px;
+        z-index: 9;
     }
 }
 
@@ -108,32 +105,5 @@ footer a {
     to {
         opacity: 0;
         z-index: -100;
-    }
-}
-
-@media screen and (max-width:720px) {
-    .form-box {
-        width: 396px;
-    }
-
-    .arrow_left {
-        margin-left: -160px;
-        margin-top: 48px;
-    }
-
-    .btn-box {
-        margin: 24px 0 12px 0;
-        height: 50px;
-    }
-
-    h1 {
-        margin-bottom: 8px;
-    }
-
-    .form-box{
-        .back-btn{
-            top: 40px;
-            right: 148px;
-        }
     }
 }

@@ -5,7 +5,8 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/login.css">
-    <link rel="stylesheet" href="./assets/css/signup.css">       
+    <link rel="stylesheet" href="./assets/css/signup.css">
+    <link rel="stylesheet" href="./assets/css/mobile.css">
     <title>Join</title>
 </head>
 <body onload="initSignUp()">
@@ -13,27 +14,30 @@
         <img class="logo" src="./assets/img/logo.png">
     </header>
     <div class="sign-up-container">
-        <div class="form-box">
+        <div class="form-box arrow-left">
+            <div class="back-btn cp" onclick="backButton()"><img src="./assets/img/arrow_left.png"></div>
             <form class="input-box" onsubmit="register(); return false;">                
-                <div class="back-btn cp" onclick="backButton()"><img src="./assets/img/arrow_left.png"></div>
                 <h1>Sign up</h1>
                 <img class="underline" src="./assets/img/underline_login.png">
                 <div class="input-field">
-                    <input id="name" type="text" required placeholder="Name">
+                    <input id="name" type="text" autofocus required placeholder="Name">
                     <img src="./assets/img/person.png">
                 </div>
                 <div class="input-field">
-                    <input id="email" type="email" required placeholder="Email">
+                    <input id="email" class="" type="email" autofocus required placeholder="Email">
                     <img src="./assets/img/mail.png">
-                </div>
+                    <div class="error-msg-box" id="email-exist"></div>
+                </div>                
                 <div class="input-field">
-                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" required placeholder="Password">
+                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus required placeholder="Password">
                     <img id="password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
                 </div>
                 <div class="input-field">
-                    <input id="confirmedPassword" type="password" onkeyup="togglePasswordEye('confirmedPassword')" required placeholder="Confirm Password">
+                    <input id="confirmedPassword" type="password" onkeyup="togglePasswordEye('confirmedPassword')" autofocus required placeholder="Confirm Password">
                     <img id="confirmedPassword-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('confirmedPassword')">
+                    <div class="error-msg-box" id="password-match"></div>
                 </div>
+                
                 <div class="checkbox" >
                     <img class="cp" onclick="checkedSignup()" id="accept-policy" src="./assets/img/check_unchecked.png">
                     <div>I accept the <a href="./privacy_policy.html">Privacy policy</a></div>

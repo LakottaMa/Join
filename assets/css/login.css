@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 h1 {
@@ -62,8 +62,6 @@ h1 {
 .login-header {
     padding: 80px 80px 0 80px;
     width: 100%;
-    position: absolute;
-    top: 0;
     display: flex;
     justify-content: space-between;
 }
@@ -71,8 +69,8 @@ h1 {
 .signup {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 315px;
+    justify-content: center;
+    gap: 35px;
     height: 48px;
 }
 
@@ -103,21 +101,23 @@ h1 {
     }
 }
 
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.login-container > div{
+    width: 96%;
+
 }
 
-.mobile {
+.login-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .form-box {
-    width: 652px;
+    max-width: 598px;
+    margin: 0 auto;
+    min-width: 304px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,13 +133,15 @@ form ::placeholder {
 }
 
 .input-box {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 422px;
+    width: calc(100% - 88px);
 }
 
 .input-field {
+    position: relative;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -156,7 +158,7 @@ input {
     font-size: 20px;
     display: flex;
     padding: 12px 21px;
-    margin: 16px 0 16px 0;
+    margin: 16px 0 8px 0;
     align-items: center;
     outline: none;
     border: none;
@@ -177,7 +179,6 @@ input {
 }
 
 .btn-box {
-    height: 50px;
     width: 100%;
     margin: 38px 0 38px 0;
     display: flex;
@@ -209,8 +210,6 @@ input {
 footer {
     width: 240px;
     height: 35px;
-    position: absolute;
-    bottom: 0;
     margin-bottom: 18px;
     display: flex;
     justify-content: space-around;
@@ -228,62 +227,3 @@ footer a {
 .su-mobile {
     display: none;
 }
-
-@media screen and (max-width:720px) {
-    .form-box {
-        width: 396px;
-    }
-
-    .input-box {
-        width: 364px;
-    }
-
-    .btn-box {
-        height: 117px;
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-        margin: 24px 0 24px 0;
-
-        button {
-            width: 180px;
-        }
-    }
-
-    .checkbox {
-        width: 90%;
-    }
-
-    .signup {
-        display: none;
-    }
-
-    .su-mobile {
-        display: flex;
-        margin: 36px 0 36px 0;
-    }
-
-    .login-header {
-        padding: 37px 38px 0 38px;
-    }
-
-    .logo {
-        height: 78px;
-
-    }
-
-    @keyframes move-to-top-left {
-        from {
-            top: 50%;
-            left: 50%;
-        }
-
-        to {
-            scale: 0.26;
-            top: -42px;
-            left: -28px;
-        }
-    }
-}
-
-@media screen and (max-width:450px) {}
