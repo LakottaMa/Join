@@ -39,19 +39,18 @@ function renderTasksInBoard() {
       container.innerHTML += printTasksInBoard(task, i, subTasksLength);
       renderAssignedTo(contacts, i);
       getColorForCategory(i);
-      //changeProgressValue(i);
+      changeProgressValue(i);
    }
 }
 
 function changeProgressValue(index) {
-   debugger;
    let progressInPercent;
-   let progressBar = document.getElementById(`progressBar${index}`);
-   let subtasksDone = tasks[index]['subtasksDone'].length;
-   let subtasksOpen = tasks[index]['subtasks'].length;
-   let allSubtasks = subtasksDone + subtasksOpen;
-   let calcPercent = (subtasksDone / allSubtasks) * 100;
-   if(calcPercent == NaN) {
+   let progressBar = document.getElementById(`progressBar${index}`); // progress id
+   let subtasksDone = tasks[index]['subtasksDone'].length;  // erledigte tasks anzahl
+   let subtasksOpen = tasks[index]['subtasks'].length;   // offe tasks anzahl
+   let allSubtasks = subtasksDone + subtasksOpen;  // all tasks anzahl
+   let calcPercent = (subtasksDone / allSubtasks) * 100; // prozent der erledigten
+   if(isNaN(calcPercent) == true) {
       progressInPercent = 0;
    } else {
       progressInPercent = calcPercent;
@@ -66,7 +65,6 @@ function getColorForCategory(index) {
    let container = document.getElementById(`todoCategory${index}`);
    category == 'User Story' ? container.style.backgroundColor = 'var(--clr-orange)' : container.style.backgroundColor = 'var(--clr-blue)';
 }
-
 
 
 function renderAssignedTo(contacts, i) {
@@ -96,7 +94,6 @@ function printTasksInBoard(task, index, subTasksLength) {
    `;
 }
 
-
 function printAssignedTo(contact) {
    return /*html*/ `<span>${getInitials(contact)}</span>`;
 }
@@ -113,5 +110,39 @@ function checkContainer(status) {
          return document.getElementById('doneContainer');
       default:
          return document.getElementById('toDoContainer');
+   }
+}
+
+function checkRenderTasks() {
+   if(searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
+      renderTasksInBoard();
+   } else {
+      renderSearchedTasks();
+   }
+}
+
+let searchedTasks;
+
+function searchTasks() {
+   let input = document.getElementById('findTask');
+   let filteredTasks = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
+   searchedTasks = filteredTasks;
+   checkRenderTasks();
+}
+
+function renderSearchedTasks() {
+   clearContainer();
+   for (let i = 0; i < searchedTasks.length; i++) {
+      const taskTitle = searchedTasks[i]['title'];
+      let index = tasks.findIndex(t => t.title === taskTitle);
+      let subTasksLength = tasks[index]['subtasks'].length;
+      let task = tasks[index];
+      let status = tasks[index]['status'];
+      let contacts = tasks[index]['assignedTo'];
+      let container = checkContainer(status);
+      container.innerHTML += printTasksInBoard(task, index, subTasksLength);
+      renderAssignedTo(contacts, index);
+      getColorForCategory(index);
+      changeProgressValue(index);
    }
 }

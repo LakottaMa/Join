@@ -1,8 +1,8 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-let category = "";
-let priority = "";
+let category = "User Story";
+let priority = "Medium";
 let statusObj = { status: 'To Do'};
 
 async function initAddTask() {
