@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 h1 {
@@ -62,8 +62,6 @@ h1 {
 .login-header {
     padding: 80px 80px 0 80px;
     width: 100%;
-    position: absolute;
-    top: 0;
     display: flex;
     justify-content: space-between;
 }
@@ -179,7 +177,6 @@ input {
 }
 
 .btn-box {
-    height: 50px;
     width: 100%;
     margin: 38px 0 38px 0;
     display: flex;
@@ -211,8 +208,6 @@ input {
 footer {
     width: 240px;
     height: 35px;
-    position: absolute;
-    bottom: 0;
     margin-bottom: 18px;
     display: flex;
     justify-content: space-around;
@@ -230,62 +225,3 @@ footer a {
 .su-mobile {
     display: none;
 }
-
-@media screen and (max-width:720px) {
-    .form-box {
-        width: 396px;
-    }
-
-    .input-box {
-        width: 364px;
-    }
-
-    .btn-box {
-        height: 117px;
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-        margin: 24px 0 24px 0;
-
-        button {
-            width: 180px;
-        }
-    }
-
-    .checkbox {
-        width: 90%;
-    }
-
-    .signup {
-        display: none;
-    }
-
-    .su-mobile {
-        display: flex;
-        margin: 36px 0 36px 0;
-    }
-
-    .login-header {
-        padding: 37px 38px 0 38px;
-    }
-
-    .logo {
-        height: 78px;
-
-    }
-
-    @keyframes move-to-top-left {
-        from {
-            top: 50%;
-            left: 50%;
-        }
-
-        to {
-            scale: 0.26;
-            top: -42px;
-            left: -28px;
-        }
-    }
-}
-
-@media screen and (max-width:450px) {}

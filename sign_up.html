@@ -5,7 +5,8 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/login.css">
-    <link rel="stylesheet" href="./assets/css/signup.css">       
+    <link rel="stylesheet" href="./assets/css/signup.css">
+    <link rel="stylesheet" href="./assets/css/mobile.css">
     <title>Join</title>
 </head>
 <body onload="initSignUp()">
@@ -14,8 +15,8 @@
     </header>
     <div class="sign-up-container">
         <div class="form-box">
+            <div class="back-btn cp" onclick="backButton()"><img src="./assets/img/arrow_left.png"></div>
             <form class="input-box" onsubmit="register(); return false;">                
-                <div class="back-btn cp" onclick="backButton()"><img src="./assets/img/arrow_left.png"></div>
                 <h1>Sign up</h1>
                 <img class="underline" src="./assets/img/underline_login.png">
                 <div class="input-field">

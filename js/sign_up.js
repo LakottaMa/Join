@@ -3,6 +3,10 @@ async function initSignUp() {
   await loadTasks();
 }
 
+function backButton() {
+  window.location.href = '/index.html';
+}
+
 async function register() {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
@@ -10,16 +14,20 @@ async function register() {
   let confirmedPassword = document.getElementById('confirmedPassword').value;
   const isEmailAvailable = !users.some(user => user.email === email);
   if (isEmailAvailable == true) {
-    if (errorMsgPasswordConfirm(confirmedPassword, password)) {
+    await handleSignUp(name, email, password, confirmedPassword);
+  } else {
+    displayEmailInUseError();
+  }
+}
+
+async function handleSignUp(name, email, password, confirmedPassword) {
+  if (errorMsgPasswordConfirm(confirmedPassword, password)) {
       users.push({id: users.length + 1, name: name, email: email, password: password, phone: null});
       await setItem('users', JSON.stringify(users));
       resetForm();
       signupPopup();
-    } else {
-      displayPasswordMatchError();
-    }
   } else {
-    displayEmailInUseError();
+    displayPasswordMatchError();
   }
 }
 
@@ -51,12 +59,6 @@ function displayEmailInUseError() {
     emailInput.classList.remove('inputerror');
 
   });
-}
-
-
-
-function backButton() {
-  window.location.href = '/index.html';
 }
 
 function checkedSignup() {
