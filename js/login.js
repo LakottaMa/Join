@@ -9,12 +9,12 @@ function guestLogIn(users) {
 function logIn() {
   const emailInput = document.getElementById("email").value;
   const passwordInput = document.getElementById("password").value;
-  if (login(emailInput, passwordInput)) {
+  if (verifiedLogin(emailInput, passwordInput)) {
     window.location.href = './summary.html';
   }
 }
 
-function login(email, password) {
+function verifiedLogin(email, password) {
   for (let i = 0; i < users.length; i++) {
     if (users[i].email === email && users[i].password === password) {
     sessionStorage.setItem('isLoggedIn', users[i].name);
