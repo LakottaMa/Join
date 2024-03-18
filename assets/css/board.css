@@ -48,7 +48,6 @@
 }
 
 .taskBox {
-    border: 1px solid green;
     min-width: 252px;
     display: flex;
     flex-direction: column;
@@ -59,6 +58,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-inline: 16px;
 
     & span {
         font-size: 23px;
@@ -108,6 +108,7 @@
 #todoDescription {
     font-size: 16px;
     font-weight: 400;
+    font-family: 'Inter';
 }
 
 #todoSubtasks {
@@ -119,6 +120,7 @@
     & span {
         font-size: 13px;
         font-weight: 400px;
+        font-family: 'Inter';
     }
 }
 
