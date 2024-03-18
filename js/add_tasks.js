@@ -1,8 +1,8 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-let category = "";
-let priority = "";
+let category = "User Story";
+let priority = "Medium";
 let statusObj = { status: 'To Do'};
 
 async function initAddTask() {
@@ -36,7 +36,7 @@ let prioLow;
  * @param {Array} subtasks 
  * @returns 
  */
-function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks) {
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus) {
     return {
         "title": title.value,
         "description": description.value,
@@ -46,7 +46,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "category": taskCategory,
         "subtasks": subtasks,
         "subtasksDone": [],
-        "status": statusObj.status
+        "status": taskStatus
     }
 }
 
@@ -61,8 +61,8 @@ async function addTask() {
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
     let taskCategory = category;
-    statusObj.status = "To Do";
-    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks);
+    let taskStatus = statusObj.status;
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
