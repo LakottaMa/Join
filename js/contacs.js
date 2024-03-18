@@ -14,7 +14,7 @@ function renderContactList() {
             let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
-                    <div class="letterBox" id="${firstLetter}-letterBox">
+                    <div class="letterBox">
                         <div class="letter">${firstLetter}</div>
                         <div id="${firstLetter}-content"></div>
                     </div>
@@ -38,8 +38,8 @@ function contactsHTML(i) {
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
     let bgColor = users[i]['bg'];
     return `
-        <div class="contactSmall cp" onclick="showFloatContact(${i})">
-            <div id="${i}"class="initials" style="background-color:${bgColor};">${initials}</div>
+        <div class="contactSmall cp" id="contactSmall-${i}" onclick="showFloatContact(${i})">
+            <div class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
                 <p>${users[i]['email']}</p>
@@ -49,22 +49,35 @@ function contactsHTML(i) {
 }
 
 function deleteUser(userIndex) {
-        if (userIndex !== -1) {
-            users.splice(userIndex, 1);
-            alert("User deleted successfully!");
-        } else {
-            alert("User not found.");
-        }
-    
+    if (userIndex !== -1) {
+        users.splice(userIndex, 1);
+        alert("User deleted successfully!");
+    } else {
+        alert("User not found.");
+    }
+
     setItem('users', JSON.stringify(users));
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
 }
 
+function addBgContact(index) {
+    let contacts = document.querySelectorAll('.contactSmall');
+    for (let x = 0; x < contacts.length; x++) {
+        let contact = contacts[x];
+
+        if (index === x) {
+            contact.classList.add('contactBgClicked');
+        } else {
+            contact.classList.remove('contactBgClicked');
+        }
+    };
+}
 
 
 function showFloatContact(i) {
+    addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
 
@@ -134,7 +147,7 @@ async function createNewContact() {
         });
         await setItem('users', JSON.stringify(users));
         renderContactList();
-        
+
         closePopup();
 
     } else {
