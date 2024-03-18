@@ -8,19 +8,19 @@ async function initContacts() {
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
-        //users.sort((a, b) => a.name.localeCompare(b.name));//an anderer Stelle sortieren!!!!
         let currentLetter = '';
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
-                    <div class="letterBox">
+                    <div class="letterBox" id="${firstLetter}-letterBox">
                         <div class="letter">${firstLetter}</div>
                         <div id="${firstLetter}-content"></div>
                     </div>
                     `;
             }
             currentLetter = firstLetter;
+            sortContactList();
             document.getElementById(`${firstLetter}-content`).innerHTML +=
                 contactsHTML(i);
         }
@@ -30,11 +30,25 @@ function renderContactList() {
     // sortContactList();
 }
 
-// function sortContactList() {
-//     let allContacts = document.getElementById('allContacts');
-//     let letterBoxes = Array.from(allContacts.getElementsByClassName('letterbox'));
-//     console.log('boxes', letterBoxes);
-// }
+function sortContactList() {
+    let letterBoxes = Array.from(allContacts.querySelectorAll('.letterBox'));
+
+    letterBoxes.sort((a, b) => {
+        const idA = a.id; // ID des ersten Elements
+        const idB = b.id; // ID des zweiten Elements
+        if (idA < idB) {
+            return -1;
+        }
+        if (idA > idB) {
+            return 1;
+        }
+        return 0;
+    });
+    document.getElementById('allContacts').innerHTML.innerHTML = '';
+    letterBoxes.forEach(letterBox => {
+        allContacts.appendChild(letterBox);
+    });
+}
 
 // console.log('contact',contact) //wieder löschen!!
 
@@ -51,7 +65,6 @@ function contactsHTML(i) {
                 <p>${users[i]['email']}</p>
             </div>
         </div>
-        <button id="loeschButton" onclick="deleteUser(${i})" class="login-btn">löschen</button>
     `;
 }
 /***************************** */
