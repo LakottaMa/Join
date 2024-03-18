@@ -8,7 +8,7 @@ async function initContacts() {
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
-        //users.sort((a, b) => a.name.localeCompare(b.name));//zu früh sortiert!!!!
+        //users.sort((a, b) => a.name.localeCompare(b.name));//an anderer Stelle sortieren!!!!
         let currentLetter = '';
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
@@ -27,14 +27,14 @@ function renderContactList() {
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
-    sortContactList();
+    // sortContactList();
 }
 
-function sortContactList() {
-    let allContacts = document.getElementById('allContacts');
-    let letterBoxes = Array.from(allContacts.getElementsByClassName('letterbox'));
-    console.log('boxes', letterBoxes);
-}
+// function sortContactList() {
+//     let allContacts = document.getElementById('allContacts');
+//     let letterBoxes = Array.from(allContacts.getElementsByClassName('letterbox'));
+//     console.log('boxes', letterBoxes);
+// }
 
 // console.log('contact',contact) //wieder löschen!!
 
@@ -145,7 +145,7 @@ async function createNewContact() {
             phone: phone,
             bg: bgColor,
         });
-        users.sort((a, b) => a.id - b.id);
+        // users.sort((a, b) => a.id - b.id);
         await setItem('users', JSON.stringify(users));
         renderContactList();
         closePopup();
