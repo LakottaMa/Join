@@ -78,32 +78,8 @@ h1 {
     font-size: 23px;
 }
 
-.btn-signup,
-.login-btn,
-.guestlogin-btn {
-    font-size: 23px;
-    padding: 10px 16px;
-    color: white;
-    background-color: var(--clr-main1);
-    border: none;
-    border-radius: 8px;
-    transition-duration: 120ms;
-
-    &:hover {
-        background-color: var(--clr-lightblue);
-        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-    }
-
-    &:focus {
-        box-shadow: inset 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-        background-color: white;
-        color: var(--clr-main1);
-    }
-}
-
 .login-container > div{
     width: 96%;
-
 }
 
 .login-container {
@@ -187,24 +163,6 @@ input {
 
 .login-btn {
     width: 135px;
-}
-
-.guestlogin-btn {
-    width: 197px;
-    background-color: white;
-    border: 1px solid rgba(100, 113, 136, 1);
-    color: rgba(100, 113, 136, 1);
-
-    &:hover {
-        border: 1px solid var(--clr-main1);
-        background-color: white;
-        color: var(--clr-main1);
-    }
-
-    &:active {
-        color: var(--clr-lightblue);
-        border: 1px solid var(--clr-lightblue);
-    }
 }
 
 footer {

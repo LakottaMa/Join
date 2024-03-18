@@ -1,8 +1,7 @@
 async function initSummary() {
     await includeHTML();
-    await loadUsers();
-    await loadTasks();
     greetingMessage();
+    await loadUsers();
 }
 
   function checkLoginStatus() {

@@ -19,11 +19,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans';
+
 }
 
 body {
     height: 100dvh;
-    font-family: 'Open Sans';
     /* max-width: 2160px;
     margin: 0 auto; */
 }
@@ -54,6 +55,50 @@ a {
     color: var(--clr-main1);
 }
 
+.blue-btn{
+    font-size: 23px;
+    padding: 10px 16px;
+    color: white;
+    background-color: var(--clr-main1);
+    border: none;
+    border-radius: 8px;
+    transition-duration: 120ms;
+
+    &:hover {
+        background-color: var(--clr-lightblue);
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    &:focus {
+        box-shadow: inset 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+        background-color: white;
+        color: var(--clr-main1);
+    }
+}
+
+.white-btn {
+    width: 197px;
+    font-size: 23px;
+    background-color: white;
+    border: 1px solid rgba(100, 113, 136, 1);
+    border-radius: 8px;
+    transition-duration: 120ms;
+    color: rgba(100, 113, 136, 1);
+
+    &:hover {
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--clr-main1);
+        background-color: white;
+        color: var(--clr-main1);
+    }
+
+    &:active {
+        box-shadow: inset 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+        color: var(--clr-lightblue);
+        border: 1px solid var(--clr-lightblue);
+    }
+}
+
 .btn-disabled {
     background-color: rgba(69, 137, 255, 1) !important;
     cursor: default !important;
@@ -68,6 +113,7 @@ a {
 /** style error messages */
 .error-msg-box {
     position: absolute;
+    font-family: 'Inter';
     bottom: -18px;
     left: 0;
     color: var(--clr-error);

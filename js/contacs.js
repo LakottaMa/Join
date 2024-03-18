@@ -109,8 +109,7 @@ function floatContactHTML(name, email, id, initials, i) {
         <div>
             <h3>Phone</h3>
             <div id="phoneFloating">${checkPhone(i)}</div>
-        </div>
-`;
+        </div>`;
 }
 
 function checkPhone(i) {
@@ -155,7 +154,6 @@ async function createNewContact() {
     }
 
 }
-
 
 function addNewContact() {
     document.getElementById('addContactPopup').classList.remove('d-none');

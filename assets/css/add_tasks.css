@@ -2,11 +2,6 @@
     margin-top: 96px;
     margin-left: 230px;
     display: flex;
-    height: calc(100vh - 96px);
-}
-
-body {
-    height: calc(100vh - 96px);
 }
 
 .addTaskSection {
@@ -165,7 +160,7 @@ textarea {
     margin-right: 32px;
 }
 
-.addTaskBtns button {
+/* .addTaskBtns button {
     padding: 16px 10px 16px 10px;
     border-radius: 10px;
     display: flex;
@@ -177,9 +172,9 @@ textarea {
 
 .addTaskBtns button:hover {
     cursor: pointer;
-}
+} */
 
-.addTaskBtns button:nth-child(1) {
+/* .addTaskBtns button:nth-child(1) {
     color: black;
     background-color: white;
     transition-duration: 120ms;
@@ -204,7 +199,7 @@ textarea {
         background-color: var(--clr-blue);
         box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
     }
-}
+} */
 
 .customSelect {
     display: flex;
