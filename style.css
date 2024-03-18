@@ -11,7 +11,6 @@
     --clr-low: rgba(122, 226, 41, 1);
     --clr-error: rgba(255, 129, 144, 1);
     --clr-profil-hover: rgba(181, 219, 255, 0.2);
-    --clr-error: rgba(255, 129, 144, 1);
 }
 
 *,
@@ -25,9 +24,8 @@
 body {
     height: 100dvh;
     font-family: 'Open Sans';
-    max-width: 2160px;
-    display: flex;
-    margin: 0 auto;
+    /* max-width: 2160px;
+    margin: 0 auto; */
 }
 
 h1 {
@@ -136,15 +134,19 @@ a {
 }
 
 .sum-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
     width: 100%;
     margin-bottom: 77px;
-    text-align: center;
 
     h1 {
-        font-size: 64px;
+        font-size: 48px;
     }
-    h3{
-        font-size: 30px;
+    h3 {
+        font-size: 64px;
+        color: var(--clr-main1);
     }
 }
 

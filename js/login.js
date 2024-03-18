@@ -1,7 +1,7 @@
 function guestLogIn(users) {
   let guestUser = users.find(user => user.name === 'Guest');
   if (guestUser) {
-    sessionStorage.setItem('isLoggedIn', 'G');
+    sessionStorage.setItem('isLoggedIn', 'Guest');
     window.location.href = './summary.html';
   }
 }
