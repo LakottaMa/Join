@@ -9,6 +9,7 @@ function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
         let currentLetter = '';
+        users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
@@ -20,46 +21,25 @@ function renderContactList() {
                     `;
             }
             currentLetter = firstLetter;
-            sortContactList();
             document.getElementById(`${firstLetter}-content`).innerHTML +=
                 contactsHTML(i);
         }
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
-    // sortContactList();
+
 }
 
-function sortContactList() {
-    let letterBoxes = Array.from(allContacts.querySelectorAll('.letterBox'));
-
-    letterBoxes.sort((a, b) => {
-        const idA = a.id; // ID des ersten Elements
-        const idB = b.id; // ID des zweiten Elements
-        if (idA < idB) {
-            return -1;
-        }
-        if (idA > idB) {
-            return 1;
-        }
-        return 0;
-    });
-    document.getElementById('allContacts').innerHTML.innerHTML = '';
-    letterBoxes.forEach(letterBox => {
-        allContacts.appendChild(letterBox);
-    });
-}
 
 // console.log('contact',contact) //wieder löschen!!
 
 function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
-    let id = users[i]['id'];
     let bgColor = users[i]['bg'];
     return `
         <div class="contactSmall cp" onclick="showFloatContact(${i})">
-            <div id="${id}"class="initials" style="background-color:${bgColor};">${initials}</div>
+            <div id="${i}"class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
                 <p>${users[i]['email']}</p>
@@ -67,44 +47,39 @@ function contactsHTML(i) {
         </div>
     `;
 }
-/***************************** */
-/** test function zum löschen */
-function deleteUser(userId) {
-    if (userId) {
-        const userIdNumber = parseInt(userId); // Convert ID to number
-        const userIndex = users.findIndex(user => user.id === userIdNumber);
+
+function deleteUser(userIndex) {
         if (userIndex !== -1) {
             users.splice(userIndex, 1);
             alert("User deleted successfully!");
         } else {
-            alert("User with ID " + userId + " not found.");
+            alert("User not found.");
         }
-    }
+    
     setItem('users', JSON.stringify(users));
     renderContactList();
-    console.log('user mit der', userId, 'wurde gelöscht');
+    console.log('user wurde gelöscht');
     console.table(users);
 }
-/*****************************/
+
 
 
 function showFloatContact(i) {
     let name = users[i]['name'];
     let email = users[i]['email'];
-    let id = users[i]['id'];
 
     let names = users[i]['name'].split(' ');
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
-    document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, id, initials, i);
+    document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, initials, i);
 }
 
-function floatContactHTML(name, email, id, initials, i) {
+function floatContactHTML(name, email, initials, i) {
     let bgColor = users[i]['bg'];
     return `
         <div class="floatingTop">
-            <div id="${id}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
+            <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
             <div class="floatingInteracts">
                 <span>${name}</span>
                 <div class="floatingBtn">
@@ -152,15 +127,14 @@ async function createNewContact() {
 
     if (name && email && phone) {
         users.push({
-            id: users.length,
             name: name,
             email: email,
             phone: phone,
             bg: bgColor,
         });
-        // users.sort((a, b) => a.id - b.id);
         await setItem('users', JSON.stringify(users));
         renderContactList();
+        
         closePopup();
 
     } else {
@@ -172,7 +146,7 @@ async function createNewContact() {
 
 function addNewContact() {
     document.getElementById('addContactPopup').classList.remove('d-none');
-    document.getElementById('addContactPopup').style.transform = 'translateX (584px)';
+    document.getElementById('addContactPopup').style.right = 0;
     document.getElementById('background').classList.add('back');
 }
 
