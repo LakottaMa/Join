@@ -60,6 +60,9 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
+    document.getElementById('floatingContact').classList.add('d-none');
+    document.getElementById('floatingContact').innerHTML += '';
+    closePopup();
 }
 
 function addBgContact(index) {
@@ -81,15 +84,15 @@ function showFloatContact(i) {
     let name = users[i]['name'];
     let email = users[i]['email'];
 
-    let names = users[i]['name'].split(' ');
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
-    document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, initials, i);
+    document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
 }
 
-function floatContactHTML(name, email, initials, i) {
+function floatContactHTML(name, email,i) {
     let bgColor = users[i]['bg'];
+    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     return `
         <div class="floatingTop">
             <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
@@ -134,9 +137,9 @@ function newBgColor() {
 
 async function createNewContact() {
     let bgColor = newBgColor();
-    let name = document.getElementById('NewContactName').value;
-    let email = document.getElementById('NewContactEmail').value;
-    let phone = document.getElementById('NewContactPhone').value;
+    let name = document.getElementById('contactName').value;
+    let email = document.getElementById('contactEmail').value;
+    let phone = document.getElementById('contactPhone').value;
 
     if (name && email && phone) {
         users.push({
@@ -153,18 +156,93 @@ async function createNewContact() {
     } else {
         console.error('Please fill out all fields');
     }
+}
+
+function editContact(i) {
+    showEditPopup(i)
+    let name = users[i]['name'];
+    let email = users[i]['email'];
+    let phone = users[i]['phone'];
+
+    document.getElementById('contactName').value = `${name}`;
+    document.getElementById('contactEmail').value = `${email}`;
+    document.getElementById('contactPhone').value = `${phone}`;
+
+    //console.log('name',name) //wieder löschen!!
+}
+
+function createContactPopupHTML() {
+    document.getElementById('topPopup').innerHTML = '';
+    document.getElementById('topPopup').innerHTML += `
+        <img src="./assets/img/logo.png" alt="logo">
+        <span>Add contact</span>
+        <p>Tasks are better with a team!</p>
+        `;
+
+    document.getElementById('avatar').innerHTML = '';
+    document.getElementById('avatar').innerHTML = `
+        <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
+        `;
+
+    document.getElementById('popupBtn').innerHTML = '';
+    document.getElementById('popupBtn').innerHTML += `
+        <button class="btnCancel cp" onclick="closePopup()">Cancel
+            <img src="./assets/img/close_black.svg" alt="check">
+        </button>
+        <button class="btnCreate cp">Create contact
+        <img src="./assets/img/check._white.png" alt="check">
+        </button>
+        `;
 
 }
 
+function editContactPopupHTML(i) {
+    let bgColor = users[i]['bg'];
+    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
+    document.getElementById('topPopup').innerHTML = '';
+    document.getElementById('topPopup').innerHTML += `
+        <img src="./assets/img/logo.png" alt="logo">
+        <span>Edit contact</span>
+        `;
 
-function addNewContact() {
-    document.getElementById('addContactPopup').classList.remove('d-none');
-    document.getElementById('addContactPopup').style.right = 0;
+    document.getElementById('avatar').innerHTML = '';
+    document.getElementById('avatar').innerHTML = `
+        <div id="${i}" class="initialsFloating" style="background-color:${bgColor};"
+        >${initials}</div>
+        `;
+
+    document.getElementById('popupBtn').innerHTML = '';
+    document.getElementById('popupBtn').innerHTML += `
+        <button class="btnCancel cp" onclick="deleteUser(${i})">Delete
+        </button>
+        <button class="btnCreate cp" onclick="saveUser(${i})">Save<img
+            src="./assets/img/check._white.png" alt="check">
+        </button>
+        `;
+}
+
+
+function showAddPopup() {
+    createContactPopupHTML();
+    document.getElementById('contactPopup').classList.remove('d-none');
+    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
+    document.getElementById('closePopup').style.borderTopRightRadius = '0px';
+    document.getElementById('background').classList.add('back');
+}
+
+function showEditPopup(i) {
+    editContactPopupHTML(i);
+    document.getElementById('contactPopup').classList.remove('d-none');
+    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('closePopup').style.borderTopLeftRadius = '0px';
+    document.getElementById('closePopup').style.borderTopRightRadius = '30px';
     document.getElementById('background').classList.add('back');
 }
 
 function closePopup() {
-    document.getElementById('addContactPopup').classList.add('d-none');
+    document.getElementById('contactPopup').classList.add('d-none');
     document.getElementById('background').classList.remove('back');
-    document.getElementById('addContactPopup').style.transform = 'translateX (0px)';
+    document.getElementById('contactPopup').style.transform = 'translateX (0px)';
 }
