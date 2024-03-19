@@ -36,20 +36,18 @@
             </div>
             <div id="topPopup"></div>
             <div id="bottomPopup">
-                <div id="avatar">
-                    
-                </div>
-                <form onsubmit="createNewContact(); return false;">
+                <div id="avatar"></div>                  
+                <form id="form" onsubmit="createNewContact(); return false">
                     <div class="input-field">
-                        <input id="contactName" type="text" placeholder="Name">
+                        <input id="contactName" type="text" placeholder="Name" required>
                         <img src="./assets/img/person.png" alt="avatar">
                     </div>
                     <div class="input-field">
-                        <input id="contactEmail" type="email" placeholder="Email">
+                        <input id="contactEmail" type="email" placeholder="Email" required>
                         <img src="./assets/img/mail.png" alt="avatar">
                     </div>
                     <div class="input-field">
-                        <input id="contactPhone" type="tel" placeholder="Phone">
+                        <input id="contactPhone" type="tel" placeholder="Phone" required>
                         <img src="./assets/img/call.png" alt="avatar">
                     </div>
                     <div id="popupBtn">
