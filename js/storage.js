@@ -22,20 +22,20 @@ function logout() {
 }
 
 let localUsers = [
-  {  "id":  0,
+  {
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
     "bg": "rgb(30,60,17)",
   },
-  {  "id":  1,
+  {
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
     "phone": "017852546",    
     "bg": "rgb(44,75,17)",
   },
-  {  "id":  2,
+  {
     "name": "Steve Jobs",
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
@@ -43,21 +43,21 @@ let localUsers = [
     "bg": "rgb(124,169,74)",
     
   },
-  {  "id":  3,
+  {
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
     "phone": "017852546",
     "bg": "rgb(7,122,50)",
   },
-  {  "id":  4,
+  {
     "name": "Linus Torvalds",
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
     "bg": "rgb(47,57,103)",
   },
-  {  "id":  5,
+  {
     "name": "Sam Altman",
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
