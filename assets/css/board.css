@@ -21,8 +21,7 @@
 }
 
 .mainContent {
-    min-height: calc(100vh - 96px);
-    margin-top: 96px;
+    height: 100dvh;
     margin-left: 232px;
     padding: 24px;
     display: flex;
@@ -33,6 +32,7 @@
 .findAndAdd {
     display: flex;
     gap: 32px;
+    margin-top: 96px;
 
     & input {
         width: 250px;

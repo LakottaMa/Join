@@ -23,10 +23,10 @@
 
 }
 
-body {
+body{
     height: 100dvh;
-    /* max-width: 2160px;
-    margin: 0 auto; */
+    max-width: 1920px;
+    margin: auto;
 }
 
 h1 {
@@ -55,7 +55,31 @@ a {
     color: var(--clr-main1);
 }
 
-.blue-btn{
+
+/*** help, legal notice, privacy policy ***/
+.text-section {
+    position: absolute;
+    max-width: 1024px;
+    top: 168px;
+    left: 320px;
+    margin-right: 88px;
+
+    li,
+    p {
+        font-size: 19px;
+    }
+
+    ::marker {
+        color: var(--clr-lightblue);
+        font-size: 33px;
+        font-weight: 700;
+    }
+}
+
+.blue-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 23px;
     padding: 10px 16px;
     color: white;
@@ -149,34 +173,14 @@ a {
     }
 }
 
-/** style the different tmpl */
-.main-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100vh;
+/*** Summary area ***/
+.sum-content {
+    height: 100dvh;
     margin-left: 232px;
-}
-
-/*** help, legal notice, privacy policy ***/
-.text-section {
-    position: absolute;
-    max-width: 1024px;
-    top: 168px;
-    left: 320px;
-    margin-right: 88px;
-
-    li,
-    p {
-        font-size: 19px;
-    }
-
-    ::marker {
-        color: var(--clr-lightblue);
-        font-size: 33px;
-        font-weight: 700;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .sum-head {
@@ -190,13 +194,13 @@ a {
     h1 {
         font-size: 48px;
     }
+
     h3 {
         font-size: 64px;
         color: var(--clr-main1);
     }
 }
 
-/*** Summary area ***/
 .sum-overview {
     max-width: 912px;
     display: flex;

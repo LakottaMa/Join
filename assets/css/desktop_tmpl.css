@@ -2,7 +2,10 @@
 header {
     position: fixed;
     top: 0;
-    width: 100%;
+    right: 0;
+    left: 0;
+    max-width: 1920px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
