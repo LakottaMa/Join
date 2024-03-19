@@ -81,7 +81,7 @@ let localTasks = [
   {
     "title": "HTML Base Template Creation",
     "description": "Create reusable HTML base templates.",
-    "date": "Sat Mar 23 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "date": "Sat Mar 17 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
     "priority": "Urgent",
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
