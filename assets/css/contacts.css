@@ -56,7 +56,7 @@ h3 {
         background-color: var(--clr-main1);
         border-radius: 10px;
         color: white;
-
+    }
     p {
         color: white;
     }
@@ -228,15 +228,11 @@ h3 {
     
 }
 
-
-
 #avatar {
     height: 120px;
     width: 120px;
     margin: 72px 0 32px 0;
 }
-
-
 
 .input-field {
     display: flex;
