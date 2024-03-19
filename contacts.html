@@ -23,40 +23,39 @@
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
         <section class="contactList">
-            <div class="addButtonDiv">
-                <button class="addContact cp" onclick="showAddPopup()">Add new contact <img
-                        src="./assets/img/person_add.png" alt="addlogo"></button>
-            </div>
+            <button class="blue-btn cp" onclick="addNewContact()">Add new contact<img
+                    src="./assets/img/person_add.png" alt="addlogo"></button>
             <div id="allContacts"></div>
         </section>
-        <section id="contactPopup" class="d-none">
-            <div id="closePopup">
+        <section id="addContactPopup" class="d-none">
+            <div class="closePopup">
                 <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
             </div>
-            <div id="topPopup"></div>
-            <div id="bottomPopup">
-                <div id="avatar">
-                    
-                </div>
+            <div class="topPopup">
+                <img src="./assets/img/logo.png" alt="logo">
+                <span>Add contact</span>
+                <span style="font-size: 32px;">Tasks are better with a team!</span>
+            </div>
+            <div class="bottomPopup">
+                <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
                 <form onsubmit="createNewContact(); return false;">
                     <div class="input-field">
-                        <input id="contactName" type="text" placeholder="Name">
+                        <input id="NewContactName" type="text" placeholder="Name">
                         <img src="./assets/img/person.png" alt="avatar">
                     </div>
                     <div class="input-field">
-                        <input id="contactEmail" type="email" placeholder="Email">
+                        <input id="NewContactEmail" type="email" placeholder="Email">
                         <img src="./assets/img/mail.png" alt="avatar">
                     </div>
                     <div class="input-field">
-                        <input id="contactPhone" type="tel" placeholder="Phone">
+                        <input id="NewContactPhone" type="tel" placeholder="Phone">
                         <img src="./assets/img/call.png" alt="avatar">
                     </div>
                     <div class="addContactBtn">
                         <button class="btnCancel cp" onclick="closePopup()">Cancel<img
                                 src="./assets/img/close_black.svg" alt="close">
                         </button>
-                        <button class="btnCreate cp">Create contact<img
-                                src="./assets/img/check._white.png" alt="check">
+                        <button class="btnCreate cp">Create contact<img src="./assets/img/check._white.png" alt="check">
                         </button>
                     </div>
                 </form>
@@ -66,7 +65,6 @@
         </section>
         <aside id="floatingContact" class="d-none"></aside>
     </div>
->
 </body>
 
 </html>
