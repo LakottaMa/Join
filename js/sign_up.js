@@ -22,7 +22,7 @@ async function register() {
 
 async function handleSignUp(name, email, password, confirmedPassword) {
   if (errorMsgPasswordConfirm(confirmedPassword, password)) {
-      users.push({name: name, email: email, password: password, phone: null});
+      users.push({id: users.length + 1, name: name, email: email, password: password, phone: null});
       await setItem('users', JSON.stringify(users));
       resetForm();
       signupPopup();
