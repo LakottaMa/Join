@@ -19,23 +19,31 @@
     </div>
     <div class="mainContent">
         <section class="findAndAdd">
-            <input id="findTask" type="text" placeholder="Find Task" onkeyup="searchTasks()">
-            <button class="blue-btn" onclick="showAddTaskBox()">Add Task</button>
+            <div class="searchField">
+                <img src="./assets/img/divider_vertical.png" alt="">
+                <img src="./assets/img/search.png" alt="">
+                <input id="findTask" type="text" placeholder="Find Task" onkeyup="searchTasks()">
+            </div>
+            
+            <button class="blue-btn cp" onclick="showAddTaskBox()">
+                <span>Add Task</span>
+                <img src="./assets/img/plus_white.png" alt="">
+            </button>
         </section>
 
         <section class="taskContainer">
             <div class="taskBox">
-                <div class="taskHeadline"><span>To Do</span><img onclick="showAddTaskBox('To Do')" src="./assets/img/plus button.png" alt=""></div>
+                <div class="taskHeadline"><span>To Do</span><img class="cp" onclick="showAddTaskBox('To Do')" src="./assets/img/plus button.png" alt=""></div>
                 <div class="toDoDiv" id="toDoContainer"></div>
             </div>
 
             <div class="taskBox">
-                <div class="taskHeadline"><span>In progress</span><img onclick="showAddTaskBox('In progress')" src="./assets/img/plus button.png" alt=""></div>
+                <div class="taskHeadline"><span>In progress</span><img class="cp" onclick="showAddTaskBox('In progress')" src="./assets/img/plus button.png" alt=""></div>
                 <div class="toDoDiv" id="inProgressContainer"></div>
             </div>
 
             <div class="taskBox">
-                <div class="taskHeadline"><span>Await feedback</span><img onclick="showAddTaskBox('Await feedback')" src="./assets/img/plus button.png" alt=""></div>
+                <div class="taskHeadline"><span>Await feedback</span><img class="cp" onclick="showAddTaskBox('Await feedback')" src="./assets/img/plus button.png" alt=""></div>
                 <div class="toDoDiv" id="awaitFeedbackContainer"></div>
             </div>
 
