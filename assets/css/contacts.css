@@ -44,6 +44,7 @@ h3 {
     padding: 15px 24px;
     gap: 35px;
     font-size: 19px;
+    border-radius: 10px;
 
     p {
         font-size: 16px;
@@ -56,11 +57,9 @@ h3 {
         border-radius: 10px;
         color: white;
 
-        p {
-            color: white;
-        }
+    p {
+        color: white;
     }
-
 }
 
 .initials {
@@ -164,7 +163,7 @@ h3 {
     z-index: 2;
 }
 
-#addContactPopup {
+#contactPopup {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -178,7 +177,7 @@ h3 {
     transition: all 500ms ease-in-out;
 }
 
-.topPopup {
+#topPopup {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -188,23 +187,35 @@ h3 {
     padding-bottom: 91px;
     gap: 12px;
     font-size: 58px;
+
+    img {
+        height: 66px;
+    }
+
+    span {
+        font-size: 48px;
+        font-weight: 700px;
+    }
+
+    p{
+        font-size:27px;
+    }
 }
 
-.closePopup {
+#closePopup {
     display: flex;
     justify-content: flex-end;
     background-color: var(--clr-lightblue);
-    border-top-left-radius: 30px;
     padding: 24px 24px 35px 0;
 }
 
-.closePopup img:hover {
+#closePopup img:hover {
     border-radius: 16px;
     background-color: var(--clr-main1);
     cursor: pointer;
 }
 
-.bottomPopup {
+#bottomPopup {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -214,19 +225,24 @@ h3 {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: white;
+    
 }
 
-.avatar {
+
+
+#avatar {
     height: 120px;
     width: 120px;
     margin: 72px 0 32px 0;
 }
 
+
+
 .input-field {
     display: flex;
     justify-content: end;
     align-items: center;
-    width: 100%;
+    width: 422px;
 }
 
 input {
@@ -250,8 +266,9 @@ input {
     margin-right: 16px;
 }
 
-.addContactBtn {
+#popupBtn {
     display: flex;
+    justify-content: center;
     gap: 25px;
     padding-top: 32px;
 }
@@ -260,7 +277,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px 10px;
+    padding: 16px 18px;
     border-radius: 10px;
     background-color: white;
     gap: 10px;

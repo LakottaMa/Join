@@ -8,8 +8,8 @@ async function initContacts() {
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
-        //users.sort((a, b) => a.name.localeCompare(b.name));//zu früh sortiert!!!!
         let currentLetter = '';
+        users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
@@ -27,71 +27,75 @@ function renderContactList() {
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
-    sortContactList();
+
 }
 
-function sortContactList() {
-    let allContacts = document.getElementById('allContacts');
-    let letterBoxes = Array.from(allContacts.getElementsByClassName('letterbox'));
-    console.log('boxes', letterBoxes);
-}
 
 // console.log('contact',contact) //wieder löschen!!
 
 function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
-    let id = users[i]['id'];
     let bgColor = users[i]['bg'];
     return `
-        <div class="contactSmall cp" onclick="showFloatContact(${i})">
-            <div id="${id}"class="initials" style="background-color:${bgColor};">${initials}</div>
+        <div class="contactSmall cp" id="contactSmall-${i}" onclick="showFloatContact(${i})">
+            <div class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
                 <p>${users[i]['email']}</p>
             </div>
         </div>
-        <button id="loeschButton" onclick="deleteUser(${i})" class="login-btn">löschen</button>
     `;
 }
-/***************************** */
-/** test function zum löschen */
-function deleteUser(userId) {
-    if (userId) {
-        const userIdNumber = parseInt(userId); // Convert ID to number
-        const userIndex = users.findIndex(user => user.id === userIdNumber);
-        if (userIndex !== -1) {
-            users.splice(userIndex, 1);
-            alert("User deleted successfully!");
-        } else {
-            alert("User with ID " + userId + " not found.");
-        }
+
+function deleteUser(userIndex) {
+    if (userIndex !== -1) {
+        users.splice(userIndex, 1);
+        alert("User deleted successfully!");
+    } else {
+        alert("User not found.");
     }
+
     setItem('users', JSON.stringify(users));
     renderContactList();
-    console.log('user mit der', userId, 'wurde gelöscht');
+    console.log('user wurde gelöscht');
     console.table(users);
+    document.getElementById('floatingContact').classList.add('d-none');
+    document.getElementById('floatingContact').innerHTML += '';
+    closePopup();
 }
-/*****************************/
+
+function addBgContact(index) {
+    let contacts = document.querySelectorAll('.contactSmall');
+    for (let x = 0; x < contacts.length; x++) {
+        let contact = contacts[x];
+
+        if (index === x) {
+            contact.classList.add('contactBgClicked');
+        } else {
+            contact.classList.remove('contactBgClicked');
+        }
+    };
+}
 
 
 function showFloatContact(i) {
+    addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-    let id = users[i]['id'];
 
-    let names = users[i]['name'].split(' ');
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
-    document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, id, initials, i);
+    document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
 }
 
-function floatContactHTML(name, email, id, initials, i) {
+function floatContactHTML(name, email,i) {
     let bgColor = users[i]['bg'];
+    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     return `
         <div class="floatingTop">
-            <div id="${id}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
+            <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
             <div class="floatingInteracts">
                 <span>${name}</span>
                 <div class="floatingBtn">
@@ -132,37 +136,112 @@ function newBgColor() {
 
 async function createNewContact() {
     let bgColor = newBgColor();
-    let name = document.getElementById('NewContactName').value;
-    let email = document.getElementById('NewContactEmail').value;
-    let phone = document.getElementById('NewContactPhone').value;
+    let name = document.getElementById('contactName').value;
+    let email = document.getElementById('contactEmail').value;
+    let phone = document.getElementById('contactPhone').value;
 
     if (name && email && phone) {
         users.push({
-            id: users.length,
             name: name,
             email: email,
             phone: phone,
             bg: bgColor,
         });
-        users.sort((a, b) => a.id - b.id);
         await setItem('users', JSON.stringify(users));
         renderContactList();
+
         closePopup();
 
     } else {
         console.error('Please fill out all fields');
     }
+}
+
+function editContact(i) {
+    showEditPopup(i)
+    let name = users[i]['name'];
+    let email = users[i]['email'];
+    let phone = users[i]['phone'];
+
+    document.getElementById('contactName').value = `${name}`;
+    document.getElementById('contactEmail').value = `${email}`;
+    document.getElementById('contactPhone').value = `${phone}`;
+
+    //console.log('name',name) //wieder löschen!!
+}
+
+function createContactPopupHTML() {
+    document.getElementById('topPopup').innerHTML = '';
+    document.getElementById('topPopup').innerHTML += `
+        <img src="./assets/img/logo.png" alt="logo">
+        <span>Add contact</span>
+        <p>Tasks are better with a team!</p>
+        `;
+
+    document.getElementById('avatar').innerHTML = '';
+    document.getElementById('avatar').innerHTML = `
+        <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
+        `;
+
+    document.getElementById('popupBtn').innerHTML = '';
+    document.getElementById('popupBtn').innerHTML += `
+        <button class="btnCancel cp" onclick="closePopup()">Cancel
+            <img src="./assets/img/close_black.svg" alt="check">
+        </button>
+        <button class="btnCreate cp">Create contact
+        <img src="./assets/img/check._white.png" alt="check">
+        </button>
+        `;
 
 }
 
-function addNewContact() {
-    document.getElementById('addContactPopup').classList.remove('d-none');
-    document.getElementById('addContactPopup').style.transform = 'translateX (584px)';
+function editContactPopupHTML(i) {
+    let bgColor = users[i]['bg'];
+    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
+    document.getElementById('topPopup').innerHTML = '';
+    document.getElementById('topPopup').innerHTML += `
+        <img src="./assets/img/logo.png" alt="logo">
+        <span>Edit contact</span>
+        `;
+
+    document.getElementById('avatar').innerHTML = '';
+    document.getElementById('avatar').innerHTML = `
+        <div id="${i}" class="initialsFloating" style="background-color:${bgColor};"
+        >${initials}</div>
+        `;
+
+    document.getElementById('popupBtn').innerHTML = '';
+    document.getElementById('popupBtn').innerHTML += `
+        <button class="btnCancel cp" onclick="deleteUser(${i})">Delete
+        </button>
+        <button class="btnCreate cp" onclick="saveUser(${i})">Save<img
+            src="./assets/img/check._white.png" alt="check">
+        </button>
+        `;
+}
+
+
+function showAddPopup() {
+    createContactPopupHTML();
+    document.getElementById('contactPopup').classList.remove('d-none');
+    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
+    document.getElementById('closePopup').style.borderTopRightRadius = '0px';
+    document.getElementById('background').classList.add('back');
+}
+
+function showEditPopup(i) {
+    editContactPopupHTML(i);
+    document.getElementById('contactPopup').classList.remove('d-none');
+    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('closePopup').style.borderTopLeftRadius = '0px';
+    document.getElementById('closePopup').style.borderTopRightRadius = '30px';
     document.getElementById('background').classList.add('back');
 }
 
 function closePopup() {
-    document.getElementById('addContactPopup').classList.add('d-none');
+    document.getElementById('contactPopup').classList.add('d-none');
     document.getElementById('background').classList.remove('back');
-    document.getElementById('addContactPopup').style.transform = 'translateX (0px)';
+    document.getElementById('contactPopup').style.transform = 'translateX (0px)';
 }
