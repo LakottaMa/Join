@@ -116,7 +116,7 @@ let localTasks = [
     "title": "Implement User Authentication",
     "description": "Develop login and registration functionality.",
     "date": "Sun Mar 18 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-    "priority": "High",
+    "priority": "Urgent",
     "assignedTo": ["Linus Torvalds", "Tim Cook"],
     "category": "Technical Task",
     "subtasks": ["Create login form", "Implement user registration"],

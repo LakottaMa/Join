@@ -40,8 +40,16 @@ function renderTasksInBoard() {
       renderAssignedTo(contacts, i);
       getColorForCategory(i);
       changeProgressValue(i);
+      checkIfSubtasksEmtpty(i);
    }
    checkContainerEmpty();
+}
+
+function checkIfSubtasksEmtpty(index) {
+   let subtaskContainer = document.getElementById(`todoSubtasks${index}`);
+   if(tasks[index]['subtasks'].length == 0 && tasks[index]['subtasksDone'].length == 0 ) {
+      subtaskContainer.classList.add('d-none');
+   }
 }
 
 function calculateAllSubTasks(index) {
@@ -102,16 +110,21 @@ function printTasksInBoard(task, index, subTasksLength) {
          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
-         <div id="todoSubtasks">
+         <div class="todoSubtasks" id="todoSubtasks${index}">
             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
             <span>${subTasksLength}/${calculateAllSubTasks(index)} Subtasks</span>
          </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
-            <div id="todoPriority">${task.priority}</div>
+            <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
          </div>
       </div>
    `;
+}
+
+function getPrioIcon(prio) {
+   let path = `./assets/img/prio-${prio.toLowerCase()}.png`;
+   return path;
 }
 
 function printAssignedTo(contact, contactId) {

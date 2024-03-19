@@ -140,7 +140,7 @@
     font-family: 'Inter';
 }
 
-#todoSubtasks {
+.todoSubtasks {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -162,7 +162,7 @@
 
 .assignedAndPrio div:nth-child(1) {
     display: flex;
-    gap: 4px;
+    /* gap: 4px; */
     flex-wrap: wrap;
 
     & span {
@@ -176,6 +176,8 @@
         font-weight: 400;
         color: white;
         background-color: blue;
+        border: 1px solid rgba(255, 255, 255, 1);
+        margin-right: -6px;
     }
 }
 
@@ -188,4 +190,9 @@
 progress[value] {
     width: 128px;
     height: 16px;
+}
+
+.prioIconBoard {
+    width: 32px;
+    height: 32px;
 }
