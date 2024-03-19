@@ -74,7 +74,6 @@ function deleteUser(userId) {
 }
 /*****************************/
 
-
 function showFloatContact(i) {
     let name = users[i]['name'];
     let email = users[i]['email'];
@@ -116,7 +115,6 @@ function checkPhone(i) {
     let phone = users[i]['phone'];
     if (phone) {
         return phone
-
     } else
         phone = '';
     return phone
@@ -152,7 +150,6 @@ async function createNewContact() {
     } else {
         console.error('Please fill out all fields');
     }
-
 }
 
 function addNewContact() {
