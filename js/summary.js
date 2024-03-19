@@ -2,6 +2,8 @@ async function initSummary() {
     await includeHTML();
     greetingMessage();
     await loadUsers();
+    await loadTasks();
+    counterSummery();
 }
 
   function checkLoginStatus() {
@@ -33,4 +35,17 @@ function checkHour() {
     let currentDate = new Date();
     let currentHour = currentDate.getHours();
     return currentHour;
+}
+
+function counterSummery(){
+  let tasksInBoard = document.getElementById('tib');
+  let tasksToDo = document.getElementById('todo');
+  for (let i = 0; i < tasks.length; i++) {
+    
+  }
+  const allTasks = `${tasks.length}`;
+  // const allToDo = `${tasks.status['To Do']}`;
+  tasksInBoard.textContent = allTasks;
+  // tasksToDo.textContent = allToDo;
+  
 }
