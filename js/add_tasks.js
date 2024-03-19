@@ -3,7 +3,7 @@ let searchedUsers = [];
 let selectedUsers = [];
 let category = "User Story";
 let priority = "Medium";
-let statusObj = { status: 'To Do'};
+let statusObj = { status: 'To Do' };
 
 async function initAddTask() {
     await includeHTML();
@@ -72,7 +72,7 @@ async function addTask() {
 }
 
 function redirectToBoard() {
-    if(window.location.href.indexOf('/board.html') === -1) {
+    if (window.location.href.indexOf('/board.html') === -1) {
         window.location.href = '/board.html';
     }
 }
@@ -372,7 +372,7 @@ function renderSelectedUsers() {
     for (let i = 0; i < selectedUsers.length; i++) {
         const user = selectedUsers[i];
         container.innerHTML += printSelectedUsers(user, i);
-        document.getElementById(`selectedUser${i}`).style.backgroundColor = getRandomColor();
+        document.getElementById(`selectedUser${i}`).style.backgroundColor = getBgColorForContact(user);
     }
 }
 

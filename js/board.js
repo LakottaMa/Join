@@ -63,7 +63,6 @@ function changeProgressValue(index) {
       progressInPercent = calcPercent;
    }
    
-
    progressBar.value = progressInPercent;   
 }
 
@@ -79,8 +78,22 @@ function renderAssignedTo(contacts, i) {
    assignedToContainer.innerHTML = '';
    for (let j = 0; j < contacts.length; j++) {
       const contact = contacts[j];
-      assignedToContainer.innerHTML += printAssignedTo(contact)
+      let contactId = i.toString() + j.toString();
+      assignedToContainer.innerHTML += printAssignedTo(contact, contactId)
+      let contactContainer = document.getElementById(`${contactId}`)
+      contactContainer.style.backgroundColor = getBgColorForContact(contact);
    }
+}
+
+function getBgColorForContact(contact) {
+   let userIndex = users.findIndex(u => u.name.toLowerCase() == contact.toLowerCase());
+   if (userIndex !== -1) {
+      let bgColor = users[userIndex]['bg'];
+      return bgColor;
+   } else {
+      return 'rgb(175, 170, 170)';
+   }
+   
 }
 
 function printTasksInBoard(task, index, subTasksLength) {
@@ -101,8 +114,8 @@ function printTasksInBoard(task, index, subTasksLength) {
    `;
 }
 
-function printAssignedTo(contact) {
-   return /*html*/ `<span>${getInitials(contact)}</span>`;
+function printAssignedTo(contact, contactId) {
+   return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
 }
 
 function checkContainer(status) {
