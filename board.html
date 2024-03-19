@@ -16,6 +16,7 @@
     <div class="addTaskBox" id="addTaskBox">
         <div class="addTaskHeadline"><h2>Add Task</h2> <span onclick="hideAddTaskBox()">X</span></div>
         <div template="/assets/templates/addTask_template.html"></div>
+        <button form="addTaskForm">Create Task</button>
     </div>
 
     <div class="mainContent">
@@ -26,22 +27,22 @@
 
         <section class="taskContainer">
             <div class="taskBox">
-                <div class="taskHeadline">To Do</div>
+                <div class="taskHeadline"><span>To Do</span><img onclick="showAddTaskBox('To Do')" src="./assets/img/plus button.png" alt=""></div>
                 <div class="toDoDiv" id="toDoContainer"></div>
             </div>
 
             <div class="taskBox">
-                <div class="taskHeadline">In progress</div>
+                <div class="taskHeadline"><span>In progress</span><img onclick="showAddTaskBox('In progress')" src="./assets/img/plus button.png" alt=""></div>
                 <div class="toDoDiv" id="inProgressContainer"></div>
             </div>
 
             <div class="taskBox">
-                <div class="taskHeadline">Await feedback</div>
+                <div class="taskHeadline"><span>Await feedback</span><img onclick="showAddTaskBox('Await feedback')" src="./assets/img/plus button.png" alt=""></div>
                 <div class="toDoDiv" id="awaitFeedbackContainer"></div>
             </div>
 
             <div class="taskBox">
-                <div class="taskHeadline">Done</div>
+                <div class="taskHeadline"><span>Done</span></div>
                 <div class="toDoDiv" id="doneContainer"></div>
             </div>
 

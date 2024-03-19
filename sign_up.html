@@ -5,7 +5,8 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/login.css">
-    <link rel="stylesheet" href="./assets/css/signup.css">       
+    <link rel="stylesheet" href="./assets/css/signup.css">
+    <link rel="stylesheet" href="./assets/css/mobile.css">
     <title>Join</title>
 </head>
 <body onload="initSignUp()">
@@ -14,8 +15,8 @@
     </header>
     <div class="sign-up-container">
         <div class="form-box">
+            <div class="back-btn cp" onclick="backButton()"><img src="./assets/img/arrow_left.png"></div>
             <form class="input-box" onsubmit="register(); return false;">                
-                <div class="back-btn cp" onclick="backButton()"><img src="./assets/img/arrow_left.png"></div>
                 <h1>Sign up</h1>
                 <img class="underline" src="./assets/img/underline_login.png">
                 <div class="input-field">
@@ -23,17 +24,20 @@
                     <img src="./assets/img/person.png">
                 </div>
                 <div class="input-field">
-                    <input id="email" type="email" required placeholder="Email">
+                    <input id="email" class="" type="email" required placeholder="Email">
                     <img src="./assets/img/mail.png">
+                    <div class="error-msg-box" id="email-exist"></div>
+                </div>                
+                <div class="input-field">
+                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" required placeholder="Password">
+                    <img id="password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
                 </div>
                 <div class="input-field">
-                    <input id="password" type="password" required placeholder="Password">
-                    <img id="login-password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
+                    <input id="confirmedPassword" type="password" onkeyup="togglePasswordEye('confirmedPassword')" required placeholder="Confirm Password">
+                    <img id="confirmedPassword-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('confirmedPassword')">
+                    <div class="error-msg-box" id="password-match"></div>
                 </div>
-                <div class="input-field">
-                    <input id="confirmedPassword" type="password" required placeholder="Confirm Password">
-                    <img id="login-password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('confirmedPassword')">
-                </div>
+                
                 <div class="checkbox" >
                     <img class="cp" onclick="checkedSignup()" id="accept-policy" src="./assets/img/check_unchecked.png">
                     <div>I accept the <a href="./privacy_policy.html">Privacy policy</a></div>

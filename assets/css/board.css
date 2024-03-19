@@ -25,6 +25,9 @@
     margin-top: 96px;
     margin-left: 232px;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .findAndAdd {
@@ -41,17 +44,31 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid red;
-    min-height: calc(100vh - 96px);
     gap: 8px;
 }
 
 .taskBox {
     border: 1px solid green;
-    width: 20%;
+    min-width: 252px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.taskHeadline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & span {
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+    & img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 /* todo Box */
@@ -59,10 +76,12 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    gap: 16px;
-    border: 1px solid blue;
-    padding: 8px;
-    border-radius: 10px;
+    gap: 10px;
+    width: 252px;
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+
 }
 
 .toDoDiv {
@@ -72,32 +91,69 @@
     padding: 16px;
 }
 
-#todoCategory {
+.todoCategory {
+    border-radius: 8px;
+    color: white;
+    padding: 4px 16px;
+    font-weight: 400;
+    font-size: 16px;
 
 }
 
 #todoTitle {
-
+    font-size: 16px;
+    font-weight: 700;
 }
 
 #todoDescription {
-
+    font-size: 16px;
+    font-weight: 400;
 }
 
 #todoSubtasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 
+    & span {
+        font-size: 13px;
+        font-weight: 400px;
+    }
 }
 
 .assignedAndPrio {
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-#todoAssignedTo {
+.assignedAndPrio div:nth-child(1) {
+    display: flex;
+    gap: 4px;
 
+    & span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 400;
+        color: white;
+        background-color: blue;
+    }
 }
 
-#todoPriority{
+#todoAssignedTo {}
 
-}
+#todoPriority {}
 
 /* todo Box */
+
+progress[value] {
+    width: 128px;
+    height: 16px;
+}

@@ -22,40 +22,47 @@ function logout() {
 }
 
 let localUsers = [
-  {  "id":  0,
+  { 
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
+    "bg": "rgb(30,60,17)",
   },
-  {  "id":  1,
+  { 
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
-    "phone": "017852546",
+    "phone": "017852546",    
+    "bg": "rgb(44,75,17)",
   },
-  {  "id":  2,
+  { 
     "name": "Steve Jobs",
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
     "phone": "017852546",
+    "bg": "rgb(124,169,74)",
+    
   },
-  {  "id":  3,
+  { 
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
     "phone": "017852546",
+    "bg": "rgb(7,122,50)",
   },
-  {  "id":  4,
+  { 
     "name": "Linus Torvalds",
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
+    "bg": "rgb(47,57,103)",
   },
-  {  "id":  5,
+  { 
     "name": "Sam Altman",
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
     "phone": "017852546",
+    "bg": "rgb(22,7120,160)",
   }
 ];
 
@@ -68,6 +75,7 @@ let localTasks = [
     "assignedTo": ["Linus Torvalds", "Sam Altman"],
     "category": "User Story",
     "subtasks": ["Implement Recipe Recommendation"],
+    "subtasksDone": [],
     "status": "In progress"
   },
   {
@@ -78,6 +86,7 @@ let localTasks = [
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
     "subtasks": [],
+    "subtasksDone": [],
     "status": "In progress"
   },
 
@@ -89,6 +98,7 @@ let localTasks = [
     "assignedTo": ["Jeff Bezos", "Larry Page"],
     "category": "Technical Task",
     "subtasks": [],
+    "subtasksDone": [],
     "status": "In progress"
   },
   {
@@ -99,6 +109,7 @@ let localTasks = [
     "assignedTo": ["Satya Nadella", "Sundar Pichai"],
     "category": "User Story",
     "subtasks": ["Update color scheme", "Optimize navigation menu"],
+    "subtasksDone": ["Style Sidebar"],
     "status": "Await feedback"
   },
   {
@@ -109,6 +120,7 @@ let localTasks = [
     "assignedTo": ["Elon Musk", "Mark Zuckerberg"],
     "category": "Technical Task",
     "subtasks": ["Create login form", "Implement user registration"],
+    "subtasksDone": ["Style login form"],
     "status": "To Do"
   }
 ];
@@ -143,4 +155,8 @@ async function loadTasks() {
     console.error('Loading error:', e);
   }
   console.table(tasks);
+}
+
+async function saveTasks(tasks) {
+  await setItem('tasks', JSON.stringify(tasks));
 }
