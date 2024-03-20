@@ -28,15 +28,6 @@ function goBack() {
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {
-    if (link.href && link.href.includes && link.href.includes(activePage)) {
-      link.classList.add(activeClass);
-    }
-  });
-}
-
-function setActiveSiteClass(selector, activeClass) {
-  let activePage = window.location.pathname;
-  document.querySelectorAll(selector).forEach(link => {
     if (link.href && link.href.includes(activePage)) {
       link.classList.add(activeClass);
       let footer = document.getElementById("mobileNavLinks");

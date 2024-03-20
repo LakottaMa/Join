@@ -1,5 +1,5 @@
 .mobile-links {
-    position: fixed ;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -11,7 +11,78 @@
 }
 
 @media screen and (max-width:1024px) {
-    nav, .legal-topics-side-menu {
+    .sum-button:nth-child(1) {
+        order: 1;
+        height: 150px;
+        width: 100%;
+        background-color: var(--clr-main1);
+        color: white;
+
+        .line {
+            margin: 0 16px;
+            height: 118px;
+        }
+
+        &:hover {
+            background-color: white;
+            color: var(--clr-main1);
+
+            .line {
+                background-color: var(--clr-lightblue);
+            }
+
+            .img-counter,
+            div {
+                scale: 1.1;
+            }
+        }
+    }
+
+    .sum-button:nth-child(2) {
+        order: 3;
+    }
+
+    .sum-button:nth-child(3) {
+        order: 2;
+        height: 106px;
+        width: 100%;
+        padding-right: 26%;
+        background-color: var(--clr-main2);
+
+        .sum-counter {
+            width: 100%;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .sum-ellipse {
+            border-color: var(--clr-main2);
+        }
+
+        &:hover {
+            background-color: white;
+            color: var(--clr-lightblue);
+
+            .sum-ellipse {
+                border-color: white;
+            }
+        }
+    }
+
+    .sum-button:nth-child(4) {
+        order: 3;
+    }
+
+    .sum-button:nth-child(5) {
+        order: 3;
+    }
+
+    .sum-button:nth-child(6) {
+        order: 3;
+    }
+
+    nav,
+    .legal-topics-side-menu {
         display: none !important;
     }
 
@@ -19,8 +90,34 @@
         display: flex !important;
     }
 
-    .sum-Content{
-        margin-left: 0 !important;
+    .sum-Content {
+        margin: 0 12px!important;
+    }
+
+    .sum-overview {
+        max-width: 438px !important;
+    }
+
+    .sum-counter {
+        font-size: 48px;
+
+        span {
+            font-size: 19px;
+        }
+    }
+
+    .deadline-first-urgent {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        :nth-child(1) {
+            font-size: 23px;
+        }
+
+        :nth-child(2) {
+            font-size: 19px;
+        }
     }
 }
 
@@ -56,6 +153,17 @@
         margin: 36px 0 36px 0;
     }
 
+    .sum-head{
+        gap: 8px;
+        margin: 0 0 32px;
+        h1{
+            font-size: 40px;
+        }
+        h3{
+            font-size: 48px;
+        }
+    }
+
     .login-header {
         padding: 37px 38px 0 38px;
     }
@@ -82,13 +190,47 @@
 @media screen and (max-width:480px) {
     h1 {
         font-size: 46px;
-        margin: 32px 0 8px 0;
     }
 
-    .btn-signup,
-    .login-btn,
-    .guestlogin-btn,
-    .signup span {
+    .help-logo{
+        margin: 0;
+    }
+
+    .sum-button:nth-child(2) {
+        width: 186px;
+        height: 152px;
+    }
+
+    .sum-button:nth-child(4) {
+        width: 186px;
+        height: 152px;
+    }
+
+    .sum-button:nth-child(5) {
+        width: 186px;
+        height: 152px;
+    }
+
+    .sum-button:nth-child(6) {
+        width: 186px;
+        height: 152px;
+    }
+
+    .sum-overview{
+        gap: 15px;
+    }
+
+    .sum-counter{
+        justify-content: space-evenly;
+        gap: 0;
+    }
+
+    .sum-head {
+        display: none;
+    }
+
+    .white-btn,
+    .blue-btn {
         font-size: 19px;
     }
 
@@ -110,13 +252,13 @@
     .signup {
         gap: 24px;
     }
+
+    .sum-overview {
+        max-width: 396px !important;
+    }
 }
 
 @media screen and (max-width:440px) {
-    h1 {
-        font-size: 42px;
-    }
-
     input {
         font-size: 16px;
     }
@@ -128,7 +270,24 @@
         }
     }
 
+    .info-container h4{
+        display: none;
+    }
+
     .signup span {
         font-size: 16px !important;
+    }
+
+    .deadline-first-urgent {
+        :nth-child(1) {
+            padding-right: 12px;
+        }
+        :nth-child(2) {
+            padding-right: 12px;
+        }
+    }
+
+    .sum-overview {
+        max-width: 350px !important;
     }
 }
