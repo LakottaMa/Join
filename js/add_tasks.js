@@ -40,7 +40,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
     return {
         "title": title.value,
         "description": description.value,
-        "date": new Date(date.value),
+        "date": date,
         "priority": taskPriority,
         "assignedTo": assignedTo,
         "category": taskCategory,
@@ -56,7 +56,9 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
 async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let date = document.getElementById('date');
+    let inputDate = document.getElementById('date').value;
+    let date = new Date(inputDate).toString();
+    console.log(date.value);
     let taskPriority = priority;
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
