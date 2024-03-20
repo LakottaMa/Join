@@ -21,8 +21,7 @@
 }
 
 .mainContent {
-    min-height: calc(100vh - 96px);
-    margin-top: 96px;
+    height: 100dvh;
     margin-left: 232px;
     padding: 24px;
     display: flex;
@@ -30,14 +29,44 @@
     gap: 32px;
 }
 
+
 .findAndAdd {
     display: flex;
     gap: 32px;
+    margin-top: 96px;
+}
+
+.searchField {
+    position: relative;
+    width: 312px;
+    height: 48px;
+    border: 1px solid rgba(168, 168, 168, 1);
+    border-radius: 10px;
+    padding: 4px;
+
+    & img:nth-child(2) {
+        position: absolute;
+        top: 50%;
+        right: 24px;
+        transform: translate(0, -50%);
+    }
+
+    & img:nth-child(1) {
+        position: absolute;
+        top: 50%;
+        right: 64px;
+        transform: translate(0, -50%);
+    }
+
 
     & input {
-        width: 250px;
-        border: 1px solid black;
+        border: none;
     }
+}
+
+.findAndAdd {
+    display: flex;
+    gap: 32px;
 }
 
 .taskContainer {
@@ -48,7 +77,6 @@
 }
 
 .taskBox {
-    border: 1px solid green;
     min-width: 252px;
     display: flex;
     flex-direction: column;
@@ -59,6 +87,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-inline: 16px;
 
     & span {
         font-size: 23px;
@@ -108,6 +137,7 @@
 #todoDescription {
     font-size: 16px;
     font-weight: 400;
+    font-family: 'Inter';
 }
 
 #todoSubtasks {
@@ -119,6 +149,7 @@
     & span {
         font-size: 13px;
         font-weight: 400px;
+        font-family: 'Inter';
     }
 }
 
@@ -132,6 +163,7 @@
 .assignedAndPrio div:nth-child(1) {
     display: flex;
     gap: 4px;
+    flex-wrap: wrap;
 
     & span {
         display: flex;

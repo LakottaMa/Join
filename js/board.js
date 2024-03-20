@@ -34,30 +34,35 @@ function renderTasksInBoard() {
       const task = tasks[i];
       let status = task['status'];
       let contacts = task['assignedTo'];
-      let subTasksLength = task['subtasks'].length;
+      let subTasksDoneLength = task['subtasksDone'].length;
       let container = checkContainer(status);
-      container.innerHTML += printTasksInBoard(task, i, subTasksLength);
+      container.innerHTML += printTasksInBoard(task, i, subTasksDoneLength);
       renderAssignedTo(contacts, i);
       getColorForCategory(i);
-      //changeProgressValue(i);
+      changeProgressValue(i);
    }
+   checkContainerEmpty();
+}
+
+function calculateAllSubTasks(index) {
+   let subtasksOpen = tasks[index]['subtasks'].length;
+   let subtasksDone = tasks[index]['subtasksDone'].length;
+   let allSubtasks = subtasksDone + subtasksOpen;
+   return allSubtasks
 }
 
 function changeProgressValue(index) {
-   debugger;
    let progressInPercent;
    let progressBar = document.getElementById(`progressBar${index}`);
    let subtasksDone = tasks[index]['subtasksDone'].length;
-   let subtasksOpen = tasks[index]['subtasks'].length;
-   let allSubtasks = subtasksDone + subtasksOpen;
+   let allSubtasks = calculateAllSubTasks(index);
    let calcPercent = (subtasksDone / allSubtasks) * 100;
-   if(calcPercent == NaN) {
+   if(isNaN(calcPercent) == true) {
       progressInPercent = 0;
    } else {
       progressInPercent = calcPercent;
    }
    
-
    progressBar.value = progressInPercent;   
 }
 
@@ -68,14 +73,27 @@ function getColorForCategory(index) {
 }
 
 
-
 function renderAssignedTo(contacts, i) {
    let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
    assignedToContainer.innerHTML = '';
    for (let j = 0; j < contacts.length; j++) {
       const contact = contacts[j];
-      assignedToContainer.innerHTML += printAssignedTo(contact)
+      let contactId = i.toString() + j.toString();
+      assignedToContainer.innerHTML += printAssignedTo(contact, contactId)
+      let contactContainer = document.getElementById(`${contactId}`)
+      contactContainer.style.backgroundColor = getBgColorForContact(contact);
    }
+}
+
+function getBgColorForContact(contact) {
+   let userIndex = users.findIndex(u => u.name.toLowerCase() == contact.toLowerCase());
+   if (userIndex !== -1) {
+      let bgColor = users[userIndex]['bg'];
+      return bgColor;
+   } else {
+      return 'rgb(175, 170, 170)';
+   }
+   
 }
 
 function printTasksInBoard(task, index, subTasksLength) {
@@ -86,7 +104,7 @@ function printTasksInBoard(task, index, subTasksLength) {
          <div id="todoDescription">${task.description}</div>
          <div id="todoSubtasks">
             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
-            <span>0/${subTasksLength} Subtasks</span>
+            <span>${subTasksLength}/${calculateAllSubTasks(index)} Subtasks</span>
          </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
@@ -96,9 +114,8 @@ function printTasksInBoard(task, index, subTasksLength) {
    `;
 }
 
-
-function printAssignedTo(contact) {
-   return /*html*/ `<span>${getInitials(contact)}</span>`;
+function printAssignedTo(contact, contactId) {
+   return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
 }
 
 function checkContainer(status) {
@@ -114,4 +131,49 @@ function checkContainer(status) {
       default:
          return document.getElementById('toDoContainer');
    }
+}
+
+function checkRenderTasks() {
+   if(searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
+      renderTasksInBoard();
+   } else {
+      renderSearchedTasks();
+   }
+}
+
+function checkContainerEmpty() {
+   let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
+   ids.forEach(id => {
+      let container = document.getElementById(id);
+      if(container.hasChildNodes() === false) {
+         container.innerHTML = `<h2>is empty</h2>`;
+      }
+   });
+}
+
+let searchedTasks;
+
+function searchTasks() {
+   let input = document.getElementById('findTask');
+   let filteredTasks = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
+   searchedTasks = filteredTasks;
+   checkRenderTasks();
+}
+
+function renderSearchedTasks() {
+   clearContainer();
+   for (let i = 0; i < searchedTasks.length; i++) {
+      const taskTitle = searchedTasks[i]['title'];
+      let index = tasks.findIndex(t => t.title === taskTitle);
+      let subTasksDoneLength = tasks[index]['subtasksDone'].length;
+      let task = tasks[index];
+      let status = tasks[index]['status'];
+      let contacts = tasks[index]['assignedTo'];
+      let container = checkContainer(status);
+      container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
+      renderAssignedTo(contacts, index);
+      getColorForCategory(index);
+      changeProgressValue(index); 
+   }
+   checkContainerEmpty();
 }

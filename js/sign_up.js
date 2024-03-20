@@ -8,21 +8,22 @@ function backButton() {
 }
 
 async function register() {
+  let bgColor = newBgColor();
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
   let confirmedPassword = document.getElementById('confirmedPassword').value;
   const isEmailAvailable = !users.some(user => user.email === email);
   if (isEmailAvailable == true) {
-    await handleSignUp(name, email, password, confirmedPassword);
+    await handleSignUp(name, email, password, confirmedPassword, bgColor);
   } else {
     displayEmailInUseError();
   }
 }
 
-async function handleSignUp(name, email, password, confirmedPassword) {
+async function handleSignUp(name, email, password, confirmedPassword, bgColor) {
   if (errorMsgPasswordConfirm(confirmedPassword, password)) {
-      users.push({id: users.length + 1, name: name, email: email, password: password, phone: null});
+      users.push({name: name, email: email, password: password, phone: null, bg: bgColor});
       await setItem('users', JSON.stringify(users));
       resetForm();
       signupPopup();
