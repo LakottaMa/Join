@@ -58,7 +58,6 @@ async function addTask() {
     let description = document.getElementById('description');
     let inputDate = document.getElementById('date').value;
     let date = new Date(inputDate).toString();
-    console.log(date.value);
     let taskPriority = priority;
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
