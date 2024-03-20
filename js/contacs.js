@@ -30,7 +30,6 @@ function renderContactList() {
 
 }
 
-
 // console.log('contact',contact) //wieder löschen!!
 
 function contactsHTML(i) {
@@ -55,7 +54,6 @@ function deleteUser(userIndex) {
     } else {
         alert("User not found.");
     }
-
     setItem('users', JSON.stringify(users));
     renderContactList();
     console.log('user wurde gelöscht');
@@ -68,7 +66,6 @@ function addBgContact(index) {
     let contacts = document.querySelectorAll('.contactSmall');
     for (let x = 0; x < contacts.length; x++) {
         let contact = contacts[x];
-
         if (index === x) {
             contact.classList.add('contactBgClicked');
         } else {
@@ -77,12 +74,10 @@ function addBgContact(index) {
     };
 }
 
-
 function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
@@ -180,7 +175,7 @@ function saveUser(i) {
     closePopup();
 }
 
-function createContactPopupHTML() {    
+function createContactPopupHTML() {
     document.getElementById('contactName').value = '';
     document.getElementById('contactEmail').value = '';
     document.getElementById('contactPhone').value = '';
@@ -212,7 +207,7 @@ function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-    
+
     document.getElementById('topPopup').innerHTML = '';
     document.getElementById('topPopup').innerHTML += `
         <img src="./assets/img/logo.png" alt="logo">
@@ -225,7 +220,7 @@ function editContactPopupHTML(i) {
         >${initials}</div>
         `;
 
-    document.getElementById('popupBtn').innerHTML = '';
+    // document.getElementById('popupBtn').innerHTML = '';
     document.getElementById('popupBtn').innerHTML += `
         <button class="btnCancel cp" onclick="deleteUser(${i})">Delete
         </button>
@@ -235,7 +230,6 @@ function editContactPopupHTML(i) {
         `;
     //document.getElementById('form').onsubmit = saveUser(); return false;
 }
-
 
 function showAddPopup() {
     createContactPopupHTML();

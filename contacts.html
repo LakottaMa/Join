@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +7,6 @@
     <link rel="stylesheet" href="./assets/css/contacts.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
-
-    <script src="./js/sign_up.js"></script>
-    <script src="./js/contacs.js"></script>
-    <script src="./js/storage.js"></script>
-    <script src="./js/templates.js"></script>
-    <script src="./script.js"></script>
-
     <title>Join</title>
 </head>
 <body onload="initContacts()">
@@ -22,8 +14,8 @@
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
         <section class="contactList">
-            <button class="blue-btn cp" onclick="addNewContact()">Add new contact<img
-                    src="./assets/img/person_add.png" alt="addlogo"></button>
+            <button class="blue-btn cp" onclick="addNewContact()">Add new contact<img src="./assets/img/person_add.png"
+                    alt="addlogo"></button>
             <div id="allContacts"></div>
         </section>
         <section id="addContactPopup" class="d-none">
@@ -32,7 +24,7 @@
             </div>
             <div id="topPopup"></div>
             <div id="bottomPopup">
-                <div id="avatar"></div>                  
+                <div id="avatar"></div>
                 <form id="form" onsubmit="createNewContact(); return false">
                     <div class="input-field">
                         <input id="contactName" type="text" placeholder="Name" required>
@@ -61,5 +53,11 @@
         </section>
         <aside id="floatingContact" class="d-none"></aside>
     </div>
+    <script src="./js/sign_up.js"></script>
+    <script src="./js/contacs.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/templates.js"></script>
+    <script src="./script.js"></script>
 </body>
+
 </html>
