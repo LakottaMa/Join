@@ -5,6 +5,18 @@ let category = "User Story";
 let priority = "Medium";
 let statusObj = { status: 'To Do' };
 
+// let defaultValues = [
+//     {
+//         status: 'To Do'
+//     },
+//     {
+//         category: "User Story"
+//     },
+//     {
+//         priority: "Medium"
+//     }
+// ];
+
 async function initAddTask() {
     await includeHTML();
     await loadUsers();
@@ -58,7 +70,6 @@ async function addTask() {
     let description = document.getElementById('description');
     let inputDate = document.getElementById('date').value;
     let date = new Date(inputDate).toString();
-    console.log(date.value);
     let taskPriority = priority;
     let assignedTo = selectedUsers;
     let subtasks = subTasks;

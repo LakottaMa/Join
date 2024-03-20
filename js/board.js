@@ -157,11 +157,24 @@ function checkRenderTasks() {
 function checkContainerEmpty() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
    ids.forEach(id => {
+      let emptyContainerText = getContainerName(id);
       let container = document.getElementById(id);
       if(container.hasChildNodes() === false) {
-         container.innerHTML = `<h2>is empty</h2>`;
+         container.innerHTML = /*html*/ `<div><span>${emptyContainerText}</span></div>`;
       }
    });
+}
+
+function getContainerName(id) {
+   if(id == 'doneContainer') {
+      return 'No tasks Done';
+   } else if(id == 'toDoContainer') {
+      return 'No tasks To Do'
+   } else if(id == 'inProgressContainer') {
+      return 'No tasks in Progress'
+   } else if(id == 'awaitFeedbackContainer') {
+      return 'No tasks for Feedback'
+   }
 }
 
 let searchedTasks;

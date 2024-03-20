@@ -10,9 +10,12 @@
     <!-- form section -->
     <form id="addTaskForm" class="addTaskForm" onsubmit="addTask(); return false">
         <input type="text" placeholder="Enter a title" required id="title">
-        <label for="description"><b>Description</b> (optional)</label>
-        <textarea name="" id="description" placeholder="Enter a Description"></textarea>
-        <label for="date"><b>Due date</b></label>
+        <label class="subHeadlineAddTask" for="description"><b>Description</b> (optional)</label>
+        <div class="textAreaAddTask">
+            <img src="/assets/img/textAreaIcon.png" alt="">
+            <textarea name="" id="description" placeholder="Enter a Description"></textarea>
+        </div>
+        <label class="subHeadlineAddTask" for="date"><b>Due date</b></label>
         <input type="date" id="date" required>
     </form>
 
@@ -20,7 +23,7 @@
 
     <!-- prio section -->
     <div class="priority">
-        <span><b>Priority</b></span>
+        <span class="subHeadlineAddTask">Priority</span>
         <div>
             <div onclick="setPrio('urgent')" id="prioUrgent" class="priorityBox prioUrgent">
                 <span>Urgent</span>
@@ -69,7 +72,7 @@
 
     <!-- assigned to section -->
     <div class="category">
-        <span><b>Assigned to</b> (optional)</span>
+        <span class="subHeadlineAddTask">Assigned to (optional)</span>
         <div>
             <div class="customSelect" id="searchUserBtn">
                 <span onclick="showSearchUserInput()" id="searchUserText">Select contacts to assign</span>
@@ -89,7 +92,7 @@
 
     <!-- task category section -->
     <div class="category">
-        <span><b>Category</b></span>
+        <span class="subHeadlineAddTask">Category</span>
         <div>
             <div onclick="toggleTaskCategory()" class="customSelect catCon">
                 <span id="selectedCategory">Select task category</span>
@@ -107,7 +110,7 @@
 
     <!-- subtask section -->
     <div class="category">
-        <span><b>Subtasks</b> (optional)</span>
+        <span class="subHeadlineAddTask">Subtasks (optional)</span>
         <div onclick="showSubtaskInput()" class="subtask" id="addSubTaskBtn">
             <span id="subtaskText">Add new subtask</span>
             <input type="text" name="" id="subtaskInput" class="d-none" placeholder="Add new subtask">
