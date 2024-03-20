@@ -78,6 +78,7 @@ function addBgContact(index) {
         }
     };
 }
+
     document.getElementById('floatingContact').innerHTML += '';
     closePopup();
 }
