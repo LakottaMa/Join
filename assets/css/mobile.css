@@ -13,10 +13,17 @@
 @media screen and (max-width:1024px) {
     .sum-button:nth-child(1) {
         order: 1;
-        height: 150px;
+        height: 150px !important;
         width: 100%;
         background-color: var(--clr-main1);
         color: white;
+        .sum-counter {
+            height: 100%;
+            width: 156px !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            gap: 8px;
+        }
 
         .line {
             margin: 0 16px;
@@ -46,7 +53,6 @@
         order: 2;
         height: 106px;
         width: 100%;
-        padding-right: 26%;
         background-color: var(--clr-main2);
 
         .sum-counter {
@@ -91,7 +97,7 @@
     }
 
     .sum-Content {
-        margin: 0 12px!important;
+        margin: 0 8px !important;
     }
 
     .sum-overview {
@@ -153,13 +159,15 @@
         margin: 36px 0 36px 0;
     }
 
-    .sum-head{
+    .sum-head {
         gap: 8px;
         margin: 0 0 32px;
-        h1{
+
+        h1 {
             font-size: 40px;
         }
-        h3{
+
+        h3 {
             font-size: 48px;
         }
     }
@@ -185,6 +193,10 @@
             left: -28px;
         }
     }
+
+    .img-counter {
+        justify-content: space-evenly;
+    }
 }
 
 @media screen and (max-width:480px) {
@@ -192,7 +204,7 @@
         font-size: 46px;
     }
 
-    .help-logo{
+    .help-logo {
         margin: 0;
     }
 
@@ -216,11 +228,11 @@
         height: 152px;
     }
 
-    .sum-overview{
+    .sum-overview {
         gap: 15px;
     }
 
-    .sum-counter{
+    .sum-counter {
         justify-content: space-evenly;
         gap: 0;
     }
@@ -270,7 +282,7 @@
         }
     }
 
-    .info-container h4{
+    .info-container h4 {
         display: none;
     }
 
@@ -282,6 +294,7 @@
         :nth-child(1) {
             padding-right: 12px;
         }
+
         :nth-child(2) {
             padding-right: 12px;
         }
@@ -289,5 +302,19 @@
 
     .sum-overview {
         max-width: 350px !important;
+        .sum-button{
+            height: 104px;
+            width: 100%;
+            .sum-counter{                
+                width: 100%;
+                padding-left: 10%;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    .sum-button:nth-child(1) .line {
+        margin: 0 4px;
     }
 }

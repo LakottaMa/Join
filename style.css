@@ -175,8 +175,10 @@ a {
 
 /*** Summary area ***/
 .sum-content {
+    overflow-y: hidden;
     min-height: 100dvh;
     margin-left: 232px;
+    padding: 104px 0;
     display: flex;
     justify-content: center;
     align-items: center;
