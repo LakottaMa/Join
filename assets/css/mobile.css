@@ -1,14 +1,27 @@
-.mobile-links{
+.mobile-links {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
+    display: none;
+    background-color: white;
     justify-content: space-evenly;
+    box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.2);
+
 }
 
-@media screen and {
-    
+@media screen and (max-width:1024px) {
+    nav, .legal-topics-side-menu {
+        display: none !important;
+    }
+
+    .mobile-links {
+        display: flex !important;
+    }
+
+    .sum-Content{
+        margin-left: 0 !important;
+    }
 }
 
 @media screen and (max-width:720px) {
