@@ -7,6 +7,10 @@
     justify-content: space-evenly;
 }
 
+@media screen and {
+    
+}
+
 @media screen and (max-width:720px) {
     .btn-box {
         flex-direction: column;

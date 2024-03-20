@@ -63,7 +63,6 @@ function showAllSummaryCounter(tasksInBoard, tasksToDo, TasksinProgress, Tasksaw
   nextUrgent();
 }
 
-
 function compareDates(a, b) {
   a = new Date(a.date);
   b = new Date(b.date);
@@ -78,7 +77,7 @@ function nextUrgent() {
   const urgentTasks = tasksWithDateObjects.filter(task => task.priority === "Urgent");
   urgentTasks.sort(compareDates);
   const nextUrgentDate = urgentTasks[0].date;
-  const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
+  const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", {day: "numeric" , month: "long", year: "numeric" });
   const urgentDate = document.getElementById("urgentDate");
   urgentDate.textContent = `${formattedDate}`;
 }
