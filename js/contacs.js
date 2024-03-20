@@ -29,6 +29,8 @@ function renderContactList() {
     }
 
 }
+
+
 // console.log('contact',contact) //wieder löschen!!
 
 function contactsHTML(i) {
@@ -74,6 +76,7 @@ function addBgContact(index) {
         }
     };
 }
+
 
 function showFloatContact(i) {
     addBgContact(i);
@@ -177,7 +180,7 @@ function saveUser(i) {
     closePopup();
 }
 
-function createContactPopupHTML() {
+function createContactPopupHTML() {    
     document.getElementById('contactName').value = '';
     document.getElementById('contactEmail').value = '';
     document.getElementById('contactPhone').value = '';
@@ -209,7 +212,7 @@ function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-
+    
     document.getElementById('topPopup').innerHTML = '';
     document.getElementById('topPopup').innerHTML += `
         <img src="./assets/img/logo.png" alt="logo">
@@ -232,6 +235,7 @@ function editContactPopupHTML(i) {
         `;
     //document.getElementById('form').onsubmit = saveUser(); return false;
 }
+
 
 function showAddPopup() {
     createContactPopupHTML();
