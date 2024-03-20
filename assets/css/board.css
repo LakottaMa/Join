@@ -1,0 +1,198 @@
+.addTaskbox {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    transition-duration: 225ms;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    margin-top: 96px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.addTaskHeadline {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mainContent {
+    height: 100dvh;
+    margin-left: 232px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+
+.findAndAdd {
+    display: flex;
+    gap: 32px;
+    margin-top: 96px;
+}
+
+.searchField {
+    position: relative;
+    width: 312px;
+    height: 48px;
+    border: 1px solid rgba(168, 168, 168, 1);
+    border-radius: 10px;
+    padding: 4px;
+
+    & img:nth-child(2) {
+        position: absolute;
+        top: 50%;
+        right: 24px;
+        transform: translate(0, -50%);
+    }
+
+    & img:nth-child(1) {
+        position: absolute;
+        top: 50%;
+        right: 64px;
+        transform: translate(0, -50%);
+    }
+
+
+    & input {
+        border: none;
+    }
+}
+
+.findAndAdd {
+    display: flex;
+    gap: 32px;
+}
+
+.taskContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.taskBox {
+    min-width: 252px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.taskHeadline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 16px;
+
+    & span {
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+    & img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* todo Box */
+.todoBox {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width: 252px;
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+
+}
+
+.toDoDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 16px;
+}
+
+.todoCategory {
+    border-radius: 8px;
+    color: white;
+    padding: 4px 16px;
+    font-weight: 400;
+    font-size: 16px;
+
+}
+
+#todoTitle {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#todoDescription {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Inter';
+}
+
+.todoSubtasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    & span {
+        font-size: 13px;
+        font-weight: 400px;
+        font-family: 'Inter';
+    }
+}
+
+.assignedAndPrio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.assignedAndPrio div:nth-child(1) {
+    display: flex;
+    /* gap: 4px; */
+    flex-wrap: wrap;
+
+    & span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 400;
+        color: white;
+        background-color: blue;
+        border: 1px solid rgba(255, 255, 255, 1);
+        margin-right: -6px;
+    }
+}
+
+#todoAssignedTo {}
+
+#todoPriority {}
+
+/* todo Box */
+
+progress[value] {
+    width: 128px;
+    height: 16px;
+}
+
+.prioIconBoard {
+    width: 32px;
+    height: 32px;
+}
