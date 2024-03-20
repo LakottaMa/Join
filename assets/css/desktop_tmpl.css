@@ -24,6 +24,13 @@ header {
     justify-content: space-around;
     margin-right: 20px;
 
+    h4{
+        font-size: 19px;
+        font-weight: 400;
+        text-align: center;
+        color: white;
+    }
+
     span {
         font-size: 19px;
         text-align: center;

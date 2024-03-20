@@ -20,7 +20,6 @@ function showLogoutMenu(event) {
   logoutMenu.classList.toggle('d-none');  
 }
 
-
 function goBack() {
   window.history.back();
 }
@@ -29,11 +28,21 @@ function goBack() {
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {
-    if (link.href.includes(`${activePage}`)) {
+    if (link.href && link.href.includes(activePage)) {
       link.classList.add(activeClass);
+      let footer = document.getElementById("mobileNavLinks");
+      let footerLinks = footer.getElementsByTagName("a");
+      for (let i = 0; i < footerLinks.length; i++) {
+        if (footerLinks[i].href && footerLinks[i].href.includes(activePage)) {
+          let imageName = footerLinks[i].id.split("-")[0];
+          let imagePath = `./assets/img/mobile_${imageName}_blue.png`;
+          footerLinks[i].getElementsByTagName("img")[0].src = imagePath;
+        }
+      }
     }
   });
 }
+
 
 /** Anfangsbuchstaben der Namen werden gefiltert */
 function showInitials() {
