@@ -22,12 +22,12 @@
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
         <section class="contactList">
-            <button class="blue-btn cp" onclick="addNewContact()">Add new contact<img
+            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img
                     src="./assets/img/person_add.png" alt="addlogo"></button>
             <div id="allContacts"></div>
         </section>
-        <section id="addContactPopup" class="d-none">
-            <div class="closePopup">
+        <section id="contactPopup" class="d-none">
+            <div id="closePopup">
                 <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
             </div>
             <div id="topPopup"></div>
@@ -47,13 +47,7 @@
 
                         <img src="./assets/img/call.png" alt="avatar">
                     </div>
-                    <div class="addContactBtn">
-                        <button class="btnCancel cp" onclick="closePopup()">Cancel<img
-                                src="./assets/img/close_black.svg" alt="close">
-                        </button>
-                        <button class="btnCreate cp">Create contact<img src="./assets/img/check._white.png" alt="check">
-                        </button>
-                    </div>
+                    <div id="popupBtn"></div>                    
                 </form>
             </div>
             <div>

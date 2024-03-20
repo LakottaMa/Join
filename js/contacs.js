@@ -57,10 +57,11 @@ function deleteUser(userIndex) {
     }
 
     setItem('users', JSON.stringify(users));
+    document.getElementById('floatingContact').innerHTML += '';
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
-    document.getElementById('floatingContact').innerHTML += '';
+    
     closePopup();
 }
 
