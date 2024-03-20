@@ -20,7 +20,6 @@ function showLogoutMenu(event) {
   logoutMenu.classList.toggle('d-none');  
 }
 
-
 function goBack() {
   window.history.back();
 }
@@ -29,7 +28,7 @@ function goBack() {
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {
-    if (link.href.includes(`${activePage}`)) {
+    if (link.href && link.href.includes && link.href.includes(activePage)) {
       link.classList.add(activeClass);
     }
   });

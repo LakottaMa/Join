@@ -1,12 +1,28 @@
+/**
+ * @file storage.js
+ * This file is used to handle the storage of the application
+ * 
+ */
 const STORAGE_TOKEN = 'FOQ59STJFAGBFPPP9W1RP2EHAKEF90DYTULV2A3Q';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
+/**
+ * Uploads data into the backend.
+ * @param {key} key - data name (key)
+ * @param {array} value - data array to upload
+ * @returns - promise
+ */
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
     .then(res => res.json());
 }
 
+/**
+ * Fetches data from the backend.
+ * @param {key} key - key name to fetch
+ * @returns - promise + JSON
+ */
 async function getItem(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   return fetch(url).then(res => res.json()).then(res => {
@@ -22,20 +38,20 @@ function logout() {
 }
 
 let localUsers = [
-  {  "id":  0,
+  {
     "name": "Guest",
     "email": "guest@guest.de",
     "password": "12345",
     "bg": "rgb(30,60,17)",
   },
-  {  "id":  1,
+  {
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
     "phone": "017852546",    
     "bg": "rgb(44,75,17)",
   },
-  {  "id":  2,
+  {
     "name": "Steve Jobs",
     "email": "steve.jobs@example.com",
     "password": "Jobs#Apple1",
@@ -43,21 +59,21 @@ let localUsers = [
     "bg": "rgb(124,169,74)",
     
   },
-  {  "id":  3,
+  {
     "name": "Bill Gates",
     "email": "bill.gates@example.com",
     "password": "Gates@Microsoft2",
     "phone": "017852546",
     "bg": "rgb(7,122,50)",
   },
-  {  "id":  4,
+  {
     "name": "Linus Torvalds",
     "email": "linus.torvalds@example.com",
     "password": "Torvalds#Linux3",
     "phone": "017852546",
     "bg": "rgb(47,57,103)",
   },
-  {  "id":  5,
+  {
     "name": "Sam Altman",
     "email": "sam.altman@example.com",
     "password": "Altman#YCombinator4",
