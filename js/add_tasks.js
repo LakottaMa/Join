@@ -5,6 +5,18 @@ let category = "User Story";
 let priority = "Medium";
 let statusObj = { status: 'To Do' };
 
+// let defaultValues = [
+//     {
+//         status: 'To Do'
+//     },
+//     {
+//         category: "User Story"
+//     },
+//     {
+//         priority: "Medium"
+//     }
+// ];
+
 async function initAddTask() {
     await includeHTML();
     await loadUsers();
