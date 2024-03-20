@@ -60,7 +60,6 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
-    document.getElementById('floatingContact').classList.add('d-none');
     document.getElementById('floatingContact').innerHTML += '';
     closePopup();
 }
@@ -89,7 +88,7 @@ function showFloatContact(i) {
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
 }
 
-function floatContactHTML(name, email,i) {
+function floatContactHTML(name, email, i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
@@ -150,7 +149,6 @@ async function createNewContact() {
         });
         await setItem('users', JSON.stringify(users));
         renderContactList();
-
         closePopup();
 
     } else {
@@ -162,16 +160,30 @@ function editContact(i) {
     showEditPopup(i)
     let name = users[i]['name'];
     let email = users[i]['email'];
-    let phone = users[i]['phone'];
 
     document.getElementById('contactName').value = `${name}`;
     document.getElementById('contactEmail').value = `${email}`;
-    document.getElementById('contactPhone').value = `${phone}`;
+    document.getElementById('contactPhone').value = `${checkPhone(i)}`;
 
     //console.log('name',name) //wieder löschen!!
 }
 
-function createContactPopupHTML() {
+function saveUser(i) {
+    let newName = document.getElementById('contactName').value;
+    let newEmail = document.getElementById('contactEmail').value;
+    let newPhone = document.getElementById('contactPhone').value;
+
+    users[i]['name'] = newName;
+    users[i]['email'] = newEmail;
+    users[i]['phone'] = newPhone;
+    renderContactList();
+    closePopup();
+}
+
+function createContactPopupHTML() {    
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactPhone').value = '';
     document.getElementById('topPopup').innerHTML = '';
     document.getElementById('topPopup').innerHTML += `
         <img src="./assets/img/logo.png" alt="logo">
@@ -193,13 +205,14 @@ function createContactPopupHTML() {
         <img src="./assets/img/check._white.png" alt="check">
         </button>
         `;
-
+    //document.getElementById('form').onsubmit = "createNewContact(); return false";
 }
 
 function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
+    
     document.getElementById('topPopup').innerHTML = '';
     document.getElementById('topPopup').innerHTML += `
         <img src="./assets/img/logo.png" alt="logo">
@@ -220,6 +233,7 @@ function editContactPopupHTML(i) {
             src="./assets/img/check._white.png" alt="check">
         </button>
         `;
+    //document.getElementById('form').onsubmit = saveUser(); return false;
 }
 
 
