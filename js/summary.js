@@ -1,43 +1,43 @@
 async function initSummary() {
-  await includeHTML();
-  greetingMessage();
-  await loadUsers();
-  await loadTasks();
-  counterSummery();
+    await includeHTML();
+    greetingMessage();
+    await loadUsers();
+    await loadTasks();
+    counterSummery();
 }
 
-function checkLoginStatus() {
-  let isLoggedIn = sessionStorage.getItem('isLoggedIn');
-  return isLoggedIn;
-}
-
-function greetingMessage() {
-  let isLoggedIn = checkLoginStatus();
-  let currentHour = checkHour();
-  let greeting = document.getElementById('greeting');
-  let greetingName = document.getElementById('greetingName');
-  if (currentHour >= 0 && currentHour <= 11) {
-    greeting.innerHTML = `Good Morning,`;
-    greetingName.innerHTML = `${isLoggedIn}`;
-  } else if (currentHour > 11 && currentHour < 14) {
-    greeting.innerHTML = 'Good Day,';
-    greetingName.innerHTML = `${isLoggedIn}`;
-  } else if (currentHour >= 14 && currentHour < 18) {
-    greeting.innerHTML = 'Good afternoon,';
-    greetingName.innerHTML = `${isLoggedIn}`;
-  } else {
-    greeting.innerHTML = 'Good Evening,';
-    greetingName.innerHTML = `${isLoggedIn}`;
+  function checkLoginStatus() {
+    let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    return isLoggedIn;
   }
-}
+  
+  function greetingMessage() {
+    let isLoggedIn = checkLoginStatus();
+    let currentHour = checkHour();
+    let greeting = document.getElementById('greeting');
+    let greetingName = document.getElementById('greetingName');  
+    if (currentHour >= 0 && currentHour <= 11) {
+      greeting.innerHTML = `Good Morning,`;
+      greetingName.innerHTML = `${isLoggedIn}`;
+    } else if (currentHour > 11 && currentHour < 14) {
+      greeting.innerHTML = 'Good Day,';
+      greetingName.innerHTML = `${isLoggedIn}`;
+    } else if (currentHour >= 14 && currentHour < 18) {
+      greeting.innerHTML = 'Good afternoon,';
+      greetingName.innerHTML = `${isLoggedIn}`;
+    } else {
+      greeting.innerHTML = 'Good Evening,';
+      greetingName.innerHTML = `${isLoggedIn}`;
+    }
+  }
 
 function checkHour() {
-  let currentDate = new Date();
-  let currentHour = currentDate.getHours();
-  return currentHour;
+    let currentDate = new Date();
+    let currentHour = currentDate.getHours();
+    return currentHour;
 }
 
-function counterSummery() {
+function counterSummery(){
   const tasksInBoard = document.getElementById('tib');
   const tasksToDo = document.getElementById('todo');
   const TasksinProgress = document.getElementById('progress');
@@ -67,7 +67,7 @@ function compareDates(a, b) {
   a = new Date(a.date);
   b = new Date(b.date);
   return a.getTime() - b.getTime();
-}
+  }
 
 function nextUrgent() {
   const tasksWithDateObjects = tasks.map(task => ({

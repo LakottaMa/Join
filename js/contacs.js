@@ -8,8 +8,8 @@ async function initContacts() {
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
+        //users.sort((a, b) => a.name.localeCompare(b.name));//zu früh sortiert!!!!
         let currentLetter = '';
-        users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
@@ -36,10 +36,11 @@ function renderContactList() {
 function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
+    let id = users[i]['id'];
     let bgColor = users[i]['bg'];
     return `
-        <div class="contactSmall cp" id="contactSmall-${i}" onclick="showFloatContact(${i})">
-            <div class="initials" style="background-color:${bgColor};">${initials}</div>
+        <div class="contactSmall cp" onclick="showFloatContact(${i})">
+            <div id="${id}"class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
                 <p>${users[i]['email']}</p>
@@ -55,11 +56,28 @@ function deleteUser(userIndex) {
     } else {
         alert("User not found.");
     }
-
     setItem('users', JSON.stringify(users));
+    document.getElementById('floatingContact').innerHTML += '';
     renderContactList();
     console.log('user wurde gelöscht');
+    console.log('user wurde gelöscht');
     console.table(users);
+    
+    closePopup();
+}
+
+function addBgContact(index) {
+    let contacts = document.querySelectorAll('.contactSmall');
+    for (let x = 0; x < contacts.length; x++) {
+        let contact = contacts[x];
+
+        if (index === x) {
+            contact.classList.add('contactBgClicked');
+        } else {
+            contact.classList.remove('contactBgClicked');
+        }
+    };
+}
     document.getElementById('floatingContact').innerHTML += '';
     closePopup();
 }
@@ -79,10 +97,12 @@ function addBgContact(index) {
 
 
 function showFloatContact(i) {
-    addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
+    let id = users[i]['id'];
 
+    let names = users[i]['name'].split(' ');
+    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);

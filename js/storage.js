@@ -48,7 +48,7 @@ let localUsers = [
     "name": "Tim Cook",
     "email": "tim.cook@example.com",
     "password": "Cook#Apple5",
-    "phone": "017852546",    
+    "phone": "017852546",
     "bg": "rgb(44,75,17)",
   },
   {
@@ -57,7 +57,7 @@ let localUsers = [
     "password": "Jobs#Apple1",
     "phone": "017852546",
     "bg": "rgb(124,169,74)",
-    
+
   },
   {
     "name": "Bill Gates",
@@ -97,7 +97,7 @@ let localTasks = [
   {
     "title": "HTML Base Template Creation",
     "description": "Create reusable HTML base templates.",
-    "date": "Sat Mar 23 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
+    "date": "Sat Mar 17 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
     "priority": "Urgent",
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
