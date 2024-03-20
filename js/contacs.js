@@ -77,33 +77,17 @@ function addBgContact(index) {
             contact.classList.remove('contactBgClicked');
         }
     };
-}
+
 
     document.getElementById('floatingContact').innerHTML += '';
     closePopup();
 }
 
-function addBgContact(index) {
-    let contacts = document.querySelectorAll('.contactSmall');
-    for (let x = 0; x < contacts.length; x++) {
-        let contact = contacts[x];
-
-        if (index === x) {
-            contact.classList.add('contactBgClicked');
-        } else {
-            contact.classList.remove('contactBgClicked');
-        }
-    };
-}
-
-
 function showFloatContact(i) {
+    addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-    let id = users[i]['id'];
 
-    let names = users[i]['name'].split(' ');
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
