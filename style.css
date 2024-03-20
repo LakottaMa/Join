@@ -25,6 +25,7 @@
 body {
     height: 100dvh;
     margin: auto;
+    max-width: 1440px;
 }
 
 h1 {
