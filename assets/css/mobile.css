@@ -1,3 +1,12 @@
+.mobile-links{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 @media screen and (max-width:720px) {
     .btn-box {
         flex-direction: column;

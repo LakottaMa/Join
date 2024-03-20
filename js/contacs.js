@@ -75,7 +75,6 @@ function addBgContact(index) {
     };
 }
 
-
 function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
