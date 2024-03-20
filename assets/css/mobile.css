@@ -1,0 +1,108 @@
+@media screen and (max-width:720px) {
+    .btn-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+
+        button {
+            width: 180px;
+        }
+    }
+
+    .checkbox {
+        width: 90%;
+    }
+
+    .signup {
+        display: none;
+    }
+
+    .input-box {
+        width: calc(100% - 24px);
+
+        img {
+            margin-right: 8px;
+        }
+    }
+
+    .su-mobile {
+        display: flex;
+        margin: 36px 0 36px 0;
+    }
+
+    .login-header {
+        padding: 37px 38px 0 38px;
+    }
+
+    .logo {
+        height: 78px;
+
+    }
+
+    @keyframes move-to-top-left {
+        from {
+            top: 50%;
+            left: 50%;
+        }
+
+        to {
+            scale: 0.26;
+            top: -42px;
+            left: -28px;
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+    h1 {
+        font-size: 46px;
+        margin: 32px 0 8px 0;
+    }
+
+    .btn-signup,
+    .login-btn,
+    .guestlogin-btn,
+    .signup span {
+        font-size: 19px;
+    }
+
+    .input-box {
+        width: calc(100% - 16px);
+    }
+
+    input {
+        width: 100%;
+        font-size: 19px;
+        margin: 12px 0 8px 0;
+    }
+
+    .su-mobile {
+        justify-content: center;
+        margin: 18px 0 18px 0;
+    }
+
+    .signup {
+        gap: 24px;
+    }
+}
+
+@media screen and (max-width:440px) {
+    h1 {
+        font-size: 42px;
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    .form-box {
+        .back-btn {
+            top: 32px;
+            left: 32px;
+        }
+    }
+
+    .signup span {
+        font-size: 16px !important;
+    }
+}
