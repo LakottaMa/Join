@@ -1,21 +1,18 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/assets/css/fonts.css">
-
     <title>Join</title>
 </head>
-
-    <body onload="initSummary()">
+<body onload="initSummary()">
     <div template="/assets/templates/desktop_template.html"></div>
-    <div class="main-section">
-        <div class="sum-selection">
+        <div class="sum-content">
             <div class="sum-head">
                 <h1 id="greeting"></h1>
+                <h3 id="greetingName"></h3>
             </div>
             <div class="sum-overview">
                 <a href="/board.html" class="sum-button">
@@ -24,13 +21,13 @@
                             <div class="sum-ellipse">
                                 <img src="/assets/img/urgent.png">
                             </div>
-                            <div>1</div>
+                            <div id="urgent"></div>
                         </div>
                         <span>Tasks Urgent</span>
                     </div>
                     <div class="line"></div>
                     <div class="deadline-first-urgent">
-                        <span>März 06.03.2024</span>
+                        <span id="urgentDate"></span>
                         <span>Upcoming Deadline</span>
                     </div>
                 </a>
@@ -40,9 +37,9 @@
                             <div class="sum-ellipse">
                                 <img src="/assets/img/task_in-board.png">
                             </div>
-                            <div>5</div>
+                            <div id="tib"></div>
                         </div>
-                        <span class="clr">Task in<br> Board</span>
+                        <span class="clr">Task in<br>Board</span>
                     </div>
                 </a>
                 <a href="/board.html" class="sum-button">
@@ -51,7 +48,7 @@
                             <div class="sum-ellipse">
                                 <img src="/assets/img/todo.png">
                             </div>
-                            <div>1</div>
+                            <div id="todo"></div>
                         </div>
                         <span class="clrtodo">Task To-do</span>
                     </div>
@@ -62,7 +59,7 @@
                             <div class="sum-ellipse">
                                 <img src="/assets/img/progress.png">
                             </div>
-                            <div>2</div>
+                            <div id="progress"></div>
                         </div>
                         <span class="clr">Task in Progrress</span>
                     </div>
@@ -73,7 +70,7 @@
                             <div class="sum-ellipse">
                                 <img src="/assets/img/afeedback.png">
                             </div>
-                            <div>2</div>
+                            <div id="awFeedback"></div>
                         </div>
                         <span class="clr">Awaiting Feedback</span>
                     </div>
@@ -84,19 +81,17 @@
                             <div class="sum-ellipse">
                                 <img src="/assets/img/done.png">
                             </div>
-                            <div>1</div>
+                            <div id="tasksDone"></div>
                         </div>
                         <span class="clr">Tasks Done</span>
                     </div>
                 </a>
             </div>
         </div>
-        <script src="./js/summary.js"></script>        
-        <script src="./js/storage.js"></script>
-        <script src="./js/sign_up.js"></script>
-        <script src="./js/templates.js"></script>
-        <script src="./script.js"></script>
-
+    <script src="./js/summary.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/sign_up.js"></script>
+    <script src="./js/templates.js"></script>
+    <script src="./script.js"></script>
 </body>
-
 </html>

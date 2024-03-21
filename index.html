@@ -16,22 +16,22 @@
         <img class="logo" id="resetStorage" src="./assets/img/logo_blue.png" onclick="resetStorage(event)">
         <div class="signup">
             <span>Not a Join user?</span>
-            <a href="./sign_up.html"><button class="btn-signup cp">Sign up</button></a>
+            <a href="./sign_up.html"><button class="blue-btn cp">Sign up</button></a>
         </div>
     </header>
-    <div class="login-container">
-        <div id="loadingScreen" class="loading-animation"><img class="loding-logo" src="./assets/img/loding_logo.png"></div>
-        <div class="mobile">
+    <div id="loadingScreen" class="loading-animation"><img class="loding-logo" src="./assets/img/loding_logo.png"></div>
+    <div class="login-container">        
+        <div>
             <div class="form-box">
                 <form class="input-box" onsubmit="logIn(users); return false;">
                     <h1>Log in</h1>
                     <img class="underline" src="./assets/img/underline_login.png">
                     <div class="input-field">
-                        <input type="email" id="email" required placeholder="Email">
+                        <input type="email" id="email" autofocus required placeholder="Email">
                         <img src="./assets/img/mail.png">
                     </div>
                     <div class="input-field">
-                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" required placeholder="Password">
+                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus required placeholder="Password">
                         <img id="password-icon" onclick="togglePasswordVisibility('password')" src="./assets/img/lock.png">
                         <div class="error-msg-box" id="loginMatch"></div>
                     </div>
@@ -40,14 +40,14 @@
                         <span>Remember me</span>
                     </div>
                     <div class="btn-box">
-                        <button id="isLoggedIn" class="login-btn cp">Log in</button>
-                        <button type="button" class="guestlogin-btn cp" onclick="guestLogIn(users)">Guest Log in</button>
+                        <button id="isLoggedIn" class="blue-btn login-btn cp">Log in</button>
+                        <button type="button" class="white-btn btn cp" onclick="guestLogIn(users)">Guest log in</button>
                     </div>
                 </form>
             </div>
             <div class="signup su-mobile">
                 <span>Not a Join user?</span>
-                <a href="./sign_up.html"><button class="btn-signup cp">Sign up</button></a>
+                <a href="./sign_up.html"><button class="btn cp">Sign up</button></a>
             </div>
         </div>
     </div>

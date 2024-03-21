@@ -69,8 +69,8 @@ h1 {
 .signup {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 315px;
+    justify-content: center;
+    gap: 35px;
     height: 48px;
 }
 
@@ -78,44 +78,22 @@ h1 {
     font-size: 23px;
 }
 
-.btn-signup,
-.login-btn,
-.guestlogin-btn {
-    font-size: 23px;
-    padding: 10px 16px;
-    color: white;
-    background-color: var(--clr-main1);
-    border: none;
-    border-radius: 8px;
-    transition-duration: 120ms;
-
-    &:hover {
-        background-color: var(--clr-lightblue);
-        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-    }
-
-    &:focus {
-        box-shadow: inset 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-        background-color: white;
-        color: var(--clr-main1);
-    }
+.login-container > div{
+    width: 96%;
 }
 
 .login-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-}
-
-.mobile {
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
 .form-box {
-    width: 652px;
+    max-width: 598px;
+    margin: 0 auto;
+    min-width: 304px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -135,7 +113,7 @@ form ::placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 422px;
+    width: calc(100% - 88px);
 }
 
 .input-field {
@@ -143,7 +121,7 @@ form ::placeholder {
     display: flex;
     justify-content: end;
     align-items: center;
-    width: 100%;
+    width: 90%;
 }
 
 .input-field img {
@@ -171,7 +149,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
+    width: 90%;
     gap: 8px;
     margin-top: 16px;
 }
@@ -185,24 +163,6 @@ input {
 
 .login-btn {
     width: 135px;
-}
-
-.guestlogin-btn {
-    width: 197px;
-    background-color: white;
-    border: 1px solid rgba(100, 113, 136, 1);
-    color: rgba(100, 113, 136, 1);
-
-    &:hover {
-        border: 1px solid var(--clr-main1);
-        background-color: white;
-        color: var(--clr-main1);
-    }
-
-    &:active {
-        color: var(--clr-lightblue);
-        border: 1px solid var(--clr-lightblue);
-    }
 }
 
 footer {
