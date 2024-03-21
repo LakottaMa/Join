@@ -394,17 +394,6 @@ function printSelectedUsers(user, index) {
 }
 
 /**
- * 
- * @returns random color from array colors
- */
-function getRandomColor() {
-    let rndIndex = Math.floor(Math.random() * colors.length);
-    return colors[rndIndex];
-}
-
-let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
-
-/**
  * set priority for task
  * @param {string} prio priority
  */
