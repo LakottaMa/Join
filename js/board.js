@@ -181,10 +181,12 @@ function getContainerName(id) {
 
 let searchedTasks;
 
+// use new Set, that values are not present twice
 function searchTasks() {
    let input = document.getElementById('findTask');
-   let filteredTasks = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
-   searchedTasks = filteredTasks;
+   let filteredTasksTitle = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
+   //let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
+   searchedTasks = filteredTasksTitle //.concat(filteredTasksDescription);
    checkRenderTasks();
 }
 
