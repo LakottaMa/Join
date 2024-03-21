@@ -7,6 +7,7 @@
     background-color: white;
     justify-content: space-evenly;
     box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    z-index: 99;
 
 }
 
@@ -123,6 +124,15 @@
 
         :nth-child(2) {
             font-size: 19px;
+        }
+    }
+
+    .text-section{
+        position: relative;
+        margin: 0 40px 0 40px;
+        left: 0;
+        ol{
+            padding-left: 40px;
         }
     }
 }
