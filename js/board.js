@@ -162,7 +162,7 @@ function checkContainerEmpty() {
       let emptyContainerText = getContainerName(id);
       let container = document.getElementById(id);
       if(container.hasChildNodes() === false) {
-         container.innerHTML = /*html*/ `<div><span>${emptyContainerText}</span></div>`;
+         container.innerHTML = /*html*/ `<div class="emptyBox"><span>${emptyContainerText}</span></div>`;
       }
    });
 }
