@@ -162,7 +162,7 @@ h3 {
 
 
 
-/*********************** Start Addpopup ***********************/
+/*********************** Start Popup ***********************/
 
 .back {
     width: 100%;
@@ -186,7 +186,12 @@ h3 {
     height: 100vh;
     z-index: 999;
     transform: translateX(0px);
-    transition: all 500ms ease-in-out;
+    transition: all 225ms ease-in-out;
+}
+
+.hidePopup{
+    transform: translateX(4000px);
+    transition: all 225ms ease-in-out;
 }
 
 #topPopup {
