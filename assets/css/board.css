@@ -21,7 +21,7 @@
 }
 
 .mainContent {
-    height: 100dvh;
+    min-height: 100dvh;
     margin-left: 232px;
     padding-left: 72px;
     padding-top: 66px;
@@ -35,6 +35,7 @@
     display: flex;
     gap: 32px;
     margin-top: 96px;
+    justify-content: flex-start;
 }
 
 .searchField {
@@ -211,4 +212,28 @@ progress[value] {
     width: 100%;
     height: 48px;
 
+}
+
+@media(max-width: 1024px) {
+    .mainContent {
+        margin: 0;
+        padding: 0;
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    .findAndAdd {
+        padding-top: 16px;
+        justify-content: center;
+    }
+
+    .taskContainer {
+        margin-bottom: 80px;
+    }
+}
+
+@media(max-width: 550px) {
+    .findAndAdd {
+        flex-direction: column;
+    }
 }
