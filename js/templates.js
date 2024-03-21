@@ -35,14 +35,13 @@ function setActiveSiteClass(selector, activeClass) {
       for (let i = 0; i < footerLinks.length; i++) {
         if (footerLinks[i].href && footerLinks[i].href.includes(activePage)) {
           let imageName = footerLinks[i].id.split("-")[0];
-          let imagePath = `./assets/img/mobile_${imageName}_blue.png`;
+          let imagePath = `/assets/img/mobile_${imageName}_blue.png`;
           footerLinks[i].getElementsByTagName("img")[0].src = imagePath;
         }
       }
     }
   });
 }
-
 
 /** Anfangsbuchstaben der Namen werden gefiltert */
 function showInitials() {
