@@ -54,7 +54,6 @@ textarea:hover {
     position: relative;
     width: 100%;
     
-
     & textarea {
         width: 100%;
         height: 100%;
@@ -395,4 +394,38 @@ textarea:hover {
     color: white;
     border-radius: 50%;
     font-size: 0.8rem;
+}
+
+@media(max-width: 1024px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        overflow-y: auto;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .addTaskSection {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .addTaskBtns {
+        width: 100%;
+        justify-content: center;
+        margin: 0;
+        margin-bottom: 120px;
+    }
+
+    .priorityBox {
+        width: fit-content;
+    }
+}
+
+@media(max-width: 450px) {
+    .content {
+        scale: 0.8;
+    }
 }
