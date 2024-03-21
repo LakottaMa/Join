@@ -9,7 +9,9 @@ async function initBoard() {
 function showAddTaskBox(status) {
    let box = document.getElementById('addTaskBox');
    box.style.right = 0;
-   statusObj.status = `${status}`;
+   defaultValues.status = `${status}`;
+   defaultValues.category = 'User Story';
+   defaultValues.priority = 'Medium';
 }
 
 function hideAddTaskBox() {
