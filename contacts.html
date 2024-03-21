@@ -11,11 +11,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
 
-    <script src="./js/sign_up.js"></script>
-    <script src="./js/contacs.js"></script>
-    <script src="./js/storage.js"></script>
-    <script src="./js/templates.js"></script>
-    <script src="./script.js"></script>
+
 
     <title>Join</title>
 </head>
@@ -28,34 +24,16 @@
                     src="./assets/img/person_add.png" alt="addlogo"></button>
             <div id="allContacts"></div>
         </section>
-        <section id="contactPopup" class="d-none">
-            <div id="closePopup">
-                <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
-            </div>
-            <div id="topPopup"></div>
-            <div id="bottomPopup">
-                <div id="avatar"></div>                  
-                <form id="form" onsubmit="createNewContact(); return false">
-                    <div class="input-field">
-                        <input id="contactName" type="text" placeholder="Name" required>
-                        <img src="./assets/img/person.png" alt="avatar">
-                    </div>
-                    <div class="input-field">
-                        <input id="contactEmail" type="email" placeholder="Email" required>
-                        <img src="./assets/img/mail.png" alt="avatar">
-                    </div>
-                    <div class="input-field">
-                        <input id="contactPhone" type="tel" placeholder="Phone" required>
-
-                        <img src="./assets/img/call.png" alt="avatar">
-                    </div>
-                    <div id="popupBtn"></div>                    
-                </form>
-            </div>
-            <div>
-            </div>
-        </section>
+        <section id="contactPopup" class="d-none"></section>           
+        
         <aside id="floatingContact" class="d-none"></aside>
     </div>
+
+    <script src="./js/sign_up.js"></script>
+    <script src="./js/contacs.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/templates.js"></script>
+    <script src="./templates/contacts_template.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
