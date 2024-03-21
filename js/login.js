@@ -2,7 +2,7 @@ function guestLogIn(localUsers) {
     let guestUser = localUsers.find(user => user.name === 'Guest');
     if (guestUser) {
       sessionStorage.setItem('isLoggedIn', 'Guest');
-      window.location.href = './summary.html';
+      window.location.href = './summary.html';      
     }
   }
   
@@ -35,3 +35,4 @@ function guestLogIn(localUsers) {
       confirmedPassword.classList.remove('inputerror');
     });
   }
+
