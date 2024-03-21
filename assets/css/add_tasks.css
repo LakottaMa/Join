@@ -9,7 +9,7 @@
     padding: 64px 24px;
     margin-top: 96px;
     gap: 24px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .addTaskForm {
@@ -98,11 +98,17 @@ textarea:hover {
 
 .priorityBox {
     display: flex;
-    gap: 8px;
-    border: 1px solid lightgray;
-    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid white;
+    border-radius: 10px;
     padding: 8px;
     box-shadow: 0px 0px 4px 0px #00000029;
+    width: 136px;
+    height: 51px;
+    font-size: 19px;
+    font-weight: 400;
 }
 
 .priorityBox:hover {
@@ -113,6 +119,7 @@ textarea:hover {
     color: black;
 
     &:hover {
+        border-bottom: 1px solid;
         border-bottom-color: var(--clr-urgent);
     }
 }
@@ -121,6 +128,7 @@ textarea:hover {
     color: black;
 
     &:hover {
+        border-bottom: 1px solid;
         border-bottom-color: var(--clr-medium);
     }
 }
@@ -129,6 +137,7 @@ textarea:hover {
     color: black;
 
     &:hover {
+        border-bottom: 1px solid;
         border-bottom-color: var(--clr-low);
     }
 }

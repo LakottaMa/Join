@@ -23,7 +23,8 @@
 .mainContent {
     height: 100dvh;
     margin-left: 232px;
-    padding: 24px;
+    padding-left: 72px;
+    padding-top: 66px;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -42,7 +43,8 @@
     height: 48px;
     border: 1px solid rgba(168, 168, 168, 1);
     border-radius: 10px;
-    padding: 4px;
+    display: flex;
+    padding: 8px;
 
     & img:nth-child(2) {
         position: absolute;
@@ -61,6 +63,7 @@
 
     & input {
         border: none;
+        padding: 0;
     }
 }
 
@@ -72,7 +75,6 @@
 .taskContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
 }
 
