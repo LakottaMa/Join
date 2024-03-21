@@ -1,21 +1,8 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-let category = "User Story";
-let priority = "Medium";
-let statusObj = { status: 'To Do' };
 
-// let defaultValues = [
-//     {
-//         status: 'To Do'
-//     },
-//     {
-//         category: "User Story"
-//     },
-//     {
-//         priority: "Medium"
-//     }
-// ];
+let defaultValues = [{ status: 'To Do' }, { category: 'User Story' }, { priority: 'Medium' }];
 
 async function initAddTask() {
     await includeHTML();
@@ -31,6 +18,9 @@ function initializeAndListen() {
     prioLow = document.getElementById('prioLow');
     focusInputField('subtaskInput', 'addSubTaskBtn');
     focusInputField('searchUserInput', 'searchUserBtn');
+    defaultValues.category = 'User Story';
+    defaultValues.priority = 'Medium';
+    defaultValues.status = 'To Do';
 }
 
 let prioUrgent;
@@ -70,11 +60,11 @@ async function addTask() {
     let description = document.getElementById('description');
     let inputDate = document.getElementById('date').value;
     let date = new Date(inputDate).toString();
-    let taskPriority = priority;
+    let taskPriority = defaultValues.priority;
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
-    let taskCategory = category;
-    let taskStatus = statusObj.status;
+    let taskCategory = defaultValues.category;
+    let taskStatus = defaultValues.status;
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
     await saveTasks(tasks);
@@ -402,17 +392,6 @@ function printSelectedUsers(user, index) {
         </div>
     `;
 }
-
-/**
- * 
- * @returns random color from array colors
- */
-function getRandomColor() {
-    let rndIndex = Math.floor(Math.random() * colors.length);
-    return colors[rndIndex];
-}
-
-let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
 /**
  * set priority for task

@@ -9,7 +9,9 @@ async function initBoard() {
 function showAddTaskBox(status) {
    let box = document.getElementById('addTaskBox');
    box.style.right = 0;
-   statusObj.status = `${status}`;
+   defaultValues.status = `${status}`;
+   defaultValues.category = 'User Story';
+   defaultValues.priority = 'Medium';
 }
 
 function hideAddTaskBox() {
@@ -160,7 +162,7 @@ function checkContainerEmpty() {
       let emptyContainerText = getContainerName(id);
       let container = document.getElementById(id);
       if(container.hasChildNodes() === false) {
-         container.innerHTML = /*html*/ `<div><span>${emptyContainerText}</span></div>`;
+         container.innerHTML = /*html*/ `<div class="emptyBox"><span>${emptyContainerText}</span></div>`;
       }
    });
 }
@@ -179,10 +181,12 @@ function getContainerName(id) {
 
 let searchedTasks;
 
+// use new Set, that values are not present twice
 function searchTasks() {
    let input = document.getElementById('findTask');
-   let filteredTasks = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
-   searchedTasks = filteredTasks;
+   let filteredTasksTitle = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
+   //let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
+   searchedTasks = filteredTasksTitle //.concat(filteredTasksDescription);
    checkRenderTasks();
 }
 

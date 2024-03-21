@@ -21,9 +21,10 @@
 }
 
 .mainContent {
-    height: 100dvh;
+    min-height: 100dvh;
     margin-left: 232px;
-    padding: 24px;
+    padding-left: 72px;
+    padding-top: 66px;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -34,6 +35,7 @@
     display: flex;
     gap: 32px;
     margin-top: 96px;
+    justify-content: flex-start;
 }
 
 .searchField {
@@ -42,7 +44,8 @@
     height: 48px;
     border: 1px solid rgba(168, 168, 168, 1);
     border-radius: 10px;
-    padding: 4px;
+    display: flex;
+    padding: 8px;
 
     & img:nth-child(2) {
         position: absolute;
@@ -61,6 +64,7 @@
 
     & input {
         border: none;
+        padding: 0;
     }
 }
 
@@ -72,8 +76,8 @@
 .taskContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
+    justify-content: flex-start;
 }
 
 .taskBox {
@@ -195,4 +199,56 @@ progress[value] {
 .prioIconBoard {
     width: 32px;
     height: 32px;
+}
+
+.emptyBox {
+    background-color: rgb(231, 231, 231);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+    color: rgba(168, 168, 168, 1);
+    border-radius: 10px;
+    border: 1px dashed rgba(168, 168, 168, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 252px;
+    height: 48px;
+
+}
+
+@media(max-width: 1024px) {
+    .mainContent {
+        margin: 0;
+        padding: 0;
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    .findAndAdd {
+        padding-top: 16px;
+        justify-content: center;
+    }
+
+    .taskContainer {
+        margin-bottom: 80px;
+    }
+}
+
+@media(max-width: 550px) {
+    .findAndAdd {
+        flex-direction: column;
+        padding: 16px;
+
+        & button {
+            display: none;
+        }
+    }
+
+    .searchField {
+        width: 100%;
+        padding: 4px 8px;
+    }
+
+    .taskContainer {
+        justify-content: center;
+    }
 }
