@@ -16,7 +16,7 @@ function showAddTaskBox(status) {
 
 function hideAddTaskBox() {
    let box = document.getElementById('addTaskBox');
-   box.style.right = '-450px';
+   box.style.right = '-600px';
 }
 
 
@@ -181,12 +181,12 @@ function getContainerName(id) {
 
 let searchedTasks;
 
-// use new Set, that values are not present twice
 function searchTasks() {
    let input = document.getElementById('findTask');
    let filteredTasksTitle = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
-   //let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
-   searchedTasks = filteredTasksTitle //.concat(filteredTasksDescription);
+   let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
+   searchedTasks = filteredTasksTitle.concat(filteredTasksDescription);
+   searchedTasks = [...new Set(searchedTasks)];
    checkRenderTasks();
 }
 

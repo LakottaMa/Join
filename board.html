@@ -13,9 +13,12 @@
 <body onload="initBoard()">
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="addTaskBox" id="addTaskBox">
-        <div class="addTaskHeadline"><h2>Add Task</h2> <span onclick="hideAddTaskBox()">X</span></div>
+        <div class="addTaskHeadline">
+            <h1>Add Task</h1>
+            <img onclick="hideAddTaskBox()" src="./assets/img/close.png" alt="">
+        </div>
         <div template="/assets/templates/addTask_template.html"></div>
-        <button form="addTaskForm" class="blue-btn createBtn cp">Create Task</button>
+        <button class="blue-btn cp" form="addTaskForm">Create Task</button>
     </div>
     <div class="mainContent">
         <section class="findAndAdd">
