@@ -69,15 +69,18 @@ async function addTask() {
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
-    redirectToBoard();
+    successfulyPopupAddTask();
     renderTasksInBoard();
     hideAddTaskBox();
 }
 
-function redirectToBoard() {
-    if (window.location.href.indexOf('/board.html') === -1) {
-        window.location.href = '/board.html';
-    }
+/** Popup nach erfolgreicher Task Erstellung */
+function successfulyPopupAddTask() {
+    const animation = document.getElementById('popupAddtask');
+    animation.classList.remove('d-none');
+    setTimeout(() => {
+        window.location.href = './board.html';
+    }, 2000);
 }
 
 /**

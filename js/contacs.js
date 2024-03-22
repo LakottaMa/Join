@@ -28,9 +28,7 @@ function renderContactList() {
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
-
 }
-
 
 // console.log('contact',contact) //wieder löschen!!
 

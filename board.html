@@ -15,7 +15,7 @@
     <div class="addTaskBox" id="addTaskBox">
         <div class="addTaskHeadline"><h2>Add Task</h2> <span onclick="hideAddTaskBox()">X</span></div>
         <div template="/assets/templates/addTask_template.html"></div>
-        <button form="addTaskForm">Create Task</button>
+        <button form="addTaskForm" class="blue-btn createBtn cp">Create Task</button>
     </div>
     <div class="mainContent">
         <section class="findAndAdd">
@@ -55,6 +55,8 @@
         </section>
 
     </div>
+    <div class="successfuly-popup d-none" id="popupAddtask">
+        <div class="successfuly-popover-text">Task added to board</div>
     
     <script src="./js/add_tasks.js"></script>
     <script src="./js/board.js"></script>

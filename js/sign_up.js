@@ -26,7 +26,7 @@ async function handleSignUp(name, email, password, confirmedPassword, bgColor) {
       users.push({name: name, email: email, password: password, phone: null, bg: bgColor});
       await setItem('users', JSON.stringify(users));
       resetForm();
-      signupPopup();
+      popup();
   } else {
     displayPasswordMatchError();
   }
@@ -58,7 +58,6 @@ function displayEmailInUseError() {
   emailInput.addEventListener('keyup', () => {
     errorMsgBox.textContent = '';
     emailInput.classList.remove('inputerror');
-
   });
 }
 
@@ -73,7 +72,7 @@ function checkedSignup() {
 }
 
 /** Popup nach erfolgreicher Registrierung */
-function signupPopup() {
+function popup() {
   const animation = document.getElementById('popup');
   animation.classList.remove('d-none');
   setTimeout(() => {

@@ -174,6 +174,60 @@ a {
     }
 }
 
+.successfuly-popup {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    opacity: 1;
+    animation: change-background 2s forwards;
+    animation-delay: 2s;
+    z-index: 100;
+}
+
+.successfuly-popover-text {
+    position: relative;
+    top: 94%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: move-to-middle 0.2s forwards linear;
+    cursor: none;
+    text-align: center;
+    font-size: 23px;
+    width: 326px;
+    height: 74px;
+    padding: 23px 18px;
+    background-color: var(--clr-main1);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    z-index: 1000;
+}
+
+@keyframes move-to-middle {
+    from {
+        left: 50%;
+        top: 94%;
+    }
+
+    to {
+        left: 50%;
+        top: 45%;
+    }
+}
+
+@keyframes change-background {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        z-index: -100;
+    }
+}
+
 /*** Summary area ***/
 .sum-content {
     overflow-y: hidden;
@@ -295,7 +349,9 @@ a {
             div {
                 transform: scaleY(1.1) scaleX(1)
             }
-
+            span{
+                transform: scaleY(1.1) scaleX(0.94)
+            }
             transform: scaleY(0.94) scaleX(1.25);
         }
     }
