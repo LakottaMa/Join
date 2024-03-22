@@ -8,6 +8,7 @@
     padding: 64px 24px;
     margin-top: 96px;
     overflow-y: auto;
+    width: 488px;
 }
 
 .addTaskSection {
@@ -107,7 +108,7 @@ textarea:hover {
     gap: 10px;
     border-bottom: 1px solid white;
     border-radius: 10px;
-    padding: 8px;
+    padding: 10px 18px;
     box-shadow: 0px 0px 4px 0px #00000029;
     width: 136px;
     height: 51px;

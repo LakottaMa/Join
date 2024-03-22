@@ -6,18 +6,32 @@ async function initBoard() {
    renderTasksInBoard();
 }
 
+/**
+ * show Add Task Box and set default values for task
+ * @param {string} status status string to set correct status for task
+ */
 function showAddTaskBox(status) {
    let box = document.getElementById('addTaskBox');
    box.classList.remove('d-none');
    setTimeout(() => {
       box.style.right = 0;
    }, 100);
+   setDefaultValues(status);
 
+}
+/**
+ * set default values
+ * @param {string} status 
+ */
+function setDefaultValues(status) {
    defaultValues.status = `${status}`;
    defaultValues.category = 'User Story';
    defaultValues.priority = 'Medium';
 }
 
+/**
+ * hide add task box
+ */
 function hideAddTaskBox() {
    if (window.location.pathname.endsWith('/board.html')) {
       let box = document.getElementById('addTaskBox');
@@ -28,6 +42,9 @@ function hideAddTaskBox() {
    }
 }
 
+/**
+ * clear all container for tasks
+ */
 function clearContainer() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
    ids.forEach(id => {
@@ -38,6 +55,9 @@ function clearContainer() {
    });
 }
 
+/**
+ * render tasks in board
+ */
 function renderTasksInBoard() {
    clearContainer();
    for (let i = 0; i < tasks.length; i++) {
@@ -55,6 +75,10 @@ function renderTasksInBoard() {
    checkContainerEmpty();
 }
 
+/**
+ * hide subtask container if no subtasks exist for task
+ * @param {int} index 
+ */
 function checkIfSubtasksEmtpty(index) {
    let subtaskContainer = document.getElementById(`todoSubtasks${index}`);
    if (tasks[index]['subtasks'].length == 0 && tasks[index]['subtasksDone'].length == 0) {
