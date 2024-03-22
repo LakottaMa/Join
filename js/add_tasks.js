@@ -70,7 +70,7 @@ async function addTask() {
     await saveTasks(tasks);
     resetInputsAndSelections();
     successfullyPopupAddTask();
-    renderTasksInBoard();
+    // renderTasksInBoard();
     hideAddTaskBox();
 }
 
@@ -84,7 +84,8 @@ function successfullyPopupAddTask() {
       });
     setTimeout(() => {
         window.location.href = './board.html';
-    }, 100000);
+    }, 1000);
+    
 }
 
 /**

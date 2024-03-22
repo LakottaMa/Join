@@ -11,7 +11,7 @@ function showAddTaskBox(status) {
    box.classList.remove('d-none');
    setTimeout(() => {
       box.style.right = 0;
-  }, 100);
+   }, 100);
 
    defaultValues.status = `${status}`;
    defaultValues.category = 'User Story';
@@ -19,14 +19,14 @@ function showAddTaskBox(status) {
 }
 
 function hideAddTaskBox() {
-   let box = document.getElementById('addTaskBox');
-   box.style.right = '-1000px';
-   setTimeout(() => {
-      box.classList.add('d-none');
-   }, 100);
-   
+   if (window.location.pathname.endsWith('/board.html')) {
+      let box = document.getElementById('addTaskBox');
+      box.style.right = '-1000px';
+      setTimeout(() => {
+         box.classList.add('d-none');
+      }, 100);
+   }
 }
-
 
 function clearContainer() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
@@ -57,7 +57,7 @@ function renderTasksInBoard() {
 
 function checkIfSubtasksEmtpty(index) {
    let subtaskContainer = document.getElementById(`todoSubtasks${index}`);
-   if(tasks[index]['subtasks'].length == 0 && tasks[index]['subtasksDone'].length == 0 ) {
+   if (tasks[index]['subtasks'].length == 0 && tasks[index]['subtasksDone'].length == 0) {
       subtaskContainer.classList.add('d-none');
    }
 }
@@ -75,13 +75,13 @@ function changeProgressValue(index) {
    let subtasksDone = tasks[index]['subtasksDone'].length;
    let allSubtasks = calculateAllSubTasks(index);
    let calcPercent = (subtasksDone / allSubtasks) * 100;
-   if(isNaN(calcPercent) == true) {
+   if (isNaN(calcPercent) == true) {
       progressInPercent = 0;
    } else {
       progressInPercent = calcPercent;
    }
-   
-   progressBar.value = progressInPercent;   
+
+   progressBar.value = progressInPercent;
 }
 
 function getColorForCategory(index) {
@@ -111,7 +111,7 @@ function getBgColorForContact(contact) {
    } else {
       return 'rgb(175, 170, 170)';
    }
-   
+
 }
 
 function printTasksInBoard(task, index, subTasksLength) {
@@ -157,7 +157,7 @@ function checkContainer(status) {
 }
 
 function checkRenderTasks() {
-   if(searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
+   if (searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
       renderTasksInBoard();
    } else {
       renderSearchedTasks();
@@ -169,20 +169,20 @@ function checkContainerEmpty() {
    ids.forEach(id => {
       let emptyContainerText = getContainerName(id);
       let container = document.getElementById(id);
-      if(container.hasChildNodes() === false) {
+      if (container.hasChildNodes() === false) {
          container.innerHTML = /*html*/ `<div class="emptyBox"><span>${emptyContainerText}</span></div>`;
       }
    });
 }
 
 function getContainerName(id) {
-   if(id == 'doneContainer') {
+   if (id == 'doneContainer') {
       return 'No tasks Done';
-   } else if(id == 'toDoContainer') {
+   } else if (id == 'toDoContainer') {
       return 'No tasks To Do'
-   } else if(id == 'inProgressContainer') {
+   } else if (id == 'inProgressContainer') {
       return 'No tasks in Progress'
-   } else if(id == 'awaitFeedbackContainer') {
+   } else if (id == 'awaitFeedbackContainer') {
       return 'No tasks for Feedback'
    }
 }
@@ -211,7 +211,7 @@ function renderSearchedTasks() {
       container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
       renderAssignedTo(contacts, index);
       getColorForCategory(index);
-      changeProgressValue(index); 
+      changeProgressValue(index);
    }
    checkContainerEmpty();
 }
