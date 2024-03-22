@@ -6,18 +6,24 @@ async function initBoard() {
    renderTasksInBoard();
 }
 
+
+
 /**
  * show Add Task Box and set default values for task
  * @param {string} status status string to set correct status for task
  */
 function showAddTaskBox(status) {
-   let box = document.getElementById('addTaskBox');
-   box.classList.remove('d-none');
-   setTimeout(() => {
-      box.style.right = 0;
-   }, 100);
-   setDefaultValues(status);
-
+   if (window.matchMedia('(max-width: 500px)').matches) {
+      window.location.href = './add_tasks.html';
+      setDefaultValues(status);
+   } else {
+      let box = document.getElementById('addTaskBox');
+      box.classList.remove('d-none');
+      setTimeout(() => {
+         box.style.right = 0;
+      }, 100);
+      setDefaultValues(status);
+   }
 }
 /**
  * set default values

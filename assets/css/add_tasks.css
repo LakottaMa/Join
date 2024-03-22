@@ -62,11 +62,10 @@ textarea:hover {
 
     & textarea {
         width: 100%;
-        height: 100%;
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
         border-bottom-left-radius: 8px;
-        min-height: 120px;
+        min-height: 200px;
         padding: 8px;
         font-size: 19px;
         font-weight: 400;
@@ -412,6 +411,11 @@ textarea:hover {
         gap: 8px;
     }
 
+    .addTaskBoxInAddTasks {
+        padding: 16px;
+        width: 100%;
+    }
+
     .addTaskSection {
         padding: 0;
         margin: 0;
@@ -425,13 +429,14 @@ textarea:hover {
         margin-bottom: 120px;
     }
 
-    .priorityBox {
-        width: fit-content;
+    .textAreaAddTask textarea {
+        min-height: 120px;
     }
-}
 
-@media(max-width: 450px) {
-    .content {
-        scale: 0.8;
-    }
+    .priorityBox {
+        width: 30%;
+        font-size: 16px;
+        padding: 4px;
+        justify-content: space-around;
+    }    
 }

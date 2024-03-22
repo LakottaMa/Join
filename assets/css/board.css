@@ -32,6 +32,10 @@
         width: 32px;
         height: 32px;
     }
+
+    & h1 {
+        font-size: 48px;
+    }
 }
 
 .mainContent {
@@ -140,7 +144,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    
+
 }
 
 .todoCategory {
@@ -270,6 +274,7 @@ progress[value] {
     .findAndAdd {
         flex-direction: column;
         padding: 16px;
+        margin-top: 135px;
 
         & button {
             display: none;
@@ -283,5 +288,10 @@ progress[value] {
 
     .addTaskbox {
         width: 100%;
+    }
+
+    .toDoDiv {
+        padding: 8px;
+        min-width: 100%;
     }
 }
