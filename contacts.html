@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +7,19 @@
     <link rel="stylesheet" href="./assets/css/contacts.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
-
-
-
     <title>Join</title>
 </head>
-
 <body onload="initContacts()">
     <div id="background"></div>
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
         <section class="contactList">
-            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img src="./assets/img/person_add.png"
-                    alt="addlogo"></button>
+            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img
+                    src="./assets/img/person_add.png" alt="addlogo"></button>
             <div id="allContacts"></div>
         </section>
-        <section id="contactPopup" class="d-none"></section>
-
+        <section id="contactPopup" class="d-none"></section>           
+        
         <aside id="floatingContact" class="d-none"></aside>
     </div>
     <div class="successfully-popup d-none" id="popupCreateContact">
@@ -36,5 +31,4 @@
         <script src="./js/contacts_template.js"></script>
         <script src="./script.js"></script>
 </body>
-
 </html>

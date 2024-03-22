@@ -101,7 +101,6 @@ a {
 }
 
 .white-btn {
-    width: 197px;
     font-size: 23px;
     padding: 8px 16px;
     background-color: white;
@@ -179,7 +178,6 @@ a {
     top: 0;
     height: 100vh;
     width: 100%;
-    gap: 20px;
     backdrop-filter: blur(20px);
     opacity: 1;
     animation: change-background 2s forwards;
@@ -195,8 +193,8 @@ a {
     animation: move-to-middle 0.2s forwards linear;
     cursor: none;
     text-align: center;
-    font-size: 24px;
-    width: fit-content;
+    font-size: 23px;
+    width: 316px;
     height: 74px;
     padding: 23px 18px;
     background-color: var(--clr-main1);
@@ -204,6 +202,9 @@ a {
     border: none;
     border-radius: 20px;
     z-index: 1000;
+    img{
+        margin-left: 20px;
+    }
 }
 
 @keyframes move-to-middle {

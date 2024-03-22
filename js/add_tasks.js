@@ -84,7 +84,7 @@ function successfullyPopupAddTask() {
       });
     setTimeout(() => {
         window.location.href = './board.html';
-    }, 2000);
+    }, 100000);
 }
 
 /**

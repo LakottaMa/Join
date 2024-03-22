@@ -1,4 +1,3 @@
-
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -9,8 +8,8 @@ async function initContacts() {
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
-        //users.sort((a, b) => a.name.localeCompare(b.name));//zu früh sortiert!!!!
         let currentLetter = '';
+        users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
             if (firstLetter !== currentLetter) {
@@ -28,18 +27,19 @@ function renderContactList() {
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
+
 }
+
 
 // console.log('contact',contact) //wieder löschen!!
 
 function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
-    let id = users[i]['id'];
     let bgColor = users[i]['bg'];
     return `
-        <div class="contactSmall cp" onclick="showFloatContact(${i})">
-            <div id="${id}"class="initials" style="background-color:${bgColor};">${initials}</div>
+        <div class="contactSmall cp" id="contactSmall-${i}" onclick="showFloatContact(${i})">
+            <div class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
                 <p>${users[i]['email']}</p>
@@ -55,10 +55,10 @@ function deleteUser(userIndex) {
     } else {
         alert("User not found.");
     }
+
     setItem('users', JSON.stringify(users));
     document.getElementById('floatingContact').innerHTML += '';
     renderContactList();
-    console.log('user wurde gelöscht');
     console.log('user wurde gelöscht');
     console.table(users);
 
@@ -76,11 +76,8 @@ function addBgContact(index) {
             contact.classList.remove('contactBgClicked');
         }
     };
-
-
-    document.getElementById('floatingContact').innerHTML += '';
-    closePopup();
 }
+
 
 function showFloatContact(i) {
     addBgContact(i);
@@ -152,22 +149,22 @@ async function createNewContact() {
             bg: bgColor,
         });
         await setItem('users', JSON.stringify(users));
-        successfullyPopupAddTask();
+        successfullyPopupAddContact();
         closePopup();
-        
+
     } else {
         console.error('Please fill out all fields');
     }
 }
 
 /** Popup nach erfolgreicher Task Erstellung */
-function successfullyPopupAddTask() {
+function successfullyPopupAddContact() {
     const animation = document.getElementById('popupCreateContact');
     animation.classList.remove('d-none');
     setTimeout(() => {
         renderContactList();
     }, 2000);
-}
+  }
 
 function editContact(i) {
     showEditPopup(i);
@@ -182,7 +179,7 @@ function editContact(i) {
 }
 
 async function saveUser(i) {
-
+    
     let newName = document.getElementById('contactName').value;
     let newEmail = document.getElementById('contactEmail').value;
     let newPhone = document.getElementById('contactPhone').value;
@@ -190,7 +187,7 @@ async function saveUser(i) {
     // let currentName = users[i]['name'];
     // let indexToModify = users.findIndex(user => user.name === `${currentName}`);
     // if (indexToModify !== -1) {
-
+   
     //     users[indexToModify].name = `${newName}`;
     // }
     users[i]['name'] = newName;
@@ -244,7 +241,7 @@ function closePopup() {
 
 //////////////////////////// Start Templates ////////////////////////////
 
-function createContactPopupHTML() {
+function createContactPopupHTML() {    
     document.getElementById('contactPopup').innerHTML = '';
     return `
     <div id="closePopup">
