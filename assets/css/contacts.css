@@ -1,4 +1,3 @@
-
 h2,
 h3 {
     color: black !important;
@@ -177,7 +176,7 @@ h3 {
 }
 
 #contactPopup {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
