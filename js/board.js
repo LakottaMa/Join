@@ -8,7 +8,11 @@ async function initBoard() {
 
 function showAddTaskBox(status) {
    let box = document.getElementById('addTaskBox');
-   box.style.right = 0;
+   box.classList.remove('d-none');
+   setTimeout(() => {
+      box.classList.add('showAddTaskBox')
+  }, 100);
+
    defaultValues.status = `${status}`;
    defaultValues.category = 'User Story';
    defaultValues.priority = 'Medium';
@@ -16,7 +20,11 @@ function showAddTaskBox(status) {
 
 function hideAddTaskBox() {
    let box = document.getElementById('addTaskBox');
-   box.style.right = '-600px';
+   box.classList.add('hideAddTaskBox');
+   setTimeout(() => {
+      box.classList.add('d-none');
+   }, 100);
+   
 }
 
 

@@ -1,7 +1,7 @@
 .addTaskbox {
-    position: fixed;
+    position: absolute;
     top: -96px;
-    right: -600px;
+    right: -1000px;
     transition-duration: 225ms;
     z-index: 15;
     display: flex;
@@ -19,6 +19,16 @@
         margin-bottom: 32px;
         margin-right: 32px;
     }
+}
+
+.showAddTaskBox {
+    transition-duration: 225ms;
+    right: 0;
+}
+
+.hideAddTaskBox {
+    transition-duration: 225ms;
+    right: -1000px;
 }
 
 
@@ -43,6 +53,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    position: relative;
 }
 
 

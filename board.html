@@ -12,7 +12,8 @@
 
 <body onload="initBoard()">
     <div template="/assets/templates/desktop_template.html"></div>
-    <div class="addTaskBox" id="addTaskBox">
+
+    <div class="addTaskBox d-none" id="addTaskBox">
         <div class="addTaskHeadline">
             <h1>Add Task</h1>
             <img onclick="hideAddTaskBox()" src="./assets/img/close.png" alt="">
@@ -20,7 +21,9 @@
         <div template="/assets/templates/addTask_template.html"></div>
         <button class="blue-btn cp" form="addTaskForm">Create Task</button>
     </div>
+
     <div class="mainContent">
+        
         <section class="findAndAdd">
             <div class="searchField">
                 <img src="./assets/img/divider_vertical.png" alt="">
