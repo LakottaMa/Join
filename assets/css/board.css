@@ -1,23 +1,38 @@
 .addTaskbox {
     position: fixed;
-    top: 0;
-    right: -450px;
+    top: -96px;
+    right: -600px;
     transition-duration: 225ms;
     z-index: 15;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 400px;
     margin-top: 96px;
     background-color: white;
-    border: 1px solid black;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 30px 0 30px 30px;
+    width: 518px;
+
+    & button {
+        margin-left: auto;
+        margin-bottom: 32px;
+        margin-right: 32px;
+    }
 }
+
+
 
 .addTaskHeadline {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 72px 40px;
+
+    & img {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 .mainContent {
@@ -230,6 +245,20 @@ progress[value] {
 
     .taskContainer {
         margin-bottom: 80px;
+        min-width: 100%;
+    }
+
+    .toDoDiv {
+        overflow-x: auto;
+        flex-direction: row;
+    }
+
+    .taskHeadline {
+        width: 100%;
+    }
+
+    .addTaskBoxInAddTasks {
+        margin-top: 0;
     }
 }
 
@@ -248,7 +277,7 @@ progress[value] {
         padding: 4px 8px;
     }
 
-    .taskContainer {
-        justify-content: center;
+    .addTaskbox {
+        width: 100%;
     }
 }
