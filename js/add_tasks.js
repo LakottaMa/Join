@@ -70,7 +70,6 @@ async function addTask() {
     await saveTasks(tasks);
     resetInputsAndSelections();
     successfullyPopupAddTask();
-    // renderTasksInBoard();
     hideAddTaskBox();
 }
 
