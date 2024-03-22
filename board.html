@@ -16,7 +16,7 @@
     <div class="addTaskBox d-none" id="addTaskBox">
         <div class="addTaskHeadline">
             <h1>Add Task</h1>
-            <img onclick="hideAddTaskBox()" src="./assets/img/close.png" alt="">
+            <img class="cp" onclick="hideAddTaskBox()" src="./assets/img/close.png" alt="">
         </div>
         <div template="/assets/templates/addTask_template.html"></div>
         <button class="blue-btn cp" form="addTaskForm">Create Task</button>
@@ -61,8 +61,6 @@
         </section>
 
     </div>
-    <div class="successfully-popup d-none" id="popupAddtask">
-        <div class="successfully-popover-text">Task added to board <img src="./assets/img/board_white.png"></div>
     
     <script src="./js/add_tasks.js"></script>
     <script src="./js/board.js"></script>

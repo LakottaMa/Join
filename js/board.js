@@ -10,7 +10,7 @@ function showAddTaskBox(status) {
    let box = document.getElementById('addTaskBox');
    box.classList.remove('d-none');
    setTimeout(() => {
-      box.classList.add('showAddTaskBox')
+      box.style.right = 0;
   }, 100);
 
    defaultValues.status = `${status}`;
@@ -20,7 +20,7 @@ function showAddTaskBox(status) {
 
 function hideAddTaskBox() {
    let box = document.getElementById('addTaskBox');
-   box.classList.add('hideAddTaskBox');
+   box.style.right = '-1000px';
    setTimeout(() => {
       box.classList.add('d-none');
    }, 100);

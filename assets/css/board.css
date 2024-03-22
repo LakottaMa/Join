@@ -21,17 +21,6 @@
     }
 }
 
-.showAddTaskBox {
-    transition-duration: 225ms;
-    right: 0;
-}
-
-.hideAddTaskBox {
-    transition-duration: 225ms;
-    right: -1000px;
-}
-
-
 
 .addTaskHeadline {
     display: flex;
