@@ -152,12 +152,21 @@ async function createNewContact() {
             bg: bgColor,
         });
         await setItem('users', JSON.stringify(users));
-        renderContactList();
+        successfullyPopupAddTask();
         closePopup();
-
+        
     } else {
         console.error('Please fill out all fields');
     }
+}
+
+/** Popup nach erfolgreicher Task Erstellung */
+function successfullyPopupAddTask() {
+    const animation = document.getElementById('popupCreateContact');
+    animation.classList.remove('d-none');
+    setTimeout(() => {
+        renderContactList();
+    }, 2000);
 }
 
 function editContact(i) {
@@ -173,7 +182,7 @@ function editContact(i) {
 }
 
 async function saveUser(i) {
-    
+
     let newName = document.getElementById('contactName').value;
     let newEmail = document.getElementById('contactEmail').value;
     let newPhone = document.getElementById('contactPhone').value;
@@ -181,7 +190,7 @@ async function saveUser(i) {
     // let currentName = users[i]['name'];
     // let indexToModify = users.findIndex(user => user.name === `${currentName}`);
     // if (indexToModify !== -1) {
-   
+
     //     users[indexToModify].name = `${newName}`;
     // }
     users[i]['name'] = newName;
@@ -235,7 +244,7 @@ function closePopup() {
 
 //////////////////////////// Start Templates ////////////////////////////
 
-function createContactPopupHTML() {    
+function createContactPopupHTML() {
     document.getElementById('contactPopup').innerHTML = '';
     return `
     <div id="closePopup">

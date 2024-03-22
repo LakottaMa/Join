@@ -69,15 +69,19 @@ async function addTask() {
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
-    successfulyPopupAddTask();
+    successfullyPopupAddTask();
     renderTasksInBoard();
     hideAddTaskBox();
 }
 
 /** Popup nach erfolgreicher Task Erstellung */
-function successfulyPopupAddTask() {
+function successfullyPopupAddTask() {
     const animation = document.getElementById('popupAddtask');
     animation.classList.remove('d-none');
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     setTimeout(() => {
         window.location.href = './board.html';
     }, 2000);

@@ -174,11 +174,12 @@ a {
     }
 }
 
-.successfuly-popup {
+.successfully-popup {
     position: absolute;
     top: 0;
     height: 100vh;
     width: 100%;
+    gap: 20px;
     backdrop-filter: blur(20px);
     opacity: 1;
     animation: change-background 2s forwards;
@@ -186,7 +187,7 @@ a {
     z-index: 100;
 }
 
-.successfuly-popover-text {
+.successfully-popover-text {
     position: relative;
     top: 94%;
     left: 50%;
@@ -194,8 +195,8 @@ a {
     animation: move-to-middle 0.2s forwards linear;
     cursor: none;
     text-align: center;
-    font-size: 23px;
-    width: 326px;
+    font-size: 24px;
+    width: fit-content;
     height: 74px;
     padding: 23px 18px;
     background-color: var(--clr-main1);

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,25 +13,28 @@
 
     <title>Join</title>
 </head>
+
 <body onload="initContacts()">
     <div id="background"></div>
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
         <section class="contactList">
-            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img
-                    src="./assets/img/person_add.png" alt="addlogo"></button>
+            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img src="./assets/img/person_add.png"
+                    alt="addlogo"></button>
             <div id="allContacts"></div>
         </section>
-        <section id="contactPopup" class="d-none"></section>           
-        
+        <section id="contactPopup" class="d-none"></section>
+
         <aside id="floatingContact" class="d-none"></aside>
     </div>
-
-    <script src="./js/sign_up.js"></script>
-    <script src="./js/contacs.js"></script>
-    <script src="./js/storage.js"></script>
-    <script src="./js/templates.js"></script>
-    <script src="./templates/contacts_template.js"></script>
-    <script src="./script.js"></script>
+    <div class="successfully-popup d-none" id="popupCreateContact">
+        <div class="successfully-popover-text">Contact successfully create</div>
+        <script src="./js/sign_up.js"></script>
+        <script src="./js/contacs.js"></script>
+        <script src="./js/storage.js"></script>
+        <script src="./js/templates.js"></script>
+        <script src="./js/contacts_template.js"></script>
+        <script src="./script.js"></script>
 </body>
+
 </html>
