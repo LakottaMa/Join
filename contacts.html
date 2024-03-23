@@ -18,12 +18,15 @@
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
         <section class="contactList">
-            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img
+            <div class="addBtnDiv">
+            <button class="blue-btn addBtn cp" onclick="showAddPopup()">Add new contact<img
                     src="./assets/img/person_add.png" alt="addlogo"></button>
+            </div>
             <div id="allContacts"></div>
-        </section>
-        <section id="contactPopup" class="d-none"></section>           
         
+        </section>
+        <section id="contactPopup" class="d-none"></section> 
+        <section id="contactPopupMobile" class="d-none"></section> 
         <aside id="floatingContact" class="d-none"></aside>
     </div>
 

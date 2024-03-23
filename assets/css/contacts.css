@@ -11,23 +11,38 @@ h3 {
     margin-left: 232px;
 }
 
+#allContacts{
+    padding-top: 100px;
+}
+
 .contactList {
+    display: flex;
+    justify-content: center;
     width: 456px;
     overflow-y: scroll;
     margin-top: 96px;
     padding: 0 28px 0 52px;
 }
 
-.blue-btn {
+.addBtnDiv {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    width: 357px;
+}
+
+.addBtn {
     gap: 10px;
     width: 100%;
     margin: 32px 0 17px 0;
+    padding: 16px 10px;
 }
 
 .letterBox {
     width: 100%;
     font-size: 22px;
-
 }
 
 .letter {
@@ -170,7 +185,7 @@ h3 {
     position: fixed;
     top: 0;
     left: 0;
-    transition: all 500ms ease-in-out;
+    transition: all 225ms ease-in-out;
     background-color: #ffffff6a;
     z-index: 2;
 }
@@ -189,7 +204,7 @@ h3 {
     transition: all 225ms ease-in-out;
 }
 
-.hidePopup{
+.hidePopup {
     transform: translateX(4000px);
     transition: all 225ms ease-in-out;
 }
@@ -214,8 +229,8 @@ h3 {
         font-weight: 700px;
     }
 
-    p{
-        font-size:27px;
+    p {
+        font-size: 27px;
     }
 }
 
@@ -256,6 +271,7 @@ h3 {
     display: flex;
     justify-content: end;
     align-items: center;
+    width: 422px;
 
     img {
         position: absolute;
