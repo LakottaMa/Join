@@ -214,23 +214,18 @@ function printAssignedTo(contact, contactId) {
 }
 
 /**
- * get the correct container for each task status
+ * 
  * @param {string} status 
  * @returns the container for the task
  */
 function checkContainer(status) {
-   switch (status) {
-      case 'To do':
-         return document.getElementById('toDoContainer');
-      case 'In progress':
-         return document.getElementById('inProgressContainer');
-      case 'Await feedback':
-         return document.getElementById('awaitFeedbackContainer');
-      case 'Done':
-         return document.getElementById('doneContainer');
-      default:
-         return document.getElementById('toDoContainer');
-   }
+   const containerIds = {
+       'To do': 'toDoContainer',
+       'In progress': 'inProgressContainer',
+       'Await feedback': 'awaitFeedbackContainer',
+       'Done': 'doneContainer'
+   };
+   return document.getElementById(containerIds[status] || 'toDoContainer');
 }
 
 /**
@@ -259,20 +254,18 @@ function checkContainerEmpty() {
 }
 
 /**
- * get the correct string for the status
- * @param {int} id 
- * @returns string for the empty task box
+ * 
+ * @param {int} id of task container
+ * @returns the name of the container
  */
 function getContainerName(id) {
-   if (id == 'doneContainer') {
-      return 'No tasks Done';
-   } else if (id == 'toDoContainer') {
-      return 'No tasks To Do'
-   } else if (id == 'inProgressContainer') {
-      return 'No tasks in Progress'
-   } else if (id == 'awaitFeedbackContainer') {
-      return 'No tasks for Feedback'
-   }
+   const containerNames = {
+       'doneContainer': 'No tasks Done',
+       'toDoContainer': 'No tasks To Do',
+       'inProgressContainer': 'No tasks in Progress',
+       'awaitFeedbackContainer': 'No tasks for Feedback'
+   };
+   return containerNames[id] || 'Unknown Container';
 }
 
 let searchedTasks;
