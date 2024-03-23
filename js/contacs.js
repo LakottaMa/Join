@@ -83,6 +83,11 @@ function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
+    // if (window.innerWidth <= 1024) {
+    //     document.getElementById('contactList').classList.add('d-none');
+    //     document.getElementById('floatingContact').style.zIndex = '10';
+    // }
+
 
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
@@ -94,7 +99,14 @@ function floatContactHTML(name, email, i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     return `
-        <div class="floatingTop">
+        <div id="floatMobil">
+            <h2>Contact Information</h2>
+            <div id="arrowBack" class="cp">
+                <img src="./assets/img/arrow-left-line.png" alt="arrowBack">
+            </div
+        </div>
+        </div>
+        <div class="floatingTop">            
             <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
             <div class="floatingInteracts">
                 <span>${name}</span>
@@ -105,7 +117,7 @@ function floatContactHTML(name, email, i) {
             </div>
         </div>
         <div class="floatingBottom">
-            <h2>Contact Information</h2>
+        <h2 id="contactInfo">Contact Information</h2>
         <div>
             <h3>Email</h3>
             <div id="emailFloating">${email}</div>
@@ -164,7 +176,7 @@ function successfullyPopupAddContact() {
     setTimeout(() => {
         renderContactList();
     }, 2000);
-  }
+}
 
 function editContact(i) {
     showEditPopup(i);
@@ -188,7 +200,7 @@ async function saveUser(i) {
     // let currentName = users[i]['name'];
     // let indexToModify = users.findIndex(user => user.name === `${currentName}`);
     // if (indexToModify !== -1) {
-   
+
     //     users[indexToModify].name = `${newName}`;
     // }
     // users[i]['name'] = newName;
@@ -197,7 +209,7 @@ async function saveUser(i) {
     // await setItem('users', JSON.stringify(users));
 
     if (name && email && phone) {
-            users.push({
+        users.push({
             name: name,
             email: email,
             phone: phone,
@@ -226,7 +238,7 @@ function showAddPopup() {
     document.getElementById('contactPopup').classList.remove('d-none');
     document.getElementById('contactPopup').innerHTML = createContactPopupHTML();
 
-    document.getElementById('contactPopup').style.left='';
+    document.getElementById('contactPopup').style.left = '';
     document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
     document.getElementById('closePopup').style.borderTopRightRadius = '0px';
     document.getElementById('background').classList.add('back');
@@ -252,88 +264,7 @@ function closePopup() {
     document.getElementById('contactPopup').style.transform = 'translateX (0px)';
 }
 
-//////////////////////////// Start Templates ////////////////////////////
-
-function createContactPopupHTML() {    
-    document.getElementById('contactPopup').innerHTML = '';
-    return `
-    <div id="closePopup">
-        <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
-    </div>
-    <div id="topPopup">
-        <img src="./assets/img/logo.png" alt="logo">
-        <span>Add contact</span>
-        <p>Tasks are better with a team!</p>
-    </div>
-    <div id="bottomPopup">
-        <div id="avatar">
-            <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
-        </div>                  
-        <form id="form" onsubmit="createNewContact(); return false">
-            <div class="input-field">
-                <input id="contactName" type="text" placeholder="Name" required>
-                <img src="./assets/img/person.png" alt="avatar">
-            </div>
-            <div class="input-field">
-                <input id="contactEmail" type="email" placeholder="Email" required>
-                <img src="./assets/img/mail.png" alt="avatar">
-            </div>
-            <div class="input-field">
-                <input id="contactPhone" type="tel" placeholder="Phone" required>
-                <img src="./assets/img/call.png" alt="avatar">
-            </div>
-            <div id="popupBtn">
-                <button class="btnCancel cp" onclick="closePopup()">Cancel
-                <img src="./assets/img/close_black.svg" alt="check">
-                </button>
-                <button class="btnCreate cp">Create contact
-                <img src="./assets/img/check._white.png" alt="check">
-                </button>
-            </div>                    
-        </form>
-    </div>
-    
-    `;
+function notClose(event) {
+    event.stopPropagation();
 }
 
-function editContactPopupHTML(i) {
-    let bgColor = users[i]['bg'];
-    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-    return `
-    <div id="closePopup">
-        <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
-    </div>
-    <div id="topPopup">
-        <img src="./assets/img/logo.png" alt="logo">
-        <span>Edit contact</span>
-    </div>
-    <div id="bottomPopup">
-        <div id="avatar">
-            <div id="${i}" class="initialsFloating" style="background-color:${bgColor};"
-            >${initials}
-            </div>
-        </div>                 
-        <form id="form" onsubmit="saveUser(); return false">
-            <div class="input-field">
-                <input id="contactName" type="text" placeholder="Name" required>
-                <img src="./assets/img/person.png" alt="avatar">
-            </div>
-            <div class="input-field">
-                <input id="contactEmail" type="email" placeholder="Email" required>
-                <img src="./assets/img/mail.png" alt="avatar">
-            </div>
-            <div class="input-field">
-                <input id="contactPhone" type="tel" placeholder="Phone" required>
-                <img src="./assets/img/call.png" alt="avatar">
-            </div>
-            <div id="popupBtn">
-                <button class="btnCancel cp" onclick="deleteUser(${i})">Delete</button>                
-                <button class="btnCreate cp" onclick="saveUser(${i})">Save<img
-                    src="./assets/img/check._white.png" alt="check">
-                </button>
-            </div>                    
-        </form>
-    </div>
-    `;
-}

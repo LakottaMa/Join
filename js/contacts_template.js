@@ -1,4 +1,4 @@
-function createContactPopupHTML() {    
+function createContactPopupHTML() {
     document.getElementById('contactPopup').innerHTML = '';
     return `
     <div id="closePopup">
@@ -10,8 +10,10 @@ function createContactPopupHTML() {
         <p>Tasks are better with a team!</p>
     </div>
     <div id="bottomPopup">
-        <div id="avatar">
-            <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
+        <div class="avatarDiv">
+            <div id="avatar">
+                <img src="./assets/img/avatar_placeholder.png" alt="avatar">
+            </div>
         </div>                  
         <form id="form" onsubmit="createNewContact(); return false">
             <div class="input-field">
@@ -20,18 +22,18 @@ function createContactPopupHTML() {
             </div>
             <div class="input-field">
                 <input id="contactEmail" type="email" placeholder="Email" required>
-                <img src="./assets/img/mail.png" alt="avatar">
+                <img src="./assets/img/mail.png" alt="mail">
             </div>
             <div class="input-field">
                 <input id="contactPhone" type="tel" placeholder="Phone" required>
-                <img src="./assets/img/call.png" alt="avatar">
+                <img src="./assets/img/call.png" alt="call">
             </div>
             <div id="popupBtn">
                 <button class="btnCancel cp" onclick="closePopup()">Cancel
-                <img src="./assets/img/close_black.svg" alt="check">
-                </button>
+                    <img src="./assets/img/close_black.svg" alt="check">
+                 </button>
                 <button class="btnCreate cp">Create contact
-                <img src="./assets/img/check._white.png" alt="check">
+                    <img src="./assets/img/check._white.png" alt="check">
                 </button>
             </div>                    
         </form>
@@ -41,6 +43,10 @@ function createContactPopupHTML() {
 }
 
 function editContactPopupHTML(i) {
+    // if(window.innerWidth <= 1024){
+    //     let p = `<p>Tasks are better with a team!</p>`;
+    // }
+    
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
@@ -53,11 +59,12 @@ function editContactPopupHTML(i) {
         <span>Edit contact</span>
     </div>
     <div id="bottomPopup">
-        <div id="avatar">
-            <div id="${i}" class="initialsFloating" style="background-color:${bgColor};"
-            >${initials}
-            </div>
-        </div>                  
+        <div class="avatarDiv">
+            <div id="avatar">
+                <div id="${i}" class="initialsFloating" style="background-color:${bgColor};"
+                >${initials}</div>            
+            </div>    
+        </div>              
         <form id="form" onsubmit="saveUser(); return false;">
             <div class="input-field">
                 <input id="contactName" type="text" placeholder="Name" required>
@@ -65,11 +72,11 @@ function editContactPopupHTML(i) {
             </div>
             <div class="input-field">
                 <input id="contactEmail" type="email" placeholder="Email" required>
-                <img src="./assets/img/mail.png" alt="avatar">
+                <img src="./assets/img/mail.png" alt="mail">
             </div>
             <div class="input-field">
                 <input id="contactPhone" type="tel" placeholder="Phone" required>
-                <img src="./assets/img/call.png" alt="avatar">
+                <img src="./assets/img/call.png" alt="call">
             </div>
             <div id="popupBtn">
                 <button class="btnCancel cp" onclick="deleteUser(${i})">Delete</button>                

@@ -6,22 +6,25 @@ h3 {
 .contactSection {
     display: flex;
     flex-direction: row;
-    gap: 30px;
     height: 100vh;
     margin-left: 232px;
 }
 
-#allContacts{
-    padding-top: 100px;
-}
-
 .contactList {
-    display: flex;
-    justify-content: center;
     width: 456px;
     overflow-y: scroll;
     margin-top: 96px;
     padding: 0 28px 0 52px;
+}
+
+#allContacts {
+    padding-top: 100px;
+}
+
+.blue-btn {
+    gap: 10px;
+    width: 100%;
+    margin: 32px 0 17px 0;
 }
 
 .addBtnDiv {
@@ -33,16 +36,10 @@ h3 {
     width: 357px;
 }
 
-.addBtn {
-    gap: 10px;
-    width: 100%;
-    margin: 32px 0 17px 0;
-    padding: 16px 10px;
-}
-
 .letterBox {
     width: 100%;
     font-size: 22px;
+
 }
 
 .letter {
@@ -92,7 +89,7 @@ h3 {
     align-items: center;
     font-size: 12px;
     color: white;
-    width: 42px;
+    min-width: 42px;
     aspect-ratio: 1/1;
     border: 2px solid #FFFFFF;
     border-radius: 50%;
@@ -106,6 +103,21 @@ h3 {
     padding: 72px 0 0 62px;
     margin-top: 96px;
     gap: 21px;
+    width: 40%;
+}
+
+#floatMobil {
+    display: none;
+}
+
+#arrowBack {
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+        width: 34px;
+    }
+
 }
 
 .initialsFloating {
@@ -114,9 +126,9 @@ h3 {
     align-items: center;
     font-size: 47px;
     color: white;
-    width: 120px;
+    min-width: 120px;
     aspect-ratio: 1/1;
-    border: 3px solid #FFFFFF;
+    border: 3px solid #F2F2F2;
     border-radius: 50%;
 }
 
@@ -177,6 +189,7 @@ h3 {
 
 
 
+
 /*********************** Start Popup ***********************/
 
 .back {
@@ -185,21 +198,19 @@ h3 {
     position: fixed;
     top: 0;
     left: 0;
-    transition: all 225ms ease-in-out;
+    transition: all 500ms ease-in-out;
     background-color: #ffffff6a;
-    z-index: 2;
+    z-index: 100;
 }
 
-#contactPopup {
+.overlayContactPopup {
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
-    display: flex;
-    flex-direction: column;
     width: 584px;
     height: 100vh;
-    z-index: 999;
+    z-index: 90;
     transform: translateX(0px);
     transition: all 225ms ease-in-out;
 }
@@ -238,7 +249,6 @@ h3 {
     display: flex;
     justify-content: flex-end;
     background-color: var(--clr-lightblue);
-    border-top-left-radius: 30px;
     padding: 24px 24px 35px 0;
 
     img:hover {
@@ -254,17 +264,20 @@ h3 {
     align-items: center;
     border: solid 1px #E3E3E3;
     border-top: none;
-    height: 100%;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: white;
-    padding: 0 81px;
+}
+
+.avatarDiv {
+    padding: 72px 0 16px 0;
 }
 
 #avatar {
+    display: flex;
+    justify-content: center;
     height: 120px;
     width: 120px;
-    margin: 72px 0 32px 0;
 }
 
 .input-field {
@@ -315,7 +328,7 @@ input {
     color: #647188;
     background-color: white;
     gap: 10px;
-    font-size: 28px;
+    font-size: 23px;
     border: 1px solid #647188;
 
     img {
@@ -339,7 +352,7 @@ input {
     background-color: var(--clr-main1);
     color: white;
     gap: 10px;
-    font-size: 28px;
+    font-size: 23px;
 
     img {
         height: 24px;
@@ -350,3 +363,152 @@ input {
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
     }
 }
+
+#contactMobile {
+    display: none;
+}
+
+/*********************** Start responsive ***********************/
+
+@media screen and (max-width:1200px) {
+
+    #floatMobil {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .floatingTop {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .contactSection {
+        margin: 0;
+    }
+
+    .addBtnDiv {
+        display: none;
+    }
+
+    .contactList {
+        margin-top: 0;
+        width: 100%;
+        overflow-y: visible;
+    }
+
+    #allContacts {
+        padding-bottom: 100px;
+    }
+
+    #contactMobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 64px;
+        height: 64px;
+        margin: 0;
+    }
+
+    .back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #closePopup {
+        border-top-left-radius: 30px !important;
+        border-top-right-radius: 30px !important;
+    }
+
+    .overlayContactPopup {
+        position: static;
+        max-width: 396px;
+        height: calc(100vh - 200px);
+    }
+
+    form {
+        margin-top: 50px;
+    }
+
+    .avatarDiv {
+        padding: 0;
+        position: absolute;
+        top: 230px;
+    }
+
+    #topPopup {
+        img {
+            display: none;
+        }
+
+        p {
+            font-size: 21px;
+        }
+    }
+
+    .input-field {
+        width: 364px;
+    }
+
+    .btnCancel {
+        display: none;
+    }
+
+    .btnCreate {
+        font-size: 19px;
+    }
+
+    #contactInfo {
+        display: none;
+    }
+
+    #floatMobil {
+        display: flex;
+    }
+
+    .popupDotMenue {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        right: 70px;
+        bottom: 140px;
+        width: 116px;
+        height: 100px;
+        background-color: white;
+        border: 2px solid rgba(209, 209, 209, 1);
+        border-radius: 20px 20px 0 20px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+
+        img {
+            width: 24px;
+        }
+
+        p {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            gap: 8px;
+
+            &:hover {
+                color: var(--clr-blue);
+                font-weight: 700;
+            }
+        }
+    }
+
+    .popupMenue {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width:2000px) {}
