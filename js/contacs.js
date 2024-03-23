@@ -38,7 +38,7 @@ function contactsHTML(i) {
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
     let bgColor = users[i]['bg'];
     return `
-        <div class="contactSmall cp" id="contactSmall-${i}" onclick="showFloatContact(${i})">
+        <div class="contactSmall cp" id="smallContact${i}" onclick="showFloatContact(${i})">
             <div class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
@@ -57,7 +57,7 @@ function deleteUser(userIndex) {
     }
 
     setItem('users', JSON.stringify(users));
-    document.getElementById('floatingContact').innerHTML += '';
+    document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
@@ -179,10 +179,11 @@ function editContact(i) {
 }
 
 async function saveUser(i) {
-    
-    let newName = document.getElementById('contactName').value;
-    let newEmail = document.getElementById('contactEmail').value;
-    let newPhone = document.getElementById('contactPhone').value;
+    users.splice(i, 1);
+    let bgColor = newBgColor();
+    let name = document.getElementById('contactName').value;
+    let email = document.getElementById('contactEmail').value;
+    let phone = document.getElementById('contactPhone').value;
 
     // let currentName = users[i]['name'];
     // let indexToModify = users.findIndex(user => user.name === `${currentName}`);
@@ -190,13 +191,25 @@ async function saveUser(i) {
    
     //     users[indexToModify].name = `${newName}`;
     // }
-    users[i]['name'] = newName;
-    users[i]['email'] = newEmail;
-    users[i]['phone'] = newPhone;
-    //users.splice(i, 1);
-    await setItem('users', JSON.stringify(users));
+    // users[i]['name'] = newName;
+    // users[i]['email'] = newEmail;
+    // users[i]['phone'] = newPhone;
+    // await setItem('users', JSON.stringify(users));
 
+    if (name && email && phone) {
+            users.push({
+            name: name,
+            email: email,
+            phone: phone,
+            bg: bgColor,
+        });
+        await setItem('users', JSON.stringify(users));
+        renderContactList();
+        closePopup();
 
+    } else {
+        console.error('Please fill out all fields');
+    }
 
     // users[i]['name'].splice(0,1);
 
@@ -213,7 +226,7 @@ function showAddPopup() {
     document.getElementById('contactPopup').classList.remove('d-none');
     document.getElementById('contactPopup').innerHTML = createContactPopupHTML();
 
-    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('contactPopup').style.left='';
     document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
     document.getElementById('closePopup').style.borderTopRightRadius = '0px';
     document.getElementById('background').classList.add('back');
@@ -227,7 +240,7 @@ function showEditPopup(i) {
     document.getElementById('contactPopup').innerHTML = '';
     document.getElementById('contactPopup').innerHTML = editContactPopupHTML(i);
 
-    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('contactPopup').style.left = 0;
     document.getElementById('closePopup').style.borderTopLeftRadius = '0px';
     document.getElementById('closePopup').style.borderTopRightRadius = '30px';
     document.getElementById('background').classList.add('back');
