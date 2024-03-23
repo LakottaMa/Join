@@ -22,6 +22,23 @@
 }
 
 
+/* mobile add task */
+
+.addTaskboxMobile {
+    position: static;
+    align-items: center;
+    border-radius: 0;
+
+    & button {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 110px;
+        margin-top: 8px;
+    }
+}
+
+/* mobile add task */
+
 .addTaskHeadline {
     display: flex;
     justify-content: space-between;

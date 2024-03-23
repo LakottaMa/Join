@@ -13,11 +13,16 @@ async function initBoard() {
  * @param {string} status status string to set correct status for task
  */
 function showAddTaskBox(status) {
+   let box = document.getElementById('addTaskBox');
+   let mainContent = document.getElementById('mainContent');
+   let headline = document.getElementById('addTaskHeadline');
    if (window.matchMedia('(max-width: 500px)').matches) {
-      window.location.href = './add_tasks.html';
+      box.classList.remove('d-none');
+      box.classList.add('addTaskboxMobile');
+      mainContent.classList.add('d-none');
+      headline.classList.add('d-none');
       setDefaultValues(status);
    } else {
-      let box = document.getElementById('addTaskBox');
       box.classList.remove('d-none');
       setTimeout(() => {
          box.style.right = 0;
@@ -146,7 +151,7 @@ function getBgColorForContact(contact) {
 
 function printTasksInBoard(task, index, subTasksLength) {
    return /*html*/ `
-      <div class="todoBox">
+      <div class="todoBox cp">
          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
