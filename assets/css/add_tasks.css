@@ -438,5 +438,9 @@ textarea:hover {
         font-size: 16px;
         padding: 4px;
         justify-content: space-around;
-    }    
+    }
+    
+    .clearBtn {
+        display: none;
+    }
 }
