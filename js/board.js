@@ -6,8 +6,6 @@ async function initBoard() {
    renderTasksInBoard();
 }
 
-
-
 /**
  * show Add Task Box and set default values for task
  * @param {string} status status string to set correct status for task
@@ -18,8 +16,7 @@ function showAddTaskBox(status) {
    let headline = document.getElementById('addTaskHeadline');
    if (window.matchMedia('(max-width: 500px)').matches) {
       box.classList.remove('d-none');
-      box.classList.add('addTaskboxMobile');
-      mainContent.classList.add('d-none');
+      mainContent.classList.add('dNone');
       headline.classList.add('d-none');
       setDefaultValues(status);
    } else {
