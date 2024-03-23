@@ -9,6 +9,8 @@
     margin-top: 96px;
     overflow-y: auto;
     width: 488px;
+    display: flex;
+    height: calc(100vh - 96px);
 }
 
 .addTaskSection {
@@ -414,6 +416,8 @@ textarea:hover {
     .addTaskBoxInAddTasks {
         padding: 16px;
         width: 100%;
+        justify-content: center;
+        align-items: flex-start;
     }
 
     .addTaskSection {
