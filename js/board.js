@@ -94,6 +94,11 @@ function checkIfSubtasksEmtpty(index) {
    }
 }
 
+/**
+ * calculate all subtasks for task with index
+ * @param {int} index 
+ * @returns 
+ */
 function calculateAllSubTasks(index) {
    let subtasksOpen = tasks[index]['subtasks'].length;
    let subtasksDone = tasks[index]['subtasksDone'].length;
@@ -101,6 +106,10 @@ function calculateAllSubTasks(index) {
    return allSubtasks
 }
 
+/**
+ * set the progress of the progress bar
+ * @param {int} index for task
+ */
 function changeProgressValue(index) {
    let progressInPercent;
    let progressBar = document.getElementById(`progressBar${index}`);
@@ -116,13 +125,21 @@ function changeProgressValue(index) {
    progressBar.value = progressInPercent;
 }
 
+/**
+ * set the color for the task category
+ * @param {int} index 
+ */
 function getColorForCategory(index) {
    let category = tasks[index]['category'];
    let container = document.getElementById(`todoCategory${index}`);
    category == 'User Story' ? container.style.backgroundColor = 'var(--clr-orange)' : container.style.backgroundColor = 'var(--clr-blue)';
 }
 
-
+/**
+ * render the contacts, that are assigned to the task
+ * @param {string} contacts 
+ * @param {int} i 
+ */
 function renderAssignedTo(contacts, i) {
    let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
    assignedToContainer.innerHTML = '';
@@ -135,6 +152,11 @@ function renderAssignedTo(contacts, i) {
    }
 }
 
+/**
+ * get the background color which is stored in users array
+ * @param {string} contact 
+ * @returns 
+ */
 function getBgColorForContact(contact) {
    let userIndex = users.findIndex(u => u.name.toLowerCase() == contact.toLowerCase());
    if (userIndex !== -1) {
@@ -146,6 +168,13 @@ function getBgColorForContact(contact) {
 
 }
 
+/**
+ * generate html for tasks
+ * @param {string} task 
+ * @param {int} index 
+ * @param {int} subTasksLength 
+ * @returns 
+ */
 function printTasksInBoard(task, index, subTasksLength) {
    return /*html*/ `
       <div class="todoBox cp">
@@ -164,15 +193,31 @@ function printTasksInBoard(task, index, subTasksLength) {
    `;
 }
 
+/**
+ * get the right image for the priority
+ * @param {string} prio 
+ * @returns 
+ */
 function getPrioIcon(prio) {
    let path = `./assets/img/prio-${prio.toLowerCase()}.png`;
    return path;
 }
 
+/**
+ * generate html
+ * @param {string} contact 
+ * @param {int} contactId 
+ * @returns 
+ */
 function printAssignedTo(contact, contactId) {
    return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
 }
 
+/**
+ * get the correct container for each task status
+ * @param {string} status 
+ * @returns the container for the task
+ */
 function checkContainer(status) {
    switch (status) {
       case 'To do':
@@ -188,6 +233,9 @@ function checkContainer(status) {
    }
 }
 
+/**
+ * check is search is active
+ */
 function checkRenderTasks() {
    if (searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
       renderTasksInBoard();
@@ -196,6 +244,9 @@ function checkRenderTasks() {
    }
 }
 
+/**
+ * check if a status has no tasks, then render empty text
+ */
 function checkContainerEmpty() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
    ids.forEach(id => {
@@ -207,6 +258,11 @@ function checkContainerEmpty() {
    });
 }
 
+/**
+ * get the correct string for the status
+ * @param {int} id 
+ * @returns string for the empty task box
+ */
 function getContainerName(id) {
    if (id == 'doneContainer') {
       return 'No tasks Done';
@@ -221,6 +277,9 @@ function getContainerName(id) {
 
 let searchedTasks;
 
+/**
+ * push the search output in array and remove duplicates with set
+ */
 function searchTasks() {
    let input = document.getElementById('findTask');
    let filteredTasksTitle = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
@@ -230,6 +289,9 @@ function searchTasks() {
    checkRenderTasks();
 }
 
+/**
+ * render searched tasks
+ */
 function renderSearchedTasks() {
    clearContainer();
    for (let i = 0; i < searchedTasks.length; i++) {
