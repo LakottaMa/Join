@@ -339,3 +339,28 @@ progress[value] {
 .dNone {
     display: none;
 }
+
+.detailViewBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 15;
+}
+
+.detailViewBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 528px;
+    max-height: 900px;
+    min-height: 600px;
+    min-width: 280px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+    z-index: 20;
+    background-color: gray;
+    transform: translate(-50%, -50%);
+}

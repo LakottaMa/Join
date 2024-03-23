@@ -302,3 +302,12 @@ function renderSearchedTasks() {
    }
    checkContainerEmpty();
 }
+
+function showDetailBox() {
+   document.getElementById('detailViewBg').classList.remove('d-none');
+   document.getElementById('detailViewBox').classList.remove('d-none');
+}
+
+function renderDetails(index) {
+   // continue here
+}
