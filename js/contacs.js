@@ -58,6 +58,23 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
+    
+    closePopup();
+}
+
+function addBgContact(index) {
+    let contacts = document.querySelectorAll('.contactSmall');
+    for (let x = 0; x < contacts.length; x++) {
+        let contact = contacts[x];
+
+        if (index === x) {
+            contact.classList.add('contactBgClicked');
+        } else {
+            contact.classList.remove('contactBgClicked');
+        }
+    };
+
+    document.getElementById('floatingContact').innerHTML += '';
     closePopup();
 }
 
