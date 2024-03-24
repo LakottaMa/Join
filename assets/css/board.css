@@ -420,7 +420,7 @@ progress[value] {
 .assignedToDetailBox {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 16px;
 }
 
 .assignedToDetails {
@@ -433,5 +433,11 @@ progress[value] {
 .assignedToDetailView {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
+}
+
+.subTaskDetail {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 400;
 }

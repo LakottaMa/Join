@@ -329,7 +329,30 @@ function renderDetails(index) {
    let categoryContainer = document.getElementById(`detailCategory${index}`);
    getColorForCategory(index, categoryContainer);
    renderAssignedToDetails(index);
+   renderSubTasksDetailView(index);
+   renderSubTasksDetailView(index);
 }
+
+function renderSubTasksDetailView(index) {
+   let container = document.getElementById(`subTasksDetailViewBox${index}`);
+   container.innerHTML = '';
+   let subOpen = tasks[index].subtasks;
+   let subDone = tasks[index].subtasksDone;
+   if(subOpen.length > 0) {
+      for (let i = 0; i < subOpen.length; i++) {
+         const taskOpen = subOpen[i];
+         container.innerHTML += /*html*/ `<div class="assignedToDetails"><span class="subTaskDetail">${taskOpen}</span>`; 
+      }
+   }
+   if(subDone.length > 0) {
+      for (let j = 0; j < subDone.length; j++) {
+         const taskDone = subDone[j];
+         container.innerHTML += /*html*/ `<div class="assignedToDetails"><span class="subTaskDetail">${taskDone}</span>`;
+         
+      }
+   }
+}
+
 
 function renderAssignedToDetails(index) {
    let container = document.getElementById(`assignedToDetailView${index}`);
@@ -380,6 +403,10 @@ function printDetails(task, index) {
          <div class="assignedToDetailBox">
             <span class="keyString">Assigned To:</span>
             <div class="assignedToDetailView" id="assignedToDetailView${index}"></div>
+         </div>
+         <div class="assignedToDetailBox">
+            <span class="keyString">Subtasks</span>
+            <div id="subTasksDetailViewBox${index}" class="assignedToDetailView"></div>
          </div>
       </div>
    `;
