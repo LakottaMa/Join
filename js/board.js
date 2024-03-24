@@ -6,18 +6,51 @@ async function initBoard() {
    renderTasksInBoard();
 }
 
+
+
+/**
+ * show Add Task Box and set default values for task
+ * @param {string} status status string to set correct status for task
+ */
 function showAddTaskBox(status) {
-   let box = document.getElementById('addTaskBox');
-   box.style.right = 0;
-   statusObj.status = `${status}`;
+   if (window.matchMedia('(max-width: 500px)').matches) {
+      window.location.href = './add_tasks.html';
+      setDefaultValues(status);
+   } else {
+      let box = document.getElementById('addTaskBox');
+      box.classList.remove('d-none');
+      setTimeout(() => {
+         box.style.right = 0;
+      }, 100);
+      setDefaultValues(status);
+   }
+}
+/**
+ * set default values
+ * @param {string} status 
+ */
+function setDefaultValues(status) {
+   defaultValues.status = `${status}`;
+   defaultValues.category = 'User Story';
+   defaultValues.priority = 'Medium';
 }
 
+/**
+ * hide add task box
+ */
 function hideAddTaskBox() {
-   let box = document.getElementById('addTaskBox');
-   box.style.right = '-450px';
+   if (window.location.pathname.endsWith('/board.html')) {
+      let box = document.getElementById('addTaskBox');
+      box.style.right = '-1000px';
+      setTimeout(() => {
+         box.classList.add('d-none');
+      }, 100);
+   }
 }
 
-
+/**
+ * clear all container for tasks
+ */
 function clearContainer() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
    ids.forEach(id => {
@@ -28,6 +61,9 @@ function clearContainer() {
    });
 }
 
+/**
+ * render tasks in board
+ */
 function renderTasksInBoard() {
    clearContainer();
    for (let i = 0; i < tasks.length; i++) {
@@ -40,8 +76,20 @@ function renderTasksInBoard() {
       renderAssignedTo(contacts, i);
       getColorForCategory(i);
       changeProgressValue(i);
+      checkIfSubtasksEmtpty(i);
    }
    checkContainerEmpty();
+}
+
+/**
+ * hide subtask container if no subtasks exist for task
+ * @param {int} index 
+ */
+function checkIfSubtasksEmtpty(index) {
+   let subtaskContainer = document.getElementById(`todoSubtasks${index}`);
+   if (tasks[index]['subtasks'].length == 0 && tasks[index]['subtasksDone'].length == 0) {
+      subtaskContainer.classList.add('d-none');
+   }
 }
 
 function calculateAllSubTasks(index) {
@@ -57,13 +105,13 @@ function changeProgressValue(index) {
    let subtasksDone = tasks[index]['subtasksDone'].length;
    let allSubtasks = calculateAllSubTasks(index);
    let calcPercent = (subtasksDone / allSubtasks) * 100;
-   if(isNaN(calcPercent) == true) {
+   if (isNaN(calcPercent) == true) {
       progressInPercent = 0;
    } else {
       progressInPercent = calcPercent;
    }
-   
-   progressBar.value = progressInPercent;   
+
+   progressBar.value = progressInPercent;
 }
 
 function getColorForCategory(index) {
@@ -93,7 +141,7 @@ function getBgColorForContact(contact) {
    } else {
       return 'rgb(175, 170, 170)';
    }
-   
+
 }
 
 function printTasksInBoard(task, index, subTasksLength) {
@@ -102,16 +150,21 @@ function printTasksInBoard(task, index, subTasksLength) {
          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
-         <div id="todoSubtasks">
+         <div class="todoSubtasks" id="todoSubtasks${index}">
             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
             <span>${subTasksLength}/${calculateAllSubTasks(index)} Subtasks</span>
          </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
-            <div id="todoPriority">${task.priority}</div>
+            <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
          </div>
       </div>
    `;
+}
+
+function getPrioIcon(prio) {
+   let path = `./assets/img/prio-${prio.toLowerCase()}.png`;
+   return path;
 }
 
 function printAssignedTo(contact, contactId) {
@@ -134,7 +187,7 @@ function checkContainer(status) {
 }
 
 function checkRenderTasks() {
-   if(searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
+   if (searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
       renderTasksInBoard();
    } else {
       renderSearchedTasks();
@@ -144,19 +197,34 @@ function checkRenderTasks() {
 function checkContainerEmpty() {
    let ids = ['toDoContainer', 'inProgressContainer', 'awaitFeedbackContainer', 'doneContainer'];
    ids.forEach(id => {
+      let emptyContainerText = getContainerName(id);
       let container = document.getElementById(id);
-      if(container.hasChildNodes() === false) {
-         container.innerHTML = `<h2>is empty</h2>`;
+      if (container.hasChildNodes() === false) {
+         container.innerHTML = /*html*/ `<div class="emptyBox"><span>${emptyContainerText}</span></div>`;
       }
    });
+}
+
+function getContainerName(id) {
+   if (id == 'doneContainer') {
+      return 'No tasks Done';
+   } else if (id == 'toDoContainer') {
+      return 'No tasks To Do'
+   } else if (id == 'inProgressContainer') {
+      return 'No tasks in Progress'
+   } else if (id == 'awaitFeedbackContainer') {
+      return 'No tasks for Feedback'
+   }
 }
 
 let searchedTasks;
 
 function searchTasks() {
    let input = document.getElementById('findTask');
-   let filteredTasks = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
-   searchedTasks = filteredTasks;
+   let filteredTasksTitle = tasks.filter(task => task.title.toLowerCase().includes(input.value.toLowerCase()));
+   let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
+   searchedTasks = filteredTasksTitle.concat(filteredTasksDescription);
+   searchedTasks = [...new Set(searchedTasks)];
    checkRenderTasks();
 }
 
@@ -173,7 +241,7 @@ function renderSearchedTasks() {
       container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
       renderAssignedTo(contacts, index);
       getColorForCategory(index);
-      changeProgressValue(index); 
+      changeProgressValue(index);
    }
    checkContainerEmpty();
 }

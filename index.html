@@ -31,7 +31,7 @@
                         <img src="./assets/img/mail.png">
                     </div>
                     <div class="input-field">
-                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus required placeholder="Password">
+                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus required minlength="5" placeholder="Password">
                         <img id="password-icon" onclick="togglePasswordVisibility('password')" src="./assets/img/lock.png">
                         <div class="error-msg-box" id="loginMatch"></div>
                     </div>
@@ -41,26 +41,26 @@
                     </div>
                     <div class="btn-box">
                         <button id="isLoggedIn" class="blue-btn login-btn cp">Log in</button>
-                        <button type="button" class="white-btn btn cp" onclick="guestLogIn(users)">Guest log in</button>
+                        <button type="button" class="white-btn btn cp" onclick="guestLogIn(localUsers)">Guest log in</button>
                     </div>
                 </form>
             </div>
             <div class="signup su-mobile">
                 <span>Not a Join user?</span>
-                <a href="./sign_up.html"><button class="btn cp">Sign up</button></a>
+                <a href="./sign_up.html"><button class="blue-btn cp">Sign up</button></a>
             </div>
         </div>
     </div>
     <footer class="legal-topics">
-        <a href="./privacy_policy.html">Privacy Policy</a>
-        <a href="./legal_notice.html">Legal notice</a>
+        <a href="./privacy_policy.html" target="_blank" id="privacyPolicy">Privacy Policy</a>
+        <a href="./legal_notice.html" target="_blank" id="legalNotice">Legal notice</a>
     </footer>
+    <script src="./js/templates.js"></script>
+    <script src="./script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/contacs.js"></script>
     <script src="./js/login.js"></script>
-    <script src="./js/add_tasks.js"></script>
-    <script src="./script.js"></script>
+    <script src="./js/add_tasks.js"></script>    
     <script src="./js/sign_up.js"></script>
-
 </body>
 </html>

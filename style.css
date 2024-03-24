@@ -20,10 +20,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans';
-
 }
 
-body{
+body {
+    position: relative;
     height: 100dvh;
     max-width: 1920px;
     margin: auto;
@@ -101,8 +101,8 @@ a {
 }
 
 .white-btn {
-    width: 197px;
     font-size: 23px;
+    padding: 8px 16px;
     background-color: white;
     border: 1px solid rgba(100, 113, 136, 1);
     border-radius: 8px;
@@ -173,10 +173,69 @@ a {
     }
 }
 
+.successfully-popup {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    opacity: 1;
+    animation: change-background 2s forwards;
+    animation-delay: 2s;
+    z-index: 100;
+}
+
+.successfully-popover-text {
+    position: relative;
+    top: 94%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: move-to-middle 0.2s forwards linear;
+    cursor: none;
+    text-align: center;
+    font-size: 23px;
+    width: 316px;
+    height: 74px;
+    padding: 23px 18px;
+    background-color: var(--clr-main1);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    z-index: 1000;
+    img{
+        margin-left: 20px;
+    }
+}
+
+@keyframes move-to-middle {
+    from {
+        left: 50%;
+        top: 94%;
+    }
+
+    to {
+        left: 50%;
+        top: 45%;
+    }
+}
+
+@keyframes change-background {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        z-index: -100;
+    }
+}
+
 /*** Summary area ***/
 .sum-content {
-    height: 100dvh;
+    overflow-y: hidden;
+    min-height: 100dvh;
     margin-left: 232px;
+    padding: 104px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -187,8 +246,9 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 22px;
-    width: 100%;
+    width: 80%;
     margin-bottom: 77px;
 
     h1 {
@@ -235,79 +295,85 @@ a {
     }
 }
 
-.sum-button:nth-child(1) {
-    width: 672px;
-    background-color: var(--clr-main1);
-    color: white;
-    transform-origin: left;
+@media screen and (min-width: 1023px) {
+    .sum-button:nth-child(1) {
+        width: 672px;
+        background-color: var(--clr-main1);
+        color: white;
+        transform-origin: left;
 
-    &:hover {
-        background-color: white;
-        color: var(--clr-main1);
+        &:hover {
+            background-color: white;
+            color: var(--clr-main1);
 
-        .line {
-            background-color: var(--clr-lightblue);
-        }
+            .line {
+                background-color: var(--clr-lightblue);
+            }
 
-        .img-counter,
-        div {
-            scale: 1.1;
+            .img-counter,
+            div {
+                scale: 1.1;
+            }
         }
     }
-}
 
-.sum-button:nth-child(2) {
-    transform-origin: top right;
+    .sum-button:nth-child(2) {
+        transform-origin: top right;
 
-    &:hover {
+        &:hover {
 
-        .img-counter,
-        div {
-            transform: scaleX(0.94)
+            .img-counter,
+            div {
+                transform: scaleX(0.94)
+            }
+
+            transform: scaleY(1.05) scaleX(1.25);
         }
-
-        transform: scaleY(1.05) scaleX(1.25);
-    }
-}
-
-.sum-button:nth-child(3) {
-    transform-origin: top left;
-    background-color: var(--clr-main2);
-
-    .sum-ellipse {
-        border-color: var(--clr-main2);
     }
 
-    &:hover {
-        background-color: white;
-        color: var(--clr-lightblue);
+    .sum-button:nth-child(3) {
+        transform-origin: top left;
+        background-color: var(--clr-main2);
 
         .sum-ellipse {
-            border-color: white;
+            border-color: var(--clr-main2);
         }
 
-        .img-counter,
-        div {
-            transform: scaleY(1.1) scaleX(1)
-        }
+        &:hover {
+            background-color: white;
+            color: var(--clr-lightblue);
 
-        transform: scaleY(0.94) scaleX(1.25);
+            .sum-ellipse {
+                border-color: white;
+            }
+
+            .img-counter,
+            div {
+                transform: scaleY(1.1) scaleX(1)
+            }
+            span{
+                transform: scaleY(1.1) scaleX(0.94)
+            }
+            transform: scaleY(0.94) scaleX(1.25);
+        }
+    }
+
+    .sum-button:nth-child(6) {
+        transform-origin: top right;
+
+        &:hover {
+
+            .img-counter,
+            div {
+                transform: scaleX(1.02)
+            }
+
+            transform: scaleX(1.02) scaleY(1.09);
+        }
     }
 }
 
-.sum-button:nth-child(6) {
-    transform-origin: top right;
 
-    &:hover {
-
-        .img-counter,
-        div {
-            transform: scaleX(1.02)
-        }
-
-        transform: scaleX(1.02) scaleY(1.09);
-    }
-}
 
 .sum-counter {
     width: 140px;

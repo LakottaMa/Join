@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +7,38 @@
     <link rel="stylesheet" href="./assets/css/contacts.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
-
-
-
     <title>Join</title>
 </head>
 <body onload="initContacts()">
-    <div id="background"></div>
+    <div id="background" onclick="closePopup()">
+        <section class="overlayContactPopup d-none" id="contactPopup" onclick="notClose(event)" class="d-none"></section>
+    </div>
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
-        <section class="contactList">
-            <button class="blue-btn cp" onclick="showAddPopup()">Add new contact<img
+        <section id="contactList" class="contactList">
+            <div class="addBtnDiv">
+            <button class="blue-btn addBtn cp" onclick="showAddPopup()">Add new contact<img
                     src="./assets/img/person_add.png" alt="addlogo"></button>
-            <div id="allContacts"></div>
-        </section>
-        <section id="contactPopup" class="d-none"></section>           
-        
-        <aside id="floatingContact" class="d-none"></aside>
+            </div>
+            <div id="allContacts"></div>        
+        </section>              
+        <aside id="floatingContact" class="d-none"></aside> 
     </div>
 
-    <script src="./js/sign_up.js"></script>
-    <script src="./js/contacs.js"></script>
-    <script src="./js/storage.js"></script>
-    <script src="./js/templates.js"></script>
-    <script src="./templates/contacts_template.js"></script>
-    <script src="./script.js"></script>
+    <button id="contactMobile" class="blue-btn cp" onclick="showAddPopup()"><img
+        src="./assets/img/person_add.png" alt="addlogo">
+    </button>
+
+
+
+
+    <div class="successfully-popup d-none" id="popupCreateContact">
+        <div class="successfully-popover-text">Contact successfully create</div>
+        <script src="./js/sign_up.js"></script>
+        <script src="./js/contacs.js"></script>
+        <script src="./js/storage.js"></script>
+        <script src="./js/templates.js"></script>
+        <script src="./js/contacts_template.js"></script>
+        <script src="./script.js"></script>
 </body>
 </html>

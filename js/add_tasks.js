@@ -1,9 +1,8 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-let category = "User Story";
-let priority = "Medium";
-let statusObj = { status: 'To Do' };
+
+let defaultValues = [{ status: 'To Do' }, { category: 'User Story' }, { priority: 'Medium' }];
 
 async function initAddTask() {
     await includeHTML();
@@ -19,6 +18,9 @@ function initializeAndListen() {
     prioLow = document.getElementById('prioLow');
     focusInputField('subtaskInput', 'addSubTaskBtn');
     focusInputField('searchUserInput', 'searchUserBtn');
+    defaultValues.category = 'User Story';
+    defaultValues.priority = 'Medium';
+    defaultValues.status = 'To Do';
 }
 
 let prioUrgent;
@@ -40,7 +42,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
     return {
         "title": title.value,
         "description": description.value,
-        "date": new Date(date.value),
+        "date": date,
         "priority": taskPriority,
         "assignedTo": assignedTo,
         "category": taskCategory,
@@ -56,25 +58,33 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
 async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let date = document.getElementById('date');
-    let taskPriority = priority;
+    let inputDate = document.getElementById('date').value;
+    let date = new Date(inputDate).toString();
+    let taskPriority = defaultValues.priority;
     let assignedTo = selectedUsers;
     let subtasks = subTasks;
-    let taskCategory = category;
-    let taskStatus = statusObj.status;
+    let taskCategory = defaultValues.category;
+    let taskStatus = defaultValues.status;
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
-    redirectToBoard();
-    renderTasksInBoard();
+    successfullyPopupAddTask();
     hideAddTaskBox();
 }
 
-function redirectToBoard() {
-    if (window.location.href.indexOf('/board.html') === -1) {
-        window.location.href = '/board.html';
-    }
+/** Popup nach erfolgreicher Task Erstellung */
+function successfullyPopupAddTask() {
+    const animation = document.getElementById('popupAddtask');
+    animation.classList.remove('d-none');
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    setTimeout(() => {
+        window.location.href = './board.html';
+    }, 1000);
+    
 }
 
 /**
@@ -389,17 +399,6 @@ function printSelectedUsers(user, index) {
         </div>
     `;
 }
-
-/**
- * 
- * @returns random color from array colors
- */
-function getRandomColor() {
-    let rndIndex = Math.floor(Math.random() * colors.length);
-    return colors[rndIndex];
-}
-
-let colors = ["#FFC0CB", "#ADD8E6", "#FFFF99", "#98FB98", "#E6E6FA"];
 
 /**
  * set priority for task

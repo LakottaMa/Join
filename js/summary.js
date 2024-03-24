@@ -15,7 +15,7 @@ async function initSummary() {
     let isLoggedIn = checkLoginStatus();
     let currentHour = checkHour();
     let greeting = document.getElementById('greeting');
-    let greetingName = document.getElementById('greetingName');  
+    let greetingName = document.getElementById('greetingName');    
     if (currentHour >= 0 && currentHour <= 11) {
       greeting.innerHTML = `Good Morning,`;
       greetingName.innerHTML = `${isLoggedIn}`;
@@ -54,15 +54,15 @@ function counterSummery(){
 }
 
 function showAllSummaryCounter(tasksInBoard, tasksToDo, TasksinProgress, TasksawFeedback, TaskstasksDone, allTasks, allToDo, inProgress, awFeedback, tasksDone, Tasksurgent, urgent) {
-  tasksInBoard.textContent = allTasks;
-  tasksToDo.textContent = allToDo;
-  TasksinProgress.textContent = inProgress;
-  TasksawFeedback.textContent = awFeedback;
-  TaskstasksDone.textContent = tasksDone;
-  Tasksurgent.textContent = urgent;
-  nextUrgent();
+tasksInBoard.textContent = allTasks;
+tasksToDo.textContent = allToDo;
+TasksinProgress.textContent = inProgress;
+TasksawFeedback.textContent = awFeedback;
+TaskstasksDone.textContent = tasksDone;
+Tasksurgent.textContent = urgent;
+nextUrgent();
 }
- 
+
 function compareDates(a, b) {
   a = new Date(a.date);
   b = new Date(b.date);
@@ -70,14 +70,14 @@ function compareDates(a, b) {
   }
 
 function nextUrgent() {
-  const tasksWithDateObjects = tasks.map(task => ({
-    ...task,
-    date: new Date(task.date)
-  }));
-  const urgentTasks = tasksWithDateObjects.filter(task => task.priority === "Urgent");
-  urgentTasks.sort(compareDates);
-  const nextUrgentDate = urgentTasks[0].date;
-  const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
-  const urgentDate = document.getElementById("urgentDate");
-  urgentDate.textContent = `${formattedDate}`;
+const tasksWithDateObjects = tasks.map(task => ({
+  ...task,
+  date: new Date(task.date)
+}));
+const urgentTasks = tasksWithDateObjects.filter(task => task.priority === "Urgent");
+urgentTasks.sort(compareDates);
+const nextUrgentDate = urgentTasks[0].date;
+const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", {day: "numeric" , month: "long", year: "numeric" });
+const urgentDate = document.getElementById("urgentDate");
+urgentDate.textContent = `${formattedDate}`;
 }

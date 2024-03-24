@@ -1,12 +1,28 @@
+/**
+ * @file storage.js
+ * This file is used to handle the storage of the application
+ * 
+ */
 const STORAGE_TOKEN = 'FOQ59STJFAGBFPPP9W1RP2EHAKEF90DYTULV2A3Q';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
+/**
+ * Uploads data into the backend.
+ * @param {key} key - data name (key)
+ * @param {array} value - data array to upload
+ * @returns - promise
+ */
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
     .then(res => res.json());
 }
 
+/**
+ * Fetches data from the backend.
+ * @param {key} key - key name to fetch
+ * @returns - promise + JSON
+ */
 async function getItem(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   return fetch(url).then(res => res.json()).then(res => {
@@ -116,7 +132,7 @@ let localTasks = [
     "title": "Implement User Authentication",
     "description": "Develop login and registration functionality.",
     "date": "Sun Mar 18 2024 01:00:00 GMT+0100 (Mitteleuropäische Normalzeit)",
-    "priority": "High",
+    "priority": "Urgent",
     "assignedTo": ["Linus Torvalds", "Tim Cook"],
     "category": "Technical Task",
     "subtasks": ["Create login form", "Implement user registration"],

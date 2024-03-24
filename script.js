@@ -1,4 +1,4 @@
-async function init() {  
+async function init() {
   await loadUsers();
   await loadTasks();
 }
@@ -7,7 +7,7 @@ async function initLegalTopics() {
   await includeHTML();
 }
 
-/** rember me muss erst beim click des login btn aktiv sein!!! */
+/** remember me data remove from localStorage */
 function unrememberMe() {
   let emailSaved = localStorage.getItem('email');
   let passwordSaved = localStorage.getItem('password');
@@ -17,7 +17,7 @@ function unrememberMe() {
   }
 }
 /**
-* log in data will be remembered for the next session
+* log in data will be remembered in localStorage
 */
 let checkBoxLogin = false;
 function rememberMe() {
@@ -32,4 +32,3 @@ function rememberMe() {
     }
   }
 }
-
