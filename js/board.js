@@ -75,8 +75,9 @@ function renderTasksInBoard() {
       let subTasksDoneLength = task['subtasksDone'].length;
       let container = checkContainer(status);
       container.innerHTML += printTasksInBoard(task, i, subTasksDoneLength);
+      let categoryContainer = document.getElementById(`todoCategory${i}`);
       renderAssignedTo(contacts, i);
-      getColorForCategory(i);
+      getColorForCategory(i, categoryContainer);
       changeProgressValue(i);
       checkIfSubtasksEmtpty(i);
    }
@@ -129,9 +130,8 @@ function changeProgressValue(index) {
  * set the color for the task category
  * @param {int} index 
  */
-function getColorForCategory(index) {
+function getColorForCategory(index, container) {
    let category = tasks[index]['category'];
-   let container = document.getElementById(`todoCategory${index}`);
    category == 'User Story' ? container.style.backgroundColor = 'var(--clr-orange)' : container.style.backgroundColor = 'var(--clr-blue)';
 }
 
@@ -177,7 +177,7 @@ function getBgColorForContact(contact) {
  */
 function printTasksInBoard(task, index, subTasksLength) {
    return /*html*/ `
-      <div class="todoBox cp">
+      <div onclick="showDetailBox(${index})" class="todoBox cp">
          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
          <div id="todoTitle"><h2>${task.title}</h2></div>
          <div id="todoDescription">${task.description}</div>
@@ -220,10 +220,10 @@ function printAssignedTo(contact, contactId) {
  */
 function checkContainer(status) {
    const containerIds = {
-       'To do': 'toDoContainer',
-       'In progress': 'inProgressContainer',
-       'Await feedback': 'awaitFeedbackContainer',
-       'Done': 'doneContainer'
+      'To do': 'toDoContainer',
+      'In progress': 'inProgressContainer',
+      'Await feedback': 'awaitFeedbackContainer',
+      'Done': 'doneContainer'
    };
    return document.getElementById(containerIds[status] || 'toDoContainer');
 }
@@ -260,10 +260,10 @@ function checkContainerEmpty() {
  */
 function getContainerName(id) {
    const containerNames = {
-       'doneContainer': 'No tasks Done',
-       'toDoContainer': 'No tasks To Do',
-       'inProgressContainer': 'No tasks in Progress',
-       'awaitFeedbackContainer': 'No tasks for Feedback'
+      'doneContainer': 'No tasks Done',
+      'toDoContainer': 'No tasks To Do',
+      'inProgressContainer': 'No tasks in Progress',
+      'awaitFeedbackContainer': 'No tasks for Feedback'
    };
    return containerNames[id] || 'Unknown Container';
 }
@@ -295,19 +295,92 @@ function renderSearchedTasks() {
       let status = tasks[index]['status'];
       let contacts = tasks[index]['assignedTo'];
       let container = checkContainer(status);
+      let categoryContainer = document.getElementById(`todoCategory${index}`);
       container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
       renderAssignedTo(contacts, index);
-      getColorForCategory(index);
+      getColorForCategory(index, categoryContainer);
       changeProgressValue(index);
    }
    checkContainerEmpty();
 }
 
-function showDetailBox() {
+function showDetailBox(index) {
    document.getElementById('detailViewBg').classList.remove('d-none');
    document.getElementById('detailViewBox').classList.remove('d-none');
+   renderDetails(index);
+}
+
+function hideDetailBox() {
+   document.getElementById('detailViewBg').classList.add('d-none');
+   document.getElementById('detailViewBox').classList.add('d-none');
+}
+
+function getFormatedDate(dateString) {
+   let date = new Date(dateString);
+   let formattedDate = date.toLocaleDateString("de-DE");
+   return formattedDate;
 }
 
 function renderDetails(index) {
-   // continue here
+   let detailContainer = document.getElementById('detailView');
+   detailContainer.innerHTML = '';
+   let task = tasks[index];
+   detailContainer.innerHTML += printDetails(task, index);
+   let categoryContainer = document.getElementById(`detailCategory${index}`);
+   getColorForCategory(index, categoryContainer);
+   renderAssignedToDetails(index);
+}
+
+function renderAssignedToDetails(index) {
+   let container = document.getElementById(`assignedToDetailView${index}`);
+   container.innerHTML = '';
+   let contacts = tasks[index].assignedTo;
+   if (contacts.length < 1) {
+      container.innerHTML += /*html*/ `<span>not assigned to any contact</span>`
+   } else {
+      for (let j = 0; j < contacts.length; j++) {
+         const contact = contacts[j];
+         let contactId = index.toString() + j.toString() + 'C';
+         container.innerHTML += printAssignedToDetails(contact, contactId);
+         let contactContainer = document.getElementById(`${contactId}`)
+         contactContainer.style.backgroundColor = getBgColorForContact(contact);
+      }
+   }
+}
+
+function printAssignedToDetails(contact, contactId) {
+   return /*html*/ `
+      <div class="assignedToDetails">
+      <span class="contactBubble" id="${contactId}">${getInitials(contact)}</span>
+      <span class="openSans400-19">${contact}</span>
+      </div>
+   `;
+}
+
+function printDetails(task, index) {
+   return /*html*/ `
+      <div class="taskDetails">
+         <div class="categoryAndClose">
+            <span class="todoCategory" id="detailCategory${index}">${task.category}</span>
+            <img class="cp" onclick="hideDetailBox()" src="./assets/img/close.png" alt="close icon">
+         </div>
+         <h1>${task.title}</h1>
+         <span class="openSans400-19">${task.description}</span>
+         <div class="dflexCCgap25">
+            <span class="keyString">Due date:</span>
+            <span class="openSans400-19">${getFormatedDate(task.date)}</span>
+         </div>
+         <div class="dflexCCgap25">
+            <span class="keyString">Priority:</span>
+            <div class="detailPrio">
+               <span class="openSans400-19">${task.priority}</span>
+               <img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt="">
+            </div>
+         </div>
+         <div class="assignedToDetailBox">
+            <span class="keyString">Assigned To:</span>
+            <div class="assignedToDetailView" id="assignedToDetailView${index}"></div>
+         </div>
+      </div>
+   `;
 }

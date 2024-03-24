@@ -207,7 +207,6 @@
 
 .assignedAndPrio div:nth-child(1) {
     display: flex;
-    /* gap: 4px; */
     flex-wrap: wrap;
 
     & span {
@@ -351,16 +350,88 @@ progress[value] {
 }
 
 .detailViewBox {
+    background-color: rgba(255, 255, 255, 1);
     position: fixed;
     top: 50%;
     left: 50%;
-    max-width: 528px;
+    width: 528px;
     max-height: 900px;
     min-height: 600px;
-    min-width: 280px;
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     z-index: 20;
-    background-color: gray;
     transform: translate(-50%, -50%);
+    padding: 48px 40px;
+}
+
+.taskDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+}
+
+.categoryAndClose {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyString {
+    font-size: 21px;
+    font-weight: 700;
+    font-family: 'Inter';
+    color: var(--clr-menu);
+}
+
+.openSans400-19 {
+    font-family: 'Open Sans';
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.dflexCCgap25 {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.detailPrio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 18px;
+}
+
+.contactBubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    background-color: blue;
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.assignedToDetailBox {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.assignedToDetails {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    gap: 16px;
+}
+
+.assignedToDetailView {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
