@@ -356,7 +356,7 @@ function renderSubTasksDetailView(index) {
 }
 
 function getImageForSubtask(subtask) {
-   if(subtask.done === true) {
+   if (subtask.done === true) {
       return './assets/img/check_checked.png';
    } else {
       return './assets/img/check_unchecked.png';
@@ -389,6 +389,13 @@ function printAssignedToDetails(contact, contactId) {
    `;
 }
 
+async function deleteTask(index) {
+   tasks.splice(index, 1);
+   await saveTasks(tasks);
+   checkRenderTasks();
+   hideDetailBox();
+}
+
 function printDetails(task, index) {
    return /*html*/ `
       <div class="taskDetails">
@@ -416,6 +423,17 @@ function printDetails(task, index) {
          <div class="assignedToDetailBox">
             <span class="keyString">Subtasks</span>
             <div id="subTasksDetailViewBox${index}" class="assignedToDetailView"></div>
+         </div>
+         <div class="detailViewOptions">
+            <div onclick="deleteTask(${index})">
+               <img src="./assets/img/delete.png" alt="">
+               <span>Delete</span>
+            </div>
+            <img src="./assets/img/divider_vertical.png" alt="">
+            <div>
+               <img src="./assets/img/edit.png" alt="">
+               <span>Edit</span>
+            </div>
          </div>
       </div>
    `;
