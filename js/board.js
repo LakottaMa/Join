@@ -72,7 +72,7 @@ function renderTasksInBoard() {
       const task = tasks[i];
       let status = task['status'];
       let contacts = task['assignedTo'];
-      let subTasksDoneLength = task['subtasksDone'].length;
+      let subTasksDoneLength = calculateSubtasksDone(i);
       let container = checkContainer(status);
       container.innerHTML += printTasksInBoard(task, i, subTasksDoneLength);
       let categoryContainer = document.getElementById(`todoCategory${i}`);
@@ -90,7 +90,7 @@ function renderTasksInBoard() {
  */
 function checkIfSubtasksEmtpty(index) {
    let subtaskContainer = document.getElementById(`todoSubtasks${index}`);
-   if (tasks[index]['subtasks'].length == 0 && tasks[index]['subtasksDone'].length == 0) {
+   if (tasks[index]['subtasks'].length == 0) {
       subtaskContainer.classList.add('d-none');
    }
 }
@@ -100,11 +100,16 @@ function checkIfSubtasksEmtpty(index) {
  * @param {int} index 
  * @returns 
  */
-function calculateAllSubTasks(index) {
-   let subtasksOpen = tasks[index]['subtasks'].length;
-   let subtasksDone = tasks[index]['subtasksDone'].length;
-   let allSubtasks = subtasksDone + subtasksOpen;
-   return allSubtasks
+function calculateSubtasksDone(index) {
+   let counter = 0;
+   let subtasksObjects = tasks[index]['subtasks'];
+   for (let i = 0; i < subtasksObjects.length; i++) {
+      const subtask = subtasksObjects[i];
+      if (subtask.done === true) {
+         counter += 1;
+      }
+   }
+   return counter;
 }
 
 /**
@@ -114,8 +119,8 @@ function calculateAllSubTasks(index) {
 function changeProgressValue(index) {
    let progressInPercent;
    let progressBar = document.getElementById(`progressBar${index}`);
-   let subtasksDone = tasks[index]['subtasksDone'].length;
-   let allSubtasks = calculateAllSubTasks(index);
+   let subtasksDone = calculateSubtasksDone(index);
+   let allSubtasks = tasks[index]['subtasks'].length;
    let calcPercent = (subtasksDone / allSubtasks) * 100;
    if (isNaN(calcPercent) == true) {
       progressInPercent = 0;
@@ -183,7 +188,7 @@ function printTasksInBoard(task, index, subTasksLength) {
          <div id="todoDescription">${task.description}</div>
          <div class="todoSubtasks" id="todoSubtasks${index}">
             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
-            <span>${subTasksLength}/${calculateAllSubTasks(index)} Subtasks</span>
+            <span>${subTasksLength}/${tasks[index]['subtasks'].length} Subtasks</span>
          </div>
          <div class="assignedAndPrio">
             <div id="todoAssignedTo${index}"></div>
@@ -219,13 +224,18 @@ function printAssignedTo(contact, contactId) {
  * @returns the container for the task
  */
 function checkContainer(status) {
-   const containerIds = {
-      'To do': 'toDoContainer',
-      'In progress': 'inProgressContainer',
-      'Await feedback': 'awaitFeedbackContainer',
-      'Done': 'doneContainer'
-   };
-   return document.getElementById(containerIds[status] || 'toDoContainer');
+   switch (status) {
+      case 'To do':
+         return document.getElementById('toDoContainer');
+      case 'In progress':
+         return document.getElementById('inProgressContainer');
+      case 'Await feedback':
+         return document.getElementById('awaitFeedbackContainer');
+      case 'Done':
+         return document.getElementById('doneContainer');
+      default:
+         return document.getElementById('toDoContainer');
+   }
 }
 
 /**
@@ -290,13 +300,13 @@ function renderSearchedTasks() {
    for (let i = 0; i < searchedTasks.length; i++) {
       const taskTitle = searchedTasks[i]['title'];
       let index = tasks.findIndex(t => t.title === taskTitle);
-      let subTasksDoneLength = tasks[index]['subtasksDone'].length;
+      let subTasksDoneLength = calculateSubtasksDone(index);
       let task = tasks[index];
       let status = tasks[index]['status'];
       let contacts = tasks[index]['assignedTo'];
       let container = checkContainer(status);
-      let categoryContainer = document.getElementById(`todoCategory${index}`);
       container.innerHTML += printTasksInBoard(task, index, subTasksDoneLength);
+      let categoryContainer = document.getElementById(`todoCategory${index}`);
       renderAssignedTo(contacts, index);
       getColorForCategory(index, categoryContainer);
       changeProgressValue(index);
@@ -333,24 +343,18 @@ function renderDetails(index) {
    renderSubTasksDetailView(index);
 }
 
+
 function renderSubTasksDetailView(index) {
    let container = document.getElementById(`subTasksDetailViewBox${index}`);
    container.innerHTML = '';
-   let subOpen = tasks[index].subtasks;
-   let subDone = tasks[index].subtasksDone;
-   if(subOpen.length > 0) {
-      for (let i = 0; i < subOpen.length; i++) {
-         const taskOpen = subOpen[i];
-         container.innerHTML += /*html*/ `<div class="assignedToDetails"><span class="subTaskDetail">${taskOpen}</span>`; 
+   let sub = tasks[index].subtasks;
+   if (sub.length > 0) {
+      for (let i = 0; i < sub.length; i++) {
+         const subtask = sub[i];
+         container.innerHTML += /*html*/ `<div class="assignedToDetails"><span class="subTaskDetail">${subtask.name}</span>`;
       }
    }
-   if(subDone.length > 0) {
-      for (let j = 0; j < subDone.length; j++) {
-         const taskDone = subDone[j];
-         container.innerHTML += /*html*/ `<div class="assignedToDetails"><span class="subTaskDetail">${taskDone}</span>`;
-         
-      }
-   }
+   
 }
 
 

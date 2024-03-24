@@ -47,7 +47,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "assignedTo": assignedTo,
         "category": taskCategory,
         "subtasks": subtasks,
-        "subtasksDone": [],
+        // "subtasksDone": [],
         "status": taskStatus
     }
 }
@@ -62,7 +62,7 @@ async function addTask() {
     let date = new Date(inputDate).toString();
     let taskPriority = defaultValues.priority;
     let assignedTo = selectedUsers;
-    let subtasks = subTasks;
+    let subtasks = createSubtaskObject();
     let taskCategory = defaultValues.category;
     let taskStatus = defaultValues.status;
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
@@ -71,6 +71,15 @@ async function addTask() {
     resetInputsAndSelections();
     successfullyPopupAddTask();
     hideAddTaskBox();
+}
+
+function createSubtaskObject() {
+    let subTaskObjects = [];
+    for (let i = 0; i < subTasks.length; i++) {
+        let subTaskObject = { 'name': subTasks[i], 'done': false};
+        subTaskObjects.push(subTaskObject);
+    }
+    return subTaskObjects;
 }
 
 /** Popup nach erfolgreicher Task Erstellung */

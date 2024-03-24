@@ -90,8 +90,15 @@ let localTasks = [
     "priority": "Medium",
     "assignedTo": ["Linus Torvalds", "Sam Altman"],
     "category": "User Story",
-    "subtasks": ["Implement Recipe Recommendation"],
-    "subtasksDone": ["Style Recipe"],
+    "subtasks": [
+      {
+        "name": "Implement Recipe Recommendation",
+        "done": false
+      },
+      {
+        "name": "Style Recipe",
+        "done": true
+      }],
     "status": "In progress"
   },
   {
@@ -101,8 +108,15 @@ let localTasks = [
     "priority": "Urgent",
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
-    "subtasks": [],
-    "subtasksDone": ["Clean Code"],
+    "subtasks": [
+      {
+        "name": "Add CSS",
+        "done": false
+      },
+      {
+        "name": "Clean Code",
+        "done": true
+      }],
     "status": "In progress"
   },
 
@@ -114,7 +128,6 @@ let localTasks = [
     "assignedTo": ["Linus Torvalds", "Bill Gates"],
     "category": "Technical Task",
     "subtasks": [],
-    "subtasksDone": [],
     "status": "In progress"
   },
   {
@@ -124,8 +137,19 @@ let localTasks = [
     "priority": "Low",
     "assignedTo": ["Linus Torvalds", "Bill Gates"],
     "category": "User Story",
-    "subtasks": ["Update color scheme", "Optimize navigation menu"],
-    "subtasksDone": ["Style Sidebar"],
+    "subtasks": [
+      {
+        "name": "Update color scheme",
+        "done": false
+      },
+      {
+        "name": "Optimize navigation menu",
+        "done": true
+      },
+      {
+        "name": "Style Sidebar",
+        "done": false
+      }],
     "status": "Await feedback"
   },
   {
@@ -135,8 +159,19 @@ let localTasks = [
     "priority": "Urgent",
     "assignedTo": ["Linus Torvalds", "Tim Cook"],
     "category": "Technical Task",
-    "subtasks": ["Create login form", "Implement user registration"],
-    "subtasksDone": ["Style login form"],
+    "subtasks": [
+      {
+        "name": "Create login form",
+        "done": false
+      },
+      {
+        "name": "Implement user registration",
+        "done": true
+      },
+      {
+        "name": "Style login form",
+        "done": false
+      }],
     "status": "To Do"
   }
 ];
