@@ -204,20 +204,14 @@ h3 {
 }
 
 .overlayContactPopup {
-    position: fixed;
-    top: 0;
-    bottom: 0;
+    position: absolute;
     right: 0;
     width: 584px;
     height: 100vh;
-    z-index: 90;
-    transform: translateX(0px);
-    transition: all 225ms ease-in-out;
-}
-
-.hidePopup {
-    transform: translateX(4000px);
-    transition: all 225ms ease-in-out;
+    z-index: 50;
+    border: solid 1px #E3E3E3;
+    border-radius: 30px;
+    background-color: white;
 }
 
 #topPopup {
@@ -226,6 +220,7 @@ h3 {
     flex-direction: column;
     align-items: center;
     background-color: var(--clr-lightblue);
+    border: solid 1px var(--clr-lightblue) !important;
     color: white;
     padding-bottom: 91px;
     gap: 12px;
@@ -262,11 +257,8 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 1px #E3E3E3;
-    border-top: none;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
     background-color: white;
+    border-color: #E3E3E3;
 }
 
 .avatarDiv {
@@ -319,7 +311,7 @@ input {
     margin-top: 32px;
 }
 
-.btnCancel {
+.btnCancel, .btnDelete {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -364,19 +356,16 @@ input {
     }
 }
 
-#contactMobile {
+#contactMobile,
+#contactMobileFloat,
+.editPopupP {
     display: none;
 }
+
 
 /*********************** Start responsive ***********************/
 
 @media screen and (max-width:1200px) {
-
-    #floatMobil {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
 
     .floatingTop {
         flex-direction: column;
@@ -396,8 +385,20 @@ input {
 
     .contactList {
         margin-top: 0;
-        width: 100%;
+        width: 100vw;
         overflow-y: visible;
+        transform: translateX(0);
+        padding: 0 24px;
+    }
+
+    #floatingContact {
+        transition: all 200ms ease-in-out;
+        position: absolute;
+        left: 16px;
+        width: 100vw;
+        height: 100vw;
+        background-color: white;
+        padding:72px 16px 0 16px;
     }
 
     #allContacts {
@@ -430,20 +431,22 @@ input {
     .overlayContactPopup {
         position: static;
         max-width: 396px;
+        height: 760px;
         height: calc(100vh - 200px);
     }
 
     form {
-        margin-top: 50px;
+        margin-top: 92px;
     }
 
     .avatarDiv {
         padding: 0;
         position: absolute;
-        top: 230px;
+        top: 380px;
     }
 
     #topPopup {
+        height: 248px;
         img {
             display: none;
         }
@@ -453,8 +456,16 @@ input {
         }
     }
 
+    .editPopupP{
+        display: flex;
+    }
+
     .input-field {
         width: 364px;
+    }
+
+    #popupBtn {
+        margin-top: 50px;
     }
 
     .btnCancel {
@@ -464,22 +475,43 @@ input {
     .btnCreate {
         font-size: 19px;
     }
-
     #contactInfo {
         display: none;
     }
 
     #floatMobil {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    .popupDotMenue {
+    #contactInfo {
+        display: none;
+    }
+
+    .floatingBtn {
+        display: none;
+    }
+
+    #contactMobileFloat {
         display: flex;
         justify-content: center;
         align-items: center;
         position: fixed;
-        right: 70px;
-        bottom: 140px;
+        bottom: 170px;
+        right: 43px;
+        width: 64px;
+        height: 64px;
+        margin: 0;
+    }
+
+    #popupDotMenue {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        right: 43px;
+        bottom: 170px;
         width: 116px;
         height: 100px;
         background-color: white;
@@ -509,6 +541,5 @@ input {
         flex-direction: column;
         gap: 8px;
     }
-}
 
-@media screen and (max-width:2000px) {}
+}

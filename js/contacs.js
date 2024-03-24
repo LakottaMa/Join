@@ -30,9 +30,6 @@ function renderContactList() {
 
 }
 
-
-// console.log('contact',contact) //wieder löschen!!
-
 function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
@@ -61,7 +58,6 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
-
     closePopup();
 }
 
@@ -89,44 +85,11 @@ function showFloatContact(i) {
     // }
 
 
+    document.getElementById('contactMobile').classList.add('d-none');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
-}
-
-function floatContactHTML(name, email, i) {
-    let bgColor = users[i]['bg'];
-    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-    return `
-        <div id="floatMobil">
-            <h2>Contact Information</h2>
-            <div id="arrowBack" class="cp">
-                <img src="./assets/img/arrow-left-line.png" alt="arrowBack">
-            </div
-        </div>
-        </div>
-        <div class="floatingTop">            
-            <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
-            <div class="floatingInteracts">
-                <span>${name}</span>
-                <div class="floatingBtn">
-                     <p class="cp" onclick="editContact(${i})"><img src="./assets/img/edit.png" alt="edit">Edit</p>
-                     <p class="cp" onclick="deleteUser(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
-                </div>
-            </div>
-        </div>
-        <div class="floatingBottom">
-        <h2 id="contactInfo">Contact Information</h2>
-        <div>
-            <h3>Email</h3>
-            <div id="emailFloating">${email}</div>
-        </div>
-        <div>
-            <h3>Phone</h3>
-            <div id="phoneFloating">${checkPhone(i)}</div>
-        </div>
-`;
+    document.getElementById('contactMobileFloat').classList.remove('d-none');
 }
 
 function checkPhone(i) {
@@ -191,44 +154,17 @@ function editContact(i) {
 }
 
 async function saveUser(i) {
-    users.splice(i, 1);
-    let bgColor = newBgColor();
     let name = document.getElementById('contactName').value;
     let email = document.getElementById('contactEmail').value;
     let phone = document.getElementById('contactPhone').value;
 
-    // let currentName = users[i]['name'];
-    // let indexToModify = users.findIndex(user => user.name === `${currentName}`);
-    // if (indexToModify !== -1) {
+    users[i]['name'] = name;
+    users[i]['email'] = email;
+    users[i]['phone'] = phone;
+    await setItem('users', JSON.stringify(users));
 
-    //     users[indexToModify].name = `${newName}`;
-    // }
-    // users[i]['name'] = newName;
-    // users[i]['email'] = newEmail;
-    // users[i]['phone'] = newPhone;
-    // await setItem('users', JSON.stringify(users));
-
-    if (name && email && phone) {
-        users.push({
-            name: name,
-            email: email,
-            phone: phone,
-            bg: bgColor,
-        });
-        await setItem('users', JSON.stringify(users));
-        renderContactList();
-        closePopup();
-
-    } else {
-        console.error('Please fill out all fields');
-    }
-
-    // users[i]['name'].splice(0,1);
-
-    // users[i]['name'].push(`${newName}`);
     renderContactList();
     closePopup();
-
 }
 
 
@@ -236,6 +172,10 @@ async function saveUser(i) {
 
 function showAddPopup() {
     document.getElementById('contactPopup').classList.remove('d-none');
+    document.getElementById('contactPopup').style.right = 0;
+
+
+    document.getElementById('contactPopup').innerHTML = '';
     document.getElementById('contactPopup').innerHTML = createContactPopupHTML();
 
     document.getElementById('contactPopup').style.left = '';
@@ -260,8 +200,20 @@ function showEditPopup(i) {
 
 function closePopup() {
     document.getElementById('contactPopup').classList.add('d-none');
+    document.getElementById('contactPopup').style.right = '-1000px';
+
     document.getElementById('background').classList.remove('back');
-    document.getElementById('contactPopup').style.transform = 'translateX (0px)';
+    //document.getElementById('contactPopup').style.transform = 'translateX (0px)';
+    document.getElementById('popupDotMenue').classList.add('d-none');
+}
+
+function showDotMenu() {
+    document.getElementById('popupDotMenue').classList.remove('d-none');
+}
+
+function contactListMobil() {
+    document.getElementById('floatingContact').classList.add('d-none');
+    document.getElementById('contactMobile').classList.remove('d-none');
 }
 
 function notClose(event) {

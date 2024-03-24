@@ -11,7 +11,7 @@
 </head>
 <body onload="initContacts()">
     <div id="background" onclick="closePopup()">
-        <section class="overlayContactPopup" id="contactPopup" onclick="notClose(event)" class="d-none"></section>
+        <section class="overlayContactPopup d-none" id="contactPopup" onclick="notClose(event)" class="d-none"></section>
     </div>
     <div template="/assets/templates/desktop_template.html"></div>
     <div class="contactSection">
@@ -21,25 +21,15 @@
                     src="./assets/img/person_add.png" alt="addlogo"></button>
             </div>
             <div id="allContacts"></div>        
-        </section>       
-       
-        <aside id="floatingContact" class="d-none"></aside>    
-
+        </section>              
+        <aside id="floatingContact" class="d-none"></aside> 
     </div>
+
     <button id="contactMobile" class="blue-btn cp" onclick="showAddPopup()"><img
         src="./assets/img/person_add.png" alt="addlogo">
     </button>
 
-    <button id="contactMobile" class="blue-btn cp d-none" onclick="showDotMenu(); notClose(event)"><img
-        src="./assets/img/menu-dots.png" alt="menu">
-    </button>
 
-    <div class="popupDotMenue d-none">
-        <div class="popupMenue">
-            <p class="cp"><img src="./assets/img/edit.png" alt="edit">Edit</p>
-            <p class="cp"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
-        </div>
-    </div>
 
 
     <div class="successfully-popup d-none" id="popupCreateContact">
