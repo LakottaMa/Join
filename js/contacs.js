@@ -79,12 +79,7 @@ function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-    // if (window.innerWidth <= 1024) {
-    //     document.getElementById('contactList').classList.add('d-none');
-    //     document.getElementById('floatingContact').style.zIndex = '10';
-    // }
-
-
+    
     document.getElementById('contactMobile').classList.add('d-none');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
