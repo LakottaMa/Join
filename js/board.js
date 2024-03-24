@@ -340,7 +340,6 @@ function renderDetails(index) {
    getColorForCategory(index, categoryContainer);
    renderAssignedToDetails(index);
    renderSubTasksDetailView(index);
-   renderSubTasksDetailView(index);
 }
 
 
@@ -351,12 +350,18 @@ function renderSubTasksDetailView(index) {
    if (sub.length > 0) {
       for (let i = 0; i < sub.length; i++) {
          const subtask = sub[i];
-         container.innerHTML += /*html*/ `<div class="assignedToDetails"><span class="subTaskDetail">${subtask.name}</span>`;
+         container.innerHTML += /*html*/ `<div id="subtask${i}" class="assignedToDetails"><img src=${getImageForSubtask(subtask)} alt=""><span class="subTaskDetail">${subtask.name}</span>`;
       }
    }
-   
 }
 
+function getImageForSubtask(subtask) {
+   if(subtask.done === true) {
+      return './assets/img/check_checked.png';
+   } else {
+      return './assets/img/check_unchecked.png';
+   }
+}
 
 function renderAssignedToDetails(index) {
    let container = document.getElementById(`assignedToDetailView${index}`);
