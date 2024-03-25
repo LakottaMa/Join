@@ -350,7 +350,7 @@ function renderSubTasksDetailView(index) {
    if (sub.length > 0) {
       for (let i = 0; i < sub.length; i++) {
          const subtask = sub[i];
-         container.innerHTML += /*html*/ `<div id="subtask${i}" class="assignedToDetails"><img src=${getImageForSubtask(subtask)} alt=""><span class="subTaskDetail">${subtask.name}</span>`;
+         container.innerHTML += /*html*/ `<div onclick="toggleSubtasks(${index}, ${i})" id="subtask${i}" class="assignedToDetails cp"><img src=${getImageForSubtask(subtask)} alt=""><span class="subTaskDetail">${subtask.name}</span>`;
       }
    }
 }
@@ -394,6 +394,15 @@ async function deleteTask(index) {
    await saveTasks(tasks);
    checkRenderTasks();
    hideDetailBox();
+}
+
+async function toggleSubtasks(taskIndex, subtaskIndex) {
+   let subtask = tasks[taskIndex]['subtasks'][subtaskIndex];
+   subtask.done = !subtask.done;
+   renderSubTasksDetailView(taskIndex);
+   renderTasksInBoard();
+   await saveTasks(tasks);
+
 }
 
 function printDetails(task, index) {
