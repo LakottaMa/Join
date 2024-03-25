@@ -1,3 +1,5 @@
+let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -58,6 +60,10 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
+    
+    if (screenWidth <= 1024){
+        showContactListMobil();
+    }
     closePopup();
 }
 
@@ -78,14 +84,37 @@ function addBgContact(index) {
 function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
-    let email = users[i]['email'];
-    
-    document.getElementById('contactMobile').classList.add('d-none');
+    let email = users[i]['email'];   
+
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
-    document.getElementById('contactMobileFloat').classList.remove('d-none');
+    document.getElementById('floatingContact').onclick = null; 
+    //null funktioniert aber hizufügen nicht
+    //bei htm auf onclick = closePopup() gestellt
+
+    if (screenWidth <= 1024) {
+        document.getElementById('contactList').classList.add('d-none');
+        document.getElementById('contactMobile').classList.add('d-none');
+        document.getElementById('contactMobileFloat').classList.remove('d-none');
+        document.getElementById('floatingContact').onclick = closePopup();
+    }
 }
+
+// function checkScreenSize(){
+//     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+//     if (screenWidth <= 1024) {
+//         mobileElements();
+//     }else
+// }
+
+// function mobileElements(){
+
+// }
+
+// window.addEventListener("resize", function () {
+//     checkScreenSize();
+// });
 
 function checkPhone(i) {
     let phone = users[i]['phone'];
@@ -206,12 +235,15 @@ function showDotMenu() {
     document.getElementById('popupDotMenue').classList.remove('d-none');
 }
 
-function contactListMobil() {
-    document.getElementById('floatingContact').classList.add('d-none');
+function showContactListMobil() {
+    
     document.getElementById('contactMobile').classList.remove('d-none');
+    document.getElementById('contactList').classList.remove('d-none');
+    document.getElementById('floatingContact').classList.add('d-none');
 }
 
 function notClose(event) {
     event.stopPropagation();
 }
+
 

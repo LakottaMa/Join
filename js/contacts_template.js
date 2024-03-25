@@ -5,7 +5,7 @@ function floatContactHTML(name, email, i) {
     return `
         <div id="floatMobil">
             <h2>Contact Information</h2>
-            <div id="arrowBack" class="cp" onclick="contactListMobil()">
+            <div id="arrowBack" class="cp" onclick="showContactListMobil()">
                 <img src="./assets/img/arrow-left-line.png" alt="arrowBack">
             </div
         </div>
@@ -62,7 +62,7 @@ function createContactPopupHTML() {
                 <img src="./assets/img/avatar_placeholder.png" alt="avatar">
             </div>
         </div>                  
-        <form id="form" onsubmit="createNewContact(); return false">
+        <form class="input-box" onsubmit="createNewContact(); return false">
             <div class="input-field">
                 <input id="contactName" type="text" placeholder="Name" required>
                 <img src="./assets/img/person.png" alt="avatar">
@@ -109,7 +109,7 @@ function editContactPopupHTML(i) {
                 >${initials}</div>            
             </div>    
         </div>              
-        <form id="form" onsubmit="saveUser(); return false;">
+        <form class="input-box" onsubmit="saveUser(); return false;">
             <div class="input-field">
                 <input id="contactName" type="text" placeholder="Name" required>
                 <img src="./assets/img/person.png" alt="avatar">

@@ -62,6 +62,7 @@ h3 {
         font-size: 16px;
         color: var(--clr-main1);
         padding-top: 5px;
+        word-break: break-word;
     }
 
     &:hover {
@@ -111,8 +112,9 @@ h3 {
 }
 
 #arrowBack {
-    display: flex;
-    justify-content: flex-end;
+    position: fixed;
+    top: 170px;
+    right: 30px;
 
     img {
         width: 34px;
@@ -199,7 +201,7 @@ h3 {
     top: 0;
     left: 0;
     transition: all 500ms ease-in-out;
-    background-color: #ffffff6a;
+    background-color: #ffffffb6;
     z-index: 100;
 }
 
@@ -311,7 +313,8 @@ input {
     margin-top: 32px;
 }
 
-.btnCancel, .btnDelete {
+.btnCancel,
+.btnDelete {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,9 +382,13 @@ input {
         margin: 0;
     }
 
-    .addBtnDiv {
+    .addBtnDiv,
+    .btnCancel,
+    .floatingBtn,
+    #contactInfo {
         display: none;
     }
+
 
     .contactList {
         margin-top: 0;
@@ -395,10 +402,8 @@ input {
         transition: all 200ms ease-in-out;
         position: absolute;
         left: 16px;
-        width: 100vw;
-        height: 100vw;
         background-color: white;
-        padding:72px 16px 0 16px;
+        padding: 72px 16px 0 16px;
     }
 
     #allContacts {
@@ -447,6 +452,7 @@ input {
 
     #topPopup {
         height: 248px;
+
         img {
             display: none;
         }
@@ -456,7 +462,7 @@ input {
         }
     }
 
-    .editPopupP{
+    .editPopupP {
         display: flex;
     }
 
@@ -468,29 +474,14 @@ input {
         margin-top: 50px;
     }
 
-    .btnCancel {
-        display: none;
-    }
-
     .btnCreate {
         font-size: 19px;
     }
-    #contactInfo {
-        display: none;
-    }
+
 
     #floatMobil {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-    }
-
-    #contactInfo {
-        display: none;
-    }
-
-    .floatingBtn {
-        display: none;
     }
 
     #contactMobileFloat {
@@ -498,8 +489,8 @@ input {
         justify-content: center;
         align-items: center;
         position: fixed;
-        bottom: 170px;
-        right: 43px;
+        bottom: 95px;
+        right: 25px;
         width: 64px;
         height: 64px;
         margin: 0;
@@ -510,8 +501,8 @@ input {
         justify-content: center;
         align-items: center;
         position: fixed;
-        right: 43px;
-        bottom: 170px;
+        right: 25px;
+        bottom: 95px;
         width: 116px;
         height: 100px;
         background-color: white;
@@ -541,5 +532,25 @@ input {
         flex-direction: column;
         gap: 8px;
     }
+}
 
+@media screen and (max-width:430px) {
+
+    .overlayContactPopup {
+        width: 300px;
+    }
+
+    #topPopup {
+        span{
+           font-size: 40px; 
+        }
+
+        p{
+            font-size: 15px;
+        }
+    }
+
+    .input-field{
+        width: 280px;
+    }
 }
