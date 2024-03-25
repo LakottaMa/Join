@@ -47,7 +47,6 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "assignedTo": assignedTo,
         "category": taskCategory,
         "subtasks": subtasks,
-        // "subtasksDone": [],
         "status": taskStatus
     }
 }

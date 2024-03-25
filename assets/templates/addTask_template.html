@@ -9,14 +9,14 @@
 
     <!-- form section -->
     <form id="addTaskForm" class="addTaskForm" onsubmit="addTask(); return false">
-        <input type="text" placeholder="Enter a title" required id="title">
+        <input type="text" placeholder="Enter a title" required id="title" class="title-input">
         <label class="subHeadlineAddTask" for="description"><b>Description</b> (optional)</label>
         <div class="textAreaAddTask">
             <img src="/assets/img/textAreaIcon.png" alt="">
-            <textarea name="" id="description" placeholder="Enter a Description"></textarea>
+            <textarea name="" id="description" class="description-input" placeholder="Enter a Description"></textarea>
         </div>
         <label class="subHeadlineAddTask" for="date"><b>Due date</b></label>
-        <input type="date" id="date" required>
+        <input type="date" id="date" class="date-input" required>
     </form>
 
     <!-- form section -->

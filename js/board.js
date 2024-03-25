@@ -317,18 +317,28 @@ function renderSearchedTasks() {
 function showDetailBox(index) {
    document.getElementById('detailViewBg').classList.remove('d-none');
    document.getElementById('detailViewBox').classList.remove('d-none');
+   document.getElementById('detailView').classList.remove('d-none');
    renderDetails(index);
 }
 
 function hideDetailBox() {
    document.getElementById('detailViewBg').classList.add('d-none');
    document.getElementById('detailViewBox').classList.add('d-none');
+   document.getElementById('editView').classList.add('d-none');
 }
 
 function getFormatedDate(dateString) {
    let date = new Date(dateString);
    let formattedDate = date.toLocaleDateString("de-DE");
    return formattedDate;
+}
+
+function getFormatedDateUS(dateString) {
+   let date = new Date(dateString);
+   let year = date.getFullYear();
+   let month = String(date.getMonth() + 1).padStart(2, '0');
+   let day = String(date.getDate()).padStart(2, '0');
+   return `${year}-${month}-${day}`;
 }
 
 function renderDetails(index) {
@@ -402,7 +412,32 @@ async function toggleSubtasks(taskIndex, subtaskIndex) {
    renderSubTasksDetailView(taskIndex);
    renderTasksInBoard();
    await saveTasks(tasks);
+}
 
+function editTask(index) {
+   showEditBox();
+   let taskToEdit = tasks[index];
+   getElementToEdit('.title-input').value = taskToEdit.title;
+   getElementToEdit('.description-input').value = taskToEdit.description;
+   getElementToEdit('.date-input').value = getFormatedDateUS(taskToEdit.date);
+}
+
+function getElementToEdit(classSelector) {
+   let inputs = document.querySelectorAll(classSelector);
+   let visibleInput;
+   inputs.forEach(function (input) {
+      if (getComputedStyle(input).display !== 'none') {
+         visibleInput = input;
+      }
+   })
+   if (visibleInput) {
+      return visibleInput;
+   }
+}
+
+function showEditBox() {
+   document.getElementById('detailView').classList.add('d-none');
+   document.getElementById('editView').classList.remove('d-none');
 }
 
 function printDetails(task, index) {
@@ -439,7 +474,7 @@ function printDetails(task, index) {
                <span>Delete</span>
             </div>
             <img src="./assets/img/divider_vertical.png" alt="">
-            <div>
+            <div onclick="editTask(${index})">
                <img src="./assets/img/edit.png" alt="">
                <span>Edit</span>
             </div>
