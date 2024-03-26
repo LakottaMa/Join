@@ -325,6 +325,7 @@ function hideDetailBox() {
    document.getElementById('detailViewBg').classList.add('d-none');
    document.getElementById('detailViewBox').classList.add('d-none');
    document.getElementById('editView').classList.add('d-none');
+   subTasks = [];
 }
 
 function getFormatedDate(dateString) {
@@ -420,6 +421,12 @@ function editTask(index) {
    getElementToEdit('.title-input').value = taskToEdit.title;
    getElementToEdit('.description-input').value = taskToEdit.description;
    getElementToEdit('.date-input').value = getFormatedDateUS(taskToEdit.date);
+   taskToEdit['subtasks'].forEach(subtask => {
+      subTasks.push(subtask.name);
+   })
+   renderSubTasks();
+   
+   console.log(subTasks);
 }
 
 function getElementToEdit(classSelector) {
@@ -429,7 +436,7 @@ function getElementToEdit(classSelector) {
       if (getComputedStyle(input).display !== 'none') {
          visibleInput = input;
       }
-   })
+   });
    if (visibleInput) {
       return visibleInput;
    }

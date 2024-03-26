@@ -191,7 +191,7 @@ function addSubTasks(event) {
  * render the added subTasks
  */
 function renderSubTasks() {
-    let task = document.getElementById('subTaskContainer');
+    let task = getElementToEdit('.subtask-input'); //document.getElementById('subTaskContainer');
     task.innerHTML = '';
     for (let i = 0; i < subTasks.length; i++) {
         const subTask = subTasks[i];
