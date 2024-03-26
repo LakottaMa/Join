@@ -95,7 +95,7 @@ function showFloatContact(i) {
     //null funktioniert aber hizufügen nicht
     //bei htm auf onclick = closePopup() gestellt
     //checkScreenSize();
-     if (screenWidth <= 1024) {
+     if (screenWidth <= 1024) {  //soll durch checkScreenSize() ersetzt werden
         //console.log('resize', screenWidth) //wieder löschen!!
          document.getElementById('contactList').classList.add('d-none');
          document.getElementById('contactMobile').classList.add('d-none');
@@ -110,8 +110,7 @@ function showFloatContact(i) {
 }
 
 window.addEventListener("resize", function () {
-    checkScreenSize();
-    
+    checkScreenSize();    
 });
 
 function checkScreenSize() {
