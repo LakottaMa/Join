@@ -477,3 +477,10 @@ progress[value] {
         }
     }
 }
+
+.subtasksDetailView:hover {
+    width: fit-content;
+    border-radius: 10px;
+    background-color: var(--clr-menu-hover);
+    padding-right: 16px;
+}
