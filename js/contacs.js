@@ -1,5 +1,3 @@
-let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -48,6 +46,7 @@ function contactsHTML(i) {
 }
 
 function deleteUser(userIndex) {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (userIndex !== -1) {
         users.splice(userIndex, 1);
         alert("User deleted successfully!");
@@ -60,8 +59,8 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
-    
-    if (screenWidth <= 1024){
+
+    if (screenWidth <= 1024) {
         showContactListMobil();
     }
     closePopup();
@@ -84,37 +83,60 @@ function addBgContact(index) {
 function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
-    let email = users[i]['email'];   
-
+    let email = users[i]['email'];
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
-    document.getElementById('floatingContact').onclick = null; 
+    //document.getElementById('floatingContact').onclick = null;
+
+    // document.getElementById('contactMobile').classList.add('d-none');
+    // document.getElementById('contactMobileFloat').classList.remove('d-none');
     //null funktioniert aber hizufügen nicht
     //bei htm auf onclick = closePopup() gestellt
+    //checkScreenSize();
+     if (screenWidth <= 1024) {
+        //console.log('resize', screenWidth) //wieder löschen!!
+         document.getElementById('contactList').classList.add('d-none');
+         document.getElementById('contactMobile').classList.add('d-none');
+         document.getElementById('contactMobileFloat').classList.remove('d-none');
+         //document.getElementById('floatingContact').onclick = closePopup();
+     } else {
+         document.getElementById('contactList').classList.remove('d-none');
+         document.getElementById('contactMobile').classList.remove('d-none');
+         document.getElementById('contactMobileFloat').classList.add('d-none');
+         //document.getElementById('floatingContact').onclick = closePopup();
+     }
+}
 
+window.addEventListener("resize", function () {
+    checkScreenSize();
+    
+});
+
+function checkScreenSize() {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    //console.log('resize', screenWidth) //wieder löschen!!
+    let floatContact = document.getElementById('floatingContact');
+    let widthfloatingContact = document.getElementById('floatingContact').style.width;
+    let contactList = document.getElementById('contactList');
+    let widthcontactList = document.getElementById('contactList').style.width;
     if (screenWidth <= 1024) {
-        document.getElementById('contactList').classList.add('d-none');
-        document.getElementById('contactMobile').classList.add('d-none');
-        document.getElementById('contactMobileFloat').classList.remove('d-none');
-        document.getElementById('floatingContact').onclick = closePopup();
+        if (widthfloatingContact === '40%') {
+            contactList.classList.add('d-none');
+            document.getElementById('contactMobile').classList.add('d-none');
+            floatContact.classList.remove('d-none');
+            widthfloatingContact = '100%';
+        } else if (widthcontactList === '100vw') {
+            floatContact.classList.add('d-none');
+            contactList.classList.remove('d-none');
+            document.getElementById('contactMobile').classList.remove('d-none');
+        }
     }
 }
 
-// function checkScreenSize(){
-//     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-//     if (screenWidth <= 1024) {
-//         mobileElements();
-//     }else
-// }
 
-// function mobileElements(){
 
-// }
-
-// window.addEventListener("resize", function () {
-//     checkScreenSize();
-// });
 
 function checkPhone(i) {
     let phone = users[i]['phone'];
@@ -202,6 +224,7 @@ function showAddPopup() {
     document.getElementById('contactPopup').innerHTML = '';
     document.getElementById('contactPopup').innerHTML = createContactPopupHTML();
 
+    document.getElementById('contactPopup').style.animation = 'slidingRight 0.2s ease-in-out';
     document.getElementById('contactPopup').style.left = '';
     document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
     document.getElementById('closePopup').style.borderTopRightRadius = '0px';
@@ -216,6 +239,7 @@ function showEditPopup(i) {
     document.getElementById('contactPopup').innerHTML = '';
     document.getElementById('contactPopup').innerHTML = editContactPopupHTML(i);
 
+    document.getElementById('contactPopup').style.animation = 'slidingLeft 0.2s ease-in-out';
     document.getElementById('contactPopup').style.left = 0;
     document.getElementById('closePopup').style.borderTopLeftRadius = '0px';
     document.getElementById('closePopup').style.borderTopRightRadius = '30px';
@@ -224,10 +248,7 @@ function showEditPopup(i) {
 
 function closePopup() {
     document.getElementById('contactPopup').classList.add('d-none');
-    document.getElementById('contactPopup').style.right = '-1000px';
-
     document.getElementById('background').classList.remove('back');
-    //document.getElementById('contactPopup').style.transform = 'translateX (0px)';
     document.getElementById('popupDotMenue').classList.add('d-none');
 }
 
@@ -236,7 +257,6 @@ function showDotMenu() {
 }
 
 function showContactListMobil() {
-    
     document.getElementById('contactMobile').classList.remove('d-none');
     document.getElementById('contactList').classList.remove('d-none');
     document.getElementById('floatingContact').classList.add('d-none');

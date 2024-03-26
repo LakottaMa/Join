@@ -99,12 +99,14 @@ h3 {
 /*********************** Start floatingContact ***********************/
 
 #floatingContact {
+    position: static;
     display: flex;
     flex-direction: column;
     padding: 72px 0 0 62px;
     margin-top: 96px;
     gap: 21px;
     width: 40%;
+    animation: slidingRight 0.2s ease-in-out;
 }
 
 #floatMobil {
@@ -188,6 +190,25 @@ h3 {
     color: var(--clr-main1);
 }
 
+@keyframes slidingRight {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }    
+}
+
+@keyframes slidingLeft {
+    from {
+        transform: translateX(-200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }    
+}
 
 
 
@@ -214,6 +235,7 @@ h3 {
     border: solid 1px #E3E3E3;
     border-radius: 30px;
     background-color: white;
+    animation: slidingRight 0.2s ease-in-out;
 }
 
 #topPopup {
@@ -404,6 +426,8 @@ input {
         left: 16px;
         background-color: white;
         padding: 72px 16px 0 16px;
+        width: 100%;
+        height: 100%;
     }
 
     #allContacts {
