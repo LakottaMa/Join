@@ -418,28 +418,15 @@ async function toggleSubtasks(taskIndex, subtaskIndex) {
 function editTask(index) {
    showEditBox();
    let taskToEdit = tasks[index];
-   getElementToEdit('.title-input').value = taskToEdit.title;
-   getElementToEdit('.description-input').value = taskToEdit.description;
-   getElementToEdit('.date-input').value = getFormatedDateUS(taskToEdit.date);
+   document.getElementById('editTitle').value = taskToEdit.title;
+   document.getElementById('editDescription').value = taskToEdit.description;
+   document.getElementById('editDate').value = getFormatedDateUS(taskToEdit.date);
+
    taskToEdit['subtasks'].forEach(subtask => {
       subTasks.push(subtask.name);
    })
-   renderSubTasks();
-   
-   console.log(subTasks);
-}
-
-function getElementToEdit(classSelector) {
-   let inputs = document.querySelectorAll(classSelector);
-   let visibleInput;
-   inputs.forEach(function (input) {
-      if (getComputedStyle(input).display !== 'none') {
-         visibleInput = input;
-      }
-   });
-   if (visibleInput) {
-      return visibleInput;
-   }
+   renderSubTasks('editSubTaskContainer');
+  
 }
 
 function showEditBox() {

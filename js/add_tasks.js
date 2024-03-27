@@ -105,7 +105,7 @@ function resetInputsAndSelections() {
     selectedUsers = [];
     renderSelectedUsers();
     subTasks = [];
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
     priority = "";
     category = "";
     checkRenderArr();
@@ -183,15 +183,15 @@ function addSubTasks(event) {
     let input = document.getElementById('subtaskInput');
     subTasks.push(input.value);
     input.value = '';
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
     hideSubtaskInput(event);
 }
 
 /**
  * render the added subTasks
  */
-function renderSubTasks() {
-    let task = getElementToEdit('.subtask-input'); //document.getElementById('subTaskContainer');
+function renderSubTasks(id) {
+    let task = document.getElementById(id);
     task.innerHTML = '';
     for (let i = 0; i < subTasks.length; i++) {
         const subTask = subTasks[i];
@@ -233,7 +233,7 @@ function printSubTasks(subTask, index) {
  */
 function deleteSubTask(index) {
     subTasks.splice(index, 1);
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
 }
 
 /**
@@ -244,7 +244,7 @@ function saveNewSubTask(index) {
     let newTask = document.getElementById(`newSubTask${index}`);
     subTasks.splice(index, 1, newTask.value);
     newTask.value = '';
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
 }
 
 /**

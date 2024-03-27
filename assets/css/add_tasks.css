@@ -4,16 +4,13 @@
     overflow: hidden;
 }
 
-.addTaskBoxInAddTasks {
+.addTaskSection {
     padding: 64px 24px;
     margin-top: 96px;
     overflow-y: auto;
     width: 488px;
     display: flex;
     height: calc(100vh - 96px);
-}
-
-.addTaskSection {
     display: flex;
     flex-direction: column;
     gap: 24px;
