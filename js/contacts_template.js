@@ -124,7 +124,7 @@ function editContactPopupHTML(i) {
             </div>
             <div id="popupBtn">
                 <button class="btnDelete cp" onclick="deleteUser(${i})">Delete</button>                
-                <button class="btnCreate cp" onclick="saveUser(${i})">Save<img
+                <button id="saveEditUser" class="btnCreate cp" onclick="saveUser(${i})">Save<img
                     src="./assets/img/check._white.png" alt="check">
                 </button>
             </div>                    

@@ -95,22 +95,22 @@ function showFloatContact(i) {
     //null funktioniert aber hizufügen nicht
     //bei htm auf onclick = closePopup() gestellt
     //checkScreenSize();
-     if (screenWidth <= 1024) {  //soll durch checkScreenSize() ersetzt werden
+    if (screenWidth <= 1024) {  //soll durch checkScreenSize() ersetzt werden
         //console.log('resize', screenWidth) //wieder löschen!!
-         document.getElementById('contactList').classList.add('d-none');
-         document.getElementById('contactMobile').classList.add('d-none');
-         document.getElementById('contactMobileFloat').classList.remove('d-none');
-         //document.getElementById('floatingContact').onclick = closePopup();
-     } else {
-         document.getElementById('contactList').classList.remove('d-none');
-         document.getElementById('contactMobile').classList.remove('d-none');
-         document.getElementById('contactMobileFloat').classList.add('d-none');
-         //document.getElementById('floatingContact').onclick = closePopup();
-     }
+        document.getElementById('contactList').classList.add('d-none');
+        document.getElementById('contactMobile').classList.add('d-none');
+        document.getElementById('contactMobileFloat').classList.remove('d-none');
+        //document.getElementById('floatingContact').onclick = closePopup();
+    } else {
+        document.getElementById('contactList').classList.remove('d-none');
+        document.getElementById('contactMobile').classList.remove('d-none');
+        document.getElementById('contactMobileFloat').classList.add('d-none');
+        //document.getElementById('floatingContact').onclick = closePopup();
+    }
 }
 
 window.addEventListener("resize", function () {
-    checkScreenSize();    
+    checkScreenSize();
 });
 
 function checkScreenSize() {
@@ -121,7 +121,7 @@ function checkScreenSize() {
     let contactList = document.getElementById('contactList');
     let widthcontactList = document.getElementById('contactList').style.width;
     if (screenWidth <= 1024) {
-        if (widthfloatingContact === '40%') {
+        if (widthfloatingContact === '95vw') {
             contactList.classList.add('d-none');
             document.getElementById('contactMobile').classList.add('d-none');
             floatContact.classList.remove('d-none');
@@ -133,9 +133,6 @@ function checkScreenSize() {
         }
     }
 }
-
-
-
 
 function checkPhone(i) {
     let phone = users[i]['phone'];
@@ -190,15 +187,29 @@ function editContact(i) {
     showEditPopup(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-
     document.getElementById('contactName').value = `${name}`;
     document.getElementById('contactEmail').value = `${email}`;
     document.getElementById('contactPhone').value = `${checkPhone(i)}`;
+    BtnClickable();
 
     //console.log('name',name) //wieder löschen!!
 }
 
+function BtnClickable() {
+    let name = document.getElementById('contactName').value;
+    let email = document.getElementById('contactEmail').value;
+    let phone = document.getElementById('contactPhone').value;
+    let submitButton = document.getElementById('saveEditUser');
+
+    if (!name || !email || !phone) {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
+}
+
 async function saveUser(i) {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let name = document.getElementById('contactName').value;
     let email = document.getElementById('contactEmail').value;
     let phone = document.getElementById('contactPhone').value;
@@ -207,8 +218,11 @@ async function saveUser(i) {
     users[i]['email'] = email;
     users[i]['phone'] = phone;
     await setItem('users', JSON.stringify(users));
-
     renderContactList();
+
+    if (screenWidth <= 1024) {
+        showContactListMobil();
+    }
     closePopup();
 }
 
@@ -251,18 +265,23 @@ function closePopup() {
     document.getElementById('popupDotMenue').classList.add('d-none');
 }
 
-function showDotMenu() {
-    document.getElementById('popupDotMenue').classList.remove('d-none');
-}
-
 function showContactListMobil() {
     document.getElementById('contactMobile').classList.remove('d-none');
     document.getElementById('contactList').classList.remove('d-none');
     document.getElementById('floatingContact').classList.add('d-none');
 }
 
+function showDotMenu() {
+    document.getElementById('popupDotMenue').classList.remove('d-none');
+}
+
+function closeDotMenue() {
+    document.getElementById('popupDotMenue').classList.add('d-none');
+}
+
 function notClose(event) {
     event.stopPropagation();
 }
+
 
 
