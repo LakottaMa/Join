@@ -11,6 +11,7 @@ async function initAddTask() {
     renderAddTask('addTaskContainer');
     initializeAndListen();
     priorityMedium();
+   // doNotFocusInput();
 }
 
 function renderAddTask(id) {
@@ -128,6 +129,7 @@ function resetInputsAndSelections() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('date').value = '';
+    document.getElementById('selectedCategory').value = '';
     selectedUsers = [];
     renderSelectedUsers();
     subTasks = [];
@@ -174,7 +176,7 @@ function hideSearchUserInput() {
  */
 function selectCategory(cat) {
     category = cat;
-    document.getElementById('selectedCategory').innerHTML = cat;
+    document.getElementById('selectedCategory').value = cat;
     toggleTaskCategory();
 }
 
@@ -485,8 +487,12 @@ function focusInputField(input, btn) {
         if (inputToFocus) {
             inputToFocus.focus();
         }
-    })
+    });
 }
 
-
-
+// function doNotFocusInput() {
+//     document.getElementById('selectedCategory').addEventListener('click', function(event) {
+//         event.preventDefault();
+//         console.log('X');
+//     })
+// }

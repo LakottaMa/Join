@@ -87,8 +87,8 @@ function printAddTask() {
                 <div class="category">
                     <span class="subHeadlineAddTask">Category</span>
                     <div>
-                        <div onclick="toggleTaskCategory()" class="customSelect catCon">
-                            <span id="selectedCategory">Select task category</span>
+                        <div onclick="toggleTaskCategory()" class="customSelect catCon" id="taskCategoryField">
+                            <input form="addTaskForm" type="text" name="" id="selectedCategory" placeholder="Select task category" required >
                             <img src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
                             <img id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png" alt="" class="d-none">
                         </div>
