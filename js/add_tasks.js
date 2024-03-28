@@ -77,10 +77,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
     }
 }
 
-/**
- * push new Task to tasks array
- */
-async function addTask() {
+function createTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let inputDate = document.getElementById('date').value;
@@ -91,6 +88,14 @@ async function addTask() {
     let taskCategory = defaultValues.category;
     let taskStatus = defaultValues.status;
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
+    return newTask;
+}
+
+/**
+ * push new Task to tasks array
+ */
+async function addTask() {
+    let newTask = createTask();
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
@@ -137,7 +142,7 @@ function resetInputsAndSelections() {
     priority = "";
     category = "";
     checkRenderArr();
-    setPrio();
+    setPrio('Medium');
 }
 
 /**
@@ -441,7 +446,7 @@ function printSelectedUsers(user, index) {
  * @param {string} prio priority
  */
 function setPrio(prio) {
-    switch (prio) {
+    switch (prio.toLowerCase()) {
         case 'urgent':
             priorityUrgent();
             break;
@@ -460,24 +465,28 @@ function priorityUrgent() {
     prioUrgent.classList.add('prioUrgentClicked');
     prioLow.classList.remove('prioLowClicked');
     prioMedium.classList.remove('prioMediumClicked');
+    defaultValues.priority = 'Urgent';
 }
 
 function priorityMedium() {
     prioMedium.classList.add('prioMediumClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioLow.classList.remove('prioLowClicked');
+    defaultValues.priority = 'Medium';
 }
 
 function priorityLow() {
     prioLow.classList.add('prioLowClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioMedium.classList.remove('prioMediumClicked');
+    defaultValues.priority = 'Low';
 }
 
 function priorityDefault() {
     prioLow.classList.remove('prioLowClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioMedium.classList.remove('prioMediumClicked');
+    defaultValues.priority = 'Medium';
 }
 
 function focusInputField(input, btn) {

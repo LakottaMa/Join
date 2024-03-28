@@ -421,12 +421,18 @@ async function toggleSubtasks(taskIndex, subtaskIndex) {
    await saveTasks(tasks);
 }
 
+let editTaskIndex;
+
 function editTask(index) {
    showEditBox();
+   editTaskIndex = index;
    let taskToEdit = tasks[index];
    document.getElementById('title').value = taskToEdit.title;
    document.getElementById('description').value = taskToEdit.description;
    document.getElementById('date').value = getFormatedDateUS(taskToEdit.date);
+   document.getElementById('selectedCategory').value = taskToEdit.category;
+   let prio = taskToEdit['priority'];
+   setPrio(prio);
 
    taskToEdit['subtasks'].forEach(subtask => {
       subTasks.push(subtask.name);
@@ -438,13 +444,30 @@ function editTask(index) {
    });
    renderUsers();
    renderSelectedUsers();
-  
+}
+
+async function saveEditedTask() {
+   let index = editTaskIndex;
+   let editedTask = createTask()
+   tasks.splice(index, 1, editedTask);
+   await saveTasks(tasks);
+   resetInputsAndSelections();
+   hideEditbox();
+   renderDetails(index);
+   renderTasksInBoard();
+}
+
+function hideEditbox() {
+   document.getElementById('detailView').classList.remove('d-none');
+   document.getElementById('editView').classList.add('d-none');
+
 }
 
 function showEditBox() {
    document.getElementById('detailView').classList.add('d-none');
    document.getElementById('editView').classList.remove('d-none');
    renderAddTask('editTaskContainer');
+   initializeAndListen();
 }
 
 function printDetails(task, index) {
