@@ -2,7 +2,6 @@ async function initBoard() {
    await includeHTML();
    await loadUsers();
    await loadTasks();
-   initializeAndListen();
    renderTasksInBoard();
 }
 
@@ -18,12 +17,16 @@ function showAddTaskBox(status) {
       box.classList.remove('d-none');
       mainContent.classList.add('dNone');
       headline.classList.add('d-none');
+      renderAddTask('addTaskInBoardContainer');
+      initializeAndListen();
       setDefaultValues(status);
    } else {
       box.classList.remove('d-none');
       setTimeout(() => {
          box.style.right = 0;
       }, 100);
+      renderAddTask('addTaskInBoardContainer');
+      initializeAndListen();
       setDefaultValues(status);
    }
 }
@@ -326,6 +329,7 @@ function hideDetailBox() {
    document.getElementById('detailViewBox').classList.add('d-none');
    document.getElementById('editView').classList.add('d-none');
    subTasks = [];
+   selectedUsers = [];
 }
 
 function getFormatedDate(dateString) {
@@ -418,20 +422,27 @@ async function toggleSubtasks(taskIndex, subtaskIndex) {
 function editTask(index) {
    showEditBox();
    let taskToEdit = tasks[index];
-   document.getElementById('editTitle').value = taskToEdit.title;
-   document.getElementById('editDescription').value = taskToEdit.description;
-   document.getElementById('editDate').value = getFormatedDateUS(taskToEdit.date);
+   document.getElementById('title').value = taskToEdit.title;
+   document.getElementById('description').value = taskToEdit.description;
+   document.getElementById('date').value = getFormatedDateUS(taskToEdit.date);
 
    taskToEdit['subtasks'].forEach(subtask => {
       subTasks.push(subtask.name);
-   })
-   renderSubTasks('editSubTaskContainer');
+   });
+   renderSubTasks('subTaskContainer');
+
+   taskToEdit['assignedTo'].forEach(user => {
+      selectedUsers.push(user);
+   });
+   renderUsers();
+   renderSelectedUsers();
   
 }
 
 function showEditBox() {
    document.getElementById('detailView').classList.add('d-none');
    document.getElementById('editView').classList.remove('d-none');
+   renderAddTask('editTaskContainer');
 }
 
 function printDetails(task, index) {

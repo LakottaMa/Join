@@ -8,8 +8,32 @@ async function initAddTask() {
     await includeHTML();
     await loadUsers();
     await loadTasks();
+    renderAddTask('addTaskContainer');
     initializeAndListen();
 }
+
+function renderAddTask(id) {
+    let container = document.getElementById(id);
+    container.innerHTML = printAddTask();
+}
+
+function clearAddTask() {
+    let id = checkIdforAddTask();
+    document.getElementById(id).innerHTML = '';
+}
+
+function checkIdforAddTask() {
+    let id;
+    if (window.location.pathname === '/add_tasks.html') {
+        id = 'addTaskContainer';
+    } else if (window.location.pathname === '/board.html' && document.getElementById('addTaskBox') && !document.getElementById('addTaskBox').classList.contains('d-none')) {
+        id = 'addTaskInBoardContainer';
+    } else {
+        id = 'editTaskContainer';
+    }
+    return id;
+}
+
 
 function initializeAndListen() {
     renderUsers();
@@ -90,6 +114,7 @@ function successfullyPopupAddTask() {
         behavior: "smooth"
       });
     setTimeout(() => {
+        clearAddTask();
         window.location.href = './board.html';
     }, 1000);
     
