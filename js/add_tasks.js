@@ -10,6 +10,7 @@ async function initAddTask() {
     await loadTasks();
     renderAddTask('addTaskContainer');
     initializeAndListen();
+    priorityMedium();
 }
 
 function renderAddTask(id) {
@@ -457,28 +458,24 @@ function priorityUrgent() {
     prioUrgent.classList.add('prioUrgentClicked');
     prioLow.classList.remove('prioLowClicked');
     prioMedium.classList.remove('prioMediumClicked');
-    priority = 'Urgent';
 }
 
 function priorityMedium() {
     prioMedium.classList.add('prioMediumClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioLow.classList.remove('prioLowClicked');
-    priority = 'Medium';
 }
 
 function priorityLow() {
     prioLow.classList.add('prioLowClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioMedium.classList.remove('prioMediumClicked');
-    priority = 'Low';
 }
 
 function priorityDefault() {
     prioLow.classList.remove('prioLowClicked');
     prioUrgent.classList.remove('prioUrgentClicked');
     prioMedium.classList.remove('prioMediumClicked');
-    priority = '';
 }
 
 function focusInputField(input, btn) {

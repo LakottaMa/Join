@@ -19,6 +19,7 @@ function showAddTaskBox(status) {
       headline.classList.add('d-none');
       renderAddTask('addTaskInBoardContainer');
       initializeAndListen();
+      priorityMedium();
       setDefaultValues(status);
    } else {
       box.classList.remove('d-none');
@@ -27,6 +28,7 @@ function showAddTaskBox(status) {
       }, 100);
       renderAddTask('addTaskInBoardContainer');
       initializeAndListen();
+      priorityMedium();
       setDefaultValues(status);
    }
 }
