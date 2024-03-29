@@ -10,8 +10,7 @@ async function initAddTask() {
     await loadTasks();
     renderAddTask('addTaskContainer');
     initializeAndListen();
-    priorityMedium();
-   // doNotFocusInput();
+    setPriority('Medium');
 }
 
 function renderAddTask(id) {
@@ -142,7 +141,7 @@ function resetInputsAndSelections() {
     priority = "";
     category = "";
     checkRenderArr();
-    setPrio('Medium');
+    setPriority('Medium');
 }
 
 /**
@@ -230,34 +229,6 @@ function renderSubTasks(id) {
         const subTask = subTasks[i];
         task.innerHTML += printSubTasks(subTask, i);
     }
-}
-
-/**
- * create html code
- * @param {string} subTask from the subTasks array
- * @returns 
- */
-function printSubTasks(subTask, index) {
-    return /*html*/ `
-        <div class="subTaskBox" id="subTaskBox${index}">
-            <span id="subTask${index}">${subTask}</span>
-            <div class="d-none subTaskInput" id="subTaskInput${index}">
-                <div class="subTaskEditBox">
-                    <input id="newSubTask${index}" type="text" placeholder="edit...">
-                    <div class="deleteAndEditIcons" class="deleteAndEditIcons">
-                        <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
-                        <img onclick="saveNewSubTask(${index})" src="./assets/img/check.png" alt="">
-                    </div>
-                </div>
-                <hr id="dividerHorizontal${index}" class="dividerHorizontal d-none">
-            </div>
-            <div id="deleteAndEditIcons${index}" class="deleteAndEditIcons">
-                <img onclick="showEditSubTaskInputField(${index})" src="./assets/img/edit.png" alt="">
-                <hr class="dividerVertical">
-                <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
-            </div>
-        </div>
-    `;
 }
 
 /**
@@ -359,21 +330,6 @@ function isUserSelected(index) {
 
 }
 
-/**
- * generate html
- * @param {string} user from renderUser() function
- * @param {Int} index from renderUser() function
- * @returns 
- */
-function printUsers(user, index) {
-    return /*html*/ `
-        <div class="user" id="user${index}" >
-            <span>${user}</span>
-            <img onclick="selectUser(${index})" id="imgUncheck${index}" src="./assets/img/check_unchecked.png" alt="">
-            <img onclick="unselectUser(${index})" id="imgCheck${index}" class="d-none" src="./assets/img/check_checked.png" alt="">
-        </div>
-    `;
-}
 
 /**
  * select user -> push in selectedUser array
@@ -441,52 +397,22 @@ function printSelectedUsers(user, index) {
     `;
 }
 
-/**
- * set priority for task
- * @param {string} prio priority
- */
-function setPrio(prio) {
-    switch (prio.toLowerCase()) {
-        case 'urgent':
-            priorityUrgent();
-            break;
-        case 'medium':
-            priorityMedium();
-            break;
-        case 'low':
-            priorityLow();
-            break;
-        default:
-            priorityDefault();
+function setPriority(prio) {
+    const priorities = ['urgent', 'medium', 'low'];
+    const elements = {
+        'urgent': prioUrgent,
+        'medium': prioMedium,
+        'low': prioLow
+    };
+
+    for (const priority of priorities) {
+        if (prio.toLowerCase() === priority) {
+            elements[priority].classList.add(`prio${priority.charAt(0).toUpperCase() + priority.slice(1)}Clicked`);
+            defaultValues.priority = priority.charAt(0).toUpperCase() + priority.slice(1);
+        } else {
+            elements[priority].classList.remove(`prio${priority.charAt(0).toUpperCase() + priority.slice(1)}Clicked`);
+        }
     }
-}
-
-function priorityUrgent() {
-    prioUrgent.classList.add('prioUrgentClicked');
-    prioLow.classList.remove('prioLowClicked');
-    prioMedium.classList.remove('prioMediumClicked');
-    defaultValues.priority = 'Urgent';
-}
-
-function priorityMedium() {
-    prioMedium.classList.add('prioMediumClicked');
-    prioUrgent.classList.remove('prioUrgentClicked');
-    prioLow.classList.remove('prioLowClicked');
-    defaultValues.priority = 'Medium';
-}
-
-function priorityLow() {
-    prioLow.classList.add('prioLowClicked');
-    prioUrgent.classList.remove('prioUrgentClicked');
-    prioMedium.classList.remove('prioMediumClicked');
-    defaultValues.priority = 'Low';
-}
-
-function priorityDefault() {
-    prioLow.classList.remove('prioLowClicked');
-    prioUrgent.classList.remove('prioUrgentClicked');
-    prioMedium.classList.remove('prioMediumClicked');
-    defaultValues.priority = 'Medium';
 }
 
 function focusInputField(input, btn) {
@@ -498,10 +424,3 @@ function focusInputField(input, btn) {
         }
     });
 }
-
-// function doNotFocusInput() {
-//     document.getElementById('selectedCategory').addEventListener('click', function(event) {
-//         event.preventDefault();
-//         console.log('X');
-//     })
-// }

@@ -396,7 +396,7 @@ function editTask(index) {
    document.getElementById('date').value = getFormatedDateUS(taskToEdit.date);
    document.getElementById('selectedCategory').value = taskToEdit.category;
    let prio = taskToEdit['priority'];
-   setPrio(prio);
+   setPriority(prio);
 
    taskToEdit['subtasks'].forEach(subtask => {
       subTasks.push(subtask.name);

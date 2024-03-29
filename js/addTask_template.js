@@ -18,7 +18,7 @@ function printAddTask() {
                 <div class="priority">
                     <span class="subHeadlineAddTask">Priority</span>
                     <div>
-                        <div onclick="setPrio('urgent')" id="prioUrgent" class="priorityBox prioUrgent">
+                        <div onclick="setPriority('urgent')" id="prioUrgent" class="priorityBox prioUrgent">
                             <span>Urgent</span>
                             <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -29,7 +29,7 @@ function printAddTask() {
                                     fill="#FF3D00" />
                             </svg>
                         </div>
-                        <div onclick="setPrio('medium')" id="prioMedium" class="priorityBox prioMedium">
+                        <div onclick="setPriority('medium')" id="prioMedium" class="priorityBox prioMedium">
                             <span>Medium</span>
                             <svg width="20" height="9" viewBox="0 0 20 9" fill="" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_36481_4722)">
@@ -48,7 +48,7 @@ function printAddTask() {
                             </svg>
             
                         </div>
-                        <div onclick="setPrio('low')" id="prioLow" class="priorityBox prioLow">
+                        <div onclick="setPriority('low')" id="prioLow" class="priorityBox prioLow">
                             <span>Low</span>
                             <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -218,3 +218,47 @@ function printDetails(task, index) {
 function printAssignedTo(contact, contactId) {
     return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
  }
+
+ /**
+ * generate html
+ * @param {string} user from renderUser() function
+ * @param {Int} index from renderUser() function
+ * @returns 
+ */
+function printUsers(user, index) {
+    return /*html*/ `
+        <div class="user" id="user${index}" >
+            <span>${user}</span>
+            <img onclick="selectUser(${index})" id="imgUncheck${index}" src="./assets/img/check_unchecked.png" alt="">
+            <img onclick="unselectUser(${index})" id="imgCheck${index}" class="d-none" src="./assets/img/check_checked.png" alt="">
+        </div>
+    `;
+}
+
+/**
+ * create html code
+ * @param {string} subTask from the subTasks array
+ * @returns 
+ */
+function printSubTasks(subTask, index) {
+    return /*html*/ `
+        <div class="subTaskBox" id="subTaskBox${index}">
+            <span id="subTask${index}">${subTask}</span>
+            <div class="d-none subTaskInput" id="subTaskInput${index}">
+                <div class="subTaskEditBox">
+                    <input id="newSubTask${index}" type="text" placeholder="edit...">
+                    <div class="deleteAndEditIcons" class="deleteAndEditIcons">
+                        <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
+                        <img onclick="saveNewSubTask(${index})" src="./assets/img/check.png" alt="">
+                    </div>
+                </div>
+                <hr id="dividerHorizontal${index}" class="dividerHorizontal d-none">
+            </div>
+            <div id="deleteAndEditIcons${index}" class="deleteAndEditIcons">
+                <img onclick="showEditSubTaskInputField(${index})" src="./assets/img/edit.png" alt="">
+                <hr class="dividerVertical">
+                <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
+            </div>
+        </div>
+    `;
+}
