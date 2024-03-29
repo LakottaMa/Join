@@ -168,7 +168,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    min-height: calc(100vh - 300px);
+    border: 1px dashed black;
+    min-height: 600px;
 }
 
 .todoCategory {
@@ -284,6 +285,7 @@ progress[value] {
     .toDoDiv {
         overflow-x: auto;
         flex-direction: row;
+        height: 300px !important;
     }
 
     .taskHeadline {

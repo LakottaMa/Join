@@ -22,7 +22,7 @@
 
         <!-- new add task below -->
         <div>
-            <div class="addTaskInBoard" id="addTaskInBoardContainer"></div>   
+            <div class="addTaskInBoard" id="addTaskInBoardContainer"></div>
         </div>
 
         <!-- new add task above -->
@@ -48,24 +48,34 @@
             <div class="taskBox">
                 <div class="taskHeadline"><span>To Do</span><img class="cp" onclick="showAddTaskBox('To Do')"
                         src="./assets/img/plus button.png" alt=""></div>
-                <div class="toDoDiv" id="toDoContainer" ondragover="allowDrop(event); highlight('toDoContainer')" ondrop="moveTo('To Do'); removeHighlight('toDoContainer')" ondragleave="removeHighlight('toDoContainer')"></div>
+                <div class="toDoDiv" id="toDoContainer" ondragover="allowDrop(event); highlight('toDoContainer')"
+                    ondrop="moveTo('To Do'); removeHighlight('toDoContainer')"
+                    ondragleave="removeHighlight('toDoContainer')"></div>
             </div>
 
             <div class="taskBox">
                 <div class="taskHeadline"><span>In progress</span><img class="cp"
                         onclick="showAddTaskBox('In progress')" src="./assets/img/plus button.png" alt=""></div>
-                <div class="toDoDiv" id="inProgressContainer" ondragover="allowDrop(event); highlight('inProgressContainer')" ondrop="moveTo('In progress'); removeHighlight('inProgressContainer')" ondragleave="removeHighlight('inProgressContainer')"></div>
+                <div class="toDoDiv" id="inProgressContainer"
+                    ondragover="allowDrop(event); highlight('inProgressContainer')"
+                    ondrop="moveTo('In progress'); removeHighlight('inProgressContainer')"
+                    ondragleave="removeHighlight('inProgressContainer')"></div>
             </div>
 
             <div class="taskBox">
                 <div class="taskHeadline"><span>Await feedback</span><img class="cp"
                         onclick="showAddTaskBox('Await feedback')" src="./assets/img/plus button.png" alt=""></div>
-                <div class="toDoDiv" id="awaitFeedbackContainer" ondragover="allowDrop(event); highlight('awaitFeedbackContainer')" ondrop="moveTo('Await feedback'); removeHighlight('awaitFeedbackContainer')"ondragleave="removeHighlight('awaitFeedbackContainer')"></div>
+                <div class="toDoDiv" id="awaitFeedbackContainer"
+                    ondragover="allowDrop(event); highlight('awaitFeedbackContainer')"
+                    ondrop="moveTo('Await feedback'); removeHighlight('awaitFeedbackContainer')"
+                    ondragleave="removeHighlight('awaitFeedbackContainer')"></div>
             </div>
 
             <div class="taskBox">
                 <div class="taskHeadline"><span>Done</span></div>
-                <div class="toDoDiv" id="doneContainer" ondragover="allowDrop(event); highlight('doneContainer')" ondrop="moveTo('Done'); removeHighlight('doneContainer')"ondragleave="removeHighlight('doneContainer')"></div>
+                <div class="toDoDiv" id="doneContainer" ondragover="allowDrop(event); highlight('doneContainer')"
+                    ondrop="moveTo('Done'); removeHighlight('doneContainer')"
+                    ondragleave="removeHighlight('doneContainer')"></div>
             </div>
 
         </section>
@@ -79,7 +89,8 @@
         <div id="editView" class="d-none">
             <img onclick="hideEditbox()" class="cp closeEditBtn" src="./assets/img/close.png" alt="">
             <div class="editTaskSection" id="editTaskContainer"></div>
-            <button class="blue-btn cp okBtn" onclick="saveEditedTask()"><span>Ok</span><img src="./assets/img/check._white.png" alt=""></button>
+            <button class="blue-btn cp okBtn" onclick="saveEditedTask()"><span>Ok</span><img
+                    src="./assets/img/check._white.png" alt=""></button>
         </div>
     </div>
 
@@ -89,6 +100,12 @@
             <img src="./assets/img/board_white.png">
         </div>
 
+        <script>
+            window.addEventListener('resize', function () {
+                updatePositions();
+            });
+        </script>
+
         <script src="./js/addTask_template.js"></script>
         <script src="./js/dragAndDrop.js"></script>
         <script src="./js/add_tasks.js"></script>
@@ -97,7 +114,7 @@
         <script src="./js/sign_up.js"></script>
         <script src="./js/templates.js"></script>
         <script src="./script.js"></script>
-        
+
 
 </body>
 
