@@ -77,8 +77,9 @@
     <div id="detailViewBox" class="detailViewBox d-none">
         <div id="detailView"></div>
         <div id="editView" class="d-none">
-            <div class="addTaskSection" id="editTaskContainer"></div>
-            <button onclick="saveEditedTask()">save</button>
+            <img onclick="hideEditbox()" class="cp closeEditBtn" src="./assets/img/close.png" alt="">
+            <div class="editTaskSection" id="editTaskContainer"></div>
+            <button class="blue-btn cp okBtn" onclick="saveEditedTask()"><span>Ok</span><img src="./assets/img/check._white.png" alt=""></button>
         </div>
     </div>
 

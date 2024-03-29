@@ -335,13 +335,22 @@ progress[value] {
 
     .detailViewBox {
         width: 90%;
-        height: 70%;
+        height: 90%;
+        z-index: 100 !important;
 
         & h1 {
             font-size: 32px;
         }
     }
+
+    .priorityBox {
+        & span {
+            display: none;
+        }
+    }
 }
+
+
 
 @media(min-width: 1024px) {
     .mainContent {
@@ -390,6 +399,10 @@ progress[value] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    & img {
+        width: 32px;
+    }
 }
 
 .keyString {
@@ -469,7 +482,7 @@ progress[value] {
         font-weight: 400;
     }
 
-    & div { 
+    & div {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -477,7 +490,7 @@ progress[value] {
 
         &:hover {
             scale: 110%;
-            color: var( --clr-blue);
+            color: var(--clr-blue);
             font-weight: 700;
         }
     }
@@ -488,4 +501,23 @@ progress[value] {
     border-radius: 10px;
     background-color: var(--clr-menu-hover);
     padding-right: 16px;
+}
+
+.editTaskSection {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.okBtn {
+    margin-left: auto;
+    margin-top: 8px;
+}
+
+.closeEditBtn {
+    display: block;
+    height: 32px;
+    width: 32px;
+    margin-left: auto;
 }

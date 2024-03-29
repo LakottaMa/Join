@@ -445,3 +445,9 @@ textarea:hover {
         display: none;
     }
 }
+
+.addTaskSection {
+    width: 100%;
+    padding: 8px;
+    margin-top: 96px;
+}

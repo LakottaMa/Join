@@ -460,6 +460,8 @@ async function saveEditedTask() {
 function hideEditbox() {
    document.getElementById('detailView').classList.remove('d-none');
    document.getElementById('editView').classList.add('d-none');
+   subTasks = [];
+   selectedUsers = [];
 
 }
 
