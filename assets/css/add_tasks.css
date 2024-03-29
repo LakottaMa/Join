@@ -418,8 +418,8 @@ textarea:hover {
     }
 
     .addTaskSection {
-        padding: 0;
-        margin: 0;
+        padding: 16px;
+        height: fit-content;
         overflow: hidden;
     }
 
@@ -440,9 +440,14 @@ textarea:hover {
         padding: 4px;
         justify-content: space-around;
     }
-    
+
     .clearBtn {
         display: none;
     }
 }
 
+@media(max-width: 600px) {
+    .addTaskSection {
+        width: 100%;
+    }
+}
