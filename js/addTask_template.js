@@ -193,7 +193,7 @@ function printDetails(task, index) {
 
  function printTasksInBoard(task, index, subTasksLength) {
     return /*html*/ `
-       <div onclick="showDetailBox(${index})" class="todoBox cp" draggable="true" ondragstart="startDragging(${index})">
+       <div id="todobox${index}" onclick="showDetailBox(${index})" class="todoBox cp" draggable="true" ondragstart="startDragging(${index})">
           <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
           <div id="todoTitle"><h2>${task.title}</h2></div>
           <div id="todoDescription">${task.description}</div>

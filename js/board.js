@@ -27,7 +27,7 @@ function showDesktopTaskBox(status, box) {
       }, 100);
       renderAddTask('addTaskInBoardContainer');
       initializeAndListen();
-      priorityMedium();
+      setPriority('medium');
       setDefaultValues(status);
 }
 
@@ -397,6 +397,7 @@ function editTask(index) {
    document.getElementById('selectedCategory').value = taskToEdit.category;
    let prio = taskToEdit['priority'];
    setPriority(prio);
+   defaultValues.status = taskToEdit['status'];
 
    taskToEdit['subtasks'].forEach(subtask => {
       subTasks.push(subtask.name);
