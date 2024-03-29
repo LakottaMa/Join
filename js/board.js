@@ -3,6 +3,8 @@ async function initBoard() {
    await loadUsers();
    await loadTasks();
    renderTasksInBoard();
+   startTouchEvents();
+   all.forEach(addStart);
 }
 
 /**
@@ -219,11 +221,15 @@ function checkContainer(status) {
 /**
  * check is search is active
  */
-function checkRenderTasks() {
+async function checkRenderTasks() {
    if (searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
       renderTasksInBoard();
+      await saveTasks(tasks);
+      all.forEach(addStart);
    } else {
       renderSearchedTasks();
+      await saveTasks(tasks);
+      all.forEach(addStart);
    }
 }
 
