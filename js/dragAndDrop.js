@@ -175,6 +175,3 @@ function resetElementPos(elem) {
     elem.style.top = 0 + "px";
 }
 
-window.addEventListener('resize', function () {
-    updatePositions();
-});
