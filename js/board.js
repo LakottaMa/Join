@@ -14,15 +14,14 @@ function showAddTaskBox(status) {
    let mainContent = document.getElementById('mainContent');
    let headline = document.getElementById('addTaskHeadline');
    if (window.matchMedia('(max-width: 500px)').matches) {
-      box.classList.remove('d-none');
-      mainContent.classList.add('dNone');
-      headline.classList.add('d-none');
-      renderAddTask('addTaskInBoardContainer');
-      initializeAndListen();
-      priorityMedium();
-      setDefaultValues(status);
+      showMobileTaskBox(status, mainContent, headline, box);
    } else {
-      box.classList.remove('d-none');
+      showDesktopTaskBox(status, box)
+   }
+}
+
+function showDesktopTaskBox(status, box) {
+   box.classList.remove('d-none');
       setTimeout(() => {
          box.style.right = 0;
       }, 100);
@@ -30,7 +29,16 @@ function showAddTaskBox(status) {
       initializeAndListen();
       priorityMedium();
       setDefaultValues(status);
-   }
+}
+
+function showMobileTaskBox(status, mainContent, headline, box) {
+      box.classList.remove('d-none');
+      mainContent.classList.add('dNone');
+      headline.classList.add('d-none');
+      renderAddTask('addTaskInBoardContainer');
+      initializeAndListen();
+      priorityMedium();
+      setDefaultValues(status);
 }
 /**
  * set default values
@@ -179,31 +187,6 @@ function getBgColorForContact(contact) {
 }
 
 /**
- * generate html for tasks
- * @param {string} task 
- * @param {int} index 
- * @param {int} subTasksLength 
- * @returns 
- */
-function printTasksInBoard(task, index, subTasksLength) {
-   return /*html*/ `
-      <div onclick="showDetailBox(${index})" class="todoBox cp">
-         <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
-         <div id="todoTitle"><h2>${task.title}</h2></div>
-         <div id="todoDescription">${task.description}</div>
-         <div class="todoSubtasks" id="todoSubtasks${index}">
-            <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
-            <span>${subTasksLength}/${tasks[index]['subtasks'].length} Subtasks</span>
-         </div>
-         <div class="assignedAndPrio">
-            <div id="todoAssignedTo${index}"></div>
-            <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
-         </div>
-      </div>
-   `;
-}
-
-/**
  * get the right image for the priority
  * @param {string} prio 
  * @returns 
@@ -211,16 +194,6 @@ function printTasksInBoard(task, index, subTasksLength) {
 function getPrioIcon(prio) {
    let path = `./assets/img/prio-${prio.toLowerCase()}.png`;
    return path;
-}
-
-/**
- * generate html
- * @param {string} contact 
- * @param {int} contactId 
- * @returns 
- */
-function printAssignedTo(contact, contactId) {
-   return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
 }
 
 /**
@@ -397,15 +370,6 @@ function renderAssignedToDetails(index) {
    }
 }
 
-function printAssignedToDetails(contact, contactId) {
-   return /*html*/ `
-      <div class="assignedToDetails">
-      <span class="contactBubble" id="${contactId}">${getInitials(contact)}</span>
-      <span class="openSans400-19">${contact}</span>
-      </div>
-   `;
-}
-
 async function deleteTask(index) {
    tasks.splice(index, 1);
    await saveTasks(tasks);
@@ -472,45 +436,3 @@ function showEditBox() {
    initializeAndListen();
 }
 
-function printDetails(task, index) {
-   return /*html*/ `
-      <div class="taskDetails">
-         <div class="categoryAndClose">
-            <span class="todoCategory" id="detailCategory${index}">${task.category}</span>
-            <img class="cp" onclick="hideDetailBox()" src="./assets/img/close.png" alt="close icon">
-         </div>
-         <h1>${task.title}</h1>
-         <span class="openSans400-19">${task.description}</span>
-         <div class="dflexCCgap25">
-            <span class="keyString">Due date:</span>
-            <span class="openSans400-19">${getFormatedDate(task.date)}</span>
-         </div>
-         <div class="dflexCCgap25">
-            <span class="keyString">Priority:</span>
-            <div class="detailPrio">
-               <span class="openSans400-19">${task.priority}</span>
-               <img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt="">
-            </div>
-         </div>
-         <div class="assignedToDetailBox">
-            <span class="keyString">Assigned To:</span>
-            <div class="assignedToDetailView" id="assignedToDetailView${index}"></div>
-         </div>
-         <div class="assignedToDetailBox">
-            <span class="keyString">Subtasks</span>
-            <div id="subTasksDetailViewBox${index}" class="assignedToDetailView"></div>
-         </div>
-         <div class="detailViewOptions">
-            <div onclick="deleteTask(${index})">
-               <img src="./assets/img/delete.png" alt="">
-               <span>Delete</span>
-            </div>
-            <img src="./assets/img/divider_vertical.png" alt="">
-            <div onclick="editTask(${index})">
-               <img src="./assets/img/edit.png" alt="">
-               <span>Edit</span>
-            </div>
-         </div>
-      </div>
-   `;
-}

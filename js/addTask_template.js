@@ -138,3 +138,83 @@ function printAddTask() {
                 <!-- subtask section -->
     `;
 }
+
+function printDetails(task, index) {
+    return /*html*/ `
+       <div class="taskDetails">
+          <div class="categoryAndClose">
+             <span class="todoCategory" id="detailCategory${index}">${task.category}</span>
+             <img class="cp" onclick="hideDetailBox()" src="./assets/img/close.png" alt="close icon">
+          </div>
+          <h1>${task.title}</h1>
+          <span class="openSans400-19">${task.description}</span>
+          <div class="dflexCCgap25">
+             <span class="keyString">Due date:</span>
+             <span class="openSans400-19">${getFormatedDate(task.date)}</span>
+          </div>
+          <div class="dflexCCgap25">
+             <span class="keyString">Priority:</span>
+             <div class="detailPrio">
+                <span class="openSans400-19">${task.priority}</span>
+                <img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt="">
+             </div>
+          </div>
+          <div class="assignedToDetailBox">
+             <span class="keyString">Assigned To:</span>
+             <div class="assignedToDetailView" id="assignedToDetailView${index}"></div>
+          </div>
+          <div class="assignedToDetailBox">
+             <span class="keyString">Subtasks</span>
+             <div id="subTasksDetailViewBox${index}" class="assignedToDetailView"></div>
+          </div>
+          <div class="detailViewOptions">
+             <div onclick="deleteTask(${index})">
+                <img src="./assets/img/delete.png" alt="">
+                <span>Delete</span>
+             </div>
+             <img src="./assets/img/divider_vertical.png" alt="">
+             <div onclick="editTask(${index})">
+                <img src="./assets/img/edit.png" alt="">
+                <span>Edit</span>
+             </div>
+          </div>
+       </div>
+    `;
+ }
+
+ function printAssignedToDetails(contact, contactId) {
+    return /*html*/ `
+       <div class="assignedToDetails">
+       <span class="contactBubble" id="${contactId}">${getInitials(contact)}</span>
+       <span class="openSans400-19">${contact}</span>
+       </div>
+    `;
+ }
+
+ function printTasksInBoard(task, index, subTasksLength) {
+    return /*html*/ `
+       <div onclick="showDetailBox(${index})" class="todoBox cp">
+          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
+          <div id="todoTitle"><h2>${task.title}</h2></div>
+          <div id="todoDescription">${task.description}</div>
+          <div class="todoSubtasks" id="todoSubtasks${index}">
+             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
+             <span>${subTasksLength}/${tasks[index]['subtasks'].length} Subtasks</span>
+          </div>
+          <div class="assignedAndPrio">
+             <div id="todoAssignedTo${index}"></div>
+             <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
+          </div>
+       </div>
+    `;
+ }
+
+ /**
+ * generate html
+ * @param {string} contact 
+ * @param {int} contactId 
+ * @returns 
+ */
+function printAssignedTo(contact, contactId) {
+    return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
+ }
