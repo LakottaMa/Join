@@ -174,3 +174,7 @@ function resetElementPos(elem) {
     elem.style.left = 0 + "px";                                
     elem.style.top = 0 + "px";
 }
+
+window.addEventListener('resize', function () {
+    updatePositions();
+});
