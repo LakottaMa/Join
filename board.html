@@ -48,24 +48,24 @@
             <div class="taskBox">
                 <div class="taskHeadline"><span>To Do</span><img class="cp" onclick="showAddTaskBox('To Do')"
                         src="./assets/img/plus button.png" alt=""></div>
-                <div class="toDoDiv" id="toDoContainer"></div>
+                <div class="toDoDiv" id="toDoContainer" ondragover="allowDrop(event); highlight('toDoContainer')" ondrop="moveTo('To Do'); removeHighlight('toDoContainer')" ondragleave="removeHighlight('toDoContainer')"></div>
             </div>
 
             <div class="taskBox">
                 <div class="taskHeadline"><span>In progress</span><img class="cp"
                         onclick="showAddTaskBox('In progress')" src="./assets/img/plus button.png" alt=""></div>
-                <div class="toDoDiv" id="inProgressContainer"></div>
+                <div class="toDoDiv" id="inProgressContainer" ondragover="allowDrop(event); highlight('inProgressContainer')" ondrop="moveTo('In progress'); removeHighlight('inProgressContainer')" ondragleave="removeHighlight('inProgressContainer')"></div>
             </div>
 
             <div class="taskBox">
                 <div class="taskHeadline"><span>Await feedback</span><img class="cp"
                         onclick="showAddTaskBox('Await feedback')" src="./assets/img/plus button.png" alt=""></div>
-                <div class="toDoDiv" id="awaitFeedbackContainer"></div>
+                <div class="toDoDiv" id="awaitFeedbackContainer" ondragover="allowDrop(event); highlight('awaitFeedbackContainer')" ondrop="moveTo('Await feedback'); removeHighlight('awaitFeedbackContainer')"ondragleave="removeHighlight('awaitFeedbackContainer')"></div>
             </div>
 
             <div class="taskBox">
                 <div class="taskHeadline"><span>Done</span></div>
-                <div class="toDoDiv" id="doneContainer"></div>
+                <div class="toDoDiv" id="doneContainer" ondragover="allowDrop(event); highlight('doneContainer')" ondrop="moveTo('Done'); removeHighlight('doneContainer')"ondragleave="removeHighlight('doneContainer')"></div>
             </div>
 
         </section>
@@ -96,6 +96,7 @@
         <script src="./js/sign_up.js"></script>
         <script src="./js/templates.js"></script>
         <script src="./script.js"></script>
+        <script src="./js/dragAndDrop.js"></script>
 
 </body>
 
