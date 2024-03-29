@@ -2,16 +2,16 @@ let elementToDrag;
 
 function startDragging(id) {
     elementToDrag = id;
-    console.log(elementToDrag);
 }
 
 function allowDrop(event) {
     event.preventDefault();
 }
 
-function moveTo(category) {
+async function moveTo(category) {
     tasks[elementToDrag]['status'] = category;
     renderTasksInBoard();
+    await saveTasks(tasks);
 }
 
 function highlight(id) {
