@@ -64,13 +64,12 @@ function printAddTask() {
                 <!-- prio section -->
             
                 <!-- assigned to section -->
-                <div class="category">
+                <div class="category overFlowYAuto">
                     <span class="subHeadlineAddTask">Assigned to (optional)</span>
                     <div>
                         <div class="customSelect" id="searchUserBtn">
-                            <span onclick="showSearchUserInput()" id="searchUserText">Select contacts to assign</span>
-                            <input type="text" name="" id="searchUserInput" onkeyup="searchUsers()"
-                                placeholder="Select contacts to assign" class="d-none">
+                            <input onclick="showSearchUserInput()" type="text" name="" id="searchUserInput" autocomplete="off" onkeyup="searchUsers()"
+                                placeholder="Select contacts to assign">
                             <img onclick="showSearchUserInput()" id="dropDownImg" src="./assets/img/arrow_drop_down_only_arrow.png"
                                 alt="">
                             <img onclick="hideSearchUserInput()" id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png"
@@ -88,8 +87,8 @@ function printAddTask() {
                     <span class="subHeadlineAddTask">Category</span>
                     <div>
                         <div onclick="toggleTaskCategory()" class="customSelect catCon" id="taskCategoryField">
-                            <input form="addTaskForm" type="text" name="" id="selectedCategory" placeholder="Select task category" required >
-                            <img src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
+                            <input form="addTaskForm" type="text" name="" id="selectedCategory" placeholder="Select task category" required autocomplete="off">
+                            <img id="dropDownImgCategory" src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
                             <img id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png" alt="" class="d-none">
                         </div>
                         <hr class="dividerHorizontal">
@@ -105,12 +104,8 @@ function printAddTask() {
                 <div class="category">
                     <span class="subHeadlineAddTask">Subtasks (optional)</span>
                     <div onclick="showSubtaskInput()" class="subtask" id="addSubTaskBtn">
-                        <span id="subtaskText">Add new subtask</span>
-                        <input type="text" name="" id="subtaskInput" class="d-none" placeholder="Add new subtask">
+                        <input type="text" name="" id="subtaskInput" placeholder="Add new subtask" autocomplete="off">
                         <img class="addClosePlusIcons" id="plusIcon" src="./assets/img/add.png" alt="">
-            
-            
-            
                         <div id="checkAndCloseIcons" class="checkAndCloseIcons d-none">
             
                             <svg class="addClosePlusIcons" onclick="addSubTasks(event)" width="16" height="13" viewBox="0 0 16 13"

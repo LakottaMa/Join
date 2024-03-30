@@ -159,16 +159,12 @@ function toggleTaskCategory() {
  * toogle input field for search user
  */
 function showSearchUserInput() {
-    document.getElementById('searchUserInput').classList.remove('d-none');
-    document.getElementById('searchUserText').classList.add('d-none');
     document.getElementById('userCategory').classList.remove('d-none');
     document.getElementById('dropDownImg').classList.add('d-none');
     document.getElementById('dropUpImg').classList.remove('d-none');
 }
 
 function hideSearchUserInput() {
-    document.getElementById('searchUserInput').classList.add('d-none');
-    document.getElementById('searchUserText').classList.remove('d-none');
     document.getElementById('userCategory').classList.add('d-none');
     document.getElementById('dropDownImg').classList.remove('d-none');
     document.getElementById('dropUpImg').classList.add('d-none');
@@ -188,8 +184,6 @@ function selectCategory(cat) {
  * show the input field for adding subtasks
  */
 function showSubtaskInput() {
-    document.getElementById('subtaskInput').classList.remove('d-none');
-    document.getElementById('subtaskText').classList.add('d-none');
     document.getElementById('plusIcon').classList.add('d-none');
     document.getElementById('checkAndCloseIcons').classList.remove('d-none');
 }
@@ -201,8 +195,6 @@ function showSubtaskInput() {
 function hideSubtaskInput(event) {
     event.stopPropagation();
     document.getElementById('checkAndCloseIcons').classList.add('d-none');
-    document.getElementById('subtaskInput').classList.add('d-none');
-    document.getElementById('subtaskText').classList.remove('d-none');
     document.getElementById('plusIcon').classList.remove('d-none');
 }
 

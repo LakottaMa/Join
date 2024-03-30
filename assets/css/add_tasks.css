@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+.overFlowYAuto {
+    overflow-y: auto;
+}
+
 .addTaskSection {
     padding: 64px 24px;
     margin-top: 96px;
@@ -217,6 +221,7 @@ textarea:hover {
 }
 
 .customSelect {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -229,7 +234,15 @@ textarea:hover {
 }
 
 .customSelect img {
-    margin-left: auto;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translate(-50%);
+
+    &:hover {
+        background-color: var(--clr-main2);
+
+    }
 }
 
 .customSelect:hover {
