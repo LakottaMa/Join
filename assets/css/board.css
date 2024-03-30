@@ -301,6 +301,12 @@ progress[value] {
 }
 
 @media(max-width: 550px) {
+
+    .emptyBox {
+        width: 95%;
+        margin-inline: auto;
+    }
+
     .findAndAdd {
         flex-direction: column;
         padding: 16px;
@@ -341,7 +347,7 @@ progress[value] {
 
     .toDoDiv {
         padding: 8px;
-        min-width: 100%;
+        min-width: 100vw;
         height: fit-content;
     }
 
