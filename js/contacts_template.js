@@ -109,7 +109,7 @@ function editContactPopupHTML(i) {
                 >${initials}</div>            
             </div>    
         </div>              
-        <form class="input-box" onsubmit="saveUser(); return false;">
+        <form id="editForm" class="input-box" onsubmit="saveUser(); return false;">
             <div class="input-field">
                 <input id="contactName" type="text" placeholder="Name" required>
                 <img src="./assets/img/person.png" alt="avatar">

@@ -195,17 +195,21 @@ function editContact(i) {
     //console.log('name',name) //wieder löschen!!
 }
 
-function BtnClickable() {
-    let name = document.getElementById('contactName').value;
-    let email = document.getElementById('contactEmail').value;
-    let phone = document.getElementById('contactPhone').value;
-    let submitButton = document.getElementById('saveEditUser');
+function BtnClickable() { 
+    document.getElementById('editForm').addEventListener('input', function () {
+        let name = document.getElementById('contactName').value;
+        let email = document.getElementById('contactEmail').value;
+        let phone = document.getElementById('contactPhone').value;
+        let submitButton = document.getElementById('saveEditUser');
 
-    if (!name || !email || !phone) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
+        if (name && email && phone) {
+            submitButton.disabled = false;
+            submitButton.classList.remove('btn-disabled');
+        } else {
+            submitButton.disabled = true;
+            submitButton.classList.add('btn-disabled');
+        }
+    });
 }
 
 async function saveUser(i) {
@@ -218,6 +222,7 @@ async function saveUser(i) {
     users[i]['email'] = email;
     users[i]['phone'] = phone;
     await setItem('users', JSON.stringify(users));
+    document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
 
     if (screenWidth <= 1024) {
