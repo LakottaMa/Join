@@ -169,7 +169,6 @@
     flex-direction: column;
     gap: 16px;
     border: 1px dashed black;
-    min-height: 600px;
 }
 
 .todoCategory {
@@ -285,7 +284,7 @@ progress[value] {
     .toDoDiv {
         overflow-x: auto;
         flex-direction: row;
-        height: 300px !important;
+        height: fit-content !important;
     }
 
     .taskHeadline {
@@ -294,6 +293,10 @@ progress[value] {
 
     .addTaskBoxInAddTasks {
         margin-top: 0;
+    }
+
+    .todoBox {
+        height: fit-content;
     }
 }
 
@@ -332,9 +335,14 @@ progress[value] {
         }
     }
 
+    .categoryAndClose h1 {
+        font-size: 24px;
+    }
+
     .toDoDiv {
         padding: 8px;
         min-width: 100%;
+        height: fit-content;
     }
 
     .addTaskHeadline {
@@ -363,6 +371,10 @@ progress[value] {
 @media(min-width: 1024px) {
     .mainContent {
         display: flex !important;
+    }
+
+    .toDoDiv {
+        min-height: calc(100vh - 320px);
     }
 }
 

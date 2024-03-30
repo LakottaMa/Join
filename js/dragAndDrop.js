@@ -90,57 +90,77 @@ function updatePositions() {
 }
 
 function addStart(elem) {
+    let id = elem.id.slice(-1);
+    let taskToMove = tasks[id];
+
     elem.addEventListener('touchstart', e => {
 
-        let startX = e.changedTouches[0].clientX;   // speichert x und y koordinaten in variable ab
+        let startX = e.changedTouches[0].clientX;
         let startY = e.changedTouches[0].clientY;
 
+        let touchMoveEnabled = false;
+        let touchMoved = false;
+        
+        e.preventDefault();
+
+        let timeoutID = setTimeout(() => {
+            touchMoveEnabled = true;
+            document.getElementById(`todobox${id}`).style.transform = 'rotate(5deg)';
+        }, '500');
+
         elem.addEventListener('touchmove', eve => {
-            eve.preventDefault();                   // verhindert dass der Bildschirm scrollt
+            eve.preventDefault();
+            if (touchMoveEnabled) {
+                touchMoved = true;
+                let nextX = eve.changedTouches[0].clientX;
+                let nextY = eve.changedTouches[0].clientY;
 
-            let nextX = eve.changedTouches[0].clientX;  // speichert die aktuelle koordinaten ab
-            let nextY = eve.changedTouches[0].clientY;
+                elem.style.left = nextX - startX + 'px';
+                elem.style.top = nextY - startY + 'px';
+                elem.style.zIndex = 500;
 
-            elem.style.left = nextX - startX + 'px';    // damit das Element sich auch bewegt, muss die aktuelle Position als style übergeben werden
-            elem.style.top = nextY - startY + 'px';
-            elem.style.zIndex = 500;
-
-            if (isElementInside(progressPos, elem)) {
-                highlightProgress();
-            } else if (isElementInside(feedbackPos, elem)) {
-                highlightFeedback();
-            } else if (isElementInside(donePos, elem)) {
-                highlightDone();
-            } else if (isElementInside(todoPos, elem)) {
-                highlightTodo();
-            } else {
-                removeAllHighlight();
+                if (isElementInside(progressPos, elem)) {
+                    highlightProgress();
+                } else if (isElementInside(feedbackPos, elem)) {
+                    highlightFeedback();
+                } else if (isElementInside(donePos, elem)) {
+                    highlightDone();
+                } else if (isElementInside(todoPos, elem)) {
+                    highlightTodo();
+                } else {
+                    removeAllHighlight();
+                }
             }
         });
 
-        elem.addEventListener('touchend', eve => {
-            let id = elem.id.slice(-1);
-            let taskToMove = tasks[id];
-            elem.style.zIndex = 0;
 
-            if (isElementInside(progressPos, elem)) {
-                dropElementInDiv(elem, 'In progress', taskToMove);
-            } else if (isElementInside(feedbackPos, elem)) {
-                dropElementInDiv(elem, 'Await feedback', taskToMove);
-            } else if (isElementInside(donePos, elem)) {
-                dropElementInDiv(elem, 'Done', taskToMove)
-            } else if (isElementInside(todoPos, elem)) {
-                dropElementInDiv(elem, 'ToDo', taskToMove);
+        elem.addEventListener('touchend', eve => {
+            clearTimeout(timeoutID);
+            elem.style.zIndex = 0;
+            if (!touchMoveEnabled && !touchMoved) {
+                showDetailBox(id);
             } else {
-                resetElement(elem);
+                if (isElementInside(progressPos, elem)) {
+                    dropElementInDiv(elem, 'In progress', taskToMove);
+                } else if (isElementInside(feedbackPos, elem)) {
+                    dropElementInDiv(elem, 'Await feedback', taskToMove);
+                } else if (isElementInside(donePos, elem)) {
+                    dropElementInDiv(elem, 'Done', taskToMove)
+                } else if (isElementInside(todoPos, elem)) {
+                    dropElementInDiv(elem, 'ToDo', taskToMove);
+                } else {
+                    resetElement(elem);
+                }
             }
+            touchMoveEnabled = false;
+            touchMoved = false;
         });
     });
 }
 
 
 function isElementInside(container, element) {
-    if(getCenterX(element) > container.left && getCenterX(element) < container.right && getCenterY(element) > container.top && getCenterY(element) < container.bottom) {
+    if (getCenterX(element) > container.left && getCenterX(element) < container.right && getCenterY(element) > container.top && getCenterY(element) < container.bottom) {
         return true;
     } else {
         return false;
