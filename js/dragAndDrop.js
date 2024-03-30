@@ -92,31 +92,29 @@ function updatePositions() {
 function addStart(elem) {
     elem.addEventListener('touchstart', e => {
 
-        let startX = e.changedTouches[0].clientX;
+        let startX = e.changedTouches[0].clientX;   // speichert x und y koordinaten in variable ab
         let startY = e.changedTouches[0].clientY;
 
         elem.addEventListener('touchmove', eve => {
-            eve.preventDefault();
+            eve.preventDefault();                   // verhindert dass der Bildschirm scrollt
 
-            let nextX = eve.changedTouches[0].clientX;
+            let nextX = eve.changedTouches[0].clientX;  // speichert die aktuelle koordinaten ab
             let nextY = eve.changedTouches[0].clientY;
 
-            elem.style.left = nextX - startX + 'px';
+            elem.style.left = nextX - startX + 'px';    // damit das Element sich auch bewegt, muss die aktuelle Position als style übergeben werden
             elem.style.top = nextY - startY + 'px';
             elem.style.zIndex = 500;
 
-            if (getCenterX(elem) > progressPos.left && getCenterX(elem) < progressPos.right && getCenterY(elem) > progressPos.top && getCenterY(elem) < progressPos.bottom) {
-                console.log('Element befindet sich im in Progress Bereich!');
+            if (isElementInside(progressPos, elem)) {
                 highlightProgress();
-            } else if (getCenterX(elem) > feedbackPos.left && getCenterX(elem) < feedbackPos.right && getCenterY(elem) > feedbackPos.top && getCenterY(elem) < feedbackPos.bottom) {
-                console.log('Element befindet sich im Feedback Bereich!');
+            } else if (isElementInside(feedbackPos, elem)) {
                 highlightFeedback();
-            } else if (getCenterX(elem) > donePos.left && getCenterX(elem) < donePos.right && getCenterY(elem) > donePos.top && getCenterY(elem) < donePos.bottom) {
-                console.log('Element befindet sich im Done Bereich!');
+            } else if (isElementInside(donePos, elem)) {
                 highlightDone();
-            } else if (getCenterX(elem) > todoPos.left && getCenterX(elem) < todoPos.right && getCenterY(elem) > todoPos.top && getCenterY(elem) < todoPos.bottom) {
-                console.log('Element befindet sich im Todo Bereich!');
+            } else if (isElementInside(todoPos, elem)) {
                 highlightTodo();
+            } else {
+                removeAllHighlight();
             }
         });
 
@@ -125,37 +123,42 @@ function addStart(elem) {
             let taskToMove = tasks[id];
             elem.style.zIndex = 0;
 
-            if (getCenterX(elem) > progressPos.left && getCenterX(elem) < progressPos.right && getCenterY(elem) > progressPos.top && getCenterY(elem) < progressPos.bottom) {
-                console.log('Element in progress abgelegt!');
-                taskToMove['status'] = 'In progress';
-                resetElementPos(elem);
-                checkRenderTasks();
-                removeAllHighlight();
-                startTouchEvents();
-            } else if (getCenterX(elem) > feedbackPos.left && getCenterX(elem) < feedbackPos.right && getCenterY(elem) > feedbackPos.top && getCenterY(elem) < feedbackPos.bottom) {
-                taskToMove['status'] = 'Await feedback';
-                resetElementPos(elem);
-                checkRenderTasks();
-                removeAllHighlight();
-                startTouchEvents();
-                console.log('Element in feedback abgelegt!');
-            } else if (getCenterX(elem) > donePos.left && getCenterX(elem) < donePos.right && getCenterY(elem) > donePos.top && getCenterY(elem) < donePos.bottom) {
-                taskToMove['status'] = 'Done';
-                resetElementPos(elem);
-                checkRenderTasks();
-                removeAllHighlight();
-                startTouchEvents();
-                console.log('Element in done abgelegt!');
-            } else if (getCenterX(elem) > todoPos.left && getCenterX(elem) < todoPos.right && getCenterY(elem) > todoPos.top && getCenterY(elem) < todoPos.bottom) {
-                taskToMove['status'] = 'ToDo';
-                resetElementPos(elem);
-                checkRenderTasks();
-                removeAllHighlight();
-                startTouchEvents();
-                console.log('Element in todo abgelegt!');
+            if (isElementInside(progressPos, elem)) {
+                dropElementInDiv(elem, 'In progress', taskToMove);
+            } else if (isElementInside(feedbackPos, elem)) {
+                dropElementInDiv(elem, 'Await feedback', taskToMove);
+            } else if (isElementInside(donePos, elem)) {
+                dropElementInDiv(elem, 'Done', taskToMove)
+            } else if (isElementInside(todoPos, elem)) {
+                dropElementInDiv(elem, 'ToDo', taskToMove);
+            } else {
+                resetElement(elem);
             }
         });
     });
+}
+
+
+function isElementInside(container, element) {
+    if(getCenterX(element) > container.left && getCenterX(element) < container.right && getCenterY(element) > container.top && getCenterY(element) < container.bottom) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function resetElement(elem) {
+    resetElementPos(elem);
+    removeAllHighlight();
+    startTouchEvents();
+}
+
+function dropElementInDiv(elem, status, taskToMove) {
+    taskToMove['status'] = status;
+    resetElementPos(elem);
+    checkRenderTasks();
+    removeAllHighlight();
+    startTouchEvents();
 }
 
 function getCenterX(element) {
@@ -171,7 +174,7 @@ function getCenterY(element) {
 }
 
 function resetElementPos(elem) {
-    elem.style.left = 0 + "px";                                
+    elem.style.left = 0 + "px";
     elem.style.top = 0 + "px";
 }
 
