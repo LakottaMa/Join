@@ -299,90 +299,6 @@ progress[value] {
     }
 }
 
-@media(max-width: 550px) {
-
-    .emptyBox {
-        width: 95%;
-        margin-inline: auto;
-    }
-
-    .findAndAdd {
-        flex-direction: column;
-        padding: 16px;
-        margin-top: 135px;
-
-        & button {
-            display: none;
-        }
-    }
-
-    .searchField {
-        width: 100%;
-        padding: 4px 8px;
-    }
-
-    .addTaskbox {
-        width: 100%;
-        position: fixed;
-        top: 96px;
-        margin-top: 0;
-        height: calc(100vh - 96px - 76px);
-        left: 0;
-        z-index: 15;
-        align-items: center;
-        border-radius: 0;
-
-        & button {
-            margin-left: 0;
-            margin-right: 0;
-            margin-bottom: 110px;
-            margin-top: 8px;
-        }
-    }
-
-    .categoryAndClose h1 {
-        font-size: 24px;
-    }
-
-    .toDoDiv {
-        padding: 8px;
-        min-width: 100vw;
-        height: fit-content;
-    }
-
-    .addTaskHeadline {
-        display: none;
-    }
-
-    .detailViewBox {
-        width: 90%;
-        height: 90%;
-        z-index: 100 !important;
-
-        & h1 {
-            font-size: 32px;
-        }
-    }
-
-    .priorityBox {
-        & span {
-            display: none;
-        }
-    }
-}
-
-
-
-@media(min-width: 1024px) {
-    .mainContent {
-        display: flex !important;
-    }
-
-    .toDoDiv {
-        min-height: calc(100vh - 320px);
-    }
-}
-
 .dNone {
     display: none;
 }
@@ -443,7 +359,7 @@ progress[value] {
     font-weight: 400;
 }
 
-.dflexCCgap25 {
+.dateAndPrio {
     display: flex;
     align-items: center;
     gap: 25px;
@@ -545,4 +461,105 @@ progress[value] {
     height: 32px;
     width: 32px;
     margin-left: auto;
+}
+
+.dateAndPrio {
+    display: flex;
+}
+
+.dateAndIcons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media(max-width: 550px) {
+
+    .dateAndPrio {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .emptyBox {
+        width: 95%;
+        margin-inline: auto;
+    }
+
+    .findAndAdd {
+        flex-direction: column;
+        padding: 16px;
+        margin-top: 135px;
+
+        & button {
+            display: none;
+        }
+    }
+
+    .searchField {
+        width: 100%;
+        padding: 4px 8px;
+    }
+
+    .addTaskbox {
+        width: 100%;
+        position: fixed;
+        top: 96px;
+        margin-top: 0;
+        height: calc(100vh - 96px - 76px);
+        left: 0;
+        z-index: 15;
+        align-items: center;
+        border-radius: 0;
+
+        & button {
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 110px;
+            margin-top: 8px;
+        }
+    }
+
+    .categoryAndClose h1 {
+        font-size: 24px;
+    }
+
+    .toDoDiv {
+        padding: 8px;
+        min-width: 100vw;
+        height: fit-content;
+    }
+
+    .addTaskHeadline {
+        display: none;
+    }
+
+    .detailViewBox {
+        width: 90%;
+        height: 90%;
+        z-index: 100 !important;
+
+        & h1 {
+            font-size: 24px;
+        }
+    }
+
+    .priorityBox {
+        & span {
+            display: none;
+        }
+    }
+
+}
+
+
+
+@media(min-width: 1024px) {
+    .mainContent {
+        display: flex !important;
+    }
+
+    .toDoDiv {
+        min-height: calc(100vh - 320px);
+    }
 }

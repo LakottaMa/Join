@@ -326,6 +326,11 @@ textarea:hover {
     &:hover .deleteAndEditIcons {
         visibility: visible;
     }
+
+    & li:hover {
+        background-color: var(--clr-menu-hover);
+        cursor: pointer;
+    }
 }
 
 .subTaskEditBox {

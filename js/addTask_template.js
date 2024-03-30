@@ -143,13 +143,13 @@ function printDetails(task, index) {
           </div>
           <h1>${task.title}</h1>
           <span class="openSans400-19">${task.description}</span>
-          <div class="dflexCCgap25">
+          <div class="dateAndPrio">
              <span class="keyString">Due date:</span>
              <span class="openSans400-19">${getFormatedDate(task.date)}</span>
           </div>
-          <div class="dflexCCgap25">
+          <div class="dateAndPrio">
              <span class="keyString">Priority:</span>
-             <div class="detailPrio">
+             <div class="dateAndIcons">
                 <span class="openSans400-19">${task.priority}</span>
                 <img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt="">
              </div>
@@ -238,7 +238,7 @@ function printUsers(user, index) {
 function printSubTasks(subTask, index) {
     return /*html*/ `
         <div class="subTaskBox" id="subTaskBox${index}">
-            <span id="subTask${index}">${subTask}</span>
+            <li id="subTask${index}">${subTask}</li>
             <div class="d-none subTaskInput" id="subTaskInput${index}">
                 <div class="subTaskEditBox">
                     <input id="newSubTask${index}" type="text" placeholder="edit...">
