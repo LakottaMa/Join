@@ -33,7 +33,7 @@ function floatContactHTML(name, email, i) {
 
         </div>
 
-        <button id="contactMobileFloat" class="blue-btn cp d-none" onclick="showDotMenu(); notClose(event)"><img
+        <button id="contactMobileFloat" class="blue-btn cp" onclick="showDotMenu(); notClose(event)"><img
             src="./assets/img/menu-dots.png" alt="menu">
         </button>
 

@@ -12,9 +12,28 @@ h3 {
 
 .contactList {
     width: 456px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin-top: 96px;
     padding: 0 28px 0 52px;
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar {
+    width: 24px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 12px;
+    border: 8px solid rgba(255, 255, 255, 0);
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c6c6c6;
+    border: 8px solid rgba(255, 255, 255, 0);
+    background-clip: padding-box;
 }
 
 #allContacts {
@@ -111,12 +130,13 @@ h3 {
 
 #floatMobil {
     display: none;
+    justify-content: space-between;
 }
 
 #arrowBack {
-    position: fixed;
-    top: 170px;
-    right: 30px;
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
 
     img {
         width: 34px;
@@ -427,7 +447,7 @@ input {
         background-color: white;
         padding: 48px 0px 0 0px;
         width: 95vw;
-        height: 95vw;
+        height: 100vh;
     }
 
     #allContacts {
@@ -505,7 +525,6 @@ input {
 
     #floatMobil {
         display: flex;
-        align-items: center;
     }
 
     #contactMobileFloat {
@@ -513,11 +532,12 @@ input {
         justify-content: center;
         align-items: center;
         position: fixed;
-        bottom: 95px;
-        right: 25px;
+        bottom: 100px;
+        right: 30px;
         width: 64px;
         height: 64px;
         margin: 0;
+        z-index: 3;
     }
 
     #popupDotMenue {
@@ -533,6 +553,7 @@ input {
         border: 2px solid rgba(209, 209, 209, 1);
         border-radius: 20px 20px 0 20px;
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+        z-index: 4;
 
         img {
             width: 24px;

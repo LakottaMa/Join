@@ -79,59 +79,19 @@ function addBgContact(index) {
     };
 }
 
+//let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 function showFloatContact(i) {
     addBgContact(i);
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let name = users[i]['name'];
     let email = users[i]['email'];
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
-    //document.getElementById('floatingContact').onclick = null;
-
-    // document.getElementById('contactMobile').classList.add('d-none');
-    // document.getElementById('contactMobileFloat').classList.remove('d-none');
-    //null funktioniert aber hizufügen nicht
-    //bei htm auf onclick = closePopup() gestellt
-    //checkScreenSize();
-    if (screenWidth <= 1024) {  //soll durch checkScreenSize() ersetzt werden
-        //console.log('resize', screenWidth) //wieder löschen!!
-        document.getElementById('contactList').classList.add('d-none');
-        document.getElementById('contactMobile').classList.add('d-none');
-        document.getElementById('contactMobileFloat').classList.remove('d-none');
-        //document.getElementById('floatingContact').onclick = closePopup();
-    } else {
-        document.getElementById('contactList').classList.remove('d-none');
-        document.getElementById('contactMobile').classList.remove('d-none');
-        document.getElementById('contactMobileFloat').classList.add('d-none');
-        //document.getElementById('floatingContact').onclick = closePopup();
-    }
-}
-
-window.addEventListener("resize", function () {
-    checkScreenSize();
-});
-
-function checkScreenSize() {
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    //console.log('resize', screenWidth) //wieder löschen!!
-    let floatContact = document.getElementById('floatingContact');
-    let widthfloatingContact = document.getElementById('floatingContact').style.width;
-    let contactList = document.getElementById('contactList');
-    let widthcontactList = document.getElementById('contactList').style.width;
-    if (screenWidth <= 1024) {
-        if (widthfloatingContact === '95vw') {
-            contactList.classList.add('d-none');
-            document.getElementById('contactMobile').classList.add('d-none');
-            floatContact.classList.remove('d-none');
-            widthfloatingContact = '100%';
-        } else if (widthcontactList === '100vw') {
-            floatContact.classList.add('d-none');
-            contactList.classList.remove('d-none');
-            document.getElementById('contactMobile').classList.remove('d-none');
-        }
-    }
+    // if (screenWidth <= 1024) {
+    //     document.getElementById('contactList').classList.add('d-none');
+    // }
 }
 
 function checkPhone(i) {
@@ -195,7 +155,7 @@ function editContact(i) {
     //console.log('name',name) //wieder löschen!!
 }
 
-function BtnClickable() { 
+function BtnClickable() {
     document.getElementById('editForm').addEventListener('input', function () {
         let name = document.getElementById('contactName').value;
         let email = document.getElementById('contactEmail').value;
@@ -211,6 +171,31 @@ function BtnClickable() {
         }
     });
 }
+
+// window.addEventListener("resize", function () {
+//     checkScreenSize();
+// });
+
+// function checkScreenSize() {
+//     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+//     //console.log('resize', screenWidth) //wieder löschen!!
+//     let floatContact = document.getElementById('floatingContact');
+//     let widthfloatingContact = document.getElementById('floatingContact').style.width;
+//     let contactList = document.getElementById('contactList');
+//     let widthcontactList = document.getElementById('contactList').style.width;
+//     if (screenWidth <= 1024) {
+//         if (widthfloatingContact === '95vw') {
+//             contactList.classList.add('d-none');
+//             document.getElementById('contactMobile').classList.add('d-none');
+//             floatContact.classList.remove('d-none');
+//             widthfloatingContact = '100%';
+//         } else if (widthcontactList === '100vw') {
+//             floatContact.classList.add('d-none');
+//             contactList.classList.remove('d-none');
+//             document.getElementById('contactMobile').classList.remove('d-none');
+//         }
+//     }
+// }
 
 async function saveUser(i) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
