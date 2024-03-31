@@ -154,11 +154,11 @@ function printDetails(task, index) {
                 <img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt="">
              </div>
           </div>
-          <div class="assignedToDetailBox">
+          <div id="assignedToDetailBox" class="assignedToDetailBox">
              <span class="keyString">Assigned To:</span>
              <div class="assignedToDetailView" id="assignedToDetailView${index}"></div>
           </div>
-          <div class="assignedToDetailBox">
+          <div id="subtaskDetailBox" class="assignedToDetailBox">
              <span class="keyString">Subtasks</span>
              <div id="subTasksDetailViewBox${index}" class="assignedToDetailView"></div>
           </div>

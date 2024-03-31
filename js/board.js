@@ -355,6 +355,8 @@ function renderSubTasksDetailView(index) {
          const subtask = sub[i];
          container.innerHTML += /*html*/ `<div onclick="toggleSubtasks(${index}, ${i})" id="subtask${i}" class="assignedToDetails cp"><img src=${getImageForSubtask(subtask)} alt=""><span class="subTaskDetail">${subtask.name}</span>`;
       }
+   } else {
+      document.getElementById('subtaskDetailBox').classList.add('d-none');
    }
 }
 
@@ -371,7 +373,7 @@ function renderAssignedToDetails(index) {
    container.innerHTML = '';
    let contacts = tasks[index].assignedTo;
    if (contacts.length < 1) {
-      container.innerHTML += /*html*/ `<span>not assigned to any contact</span>`
+      document.getElementById('assignedToDetailBox').classList.add('d-none');
    } else {
       for (let j = 0; j < contacts.length; j++) {
          const contact = contacts[j];
