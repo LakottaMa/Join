@@ -39,7 +39,7 @@ function showMobileTaskBox(status, mainContent, headline, box) {
       headline.classList.add('d-none');
       renderAddTask('addTaskInBoardContainer');
       initializeAndListen();
-      priorityMedium();
+      setPriority('medium');
       setDefaultValues(status);
 }
 /**

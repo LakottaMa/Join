@@ -41,11 +41,10 @@ function initializeAndListen() {
     prioUrgent = document.getElementById('prioUrgent');
     prioMedium = document.getElementById('prioMedium');
     prioLow = document.getElementById('prioLow');
-    focusInputField('subtaskInput', 'addSubTaskBtn');
-    focusInputField('searchUserInput', 'searchUserBtn');
     defaultValues.category = 'User Story';
     defaultValues.priority = 'Medium';
     defaultValues.status = 'To Do';
+    listenSubtaskInput();
 }
 
 let prioUrgent;
@@ -407,12 +406,12 @@ function setPriority(prio) {
     }
 }
 
-function focusInputField(input, btn) {
-    let inputToFocus = document.getElementById(input);
-    let btnToWatch = document.getElementById(btn);
-    btnToWatch.addEventListener('click', () => {
-        if (inputToFocus) {
-            inputToFocus.focus();
+function listenSubtaskInput() {
+    let input = document.getElementById('subtaskInput');
+    input.addEventListener('keypress', function(event) {
+        if(event.key === 'Enter') {
+            addSubTasks(event);
         }
     });
 }
+
