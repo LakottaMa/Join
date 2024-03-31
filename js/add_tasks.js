@@ -105,7 +105,7 @@ async function addTask() {
 function createSubtaskObject() {
     let subTaskObjects = [];
     for (let i = 0; i < subTasks.length; i++) {
-        let subTaskObject = { 'name': subTasks[i], 'done': false};
+        let subTaskObject = { 'name': subTasks[i], 'done': false };
         subTaskObjects.push(subTaskObject);
     }
     return subTaskObjects;

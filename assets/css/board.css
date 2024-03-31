@@ -22,6 +22,11 @@
     }
 }
 
+input[type="text"]:disabled {
+    background: rgba(255, 255, 255, 1);
+    cursor: default;
+  }
+
 .addTaskInBoard {
     display: flex;
     flex-direction: column;

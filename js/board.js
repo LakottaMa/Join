@@ -56,6 +56,7 @@ function setDefaultValues(status) {
  * hide add task box
  */
 function hideAddTaskBox() {
+   clearAddTask();
    if (window.location.pathname.endsWith('/board.html')) {
       let box = document.getElementById('addTaskBox');
       box.style.right = '-1000px';
@@ -316,6 +317,7 @@ function hideDetailBox() {
    document.getElementById('editView').classList.add('d-none');
    subTasks = [];
    selectedUsers = [];
+   clearAddTask();
 }
 
 function getFormatedDate(dateString) {
@@ -402,10 +404,14 @@ function editTask(index) {
    showEditBox();
    editTaskIndex = index;
    let taskToEdit = tasks[index];
+
    document.getElementById('title').value = taskToEdit.title;
    document.getElementById('description').value = taskToEdit.description;
    document.getElementById('date').value = getFormatedDateUS(taskToEdit.date);
    document.getElementById('selectedCategory').value = taskToEdit.category;
+
+   setCategoryInputToDisable();
+
    let prio = taskToEdit['priority'];
    setPriority(prio);
    defaultValues.status = taskToEdit['status'];
@@ -418,8 +424,16 @@ function editTask(index) {
    taskToEdit['assignedTo'].forEach(user => {
       selectedUsers.push(user);
    });
+   
+
    renderUsers();
    renderSelectedUsers();
+}
+
+function setCategoryInputToDisable() {
+   document.getElementById('selectedCategory').setAttribute('disabled', 'disabled');
+   document.getElementById('taskCategoryField').removeAttribute('onclick');
+   document.getElementById('dropDownImgCategory').classList.add('d-none');
 }
 
 async function saveEditedTask() {
