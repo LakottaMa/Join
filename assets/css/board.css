@@ -334,6 +334,10 @@ progress[value] {
     flex-direction: column;
     justify-content: flex-start;
     gap: 24px;
+
+    & h1 {
+        font-size: 40px;
+    }
 }
 
 .categoryAndClose {

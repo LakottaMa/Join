@@ -222,7 +222,7 @@ function checkContainer(status) {
  * check is search is active
  */
 async function checkRenderTasks() {
-   if (searchedTasks == null || searchedTasks == "" || searchedTasks < 1) {
+   if (searchedTasks == null || searchedTasks == "" || searchedTasks.length < 1) {
       renderTasksInBoard();
       await saveTasks(tasks);
    } else {
@@ -271,7 +271,14 @@ function searchTasks() {
    let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
    searchedTasks = filteredTasksTitle.concat(filteredTasksDescription);
    searchedTasks = [...new Set(searchedTasks)];
-   checkRenderTasks();
+   if(searchedTasks.length === 0) {
+      console.log('Keine Tasks mit diesen Suchkriterien gefunden!');
+      searchedTasks = [];
+      renderSearchedTasks();
+   } else {
+      checkRenderTasks();
+   }
+   
 }
 
 /**
