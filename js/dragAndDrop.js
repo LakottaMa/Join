@@ -2,8 +2,6 @@ let elementToDrag;
 
 function startDragging(id) {
     elementToDrag = id;
-    document.getElementById(`todobox${id}`).style.zIndex = 100;
-    document.getElementById(`todobox${id}`).style.backgroundColor = 'rgba(255, 255, 255, 1)';
     document.getElementById(`todobox${id}`).style.transform = 'rotate(5deg)';
 }
 
