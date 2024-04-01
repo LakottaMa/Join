@@ -72,6 +72,7 @@ function addStart(elem) {
         
         let startX = e.changedTouches[0].clientX;
         let startY = e.changedTouches[0].clientY;
+        updatePositions();
 
         let touchMoveEnabled = false;
         let touchMoved = false;
@@ -84,8 +85,9 @@ function addStart(elem) {
         }, '500');
 
         elem.addEventListener('touchmove', eve => {
-            elem.style.zIndex = 15;
+            
             eve.preventDefault();
+
             if (touchMoveEnabled) {
                 touchMoved = true;
                 let nextX = eve.changedTouches[0].clientX;
@@ -93,6 +95,7 @@ function addStart(elem) {
 
                 elem.style.left = nextX - startX + 'px';
                 elem.style.top = nextY - startY + 'px';
+                elem.style.zIndex = 15;
                 
 
                 if (isElementInside(progressPos, elem)) {
@@ -112,7 +115,7 @@ function addStart(elem) {
 
         elem.addEventListener('touchend', eve => {
             clearTimeout(timeoutID);
-            elem.style.zIndex = 'auto';
+            elem.style.zIndex = 0;
             if (!touchMoveEnabled && !touchMoved) {
                 showDetailBox(id);
             } else {

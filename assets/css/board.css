@@ -287,6 +287,7 @@ input[type="text"]:disabled {
         height: fit-content !important;
         padding: 8px;
         min-width: 100vw;
+        overflow-y: hidden;
     }
 
     .taskHeadline {
