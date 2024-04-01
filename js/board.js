@@ -4,7 +4,7 @@ async function initBoard() {
    await loadTasks();
    renderTasksInBoard();
    startTouchEvents();
-   all.forEach(addStart);
+   // all.forEach(addStart);
 }
 
 /**

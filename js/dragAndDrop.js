@@ -25,6 +25,7 @@ function removeHighlight(id) {
 
 // cursor above
 
+
 // touch below
 
 let all;
@@ -81,7 +82,7 @@ function addStart(elem) {
 
         let timeoutID = setTimeout(() => {
             touchMoveEnabled = true;
-            document.getElementById(`todobox${id}`).style.transform = 'rotate(5deg)';
+            elem.style.transform = 'rotate(5deg)';
         }, '500');
 
         elem.addEventListener('touchmove', eve => {
@@ -129,6 +130,7 @@ function addStart(elem) {
                     dropElementInDiv(elem, 'ToDo', taskToMove);
                 } else {
                     resetElement(elem);
+                    hideDetailBox();
                 }
             }
             touchMoveEnabled = false;
@@ -148,6 +150,7 @@ function isElementInside(container, element) {
 
 function resetElement(elem) {
     resetElementPos(elem);
+    elem.style.transform = 'rotate(0deg)';
     removeAllHighlight();
     startTouchEvents();
 }
