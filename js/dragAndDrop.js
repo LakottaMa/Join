@@ -39,32 +39,10 @@ const progress = document.getElementById('inProgressContainer');
 const feedback = document.getElementById('awaitFeedbackContainer');
 const done = document.getElementById('doneContainer');
 
-function highlightTodo() {
-    todo.classList.add('dragAreaHighlight');
-    progress.classList.remove('dragAreaHighlight');
-    feedback.classList.remove('dragAreaHighlight');
-    done.classList.remove('dragAreaHighlight');
-}
 
-function highlightProgress() {
-    todo.classList.remove('dragAreaHighlight');
-    progress.classList.add('dragAreaHighlight');
-    feedback.classList.remove('dragAreaHighlight');
-    done.classList.remove('dragAreaHighlight');
-}
-
-function highlightDone() {
-    todo.classList.remove('dragAreaHighlight');
-    progress.classList.remove('dragAreaHighlight');
-    feedback.classList.remove('dragAreaHighlight');
-    done.classList.add('dragAreaHighlight');
-}
-
-function highlightFeedback() {
-    todo.classList.remove('dragAreaHighlight');
-    progress.classList.remove('dragAreaHighlight');
-    feedback.classList.add('dragAreaHighlight');
-    done.classList.remove('dragAreaHighlight');
+function highlightArea(area) {
+    removeAllHighlight();
+    area.classList.add('dragAreaHighlight');
 }
 
 function removeAllHighlight() {
@@ -74,13 +52,10 @@ function removeAllHighlight() {
     done.classList.remove('dragAreaHighlight');
 }
 
-
 let todoPos = todo.getBoundingClientRect();
 let progressPos = progress.getBoundingClientRect();
 let feedbackPos = feedback.getBoundingClientRect();
 let donePos = done.getBoundingClientRect();
-
-
 
 function updatePositions() {
     todoPos = todo.getBoundingClientRect();
@@ -94,7 +69,7 @@ function addStart(elem) {
     let taskToMove = tasks[id];
 
     elem.addEventListener('touchstart', e => {
-
+        
         let startX = e.changedTouches[0].clientX;
         let startY = e.changedTouches[0].clientY;
 
@@ -109,6 +84,7 @@ function addStart(elem) {
         }, '500');
 
         elem.addEventListener('touchmove', eve => {
+            elem.style.zIndex = 15;
             eve.preventDefault();
             if (touchMoveEnabled) {
                 touchMoved = true;
@@ -117,16 +93,16 @@ function addStart(elem) {
 
                 elem.style.left = nextX - startX + 'px';
                 elem.style.top = nextY - startY + 'px';
-                elem.style.zIndex = 500;
+                
 
                 if (isElementInside(progressPos, elem)) {
-                    highlightProgress();
+                    highlightArea(progress);
                 } else if (isElementInside(feedbackPos, elem)) {
-                    highlightFeedback();
+                    highlightArea(feedback);
                 } else if (isElementInside(donePos, elem)) {
-                    highlightDone();
+                    highlightArea(done);
                 } else if (isElementInside(todoPos, elem)) {
-                    highlightTodo();
+                    highlightArea(todo);
                 } else {
                     removeAllHighlight();
                 }
@@ -136,7 +112,7 @@ function addStart(elem) {
 
         elem.addEventListener('touchend', eve => {
             clearTimeout(timeoutID);
-            elem.style.zIndex = 0;
+            elem.style.zIndex = 'auto';
             if (!touchMoveEnabled && !touchMoved) {
                 showDetailBox(id);
             } else {
