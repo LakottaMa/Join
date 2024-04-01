@@ -172,30 +172,6 @@ function BtnClickable() {
     });
 }
 
-// window.addEventListener("resize", function () {
-//     checkScreenSize();
-// });
-
-// function checkScreenSize() {
-//     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-//     //console.log('resize', screenWidth) //wieder löschen!!
-//     let floatContact = document.getElementById('floatingContact');
-//     let widthfloatingContact = document.getElementById('floatingContact').style.width;
-//     let contactList = document.getElementById('contactList');
-//     let widthcontactList = document.getElementById('contactList').style.width;
-//     if (screenWidth <= 1024) {
-//         if (widthfloatingContact === '95vw') {
-//             contactList.classList.add('d-none');
-//             document.getElementById('contactMobile').classList.add('d-none');
-//             floatContact.classList.remove('d-none');
-//             widthfloatingContact = '100%';
-//         } else if (widthcontactList === '100vw') {
-//             floatContact.classList.add('d-none');
-//             contactList.classList.remove('d-none');
-//             document.getElementById('contactMobile').classList.remove('d-none');
-//         }
-//     }
-// }
 
 async function saveUser(i) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
