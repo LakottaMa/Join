@@ -46,6 +46,7 @@ function contactsHTML(i) {
 }
 
 function deleteUser(userIndex) {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (userIndex !== -1) {
         users.splice(userIndex, 1);
         alert("User deleted successfully!");
@@ -58,7 +59,10 @@ function deleteUser(userIndex) {
     renderContactList();
     console.log('user wurde gelöscht');
     console.table(users);
-    
+
+    if (screenWidth <= 1024) {
+        showContactListMobil();
+    }
     closePopup();
 }
 
@@ -73,35 +77,21 @@ function addBgContact(index) {
             contact.classList.remove('contactBgClicked');
         }
     };
-
-    document.getElementById('floatingContact').innerHTML += '';
-    closePopup();
 }
 
-function addBgContact(index) {
-    let contacts = document.querySelectorAll('.contactSmall');
-    for (let x = 0; x < contacts.length; x++) {
-        let contact = contacts[x];
-
-        if (index === x) {
-            contact.classList.add('contactBgClicked');
-        } else {
-            contact.classList.remove('contactBgClicked');
-        }
-    };
-}
-
+//let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 function showFloatContact(i) {
     addBgContact(i);
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let name = users[i]['name'];
     let email = users[i]['email'];
-    
-    document.getElementById('contactMobile').classList.add('d-none');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
-    document.getElementById('contactMobileFloat').classList.remove('d-none');
+    // if (screenWidth <= 1024) {
+    //     document.getElementById('contactList').classList.add('d-none');
+    // }
 }
 
 function checkPhone(i) {
@@ -157,15 +147,34 @@ function editContact(i) {
     showEditPopup(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-
     document.getElementById('contactName').value = `${name}`;
     document.getElementById('contactEmail').value = `${email}`;
     document.getElementById('contactPhone').value = `${checkPhone(i)}`;
+    BtnClickable();
 
     //console.log('name',name) //wieder löschen!!
 }
 
+function BtnClickable() {
+    document.getElementById('editForm').addEventListener('input', function () {
+        let name = document.getElementById('contactName').value;
+        let email = document.getElementById('contactEmail').value;
+        let phone = document.getElementById('contactPhone').value;
+        let submitButton = document.getElementById('saveEditUser');
+
+        if (name && email && phone) {
+            submitButton.disabled = false;
+            submitButton.classList.remove('btn-disabled');
+        } else {
+            submitButton.disabled = true;
+            submitButton.classList.add('btn-disabled');
+        }
+    });
+}
+
+
 async function saveUser(i) {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let name = document.getElementById('contactName').value;
     let email = document.getElementById('contactEmail').value;
     let phone = document.getElementById('contactPhone').value;
@@ -174,8 +183,12 @@ async function saveUser(i) {
     users[i]['email'] = email;
     users[i]['phone'] = phone;
     await setItem('users', JSON.stringify(users));
-
+    document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
+
+    if (screenWidth <= 1024) {
+        showContactListMobil();
+    }
     closePopup();
 }
 
@@ -190,6 +203,7 @@ function showAddPopup() {
     document.getElementById('contactPopup').innerHTML = '';
     document.getElementById('contactPopup').innerHTML = createContactPopupHTML();
 
+    document.getElementById('contactPopup').style.animation = 'slidingRight 0.2s ease-in-out';
     document.getElementById('contactPopup').style.left = '';
     document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
     document.getElementById('closePopup').style.borderTopRightRadius = '0px';
@@ -204,6 +218,7 @@ function showEditPopup(i) {
     document.getElementById('contactPopup').innerHTML = '';
     document.getElementById('contactPopup').innerHTML = editContactPopupHTML(i);
 
+    document.getElementById('contactPopup').style.animation = 'slidingLeft 0.2s ease-in-out';
     document.getElementById('contactPopup').style.left = 0;
     document.getElementById('closePopup').style.borderTopLeftRadius = '0px';
     document.getElementById('closePopup').style.borderTopRightRadius = '30px';
@@ -212,23 +227,27 @@ function showEditPopup(i) {
 
 function closePopup() {
     document.getElementById('contactPopup').classList.add('d-none');
-    document.getElementById('contactPopup').style.right = '-1000px';
-
     document.getElementById('background').classList.remove('back');
-    //document.getElementById('contactPopup').style.transform = 'translateX (0px)';
     document.getElementById('popupDotMenue').classList.add('d-none');
+}
+
+function showContactListMobil() {
+    document.getElementById('contactMobile').classList.remove('d-none');
+    document.getElementById('contactList').classList.remove('d-none');
+    document.getElementById('floatingContact').classList.add('d-none');
 }
 
 function showDotMenu() {
     document.getElementById('popupDotMenue').classList.remove('d-none');
 }
 
-function contactListMobil() {
-    document.getElementById('floatingContact').classList.add('d-none');
-    document.getElementById('contactMobile').classList.remove('d-none');
+function closeDotMenue() {
+    document.getElementById('popupDotMenue').classList.add('d-none');
 }
 
 function notClose(event) {
     event.stopPropagation();
 }
+
+
 
