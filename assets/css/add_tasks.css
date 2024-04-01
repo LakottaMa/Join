@@ -221,27 +221,23 @@ textarea:hover {
 }
 
 .customSelect {
-    position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     width: 100%;
     padding-left: 24px;
 
     & input {
         border: none;
     }
-}
 
-.customSelect img {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    transform: translate(-50%);
+    & img {
+        width: 24px;
+        height: 24px;
+    }
 
-    &:hover {
+    & img:hover {
         background-color: var(--clr-main2);
-
     }
 }
 

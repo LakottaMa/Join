@@ -143,16 +143,15 @@ function resetInputsAndSelections() {
     setPriority('Medium');
 }
 
-/**
- * toggle arrow image and task category div
- */
+let taskCategoryArrowDropdown = false;
+
 function toggleTaskCategory() {
+    let arrow = document.getElementById('dropDownImgCategory');
     document.getElementById('taskCategory').classList.toggle('d-none');
-    let images = document.querySelectorAll('.catCon img');
-    images.forEach(function (img) {
-        img.classList.toggle('d-none');
-    })
-}
+    taskCategoryArrowDropdown = !taskCategoryArrowDropdown;
+    taskCategoryArrowDropdown === true ? arrow.style.transform = 'rotate(180deg)' :
+    arrow.style.transform = 'rotate(0deg)';
+}  
 
 /**
  * toogle input field for search user

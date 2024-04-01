@@ -68,12 +68,10 @@ function printAddTask() {
                     <span class="subHeadlineAddTask">Assigned to (optional)</span>
                     <div>
                         <div class="customSelect" id="searchUserBtn">
-                            <input onclick="showSearchUserInput()" type="text" name="" id="searchUserInput" autocomplete="off" onkeyup="searchUsers()"
-                                placeholder="Select contacts to assign">
-                            <img onclick="showSearchUserInput()" id="dropDownImg" src="./assets/img/arrow_drop_down_only_arrow.png"
-                                alt="">
-                            <img onclick="hideSearchUserInput()" id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png"
-                                alt="" class="d-none">
+                            <input onclick="showSearchUserInput()" type="text" name="" id="searchUserInput" autocomplete="off" onkeyup="searchUsers()"placeholder="Select contacts to assign">
+
+                            <img onclick="showSearchUserInput()" id="dropDownImg" src="./assets/img/arrow_drop_down_only_arrow.png"alt="">
+                            <img onclick="hideSearchUserInput()" id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png"alt="" class="d-none">
                         </div>
                         <hr class="dividerHorizontal">
                         <div id="selectedUser"></div>
@@ -88,8 +86,10 @@ function printAddTask() {
                     <div>
                         <div onclick="toggleTaskCategory()" class="customSelect catCon" id="taskCategoryField">
                             <input form="addTaskForm" type="text" name="" id="selectedCategory" placeholder="Select task category" required autocomplete="off">
+
                             <img id="dropDownImgCategory" src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
-                            <img id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png" alt="" class="d-none">
+                            <!-- <img id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png" alt="" class="d-none"> -->
+
                         </div>
                         <hr class="dividerHorizontal">
                         <div id="taskCategory" class="options d-none">

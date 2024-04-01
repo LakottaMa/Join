@@ -508,6 +508,10 @@ progress[value] {
     .searchField {
         width: 100%;
         padding: 4px 8px;
+        
+        & input {
+            margin: 0;
+        }
     }
 
     .addTaskbox {
