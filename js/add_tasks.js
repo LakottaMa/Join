@@ -76,6 +76,7 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
 }
 
 function createTask() {
+    defaultValues.category = document.getElementById('selectedCategory').value;
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let inputDate = document.getElementById('date').value;
