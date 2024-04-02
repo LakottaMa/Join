@@ -6,7 +6,7 @@ async function initContacts() {
 }
 
 /**
- * render letters in contacts
+ * render needed letters in contactlist
  * 
  */
 function renderContactList() {
@@ -37,7 +37,7 @@ function renderContactList() {
 /**
  * render contacts from the array
  * 
- * @param {integer} i to render the correct user
+ * @param {integer} i to render the correct contact
  * @returns html for the contact
  */
 function contactsHTML(i) {
@@ -58,7 +58,7 @@ function contactsHTML(i) {
 /**
  * delete the user from the array
  * 
- * @param {integer} userIndex to delete the correct user
+ * @param {integer} userIndex to delete the correct contact
  */
 function deleteUser(userIndex) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -85,7 +85,7 @@ function deleteUser(userIndex) {
 /**
  * add clicked contact at the list an color
  * 
- * @param {integer} index to at the correct user
+ * @param {integer} index to at the correct contact
  */
 function addBgContact(index) {
     let contacts = document.querySelectorAll('.contactSmall');
@@ -103,7 +103,7 @@ function addBgContact(index) {
 /**
  * show detailview from the selected contact
  * 
- * @param {integer} i to show the correct user
+ * @param {integer} i to show the correct contact
  */
 function showFloatContact(i) {
     addBgContact(i);
@@ -117,7 +117,7 @@ function showFloatContact(i) {
 /**
  * checks whether the contact has a telephone number
  * 
- * @param {integer} i to check the correct user
+ * @param {integer} i to check the correct contact
  * @returns the phonenumber if available
  */
 function checkPhone(i) {
@@ -184,7 +184,7 @@ function successfullyPopupAddContact() {
 /**
  * load the current contactinfos to the inputfields and displays it
  * 
- * @param {integer} i show the correct user
+ * @param {integer} i show the correct contact
  */
 function editContact(i) {
     showEditPopup(i);
@@ -218,9 +218,9 @@ function BtnClickable() {
 }
 
 /**
- * overwrite and save the contactinfo
+ * overwrite and save the contact content
  * 
- * @param {integer} i to save
+ * @param {integer} i to overwrite the correct contact
  */
 async function saveUser(i) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -265,7 +265,7 @@ function showAddPopup() {
 /**
  * show popup to edit a contact
  * 
- * @param {integer} i to edit
+ * @param {integer} i to edit the correct contact
  */
 function showEditPopup(i) {
     document.getElementById('contactPopup').classList.remove('d-none');

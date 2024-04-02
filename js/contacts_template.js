@@ -1,9 +1,9 @@
 /**
  * create html code for the detailview of the contact
  * 
- * @param {string} name of the current contact
- * @param {string} email of the current contact
- * @param {integer} i current contact
+ * @param {string} name of the clicked contact
+ * @param {string} email of the clicked contact
+ * @param {integer} i to select the correct contact
  * @returns html
  */
 
@@ -108,7 +108,7 @@ function createContactPopupHTML() {
 /**
  * create html code for the Editpopup to edit a contact
  * 
- * @param {integer} i to select the right user
+ * @param {integer} i to select the correct contact
  * @returns html
  */
 function editContactPopupHTML(i) {
