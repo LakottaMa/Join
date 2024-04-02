@@ -13,16 +13,27 @@ async function initAddTask() {
     setPriority('Medium');
 }
 
+/**
+ * render the add task container
+ * @param {string} id 
+ */
 function renderAddTask(id) {
     let container = document.getElementById(id);
     container.innerHTML = printAddTask();
 }
 
+/**
+ * clear add Task Container
+ */
 function clearAddTask() {
     let id = checkIdforAddTask();
     document.getElementById(id).innerHTML = '';
 }
 
+/**
+ * 
+ * @returns the correct id for the add Task Container
+ */
 function checkIdforAddTask() {
     let id;
     if (window.location.pathname === '/add_tasks.html') {
@@ -35,7 +46,9 @@ function checkIdforAddTask() {
     return id;
 }
 
-
+/**
+ * set default values and activate event listener for subtask inputfield
+ */
 function initializeAndListen() {
     renderUsers();
     prioUrgent = document.getElementById('prioUrgent');
@@ -74,7 +87,10 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "status": taskStatus
     }
 }
-
+/**
+ * 
+ * @returns created task
+ */
 function createTask() {
     defaultValues.category = document.getElementById('selectedCategory').value;
     let title = document.getElementById('title');
@@ -101,7 +117,10 @@ async function addTask() {
     successfullyPopupAddTask();
     hideAddTaskBox();
 }
-
+/**
+ * convert subtasks to object with boolean
+ * @returns object with subtask
+ */
 function createSubtaskObject() {
     let subTaskObjects = [];
     for (let i = 0; i < subTasks.length; i++) {
@@ -118,12 +137,12 @@ function successfullyPopupAddTask() {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
-      });
+    });
     setTimeout(() => {
         clearAddTask();
         window.location.href = './board.html';
     }, 1000);
-    
+
 }
 
 /**
@@ -145,14 +164,16 @@ function resetInputsAndSelections() {
 }
 
 let taskCategoryArrowDropdown = false;
-
+/**
+ * toggle task category options and rotate dropdown icon
+ */
 function toggleTaskCategory() {
     let arrow = document.getElementById('dropDownImgCategory');
     document.getElementById('taskCategory').classList.toggle('d-none');
     taskCategoryArrowDropdown = !taskCategoryArrowDropdown;
     taskCategoryArrowDropdown === true ? arrow.style.transform = 'rotate(180deg)' :
-    arrow.style.transform = 'rotate(0deg)';
-}  
+        arrow.style.transform = 'rotate(0deg)';
+}
 
 /**
  * toogle input field for search user
@@ -303,7 +324,6 @@ function searchUsers() {
     checkRenderArr();
 }
 
-
 /**
  * check if user exist in selected array
  * @param {Int} index of selected or unselected user
@@ -318,9 +338,7 @@ function isUserSelected(index) {
         document.getElementById(`imgUncheck${index}`).classList.add('d-none');
         document.getElementById(`imgCheck${index}`).classList.remove('d-none');
     }
-
 }
-
 
 /**
  * select user -> push in selectedUser array
@@ -388,6 +406,10 @@ function printSelectedUsers(user, index) {
     `;
 }
 
+/**
+ * set css class for chosen priority buttons
+ * @param {string} prio 
+ */
 function setPriority(prio) {
     const priorities = ['urgent', 'medium', 'low'];
     const elements = {
@@ -395,7 +417,6 @@ function setPriority(prio) {
         'medium': prioMedium,
         'low': prioLow
     };
-
     for (const priority of priorities) {
         if (prio.toLowerCase() === priority) {
             elements[priority].classList.add(`prio${priority.charAt(0).toUpperCase() + priority.slice(1)}Clicked`);
@@ -406,10 +427,13 @@ function setPriority(prio) {
     }
 }
 
+/**
+ * confirm add subtask with Enter
+ */
 function listenSubtaskInput() {
     let input = document.getElementById('subtaskInput');
-    input.addEventListener('keypress', function(event) {
-        if(event.key === 'Enter') {
+    input.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
             addSubTasks(event);
         }
     });
