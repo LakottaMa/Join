@@ -1,6 +1,5 @@
 async function initSignUp() {
   await loadUsers();
-  await loadTasks();
 }
 
 function backButton() {
@@ -23,10 +22,10 @@ async function register() {
 
 async function handleSignUp(name, email, password, confirmedPassword, bgColor) {
   if (errorMsgPasswordConfirm(confirmedPassword, password)) {
-      users.push({name: name, email: email, password: password, phone: null, bg: bgColor});
-      await setItem('users', JSON.stringify(users));
-      resetForm();
-      popup();
+    users.push({ name: name, email: email, password: password, phone: null, bg: bgColor });
+    await setItem('users', JSON.stringify(users));
+    resetForm();
+    popup();
   } else {
     displayPasswordMatchError();
   }

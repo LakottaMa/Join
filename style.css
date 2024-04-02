@@ -55,8 +55,7 @@ a {
     color: var(--clr-main1);
 }
 
-
-/*** help, legal notice, privacy policy ***/
+/*** help, legal notice, privacy policy Sites */
 .text-section {
     position: absolute;
     max-width: 1024px;
@@ -147,8 +146,6 @@ a {
     border-bottom: 1px solid var(--clr-error);
 }
 
-/**************************/
-
 .active-site {
     background-color: var(--clr-menu-hover);
 }
@@ -202,7 +199,8 @@ a {
     border: none;
     border-radius: 20px;
     z-index: 1000;
-    img{
+
+    img {
         margin-left: 20px;
     }
 }
@@ -232,14 +230,33 @@ a {
 
 /*** Summary area ***/
 .sum-content {
-    overflow-y: hidden;
-    min-height: 100dvh;
+    min-height: 100vh;
     margin-left: 232px;
     padding: 104px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.sum-greeting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 0;
+    transition: height 600ms ease-in-out;
+    z-index: 99;
+
+    h1 {
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 64px;
+        color: var(--clr-main1);
+    }
 }
 
 .sum-head {
@@ -270,7 +287,6 @@ a {
     gap: 30px;
 }
 
-/*** mit "order" im responsive items neu anordnen ***/
 .sum-button {
     height: 190px;
     width: 204px;
@@ -351,9 +367,11 @@ a {
             div {
                 transform: scaleY(1.1) scaleX(1)
             }
-            span{
+
+            span {
                 transform: scaleY(1.1) scaleX(0.94)
             }
+
             transform: scaleY(0.94) scaleX(1.25);
         }
     }
@@ -372,8 +390,6 @@ a {
         }
     }
 }
-
-
 
 .sum-counter {
     width: 140px;
@@ -457,7 +473,7 @@ a {
 ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 1);
     border-radius: 100vw;
-    margin-block: 16px;          
+    margin-block: 16px;
 }
 
 ::-webkit-scrollbar-thumb {

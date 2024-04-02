@@ -1,3 +1,8 @@
+/* mobile greeting */
+/* animation-delay: 1500ms;
+animation-timing-function: ease-in;
+animation-duration: 300ms; */
+
 .mobile-links {
     position: fixed;
     left: 0;
@@ -17,6 +22,7 @@
         width: 100%;
         background-color: var(--clr-main1);
         color: white;
+
         .sum-counter {
             height: 100%;
             width: 156px !important;
@@ -40,7 +46,7 @@
 
             .img-counter,
             div {
-                scale: 1.1;
+                scale: 1.025;
             }
         }
     }
@@ -126,11 +132,12 @@
         }
     }
 
-    .text-section{
+    .text-section {
         position: relative;
         margin: 0 40px 0 40px;
         left: 0;
-        ol{
+
+        ol {
             padding-left: 40px;
         }
     }
@@ -209,6 +216,10 @@
 }
 
 @media screen and (max-width:480px) {
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
     h1 {
         font-size: 46px;
     }
@@ -311,10 +322,12 @@
 
     .sum-overview {
         max-width: 350px !important;
-        .sum-button{
+
+        .sum-button {
             height: 104px;
             width: 100%;
-            .sum-counter{                
+
+            .sum-counter {
                 width: 100%;
                 padding-left: 10%;
                 flex-direction: row;

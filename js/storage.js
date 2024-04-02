@@ -1,7 +1,6 @@
 /**
  * @file storage.js
- * This file is used to handle the storage of the application
- * 
+ * This file is used to handle the storage of the application * 
  */
 const STORAGE_TOKEN = 'FOQ59STJFAGBFPPP9W1RP2EHAKEF90DYTULV2A3Q';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
@@ -177,7 +176,7 @@ let localTasks = [
   }
 ];
 
-/**  Function to reset the remote Storage: with shift + click on Logo in Landing Page */
+/**  Function to reset the remote Storage: with shift + left-click on Logo in Landing Page */
 function resetStorage(event) {
   resetButton = document.getElementById('resetStorage');
   if (event.shiftKey) {
