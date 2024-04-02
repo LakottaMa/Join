@@ -70,11 +70,15 @@ function addStart(elem) {
     let taskToMove = tasks[id];
 
     elem.addEventListener('touchstart', e => {
-        
+
         let startX = e.changedTouches[0].clientX;
         let startY = e.changedTouches[0].clientY;
         updatePositions();
+        
 
+        let offsetX = elem.offsetLeft;
+        let offsetY = elem.offsetTop;
+        
         let touchMoveEnabled = false;
         let touchMoved = false;
         
@@ -86,16 +90,18 @@ function addStart(elem) {
         }, '500');
 
         elem.addEventListener('touchmove', eve => {
-            
+           
             eve.preventDefault();
 
             if (touchMoveEnabled) {
                 touchMoved = true;
+
                 let nextX = eve.changedTouches[0].clientX;
                 let nextY = eve.changedTouches[0].clientY;
 
-                elem.style.left = nextX - startX + 'px';
-                elem.style.top = nextY - startY + 'px';
+                elem.style.position = 'absolute';
+                elem.style.left = (nextX - startX + offsetX) + 'px';
+                elem.style.top = (nextY - startY + offsetY) + 'px';
                 elem.style.zIndex = 15;
                 
 
@@ -176,6 +182,7 @@ function getCenterY(element) {
 }
 
 function resetElementPos(elem) {
+    elem.style.position = 'static';
     elem.style.left = 0 + "px";
     elem.style.top = 0 + "px";
 }
