@@ -316,7 +316,7 @@ function closeDotMenue() {
 }
 
 /**
- * stops the close function
+ * stops the close function for popups
  * 
  * @param {event} event prevent the function from the parent 
  */
