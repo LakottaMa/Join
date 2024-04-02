@@ -49,7 +49,9 @@ function greetingScreen() {
     setTimeout(function () {
       greetingMobile.style.height = '0';
       sumContent.style.display = 'flex';
-    }, 1300)
-  }
+      document.getElementById('greetMobile').style.display = 'none';
+      document.getElementById('greetingNameMobile').style.display = 'none';
+    }, 1300)    
+  }  
 }
 

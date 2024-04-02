@@ -230,7 +230,7 @@ a {
 
 /*** Summary area ***/
 .sum-content {
-    min-height: 100vh;
+    min-height: 100dvh;
     margin-left: 232px;
     padding: 104px 0;
     display: flex;
@@ -247,7 +247,6 @@ a {
     text-align: center;
     height: 0;
     transition: height 600ms ease-in-out;
-    z-index: 99;
 
     h1 {
         font-size: 48px;
