@@ -70,8 +70,19 @@ function printAddTask() {
                         <div class="customSelect" id="searchUserBtn">
                             <input onclick="showSearchUserInput()" type="text" name="" id="searchUserInput" autocomplete="off" onkeyup="searchUsers()"placeholder="Select contacts to assign">
 
-                            <img onclick="showSearchUserInput()" id="dropDownImg" src="./assets/img/arrow_drop_down_only_arrow.png"alt="">
-                            <img onclick="hideSearchUserInput()" id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png"alt="" class="d-none">
+                            
+                            <svg onclick="showSearchUserInput()" id="dropDownImg" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <mask id="mask0_38112_7992" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
+                                <rect x="0.682129" y="0.396729" width="24" height="24" fill="#D9D9D9"/>
+                                </mask>
+                                <g mask="url(#mask0_38112_7992)">
+                                <path d="M11.9821 14.6967L9.38213 12.0967C9.06546 11.7801 8.99463 11.4176 9.16963 11.0092C9.34463 10.6009 9.65713 10.3967 10.1071 10.3967H15.2571C15.7071 10.3967 16.0196 10.6009 16.1946 11.0092C16.3696 11.4176 16.2988 11.7801 15.9821 12.0967L13.3821 14.6967C13.2821 14.7967 13.1738 14.8717 13.0571 14.9217C12.9405 14.9717 12.8155 14.9967 12.6821 14.9967C12.5488 14.9967 12.4238 14.9717 12.3071 14.9217C12.1905 14.8717 12.0821 14.7967 11.9821 14.6967Z" fill="#4589FF"/>
+                                </g>
+                            </svg>
+                            <svg onclick="hideSearchUserInput()" id="dropUpImg" class="d-none" width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.69954 0.299975L7.29954 2.89998C7.6162 3.21664 7.68704 3.57914 7.51204 3.98748C7.33704 4.39581 7.02454 4.59998 6.57454 4.59998L1.42454 4.59998C0.974536 4.59998 0.662037 4.39581 0.487037 3.98748C0.312037 3.57914 0.38287 3.21664 0.699537 2.89998L3.29954 0.299975C3.39954 0.199975 3.50787 0.124976 3.62454 0.0749755C3.7412 0.0249753 3.8662 -2.43187e-05 3.99954 -2.43187e-05C4.13287 -2.43187e-05 4.25787 0.0249753 4.37454 0.0749755C4.4912 0.124976 4.59954 0.199975 4.69954 0.299975Z" fill="#4589FF"/>
+                            </svg>
+
                         </div>
                         <hr class="dividerHorizontal">
                         <div id="selectedUser"></div>
@@ -86,9 +97,14 @@ function printAddTask() {
                     <div>
                         <div onclick="toggleTaskCategory()" class="customSelect catCon" id="taskCategoryField">
                             <input form="addTaskForm" type="text" name="" id="selectedCategory" placeholder="Select task category" required autocomplete="off">
-
-                            <img id="dropDownImgCategory" src="./assets/img/arrow_drop_down_only_arrow.png" alt="">
-                            <!-- <img id="dropUpImg" src="./assets/img/arrow_drop_down_up_onlyArrow.png" alt="" class="d-none"> -->
+                            <svg id="dropDownImgCategory" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <mask id="mask0_38112_7992" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
+                                <rect x="0.682129" y="0.396729" width="24" height="24" fill="#D9D9D9"/>
+                                </mask>
+                                <g mask="url(#mask0_38112_7992)">
+                                <path d="M11.9821 14.6967L9.38213 12.0967C9.06546 11.7801 8.99463 11.4176 9.16963 11.0092C9.34463 10.6009 9.65713 10.3967 10.1071 10.3967H15.2571C15.7071 10.3967 16.0196 10.6009 16.1946 11.0092C16.3696 11.4176 16.2988 11.7801 15.9821 12.0967L13.3821 14.6967C13.2821 14.7967 13.1738 14.8717 13.0571 14.9217C12.9405 14.9717 12.8155 14.9967 12.6821 14.9967C12.5488 14.9967 12.4238 14.9717 12.3071 14.9217C12.1905 14.8717 12.0821 14.7967 11.9821 14.6967Z" fill="#4589FF"/>
+                                </g>
+                            </svg>
 
                         </div>
                         <hr class="dividerHorizontal">
@@ -175,18 +191,18 @@ function printDetails(task, index) {
           </div>
        </div>
     `;
- }
+}
 
- function printAssignedToDetails(contact, contactId) {
+function printAssignedToDetails(contact, contactId) {
     return /*html*/ `
        <div class="assignedToDetails">
        <span class="contactBubble" id="${contactId}">${getInitials(contact)}</span>
        <span class="openSans400-19">${contact}</span>
        </div>
     `;
- }
+}
 
- function printTasksInBoard(task, index, subTasksLength) {
+function printTasksInBoard(task, index, subTasksLength) {
     return /*html*/ `
        <div id="todobox${index}" onclick="showDetailBox(${index})" class="todoBox cp" draggable="true" ondragstart="startDragging(${index})">
           <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
@@ -202,24 +218,24 @@ function printDetails(task, index) {
           </div>
        </div>
     `;
- }
+}
 
- /**
- * generate html
- * @param {string} contact 
- * @param {int} contactId 
- * @returns 
- */
+/**
+* generate html
+* @param {string} contact 
+* @param {int} contactId 
+* @returns 
+*/
 function printAssignedTo(contact, contactId) {
     return /*html*/ `<span id="${contactId}">${getInitials(contact)}</span>`;
- }
+}
 
- /**
- * generate html
- * @param {string} user from renderUser() function
- * @param {Int} index from renderUser() function
- * @returns 
- */
+/**
+* generate html
+* @param {string} user from renderUser() function
+* @param {Int} index from renderUser() function
+* @returns 
+*/
 function printUsers(user, index) {
     return /*html*/ `
         <div class="user" id="user${index}" >
