@@ -1,19 +1,26 @@
 
 function showDetailBox(index) {
-    document.getElementById('detailViewBg').classList.remove('d-none');
-    document.getElementById('detailViewBox').classList.remove('d-none');
-    document.getElementById('detailView').classList.remove('d-none');
-    renderDetails(index);
- }
- 
- function hideDetailBox() {
-    document.getElementById('detailViewBg').classList.add('d-none');
-    document.getElementById('detailViewBox').classList.add('d-none');
-    document.getElementById('editView').classList.add('d-none');
-    subTasks = [];
-    selectedUsers = [];
-    clearAddTask();
- }
+   document.getElementById('detailViewBox').classList.remove('slideToBottom');
+   document.getElementById('detailViewBg').classList.remove('d-none');
+   document.getElementById('detailViewBox').classList.remove('d-none');
+   document.getElementById('detailView').classList.remove('d-none');
+   document.getElementById('detailViewBox').classList.add('slideFromBottom')
+   renderDetails(index);
+}
+
+function hideDetailBox() {
+
+   document.getElementById('detailViewBox').classList.remove('slideFromBottom');
+   document.getElementById('detailViewBox').classList.add('slideToBottom');
+   setTimeout(function () {
+      document.getElementById('detailViewBg').classList.add('d-none');
+      document.getElementById('detailViewBox').classList.add('d-none');
+      document.getElementById('editView').classList.add('d-none');
+   }, 200);
+   subTasks = [];
+   selectedUsers = [];
+   clearAddTask();
+}
  /**
   * format date to german format
   * @param {string} dateString 
