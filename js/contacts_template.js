@@ -1,3 +1,12 @@
+/**
+ * create html code for the detailview of the contact
+ * 
+ * @param {string} name of the clicked contact
+ * @param {string} email of the clicked contact
+ * @param {integer} i to select the correct contact
+ * @returns html
+ */
+
 function floatContactHTML(name, email, i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
@@ -45,6 +54,12 @@ function floatContactHTML(name, email, i) {
 `;
 }
 
+
+/**
+ * create html code for the Addpopup to add a new contact
+ * 
+ * @returns html
+ */
 function createContactPopupHTML() {
     document.getElementById('contactPopup').innerHTML = '';
     return `
@@ -89,6 +104,13 @@ function createContactPopupHTML() {
     `;
 }
 
+
+/**
+ * create html code for the Editpopup to edit a contact
+ * 
+ * @param {integer} i to select the correct contact
+ * @returns html
+ */
 function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name

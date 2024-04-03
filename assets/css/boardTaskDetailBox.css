@@ -27,34 +27,6 @@
     transform: translate(-50%, -50%);
     padding: 48px 40px;
     overflow-y: auto;
-    animation: ease;
-    animation-duration: 250ms;
-}
-
-@keyframes slideFromBottom {
-    from {
-        transform: translate(-50%, 100%);
-    }
-    to {
-        transform: translate(-50%, -50%);
-    }
-}
-
-@keyframes slideToBottom {
-    from {
-        transform: translate(-50%, -50%);
-    }
-    to {
-        transform: translate(-50%, 100%);
-    }
-}
-
-.slideFromBottom {
-    animation-name: slideFromBottom;
-}
-
-.slideToBottom {
-    animation-name: slideToBottom;
 }
 
 .taskDetails {

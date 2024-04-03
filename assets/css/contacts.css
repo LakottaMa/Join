@@ -438,11 +438,11 @@ input {
 
     #floatingContact {
         transition: all 200ms ease-in-out;
-        position: absolute;
+        position: fixed;
         left: 16px;
         background-color: white;
         padding: 48px 0px 0 0px;
-        width: 95vw;
+        width: 100vw;
         height: 100vh;
     }
 
