@@ -36,7 +36,7 @@ function greetingMessage() {
   document.getElementById('greetMobile').innerHTML = greetingMessage;
 }
 
-/** one loop over the tasks-array to get the counts for each category */
+/** loop over the tasks-array to get the counts for each category */
 function counterSummery(tasks) {
   const tasksInBoard = document.getElementById('tib');
   const tasksToDo = document.getElementById('todo');

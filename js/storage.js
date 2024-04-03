@@ -176,7 +176,7 @@ let localTasks = [
   }
 ];
 
-/**  Function to reset the remote Storage: with shift + left-click on Logo in Landing Page */
+/**  function to reset the remote Storage: with shift + left-click on Logo in Landing Page */
 function resetStorage(event) {
   resetButton = document.getElementById('resetStorage');
   if (event.shiftKey) {
