@@ -109,6 +109,7 @@ function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
+    document.getElementById('contactMobile').classList.add('d-none');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
