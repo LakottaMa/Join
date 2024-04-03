@@ -2,7 +2,7 @@ let elementToDrag;
 
 function startDragging(id) {
     elementToDrag = id;
-    document.getElementById(`todobox${id}`).style.transform = 'rotate(5deg)';
+    // document.getElementById(`todobox${id}`).style.transform = 'rotate(5deg)';
 }
 
 function allowDrop(event) {
