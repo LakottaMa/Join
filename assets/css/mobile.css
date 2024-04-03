@@ -1,3 +1,8 @@
+/* mobile greeting */
+/* animation-delay: 1500ms;
+animation-timing-function: ease-in;
+animation-duration: 300ms; */
+
 .mobile-links {
     position: fixed;
     left: 0;
@@ -97,7 +102,7 @@
         display: flex;
     }
 
-    .sum-content {
+    .sum-Content {
         margin: 0 8px !important;
     }
 
@@ -147,10 +152,6 @@
         button {
             width: 180px;
         }
-    }
-
-    h1 {
-        font-size: 46px;
     }
 
     .checkbox {
@@ -215,6 +216,14 @@
 }
 
 @media screen and (max-width:480px) {
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    h1 {
+        font-size: 46px;
+    }
+
     .help-logo {
         margin: 0;
     }

@@ -24,7 +24,7 @@
 
 body {
     position: relative;
-    min-height: 100dvh;
+    height: 100dvh;
     max-width: 1920px;
     margin: auto;
 }
