@@ -1,3 +1,4 @@
+/** onload summary page, with check to show greeting-slider after login below 480px */
 async function initSummary() {
   if (!sessionStorage.getItem('greetingShown')) {
     greetingScreen();
@@ -9,7 +10,7 @@ async function initSummary() {
   counterSummery(tasks);
 }
 
-/** */
+/** check who is logged in */
 function loginStatus() {
   let isLoggedIn = sessionStorage.getItem('isLoggedIn');
   document.getElementById('greetingName').innerHTML = `${isLoggedIn}`;
@@ -22,7 +23,7 @@ function greetingMessage() {
   let currentDate = new Date();
   let currentHour = currentDate.getHours();
   let greetingMessage;
-  const greetings = { morning: "Good Morning,", afternoon: "Good Day,", evening: "Good afternoon,", night: "Good night" }
+  const greetings = { morning: "Good Morning,", afternoon: "Good Day,", evening: "Good afternoon,", night: "Good night," }
   if (currentHour < 12) {
     greetingMessage = greetings.morning;
   } else if (currentHour < 18) {
@@ -79,12 +80,7 @@ function counterSummery(tasks) {
   nextUrgent();
 }
 
-function compareDates(a, b) {
-  a = new Date(a.date);
-  b = new Date(b.date);
-  return a.getTime() - b.getTime();
-}
-
+/** check when the next deadline for urgent tasks expires */
 function nextUrgent() {
   const tasksWithDateObjects = tasks.map(task => ({
     ...task,
@@ -96,4 +92,11 @@ function nextUrgent() {
   const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
   const urgentDate = document.getElementById("urgentDate");
   urgentDate.textContent = `${formattedDate}`;
+}
+
+/** help function for nextUrgent, the timestamp of each date is extracted with getTime() & the difference between the timestamps is returned */
+function compareDates(a, b) {
+  a = new Date(a.date);
+  b = new Date(b.date);
+  return a.getTime() - b.getTime();
 }

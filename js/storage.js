@@ -36,6 +36,7 @@ function logout() {
   unrememberMe();
 }
 
+/** predefined users */
 let localUsers = [
   {
     "name": "Guest",
@@ -79,9 +80,9 @@ let localUsers = [
     "phone": "017852546",
     "bg": "rgb(22,7120,160)",
   }
-  
 ];
 
+/** predefined tasks */
 let localTasks = [
   {
     "title": "Kochwelt Page & Recipe Recommender",
@@ -119,7 +120,6 @@ let localTasks = [
       }],
     "status": "In progress"
   },
-
   {
     "title": "Design Database Schema",
     "description": "Create database structure for the application.",
@@ -190,6 +190,7 @@ function resetStorage(event) {
   }
 }
 
+/** load user saved on web storage */
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem('users'));
@@ -199,6 +200,7 @@ async function loadUsers() {
   console.table(users);
 }
 
+/** load tasks saved on web storage */
 async function loadTasks() {
   try {
     tasks = JSON.parse(await getItem('tasks'));

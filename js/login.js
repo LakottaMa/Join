@@ -1,4 +1,4 @@
-/** */
+/** onclick pre-stored guest login, with storage of the name in sessionStorage */
 function guestLogIn(localUsers) {
   let guestUser = localUsers.find(user => user.name === 'Guest');
   if (guestUser) {
@@ -7,7 +7,7 @@ function guestLogIn(localUsers) {
   }
 }
 
-/** */
+/** onclick Log in, with verification of user data */
 function logIn() {
   const emailInput = document.getElementById("email").value;
   const passwordInput = document.getElementById("password").value;
@@ -16,7 +16,7 @@ function logIn() {
   }
 }
 
-/** */
+/** check function for saved user data, with error message if not correct */
 function verifiedLogin(email, password) {
   for (let i = 0; i < users.length; i++) {
     if (users[i].email === email && users[i].password === password) {
@@ -28,7 +28,7 @@ function verifiedLogin(email, password) {
   return false;
 }
 
-/** */
+/** error message for the logIn function */
 function LoginMatchError() {
   const confirmedPassword = document.getElementById('password');
   const errorMsgBox = document.getElementById('loginMatch');
@@ -40,6 +40,7 @@ function LoginMatchError() {
   });
 }
 
+/** greeting-slider on mobile screen below 480px width */
 function greetingScreen() {
   let greetingMobile = document.getElementById('greetingMobile');
   let sumContent = document.getElementById('sumContent');
