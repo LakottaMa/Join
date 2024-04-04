@@ -39,21 +39,19 @@ function floatContactHTML(name, email, i) {
             <h3>Phone</h3>
             <div id="phoneFloating">${checkPhone(i)}</div>
         </div>
-
         </div>
 
         <button id="contactMobileFloat" class="blue-btn cp" onclick="showDotMenu(); notClose(event)"><img
             src="./assets/img/menu-dots.png" alt="menu">
         </button>
 
-    <div id="popupDotMenue" class="d-none" onclick="notClose(event)">
+        <div id="popupDotMenue" class="d-none" onclick="notClose(event)">
         <div class="popupMenue">
             <p class="cp" onclick="editContact(${i})"><img src="./assets/img/edit.png" alt="edit">Edit</p>
             <p class="cp" onclick="deleteUser(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
-        </div>   
-`;
+        </div>
+        </div>`;
 }
-
 
 /**
  * create html code for the Addpopup to add a new contact
@@ -99,11 +97,8 @@ function createContactPopupHTML() {
                 </button>
             </div>                    
         </form>
-    </div>
-    
-    `;
+    </div>`;
 }
-
 
 /**
  * create html code for the Editpopup to edit a contact
@@ -151,6 +146,5 @@ function editContactPopupHTML(i) {
                 </button>
             </div>                    
         </form>
-    </div>
-    `;
+    </div>`;
 }

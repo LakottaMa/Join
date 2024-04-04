@@ -1,4 +1,3 @@
-
 function showDetailBox(index) {
    document.getElementById('detailViewBox').classList.remove('slideToBottom');
    document.getElementById('detailViewBg').classList.remove('d-none');
@@ -9,7 +8,6 @@ function showDetailBox(index) {
 }
 
 function hideDetailBox() {
-
    document.getElementById('detailViewBox').classList.remove('slideFromBottom');
    document.getElementById('detailViewBox').classList.add('slideToBottom');
    setTimeout(function () {
@@ -21,6 +19,7 @@ function hideDetailBox() {
    selectedUsers = [];
    clearAddTask();
 }
+
  /**
   * format date to german format
   * @param {string} dateString 
@@ -31,6 +30,7 @@ function hideDetailBox() {
     let formattedDate = date.toLocaleDateString("de-DE");
     return formattedDate;
  }
+
  /**
   * set the format that is need to set the value in date input
   * @param {string} dateString 
@@ -75,6 +75,7 @@ function hideDetailBox() {
        document.getElementById('subtaskDetailBox').classList.add('d-none');
     }
  }
+
  /**
   * 
   * @param {object} subtask 
@@ -87,6 +88,7 @@ function hideDetailBox() {
        return './assets/img/check_unchecked.png';
     }
  }
+
  /**
   * render the assigned to User, or hide if none
   * @param {int} index 
@@ -107,6 +109,7 @@ function hideDetailBox() {
        }
     }
  }
+
  /**
   * delete task
   * @param {int} index 
@@ -117,6 +120,7 @@ function hideDetailBox() {
     checkRenderTasks();
     hideDetailBox();
  }
+
  /**
   * toggle boolean for subtask, true for done, false for in progress
   * @param {int} taskIndex 
@@ -135,32 +139,26 @@ function hideDetailBox() {
  function editTask(index) {
     showEditBox();
     editTaskIndex = index;
-    let taskToEdit = tasks[index];
- 
+    let taskToEdit = tasks[index]; 
     document.getElementById('title').value = taskToEdit.title;
     document.getElementById('description').value = taskToEdit.description;
     document.getElementById('date').value = getFormatedDateUS(taskToEdit.date);
-    document.getElementById('selectedCategory').value = taskToEdit.category;
- 
-    setCategoryInputToDisable();
- 
+    document.getElementById('selectedCategory').value = taskToEdit.category; 
+    setCategoryInputToDisable(); 
     let prio = taskToEdit['priority'];
     setPriority(prio);
-    defaultValues.status = taskToEdit['status'];
- 
+    defaultValues.status = taskToEdit['status']; 
     taskToEdit['subtasks'].forEach(subtask => {
        subTasks.push(subtask.name);
     });
-    renderSubTasks('subTaskContainer');
- 
+    renderSubTasks('subTaskContainer'); 
     taskToEdit['assignedTo'].forEach(user => {
        selectedUsers.push(user);
-    });
-    
- 
+    }); 
     renderUsers();
     renderSelectedUsers();
  }
+
  /**
   * disable category input in edit mode
   */
@@ -169,6 +167,7 @@ function hideDetailBox() {
     document.getElementById('taskCategoryField').removeAttribute('onclick');
     document.getElementById('dropDownImgCategory').classList.add('d-none');
  }
+
  /**
   * save the edited task and delete the old
   */

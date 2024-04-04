@@ -22,14 +22,10 @@ function highlight(id) {
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('dragAreaHighlight');
 }
-
 // cursor above
 
-
 // touch below
-
 let all;
-
 function startTouchEvents() {
     all = document.querySelectorAll('.todoBox');
     all.forEach(addStart);
@@ -39,7 +35,6 @@ const todo = document.getElementById('toDoContainer');
 const progress = document.getElementById('inProgressContainer');
 const feedback = document.getElementById('awaitFeedbackContainer');
 const done = document.getElementById('doneContainer');
-
 
 function highlightArea(area) {
     removeAllHighlight();
@@ -68,43 +63,29 @@ function updatePositions() {
 function addStart(elem) {
     let id = elem.id.slice(-1);
     let taskToMove = tasks[id];
-
     elem.addEventListener('touchstart', e => {
-
         let startX = e.changedTouches[0].clientX;
         let startY = e.changedTouches[0].clientY;
         updatePositions();
-        
-
         let offsetX = elem.offsetLeft;
-        let offsetY = elem.offsetTop;
-        
+        let offsetY = elem.offsetTop;        
         let touchMoveEnabled = false;
-        let touchMoved = false;
-        
+        let touchMoved = false;        
         e.preventDefault();
-
         let timeoutID = setTimeout(() => {
             touchMoveEnabled = true;
             elem.style.transform = 'rotate(5deg)';
         }, '500');
-
-        elem.addEventListener('touchmove', eve => {
-           
+        elem.addEventListener('touchmove', eve => {           
             eve.preventDefault();
-
             if (touchMoveEnabled) {
                 touchMoved = true;
-
                 let nextX = eve.changedTouches[0].clientX;
                 let nextY = eve.changedTouches[0].clientY;
-
                 elem.style.position = 'absolute';
                 elem.style.left = (nextX - startX + offsetX) + 'px';
                 elem.style.top = (nextY - startY + offsetY) + 'px';
                 elem.style.zIndex = 15;
-                
-
                 if (isElementInside(progressPos, elem)) {
                     highlightArea(progress);
                 } else if (isElementInside(feedbackPos, elem)) {
@@ -118,7 +99,6 @@ function addStart(elem) {
                 }
             }
         });
-
 
         elem.addEventListener('touchend', eve => {
             clearTimeout(timeoutID);

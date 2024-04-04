@@ -73,7 +73,6 @@ function deleteUser(userIndex) {
     closePopup();
 }
 
-
 /**
  * add clicked contact at the list an color * 
  * @param {integer} index to at the correct contact
