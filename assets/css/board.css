@@ -182,12 +182,14 @@ input[type="text"]:disabled {
 #todoTitle {
     font-size: 16px;
     font-weight: 700;
+    word-break: auto-phrase;
 }
 
 #todoDescription {
     font-size: 16px;
     font-weight: 400;
     font-family: 'Inter';
+    word-break: auto-phrase;
 }
 
 .todoSubtasks {
@@ -327,6 +329,7 @@ input[type="text"]:disabled {
 
     .addTaskBox {
         width: 100%;
+        right: 0;
         position: fixed;
         top: 96px;
         margin-top: 0;
