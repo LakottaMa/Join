@@ -190,6 +190,7 @@ a {
     animation: move-to-middle 0.2s forwards linear;
     cursor: none;
     text-align: center;
+    text-wrap: nowrap;
     font-size: 23px;
     width: 316px;
     height: 74px;
