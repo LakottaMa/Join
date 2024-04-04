@@ -42,6 +42,7 @@ function showMobileTaskBox(status, mainContent, headline, box) {
       setPriority('medium');
       setDefaultValues(status);
 }
+
 /**
  * set default values
  * @param {string} status 

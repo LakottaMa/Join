@@ -23,11 +23,21 @@ function hideEelements() {
   document.getElementById('mobileNavLinks').style.display = 'none';
 }
 
-/** click initial icon in header */
+/** click initial icon in header to show menu */
 function showLogoutMenu() {
   let logoutMenu = document.getElementById('logout-menu');
   logoutMenu.classList.toggle('d-none');
 }
+
+/** close logout menu on click outside the menu*/
+document.addEventListener('click', function(event) {
+  let logoutMenu = document.getElementById('logout-menu');
+  let headerInfo = document.getElementById('headerInfo');
+  let targetElement = event.target;
+  if (!logoutMenu.contains(targetElement) && !headerInfo.contains(targetElement)) {
+      logoutMenu.classList.add('d-none');
+  }
+});
 
 /** back arrow in various pages */
 function goBack() {
@@ -38,7 +48,7 @@ function goBack() {
   }
 }
 
-/** aktive html mit ensprechender bg-color des links */
+/** active html with corresponding bg color of the link */
 function setActiveSiteClass(selector, activeClass) {
   let activePage = window.location.pathname;
   document.querySelectorAll(selector).forEach(link => {

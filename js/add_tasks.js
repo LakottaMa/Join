@@ -56,7 +56,7 @@ function initializeAndListen() {
     defaultValues.category = 'User Story';
     defaultValues.priority = 'Medium';
     defaultValues.status = 'To Do';
-    listenSubtaskInput();
+    submitWithEnter('subtaskInput');
 }
 
 let prioUrgent;
@@ -272,6 +272,18 @@ function showEditSubTaskInputField(index) {
     document.getElementById(`deleteAndEditIcons${index}`).classList.add('d-none');
     document.getElementById(`dividerHorizontal${index}`).classList.remove('d-none');
     document.getElementById(`dividerHorizontal${index}`).style.borderBottomColor = "var(--clr-main2)";
+    fillSubtaskEditField(index);
+}
+
+function fillSubtaskEditField(index) {
+    let subtask = subTasks[index];
+    let input = document.getElementById(`newSubTask${index}`);
+    input.value = subtask;
+    input.focus();
+    let hover = document.querySelectorAll('.hoverSubTask');
+    hover.forEach(h => {
+        h.classList.remove('hoverSubTask');
+    })
 }
 
 /**
@@ -429,8 +441,8 @@ function setPriority(prio) {
 /**
  * confirm add subtask with Enter
  */
-function listenSubtaskInput() {
-    let input = document.getElementById('subtaskInput');
+function submitWithEnter(inputId) {
+    let input = document.getElementById(inputId);
     input.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addSubTasks(event);

@@ -1,6 +1,5 @@
 /**
- * create html code for the detailview of the contact
- * 
+ * create html code for the detailview of the contact * 
  * @param {string} name of the clicked contact
  * @param {string} email of the clicked contact
  * @param {integer} i to select the correct contact
@@ -38,14 +37,13 @@ function floatContactHTML(name, email, i) {
             <h3>Phone</h3>
             <div id="phoneFloating">${checkPhone(i)}</div>
         </div>
-
         </div>
 
         <button id="contactMobileFloat" class="blue-btn cp" onclick="showDotMenu(); notClose(event)"><img
             src="./assets/img/menu-dots.png" alt="menu">
         </button>
 
-    <div id="popupDotMenue" class="d-none" onclick="notClose(event)">
+        <div id="popupDotMenue" class="d-none" onclick="notClose(event)">
         <div class="popupMenue">
             <p class="cp" onclick="editContact(${i})"><img src="./assets/img/edit.png" alt="edit">Edit</p>
             <p class="cp" onclick="deleteUser(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
@@ -54,10 +52,8 @@ function floatContactHTML(name, email, i) {
 `;
 }
 
-
 /**
- * create html code for the Addpopup to add a new contact
- * 
+ * create html code for the Addpopup to add a new contact * 
  * @returns html
  */
 function createContactPopupHTML() {
@@ -103,7 +99,6 @@ function createContactPopupHTML() {
     
     `;
 }
-
 
 /**
  * create html code for the Editpopup to edit a contact

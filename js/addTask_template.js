@@ -178,35 +178,32 @@ function printDetails(task, index) {
                 <span>Edit</span>
              </div>
           </div>
-       </div>
-    `;
+       </div>`;
 }
 
 function printAssignedToDetails(contact, contactId) {
     return /*html*/ `
-       <div class="assignedToDetails">
-       <span class="contactBubble" id="${contactId}">${getInitials(contact)}</span>
-       <span class="openSans400-19">${contact}</span>
-       </div>
-    `;
+        <div class="assignedToDetails">
+            <span class="contactBubble" id="${contactId}">${getInitials(contact)}</span>
+            <span class="openSans400-19">${contact}</span>
+        </div>`;
 }
 
 function printTasksInBoard(task, index, subTasksLength) {
     return /*html*/ `
-       <div id="todobox${index}" onclick="showDetailBox(${index})" class="todoBox cp" draggable="true" ondragstart="startDragging(${index})">
-          <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
-          <div id="todoTitle"><h2>${task.title}</h2></div>
-          <div id="todoDescription">${task.description}</div>
-          <div class="todoSubtasks" id="todoSubtasks${index}">
-             <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
-             <span>${subTasksLength}/${tasks[index]['subtasks'].length} Subtasks</span>
-          </div>
-          <div class="assignedAndPrio">
-             <div id="todoAssignedTo${index}"></div>
-             <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
-          </div>
-       </div>
-    `;
+        <div id="todobox${index}" onclick="showDetailBox(${index})" class="todoBox cp" draggable="true" ondragstart="startDragging(${index})">
+            <div class="todoCategory" id="todoCategory${index}">${task.category}</div>                         
+            <div id="todoTitle"><h2>${task.title}</h2></div>
+            <div id="todoDescription">${task.description}</div>
+            <div class="todoSubtasks" id="todoSubtasks${index}">
+               <div><label><progress id="progressBar${index}" max="100" value="50">10%</progress></label></div>
+               <span>${subTasksLength}/${tasks[index]['subtasks'].length} Subtasks</span>
+            </div>
+            <div class="assignedAndPrio">
+               <div id="todoAssignedTo${index}"></div>
+               <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
+            </div>
+        </div>`;
 }
 
 /**
@@ -242,8 +239,8 @@ function printUsers(user, index) {
  */
 function printSubTasks(subTask, index) {
     return /*html*/ `
-        <div class="subTaskBox" id="subTaskBox${index}">
-            <li id="subTask${index}">${subTask}</li>
+        <div class="subTaskBox hoverSubTask" id="subTaskBox${index}">
+            <li class="hoverSubTask" id="subTask${index}">${subTask}</li>
             <div class="d-none subTaskInput" id="subTaskInput${index}">
                 <div class="subTaskEditBox">
                     <input id="newSubTask${index}" type="text" placeholder="edit...">
@@ -259,6 +256,5 @@ function printSubTasks(subTask, index) {
                 <hr class="dividerVertical">
                 <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
             </div>
-        </div>
-    `;
+        </div>`;
 }

@@ -1,5 +1,4 @@
 /* detail view box below */
-
 .dNone {
     display: none;
 }
@@ -214,5 +213,4 @@ progress[value] {
     width: 32px;
     height: 32px;
 }
-
 /* detail box above */
