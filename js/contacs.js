@@ -58,15 +58,10 @@ function deleteUser(userIndex) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (userIndex !== -1) {
         users.splice(userIndex, 1);
-        alert("User deleted successfully!");
-    } else {
-        alert("User not found.");
-    }
+    } 
     setItem('users', JSON.stringify(users));
     document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
-    console.log('user wurde gelöscht');
-    console.table(users);
     if (screenWidth <= 1024) {
         showContactListMobil();
     }
@@ -149,9 +144,7 @@ async function createNewContact() {
         await setItem('users', JSON.stringify(users));
         successfullyPopupAddContact();
         closePopup();
-    } else {
-        console.error('Please fill out all fields');
-    }
+    } 
 }
 
 /**
@@ -259,7 +252,10 @@ function showEditPopup(i) {
 function closePopup() {
     document.getElementById('contactPopup').classList.add('d-none');
     document.getElementById('background').classList.remove('back');
-    document.getElementById('popupDotMenue').classList.add('d-none');
+    let dotPopup = document.getElementById('popupDotMenue');
+    if (dotPopup) {
+        document.getElementById('popupDotMenue').classList.add('d-none');
+    }    
 }
 
 /**

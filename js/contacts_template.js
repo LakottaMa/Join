@@ -11,13 +11,12 @@ function floatContactHTML(name, email, i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-    return `
+    return /*html*/ `
         <div id="floatMobil">
             <h2>Contact Information</h2>
             <div id="arrowBack" class="cp" onclick="showContactListMobil()">
                 <img src="./assets/img/arrow-left-line.png" alt="arrowBack">
-            </div
-        </div>
+            </div>
         </div>
         <div class="floatingTop">            
             <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
@@ -50,7 +49,8 @@ function floatContactHTML(name, email, i) {
         <div class="popupMenue">
             <p class="cp" onclick="editContact(${i})"><img src="./assets/img/edit.png" alt="edit">Edit</p>
             <p class="cp" onclick="deleteUser(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
-        </div>   
+        </div> 
+    </div>      
 `;
 }
 
@@ -62,7 +62,7 @@ function floatContactHTML(name, email, i) {
  */
 function createContactPopupHTML() {
     document.getElementById('contactPopup').innerHTML = '';
-    return `
+    return  /*html*/`
     <div id="closePopup">
         <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
     </div>
@@ -115,7 +115,7 @@ function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-    return `
+    return  /*html*/`
     <div id="closePopup">
         <img onclick="closePopup()" src="./assets/img/close_white.png" alt="close">
     </div>
