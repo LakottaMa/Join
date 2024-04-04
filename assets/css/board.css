@@ -259,7 +259,7 @@ input[type="text"]:disabled {
         margin: 0;
         padding: 0;
         overflow-y: auto;
-        height: calc(100vh - 172px);
+        padding-bottom: 16px;
     }
 
     .findAndAdd {
