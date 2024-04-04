@@ -277,7 +277,10 @@ function showDotMenu() {
  * hide submenue from the detailview in in the mobile version * 
  */
 function closeDotMenue() {
-    document.getElementById('popupDotMenue').classList.add('d-none');
+    let dotPopup = document.getElementById('popupDotMenue');
+    if (dotPopup) {
+        document.getElementById('popupDotMenue').classList.add('d-none');
+    } 
 }
 
 /**
