@@ -239,8 +239,8 @@ function printUsers(user, index) {
  */
 function printSubTasks(subTask, index) {
     return /*html*/ `
-        <div class="subTaskBox" id="subTaskBox${index}">
-            <li id="subTask${index}">${subTask}</li>
+        <div class="subTaskBox hoverSubTask" id="subTaskBox${index}">
+            <li class="hoverSubTask" id="subTask${index}">${subTask}</li>
             <div class="d-none subTaskInput" id="subTaskInput${index}">
                 <div class="subTaskEditBox">
                     <input id="newSubTask${index}" type="text" placeholder="edit...">

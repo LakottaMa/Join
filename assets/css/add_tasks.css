@@ -72,12 +72,13 @@ textarea:hover {
         padding: 8px;
         font-size: 19px;
         font-weight: 400;
+        resize: vertical;
     }
 
     & img {
         position: absolute;
-        bottom: 8px;
-        right: 8px;
+        bottom: 16px;
+        right: 22px;
         width: 19px;
         height: 19px;
     }
@@ -308,19 +309,10 @@ textarea:hover {
     padding: 4px 16px 4px 16px;
     border-radius: 10px;
 
-    &:hover {
-        background-color: var(--clr-menu-hover);
-        cursor: pointer;
-    }
-
     &:hover .deleteAndEditIcons {
         visibility: visible;
     }
 
-    & li:hover {
-        background-color: var(--clr-menu-hover);
-        cursor: pointer;
-    }
 }
 
 .subTaskEditBox {
@@ -331,8 +323,15 @@ textarea:hover {
 
     & input {
         border: none;
+        padding: 4px;
     }
 }
+
+.hoverSubTask:hover {
+    background-color: var(--clr-menu-hover);
+    cursor: pointer;
+}
+
 
 .subTaskInput {
     width: 100%;
