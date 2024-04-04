@@ -213,7 +213,7 @@ h3 {
 
     to {
         transform: translateX(0);
-    }    
+    }
 }
 
 @keyframes slidingLeft {
@@ -223,7 +223,7 @@ h3 {
 
     to {
         transform: translateX(0);
-    }    
+    }
 }
 
 
@@ -252,6 +252,7 @@ h3 {
     border-radius: 30px;
     background-color: white;
     animation: slidingRight 0.2s ease-in-out;
+
 }
 
 #topPopup {
@@ -299,6 +300,8 @@ h3 {
     align-items: center;
     background-color: white;
     border-color: #E3E3E3;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .avatarDiv {
@@ -348,7 +351,8 @@ input {
     display: flex;
     justify-content: center;
     gap: 25px;
-    margin-top: 32px;
+    margin-top: 76px;
+    margin-bottom: 63px;
 }
 
 .btnCancel,
@@ -476,18 +480,17 @@ input {
     .overlayContactPopup {
         position: static;
         max-width: 396px;
-        height: 760px;
         height: calc(100vh - 200px);
-    }
 
-    form {
-        margin-top: 92px;
     }
 
     .avatarDiv {
         padding: 0;
-        position: absolute;
-        top: 380px;
+        margin-top: -60px;
+    }
+
+    .back {
+        overflow-y: scroll;
     }
 
     #topPopup {
@@ -508,10 +511,6 @@ input {
 
     .input-field {
         width: 364px;
-    }
-
-    #popupBtn {
-        margin-top: 50px;
     }
 
     .btnCreate {
@@ -582,16 +581,16 @@ input {
     }
 
     #topPopup {
-        span{
-           font-size: 40px; 
+        span {
+            font-size: 40px;
         }
 
-        p{
+        p {
             font-size: 15px;
         }
     }
 
-    .input-field{
+    .input-field {
         width: 280px;
     }
 }
