@@ -1,27 +1,18 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
-
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
     <link rel="stylesheet" href="/assets/css/add_tasks.css">
-
     <title>Join</title>
 </head>
-
 <body onload="initAddTask()">
     <div template="/assets/templates/desktop_template.html"></div>
-
-    <section class="content">
-        
-        <div class="addTaskSection" id="addTaskContainer">
-
-                
+    <section class="content">        
+        <div class="addTaskSection" id="addTaskContainer">                
         </div>
-
         <div class="addTaskBtns">
             <button onclick="resetInputsAndSelections()" class="white-btn cp clearBtn">Clear<svg width="14" height="14"
                     viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,19 +28,17 @@
                         fill="white" />
                 </svg>
             </button>
-        </div>
-        
+        </div>        
     </section>
     <div class="successfully-popup d-none" id="popupAddtask">
         <div class="successfully-popover-text"><span>Task added to board</span><img src="./assets/img/board_white.png"></div>
+    </div>
     <script src="./js/storage.js"></script>
     <script src="./js/addTask_template.js"></script>
     <script src="./js/templates.js"></script>
     <script src="./js/sign_up.js"></script>
     <script src="./js/add_tasks.js"></script>
     <script src="./script.js"></script>
-    <script src="./js/board.js"></script>
-    
+    <script src="./js/board.js"></script>    
 </body>
-
 </html>

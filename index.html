@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
@@ -11,7 +10,6 @@
     <link rel="stylesheet" href="./assets/css/mobile.css">
     <title>Join</title>
 </head>
-
 <body onload="init()">
     <header class="login-header">
         <img class="logo" id="resetStorage" src="./assets/img/logo_blue.png" onclick="resetStorage(event)">
@@ -44,8 +42,7 @@
                     </div>
                     <div class="btn-box">
                         <button id="isLoggedIn" class="blue-btn login-btn cp">Log in</button>
-                        <button type="button" class="white-btn btn cp" onclick="guestLogIn(localUsers)">Guest log
-                            in</button>
+                        <button type="button" class="white-btn btn cp" onclick="guestLogIn(localUsers)">Guest log in</button>
                     </div>
                 </form>
             </div>
@@ -67,5 +64,4 @@
     <script src="./js/add_tasks.js"></script>
     <script src="./js/sign_up.js"></script>
 </body>
-
 </html>
