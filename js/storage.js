@@ -197,7 +197,6 @@ async function loadUsers() {
   } catch (e) {
     console.error('Loading error:', e);
   }
-  console.table(users);
 }
 
 /** load tasks saved on web storage */
@@ -207,7 +206,6 @@ async function loadTasks() {
   } catch (e) {
     console.error('Loading error:', e);
   }
-  console.table(tasks);
 }
 
 async function saveTasks(tasks) {
