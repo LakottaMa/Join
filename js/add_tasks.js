@@ -1,7 +1,6 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-
 let defaultValues = [{ status: 'To Do' }, { category: 'User Story' }, { priority: 'Medium' }];
 
 async function initAddTask() {

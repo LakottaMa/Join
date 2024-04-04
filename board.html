@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -5,13 +6,13 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
-    <link rel="stylesheet" href="./assets/css/board.css">
     <link rel="stylesheet" href="./assets/css/add_tasks.css">
+    <link rel="stylesheet" href="./assets/css/board.css">    
     <link rel="stylesheet" href="./assets/css/boardTaskDetailBox.css">
     <title>Join</title>
 </head>
 <body onload="initBoard()">
-    <div template="/assets/templates/desktop_template.html"></div>
+    <div template="./assets/templates/desktop_template.html"></div>
     <div class="addTaskBox d-none" id="addTaskBox">
         <div id="addTaskHeadline" class="addTaskHeadline">
             <h1>Add Task</h1>
@@ -83,6 +84,7 @@
             <span>Task added to board</span>
             <img src="./assets/img/board_white.png">
         </div>
+    </div>
         <script src="./js/dragAndDrop.js"></script>
         <script>
             window.addEventListener('resize', function () {

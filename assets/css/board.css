@@ -1,4 +1,4 @@
-.addTaskbox {
+.addTaskBox {
     position: absolute;
     top: -96px;
     right: -1000px;
@@ -332,7 +332,7 @@ input[type="text"]:disabled {
         }
     }
 
-    .addTaskbox {
+    .addTaskBox {
         width: 100%;
         position: fixed;
         top: 96px;
