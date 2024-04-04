@@ -1,7 +1,6 @@
 /**
  * @file storage.js
- * This file is used to handle the storage of the application
- * 
+ * This file is used to handle the storage of the application * 
  */
 const STORAGE_TOKEN = 'FOQ59STJFAGBFPPP9W1RP2EHAKEF90DYTULV2A3Q';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
@@ -37,6 +36,7 @@ function logout() {
   unrememberMe();
 }
 
+/** predefined users */
 let localUsers = [
   {
     "name": "Guest",
@@ -82,6 +82,7 @@ let localUsers = [
   }
 ];
 
+/** predefined tasks */
 let localTasks = [
   {
     "title": "Kochwelt Page & Recipe Recommender",
@@ -90,8 +91,15 @@ let localTasks = [
     "priority": "Medium",
     "assignedTo": ["Linus Torvalds", "Sam Altman"],
     "category": "User Story",
-    "subtasks": ["Implement Recipe Recommendation"],
-    "subtasksDone": ["Style Recipe"],
+    "subtasks": [
+      {
+        "name": "Implement Recipe Recommendation",
+        "done": false
+      },
+      {
+        "name": "Style Recipe",
+        "done": true
+      }],
     "status": "In progress"
   },
   {
@@ -101,11 +109,17 @@ let localTasks = [
     "priority": "Urgent",
     "assignedTo": ["Tim Cook", "Bill Gates"],
     "category": "Technical Task",
-    "subtasks": [],
-    "subtasksDone": ["Clean Code"],
+    "subtasks": [
+      {
+        "name": "Add CSS",
+        "done": false
+      },
+      {
+        "name": "Clean Code",
+        "done": true
+      }],
     "status": "In progress"
   },
-
   {
     "title": "Design Database Schema",
     "description": "Create database structure for the application.",
@@ -114,7 +128,6 @@ let localTasks = [
     "assignedTo": ["Linus Torvalds", "Bill Gates"],
     "category": "Technical Task",
     "subtasks": [],
-    "subtasksDone": [],
     "status": "In progress"
   },
   {
@@ -124,8 +137,19 @@ let localTasks = [
     "priority": "Low",
     "assignedTo": ["Linus Torvalds", "Bill Gates"],
     "category": "User Story",
-    "subtasks": ["Update color scheme", "Optimize navigation menu"],
-    "subtasksDone": ["Style Sidebar"],
+    "subtasks": [
+      {
+        "name": "Update color scheme",
+        "done": false
+      },
+      {
+        "name": "Optimize navigation menu",
+        "done": true
+      },
+      {
+        "name": "Style Sidebar",
+        "done": false
+      }],
     "status": "Await feedback"
   },
   {
@@ -135,13 +159,24 @@ let localTasks = [
     "priority": "Urgent",
     "assignedTo": ["Linus Torvalds", "Tim Cook"],
     "category": "Technical Task",
-    "subtasks": ["Create login form", "Implement user registration"],
-    "subtasksDone": ["Style login form"],
+    "subtasks": [
+      {
+        "name": "Create login form",
+        "done": false
+      },
+      {
+        "name": "Implement user registration",
+        "done": true
+      },
+      {
+        "name": "Style login form",
+        "done": false
+      }],
     "status": "To Do"
   }
 ];
 
-/**  Function to reset the remote Storage: with shift + click on Logo in Landing Page */
+/**  function to reset the remote Storage: with shift + left-click on Logo in Landing Page */
 function resetStorage(event) {
   resetButton = document.getElementById('resetStorage');
   if (event.shiftKey) {
@@ -155,6 +190,7 @@ function resetStorage(event) {
   }
 }
 
+/** load user saved on web storage */
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem('users'));
@@ -164,6 +200,7 @@ async function loadUsers() {
   console.table(users);
 }
 
+/** load tasks saved on web storage */
 async function loadTasks() {
   try {
     tasks = JSON.parse(await getItem('tasks'));

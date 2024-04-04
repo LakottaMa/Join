@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
     <link rel="stylesheet" href="./assets/css/login.css">
-    <link rel="stylesheet" href="./assets/css/mobile.css">
+    <link rel="stylesheet" href="./mobile.css">
     <title>Join</title>
-
 </head>
 <body onload="init()">
     <header class="login-header">
@@ -20,7 +19,7 @@
         </div>
     </header>
     <div id="loadingScreen" class="loading-animation"><img class="loding-logo" src="./assets/img/loding_logo.png"></div>
-    <div class="login-container">        
+    <div class="login-container">
         <div>
             <div class="form-box">
                 <form class="input-box" onsubmit="logIn(users); return false;">
@@ -31,8 +30,10 @@
                         <img src="./assets/img/mail.png">
                     </div>
                     <div class="input-field">
-                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus required minlength="5" placeholder="Password">
-                        <img id="password-icon" onclick="togglePasswordVisibility('password')" src="./assets/img/lock.png">
+                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus required
+                            minlength="5" placeholder="Password">
+                        <img id="password-icon" onclick="togglePasswordVisibility('password')"
+                            src="./assets/img/lock.png">
                         <div class="error-msg-box" id="loginMatch"></div>
                     </div>
                     <div class="checkbox cp" onclick="rememberMe()">
@@ -60,7 +61,7 @@
     <script src="./js/storage.js"></script>
     <script src="./js/contacs.js"></script>
     <script src="./js/login.js"></script>
-    <script src="./js/add_tasks.js"></script>    
+    <script src="./js/add_tasks.js"></script>
     <script src="./js/sign_up.js"></script>
 </body>
 </html>

@@ -1,83 +1,102 @@
+/** onload summary page, with check to show greeting-slider after login below 480px */
 async function initSummary() {
-    await includeHTML();
-    greetingMessage();
-    await loadUsers();
-    await loadTasks();
-    counterSummery();
+  if (!sessionStorage.getItem('greetingShown')) {
+    greetingScreen();
+    sessionStorage.setItem('greetingShown', true);
+  }
+  await includeHTML();
+  loginStatus();
+  await loadTasks();
+  counterSummery(tasks);
 }
 
-  function checkLoginStatus() {
-    let isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    return isLoggedIn;
-  }
-  
-  function greetingMessage() {
-    let isLoggedIn = checkLoginStatus();
-    let currentHour = checkHour();
-    let greeting = document.getElementById('greeting');
-    let greetingName = document.getElementById('greetingName');    
-    if (currentHour >= 0 && currentHour <= 11) {
-      greeting.innerHTML = `Good Morning,`;
-      greetingName.innerHTML = `${isLoggedIn}`;
-    } else if (currentHour > 11 && currentHour < 14) {
-      greeting.innerHTML = 'Good Day,';
-      greetingName.innerHTML = `${isLoggedIn}`;
-    } else if (currentHour >= 14 && currentHour < 18) {
-      greeting.innerHTML = 'Good afternoon,';
-      greetingName.innerHTML = `${isLoggedIn}`;
-    } else {
-      greeting.innerHTML = 'Good Evening,';
-      greetingName.innerHTML = `${isLoggedIn}`;
-    }
-  }
-
-function checkHour() {
-    let currentDate = new Date();
-    let currentHour = currentDate.getHours();
-    return currentHour;
+/** check who is logged in */
+function loginStatus() {
+  let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+  document.getElementById('greetingName').innerHTML = `${isLoggedIn}`;
+  document.getElementById('greetingNameMobile').innerHTML = `${isLoggedIn}`;
+  greetingMessage();
 }
 
-function counterSummery(){
+/** shows greeting depending on time of day */
+function greetingMessage() {
+  let currentDate = new Date();
+  let currentHour = currentDate.getHours();
+  let greetingMessage;
+  const greetings = { morning: "Good Morning,", afternoon: "Good Day,", evening: "Good afternoon,", night: "Good night," }
+  if (currentHour < 12) {
+    greetingMessage = greetings.morning;
+  } else if (currentHour < 18) {
+    greetingMessage = greetings.afternoon;
+  } else if (currentHour < 22) {
+    greetingMessage = greetings.evening;
+  } else {
+    greetingMessage = greetings.night;
+  }
+  document.getElementById('greeting').innerHTML = greetingMessage;
+  document.getElementById('greetMobile').innerHTML = greetingMessage;
+}
+
+/** loop over the tasks-array to get the counts for each category */
+function counterSummery(tasks) {
   const tasksInBoard = document.getElementById('tib');
   const tasksToDo = document.getElementById('todo');
-  const TasksinProgress = document.getElementById('progress');
-  const TasksawFeedback = document.getElementById('awFeedback');
-  const TaskstasksDone = document.getElementById('tasksDone');
-  const Tasksurgent = document.getElementById('urgent');
-  const allTasks = tasks.length;
-  const allToDo = tasks.filter((entry) => entry.status === "To Do").length;
-  const inProgress = tasks.filter((entry) => entry.status === "In progress").length;
-  const awFeedback = tasks.filter((entry) => entry.status === "Await feedback").length;
-  const tasksDone = tasks.filter((entry) => entry.status === "Tasks Done").length;
-  const urgent = tasks.filter((entry) => entry.priority === "Urgent").length;
-  showAllSummaryCounter(tasksInBoard, tasksToDo, TasksinProgress, TasksawFeedback, TaskstasksDone, allTasks, allToDo, inProgress, awFeedback, tasksDone, Tasksurgent, urgent);
+  const tasksinProgress = document.getElementById('progress');
+  const tasksawFeedback = document.getElementById('awFeedback');
+  const taskstasksDone = document.getElementById('tasksDone');
+  const tasksUrgent = document.getElementById('urgent');
+  let allTasks = 0;
+  let allToDo = 0;
+  let inProgress = 0;
+  let awFeedback = 0;
+  let tasksDone = 0;
+  let urgent = 0;
+  for (const task of tasks) {
+    allTasks++;
+    switch (task.status) {
+      case "To Do":
+        allToDo++;
+        break;
+      case "In progress":
+        inProgress++;
+        break;
+      case "Await feedback":
+        awFeedback++;
+        break;
+      case "Done":
+        tasksDone++;
+        break;
+    }
+    if (task.priority === "Urgent") {
+      urgent++;
+    }
+  }
+  tasksInBoard.textContent = allTasks;
+  tasksToDo.textContent = allToDo;
+  tasksinProgress.textContent = inProgress;
+  tasksawFeedback.textContent = awFeedback;
+  taskstasksDone.textContent = tasksDone;
+  tasksUrgent.textContent = urgent;
+  nextUrgent();
 }
 
-function showAllSummaryCounter(tasksInBoard, tasksToDo, TasksinProgress, TasksawFeedback, TaskstasksDone, allTasks, allToDo, inProgress, awFeedback, tasksDone, Tasksurgent, urgent) {
-tasksInBoard.textContent = allTasks;
-tasksToDo.textContent = allToDo;
-TasksinProgress.textContent = inProgress;
-TasksawFeedback.textContent = awFeedback;
-TaskstasksDone.textContent = tasksDone;
-Tasksurgent.textContent = urgent;
-nextUrgent();
+/** check when the next deadline for urgent tasks expires */
+function nextUrgent() {
+  const tasksWithDateObjects = tasks.map(task => ({
+    ...task,
+    date: new Date(task.date)
+  }));
+  const urgentTasks = tasksWithDateObjects.filter(task => task.priority === "Urgent");
+  urgentTasks.sort(compareDates);
+  const nextUrgentDate = urgentTasks[0].date;
+  const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
+  const urgentDate = document.getElementById("urgentDate");
+  urgentDate.textContent = `${formattedDate}`;
 }
 
+/** help function for nextUrgent, the timestamp of each date is extracted with getTime() & the difference between the timestamps is returned */
 function compareDates(a, b) {
   a = new Date(a.date);
   b = new Date(b.date);
   return a.getTime() - b.getTime();
-  }
-
-function nextUrgent() {
-const tasksWithDateObjects = tasks.map(task => ({
-  ...task,
-  date: new Date(task.date)
-}));
-const urgentTasks = tasksWithDateObjects.filter(task => task.priority === "Urgent");
-urgentTasks.sort(compareDates);
-const nextUrgentDate = urgentTasks[0].date;
-const formattedDate = nextUrgentDate.toLocaleDateString("de-DE", {day: "numeric" , month: "long", year: "numeric" });
-const urgentDate = document.getElementById("urgentDate");
-urgentDate.textContent = `${formattedDate}`;
 }

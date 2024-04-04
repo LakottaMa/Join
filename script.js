@@ -16,9 +16,8 @@ function unrememberMe() {
     localStorage.removeItem('password');
   }
 }
-/**
-* log in data will be remembered in localStorage
-*/
+
+/** log in data will be remembered in localStorage */
 let checkBoxLogin = false;
 function rememberMe() {
   let checkBoxImage = document.getElementById('remember-me');

@@ -1,12 +1,13 @@
+/** onlaod called signup page */
 async function initSignUp() {
   await loadUsers();
-  await loadTasks();
 }
-
+/** back arrow in signup page */
 function backButton() {
   window.location.href = '/index.html';
 }
 
+/** registration of a new user, with verification of the email address and password match */
 async function register() {
   let bgColor = newBgColor();
   let name = document.getElementById('name').value;
@@ -21,17 +22,19 @@ async function register() {
   }
 }
 
+/** if the entry for the login does not show any errors, move new data to the web storage */
 async function handleSignUp(name, email, password, confirmedPassword, bgColor) {
   if (errorMsgPasswordConfirm(confirmedPassword, password)) {
-      users.push({name: name, email: email, password: password, phone: null, bg: bgColor});
-      await setItem('users', JSON.stringify(users));
-      resetForm();
-      popup();
+    users.push({ name: name, email: email, password: password, phone: null, bg: bgColor });
+    await setItem('users', JSON.stringify(users));
+    resetForm();
+    popup();
   } else {
     displayPasswordMatchError();
   }
 }
 
+/** checks password match on signup*/
 function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
     return false;
@@ -39,6 +42,7 @@ function errorMsgPasswordConfirm(confirmedPassword, password) {
   return true;
 }
 
+/** check if confirmed password is correct, with error massage if not */
 function displayPasswordMatchError() {
   const confirmedPassword = document.getElementById('confirmedPassword');
   const errorMsgBox = document.getElementById('password-match');
@@ -50,6 +54,7 @@ function displayPasswordMatchError() {
   });
 }
 
+/** check if registered email is in use, with error massage if in use */
 function displayEmailInUseError() {
   const emailInput = document.getElementById('email');
   const errorMsgBox = document.getElementById('email-exist');
@@ -61,6 +66,7 @@ function displayEmailInUseError() {
   });
 }
 
+/** accept the policy with the checkbox */
 function checkedSignup() {
   const checkbox = document.getElementById('accept-policy');
   let button = document.getElementById('signupBtn');
@@ -71,7 +77,7 @@ function checkedSignup() {
   );
 }
 
-/** Popup nach erfolgreicher Registrierung */
+/** popup after successful registration */
 function popup() {
   const animation = document.getElementById('popup');
   animation.classList.remove('d-none');
@@ -80,12 +86,13 @@ function popup() {
   }, 2000);
 }
 
-/** zum leeren der Form und default checkBtn */
+/** empty Form and default checkBtn */
 function resetForm() {
   const formFields = ['name', 'email', 'password', 'password'];
   formFields.forEach(field => document.getElementById(field).value = '');
 }
 
+/** toggle password icon on password input */
 function togglePasswordEye(inputId) {
   const inputValue = document.getElementById(inputId).value.trim();
   if (inputValue) {
@@ -97,6 +104,7 @@ function togglePasswordEye(inputId) {
   }
 }
 
+/** click password symbol to display the text for entering the password */
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
   const inputValue = input.value.trim();

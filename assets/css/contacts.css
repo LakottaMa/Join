@@ -12,10 +12,25 @@ h3 {
 
 .contactList {
     width: 456px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin-top: 96px;
     padding: 0 28px 0 52px;
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.2);
 }
+
+::-webkit-scrollbar {
+    width: 24px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 12px;
+    border: 8px solid rgba(255, 255, 255, 0);
+    background-clip: padding-box;
+}
+
+
 
 #allContacts {
     padding-top: 100px;
@@ -62,6 +77,7 @@ h3 {
         font-size: 16px;
         color: var(--clr-main1);
         padding-top: 5px;
+        word-break: break-word;
     }
 
     &:hover {
@@ -98,21 +114,25 @@ h3 {
 /*********************** Start floatingContact ***********************/
 
 #floatingContact {
+    position: static;
     display: flex;
     flex-direction: column;
     padding: 72px 0 0 62px;
     margin-top: 96px;
     gap: 21px;
     width: 40%;
+    animation: slidingRight 0.2s ease-in-out;
 }
 
 #floatMobil {
     display: none;
+    justify-content: space-between;
 }
 
 #arrowBack {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
 
     img {
         width: 34px;
@@ -186,6 +206,25 @@ h3 {
     color: var(--clr-main1);
 }
 
+@keyframes slidingRight {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }    
+}
+
+@keyframes slidingLeft {
+    from {
+        transform: translateX(-200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }    
+}
 
 
 
@@ -199,7 +238,7 @@ h3 {
     top: 0;
     left: 0;
     transition: all 500ms ease-in-out;
-    background-color: #ffffff6a;
+    background-color: #ffffffb6;
     z-index: 100;
 }
 
@@ -212,6 +251,7 @@ h3 {
     border: solid 1px #E3E3E3;
     border-radius: 30px;
     background-color: white;
+    animation: slidingRight 0.2s ease-in-out;
 }
 
 #topPopup {
@@ -311,7 +351,8 @@ input {
     margin-top: 32px;
 }
 
-.btnCancel, .btnDelete {
+.btnCancel,
+.btnDelete {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,9 +420,13 @@ input {
         margin: 0;
     }
 
-    .addBtnDiv {
+    .addBtnDiv,
+    .btnCancel,
+    .floatingBtn,
+    #contactInfo {
         display: none;
     }
+
 
     .contactList {
         margin-top: 0;
@@ -393,12 +438,12 @@ input {
 
     #floatingContact {
         transition: all 200ms ease-in-out;
-        position: absolute;
+        position: fixed;
         left: 16px;
-        width: 100vw;
-        height: 100vw;
         background-color: white;
-        padding:72px 16px 0 16px;
+        padding: 48px 0px 0 0px;
+        width: 100vw;
+        height: 100vh;
     }
 
     #allContacts {
@@ -447,6 +492,7 @@ input {
 
     #topPopup {
         height: 248px;
+
         img {
             display: none;
         }
@@ -456,7 +502,7 @@ input {
         }
     }
 
-    .editPopupP{
+    .editPopupP {
         display: flex;
     }
 
@@ -468,29 +514,13 @@ input {
         margin-top: 50px;
     }
 
-    .btnCancel {
-        display: none;
-    }
-
     .btnCreate {
         font-size: 19px;
     }
-    #contactInfo {
-        display: none;
-    }
+
 
     #floatMobil {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    #contactInfo {
-        display: none;
-    }
-
-    .floatingBtn {
-        display: none;
     }
 
     #contactMobileFloat {
@@ -498,11 +528,12 @@ input {
         justify-content: center;
         align-items: center;
         position: fixed;
-        bottom: 170px;
-        right: 43px;
+        bottom: 100px;
+        right: 30px;
         width: 64px;
         height: 64px;
         margin: 0;
+        z-index: 3;
     }
 
     #popupDotMenue {
@@ -510,14 +541,15 @@ input {
         justify-content: center;
         align-items: center;
         position: fixed;
-        right: 43px;
-        bottom: 170px;
+        right: 25px;
+        bottom: 95px;
         width: 116px;
         height: 100px;
         background-color: white;
         border: 2px solid rgba(209, 209, 209, 1);
         border-radius: 20px 20px 0 20px;
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+        z-index: 4;
 
         img {
             width: 24px;
@@ -541,5 +573,25 @@ input {
         flex-direction: column;
         gap: 8px;
     }
+}
 
+@media screen and (max-width:430px) {
+
+    .overlayContactPopup {
+        width: 300px;
+    }
+
+    #topPopup {
+        span{
+           font-size: 40px; 
+        }
+
+        p{
+            font-size: 15px;
+        }
+    }
+
+    .input-field{
+        width: 280px;
+    }
 }

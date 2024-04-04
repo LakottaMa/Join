@@ -1,26 +1,62 @@
 let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
-
 let defaultValues = [{ status: 'To Do' }, { category: 'User Story' }, { priority: 'Medium' }];
 
 async function initAddTask() {
     await includeHTML();
     await loadUsers();
     await loadTasks();
+    renderAddTask('addTaskContainer');
     initializeAndListen();
+    setPriority('Medium');
 }
 
+/**
+ * render the add task container
+ * @param {string} id 
+ */
+function renderAddTask(id) {
+    let container = document.getElementById(id);
+    container.innerHTML = printAddTask();
+}
+
+/**
+ * clear add Task Container
+ */
+function clearAddTask() {
+    let id = checkIdforAddTask();
+    document.getElementById(id).innerHTML = '';
+}
+
+/**
+ * 
+ * @returns the correct id for the add Task Container
+ */
+function checkIdforAddTask() {
+    let id;
+    if (window.location.pathname === '/add_tasks.html') {
+        id = 'addTaskContainer';
+    } else if (window.location.pathname === '/board.html' && document.getElementById('addTaskBox') && !document.getElementById('addTaskBox').classList.contains('d-none')) {
+        id = 'addTaskInBoardContainer';
+    } else {
+        id = 'editTaskContainer';
+    }
+    return id;
+}
+
+/**
+ * set default values and activate event listener for subtask inputfield
+ */
 function initializeAndListen() {
     renderUsers();
     prioUrgent = document.getElementById('prioUrgent');
     prioMedium = document.getElementById('prioMedium');
     prioLow = document.getElementById('prioLow');
-    focusInputField('subtaskInput', 'addSubTaskBtn');
-    focusInputField('searchUserInput', 'searchUserBtn');
     defaultValues.category = 'User Story';
     defaultValues.priority = 'Medium';
     defaultValues.status = 'To Do';
+    listenSubtaskInput();
 }
 
 let prioUrgent;
@@ -47,30 +83,50 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
         "assignedTo": assignedTo,
         "category": taskCategory,
         "subtasks": subtasks,
-        "subtasksDone": [],
         "status": taskStatus
     }
 }
-
 /**
- * push new Task to tasks array
+ * 
+ * @returns created task
  */
-async function addTask() {
+function createTask() {
+    defaultValues.category = document.getElementById('selectedCategory').value;
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let inputDate = document.getElementById('date').value;
     let date = new Date(inputDate).toString();
     let taskPriority = defaultValues.priority;
     let assignedTo = selectedUsers;
-    let subtasks = subTasks;
+    let subtasks = createSubtaskObject();
     let taskCategory = defaultValues.category;
     let taskStatus = defaultValues.status;
     let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
+    return newTask;
+}
+
+/**
+ * push new Task to tasks array
+ */
+async function addTask() {
+    let newTask = createTask();
     tasks.push(newTask);
     await saveTasks(tasks);
     resetInputsAndSelections();
     successfullyPopupAddTask();
     hideAddTaskBox();
+}
+/**
+ * convert subtasks to object with boolean
+ * @returns object with subtask
+ */
+function createSubtaskObject() {
+    let subTaskObjects = [];
+    for (let i = 0; i < subTasks.length; i++) {
+        let subTaskObject = { 'name': subTasks[i], 'done': false };
+        subTaskObjects.push(subTaskObject);
+    }
+    return subTaskObjects;
 }
 
 /** Popup nach erfolgreicher Task Erstellung */
@@ -80,11 +136,12 @@ function successfullyPopupAddTask() {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
-      });
+    });
     setTimeout(() => {
+        clearAddTask();
         window.location.href = './board.html';
     }, 1000);
-    
+
 }
 
 /**
@@ -94,41 +151,39 @@ function resetInputsAndSelections() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('date').value = '';
+    document.getElementById('selectedCategory').value = '';
     selectedUsers = [];
     renderSelectedUsers();
     subTasks = [];
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
     priority = "";
     category = "";
     checkRenderArr();
-    setPrio();
+    setPriority('Medium');
 }
 
+let taskCategoryArrowDropdown = false;
 /**
- * toggle arrow image and task category div
+ * toggle task category options and rotate dropdown icon
  */
 function toggleTaskCategory() {
+    let arrow = document.getElementById('dropDownImgCategory');
     document.getElementById('taskCategory').classList.toggle('d-none');
-    let images = document.querySelectorAll('.catCon img');
-    images.forEach(function (img) {
-        img.classList.toggle('d-none');
-    })
+    taskCategoryArrowDropdown = !taskCategoryArrowDropdown;
+    taskCategoryArrowDropdown === true ? arrow.style.transform = 'rotate(180deg)' :
+        arrow.style.transform = 'rotate(0deg)';
 }
 
 /**
  * toogle input field for search user
  */
 function showSearchUserInput() {
-    document.getElementById('searchUserInput').classList.remove('d-none');
-    document.getElementById('searchUserText').classList.add('d-none');
     document.getElementById('userCategory').classList.remove('d-none');
     document.getElementById('dropDownImg').classList.add('d-none');
     document.getElementById('dropUpImg').classList.remove('d-none');
 }
 
 function hideSearchUserInput() {
-    document.getElementById('searchUserInput').classList.add('d-none');
-    document.getElementById('searchUserText').classList.remove('d-none');
     document.getElementById('userCategory').classList.add('d-none');
     document.getElementById('dropDownImg').classList.remove('d-none');
     document.getElementById('dropUpImg').classList.add('d-none');
@@ -140,7 +195,7 @@ function hideSearchUserInput() {
  */
 function selectCategory(cat) {
     category = cat;
-    document.getElementById('selectedCategory').innerHTML = cat;
+    document.getElementById('selectedCategory').value = cat;
     toggleTaskCategory();
 }
 
@@ -148,8 +203,6 @@ function selectCategory(cat) {
  * show the input field for adding subtasks
  */
 function showSubtaskInput() {
-    document.getElementById('subtaskInput').classList.remove('d-none');
-    document.getElementById('subtaskText').classList.add('d-none');
     document.getElementById('plusIcon').classList.add('d-none');
     document.getElementById('checkAndCloseIcons').classList.remove('d-none');
 }
@@ -161,8 +214,6 @@ function showSubtaskInput() {
 function hideSubtaskInput(event) {
     event.stopPropagation();
     document.getElementById('checkAndCloseIcons').classList.add('d-none');
-    document.getElementById('subtaskInput').classList.add('d-none');
-    document.getElementById('subtaskText').classList.remove('d-none');
     document.getElementById('plusIcon').classList.remove('d-none');
 }
 
@@ -175,15 +226,15 @@ function addSubTasks(event) {
     let input = document.getElementById('subtaskInput');
     subTasks.push(input.value);
     input.value = '';
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
     hideSubtaskInput(event);
 }
 
 /**
  * render the added subTasks
  */
-function renderSubTasks() {
-    let task = document.getElementById('subTaskContainer');
+function renderSubTasks(id) {
+    let task = document.getElementById(id);
     task.innerHTML = '';
     for (let i = 0; i < subTasks.length; i++) {
         const subTask = subTasks[i];
@@ -192,40 +243,12 @@ function renderSubTasks() {
 }
 
 /**
- * create html code
- * @param {string} subTask from the subTasks array
- * @returns 
- */
-function printSubTasks(subTask, index) {
-    return /*html*/ `
-        <div class="subTaskBox" id="subTaskBox${index}">
-            <span id="subTask${index}">${subTask}</span>
-            <div class="d-none subTaskInput" id="subTaskInput${index}">
-                <div class="subTaskEditBox">
-                    <input id="newSubTask${index}" type="text" placeholder="edit...">
-                    <div class="deleteAndEditIcons" class="deleteAndEditIcons">
-                        <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
-                        <img onclick="saveNewSubTask(${index})" src="./assets/img/check.png" alt="">
-                    </div>
-                </div>
-                <hr id="dividerHorizontal${index}" class="dividerHorizontal d-none">
-            </div>
-            <div id="deleteAndEditIcons${index}" class="deleteAndEditIcons">
-                <img onclick="showEditSubTaskInputField(${index})" src="./assets/img/edit.png" alt="">
-                <hr class="dividerVertical">
-                <img onclick="deleteSubTask(${index})" src="./assets/img/delete.png" alt="">
-            </div>
-        </div>
-    `;
-}
-
-/**
  * delete subtask and render subtasks
  * @param {Int} index to delete
  */
 function deleteSubTask(index) {
     subTasks.splice(index, 1);
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
 }
 
 /**
@@ -236,7 +259,7 @@ function saveNewSubTask(index) {
     let newTask = document.getElementById(`newSubTask${index}`);
     subTasks.splice(index, 1, newTask.value);
     newTask.value = '';
-    renderSubTasks();
+    renderSubTasks('subTaskContainer');
 }
 
 /**
@@ -300,7 +323,6 @@ function searchUsers() {
     checkRenderArr();
 }
 
-
 /**
  * check if user exist in selected array
  * @param {Int} index of selected or unselected user
@@ -315,23 +337,6 @@ function isUserSelected(index) {
         document.getElementById(`imgUncheck${index}`).classList.add('d-none');
         document.getElementById(`imgCheck${index}`).classList.remove('d-none');
     }
-
-}
-
-/**
- * generate html
- * @param {string} user from renderUser() function
- * @param {Int} index from renderUser() function
- * @returns 
- */
-function printUsers(user, index) {
-    return /*html*/ `
-        <div class="user" id="user${index}" >
-            <span>${user}</span>
-            <img onclick="selectUser(${index})" id="imgUncheck${index}" src="./assets/img/check_unchecked.png" alt="">
-            <img onclick="unselectUser(${index})" id="imgCheck${index}" class="d-none" src="./assets/img/check_checked.png" alt="">
-        </div>
-    `;
 }
 
 /**
@@ -401,62 +406,35 @@ function printSelectedUsers(user, index) {
 }
 
 /**
- * set priority for task
- * @param {string} prio priority
+ * set css class for chosen priority buttons
+ * @param {string} prio 
  */
-function setPrio(prio) {
-    switch (prio) {
-        case 'urgent':
-            priorityUrgent();
-            break;
-        case 'medium':
-            priorityMedium();
-            break;
-        case 'low':
-            priorityLow();
-            break;
-        default:
-            priorityDefault();
+function setPriority(prio) {
+    const priorities = ['urgent', 'medium', 'low'];
+    const elements = {
+        'urgent': prioUrgent,
+        'medium': prioMedium,
+        'low': prioLow
+    };
+    for (const priority of priorities) {
+        if (prio.toLowerCase() === priority) {
+            elements[priority].classList.add(`prio${priority.charAt(0).toUpperCase() + priority.slice(1)}Clicked`);
+            defaultValues.priority = priority.charAt(0).toUpperCase() + priority.slice(1);
+        } else {
+            elements[priority].classList.remove(`prio${priority.charAt(0).toUpperCase() + priority.slice(1)}Clicked`);
+        }
     }
 }
 
-function priorityUrgent() {
-    prioUrgent.classList.add('prioUrgentClicked');
-    prioLow.classList.remove('prioLowClicked');
-    prioMedium.classList.remove('prioMediumClicked');
-    priority = 'Urgent';
-}
-
-function priorityMedium() {
-    prioMedium.classList.add('prioMediumClicked');
-    prioUrgent.classList.remove('prioUrgentClicked');
-    prioLow.classList.remove('prioLowClicked');
-    priority = 'Medium';
-}
-
-function priorityLow() {
-    prioLow.classList.add('prioLowClicked');
-    prioUrgent.classList.remove('prioUrgentClicked');
-    prioMedium.classList.remove('prioMediumClicked');
-    priority = 'Low';
-}
-
-function priorityDefault() {
-    prioLow.classList.remove('prioLowClicked');
-    prioUrgent.classList.remove('prioUrgentClicked');
-    prioMedium.classList.remove('prioMediumClicked');
-    priority = '';
-}
-
-function focusInputField(input, btn) {
-    let inputToFocus = document.getElementById(input);
-    let btnToWatch = document.getElementById(btn);
-    btnToWatch.addEventListener('click', () => {
-        if (inputToFocus) {
-            inputToFocus.focus();
+/**
+ * confirm add subtask with Enter
+ */
+function listenSubtaskInput() {
+    let input = document.getElementById('subtaskInput');
+    input.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            addSubTasks(event);
         }
-    })
+    });
 }
-
-
 

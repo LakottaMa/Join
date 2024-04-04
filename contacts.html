@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/contacts.css">
     <link rel="stylesheet" href="./style.css">
@@ -22,22 +22,19 @@
             </div>
             <div id="allContacts"></div>        
         </section>              
-        <aside id="floatingContact" class="d-none"></aside> 
+        <aside id="floatingContact" class="d-none" onclick="closeDotMenue()"></aside> 
     </div>
-
     <button id="contactMobile" class="blue-btn cp" onclick="showAddPopup()"><img
         src="./assets/img/person_add.png" alt="addlogo">
     </button>
-
-
     <div class="successfully-popup d-none" id="popupCreateContact">
-    <div class="successfully-popover-text">Contact successfully create</div>
-
-        <script src="./js/sign_up.js"></script>
-        <script src="./js/contacs.js"></script>
-        <script src="./js/storage.js"></script>
-        <script src="./js/templates.js"></script>
-        <script src="./js/contacts_template.js"></script>
-        <script src="./script.js"></script>
+        <div class="successfully-popover-text">Contact successfully create</div>
+    </div>
+    <script src="./js/sign_up.js"></script>
+    <script src="./js/contacs.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/templates.js"></script>
+    <script src="./js/contacts_template.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

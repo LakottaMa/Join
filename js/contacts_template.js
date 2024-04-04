@@ -1,3 +1,12 @@
+/**
+ * create html code for the detailview of the contact
+ * 
+ * @param {string} name of the clicked contact
+ * @param {string} email of the clicked contact
+ * @param {integer} i to select the correct contact
+ * @returns html
+ */
+
 function floatContactHTML(name, email, i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
@@ -5,7 +14,7 @@ function floatContactHTML(name, email, i) {
     return `
         <div id="floatMobil">
             <h2>Contact Information</h2>
-            <div id="arrowBack" class="cp" onclick="contactListMobil()">
+            <div id="arrowBack" class="cp" onclick="showContactListMobil()">
                 <img src="./assets/img/arrow-left-line.png" alt="arrowBack">
             </div
         </div>
@@ -33,7 +42,7 @@ function floatContactHTML(name, email, i) {
 
         </div>
 
-        <button id="contactMobileFloat" class="blue-btn cp d-none" onclick="showDotMenu(); notClose(event)"><img
+        <button id="contactMobileFloat" class="blue-btn cp" onclick="showDotMenu(); notClose(event)"><img
             src="./assets/img/menu-dots.png" alt="menu">
         </button>
 
@@ -45,6 +54,12 @@ function floatContactHTML(name, email, i) {
 `;
 }
 
+
+/**
+ * create html code for the Addpopup to add a new contact
+ * 
+ * @returns html
+ */
 function createContactPopupHTML() {
     document.getElementById('contactPopup').innerHTML = '';
     return `
@@ -62,7 +77,7 @@ function createContactPopupHTML() {
                 <img src="./assets/img/avatar_placeholder.png" alt="avatar">
             </div>
         </div>                  
-        <form id="form" onsubmit="createNewContact(); return false">
+        <form class="input-box" onsubmit="createNewContact(); return false">
             <div class="input-field">
                 <input id="contactName" type="text" placeholder="Name" required>
                 <img src="./assets/img/person.png" alt="avatar">
@@ -89,6 +104,13 @@ function createContactPopupHTML() {
     `;
 }
 
+
+/**
+ * create html code for the Editpopup to edit a contact
+ * 
+ * @param {integer} i to select the correct contact
+ * @returns html
+ */
 function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
@@ -109,7 +131,7 @@ function editContactPopupHTML(i) {
                 >${initials}</div>            
             </div>    
         </div>              
-        <form id="form" onsubmit="saveUser(); return false;">
+        <form id="editForm" class="input-box" onsubmit="saveUser(); return false;">
             <div class="input-field">
                 <input id="contactName" type="text" placeholder="Name" required>
                 <img src="./assets/img/person.png" alt="avatar">
@@ -124,7 +146,7 @@ function editContactPopupHTML(i) {
             </div>
             <div id="popupBtn">
                 <button class="btnDelete cp" onclick="deleteUser(${i})">Delete</button>                
-                <button class="btnCreate cp" onclick="saveUser(${i})">Save<img
+                <button id="saveEditUser" class="btnCreate cp" onclick="saveUser(${i})">Save<img
                     src="./assets/img/check._white.png" alt="check">
                 </button>
             </div>                    

@@ -1,4 +1,4 @@
-.addTaskbox {
+.addTaskBox {
     position: absolute;
     top: -96px;
     right: -1000px;
@@ -13,6 +13,7 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     border-radius: 30px 0 30px 30px;
     width: 518px;
+    overflow-y: auto;
 
     & button {
         margin-left: auto;
@@ -21,6 +22,37 @@
     }
 }
 
+[draggable="true"] {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+input[type="text"]:disabled {
+    background: rgba(255, 255, 255, 1);
+    cursor: default;
+  }
+
+.addTaskInBoard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* mobile add task */
+
+.addTaskboxMobile {
+    position: static;
+    align-items: center;
+    border-radius: 0;
+
+    & button {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 110px;
+        margin-top: 8px;
+    }
+}
+
+/* mobile add task */
 
 .addTaskHeadline {
     display: flex;
@@ -91,10 +123,6 @@
     }
 }
 
-.findAndAdd {
-    display: flex;
-    gap: 32px;
-}
 
 .taskContainer {
     display: flex;
@@ -104,7 +132,6 @@
 }
 
 .taskBox {
-    min-width: 252px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -127,7 +154,12 @@
     }
 }
 
-/* todo Box */
+.toDoDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .todoBox {
     display: flex;
     align-items: flex-start;
@@ -137,14 +169,8 @@
     padding: 16px;
     border-radius: 24px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
-
-}
-
-.toDoDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
+    position: relative;
+    flex-shrink: 0;
 }
 
 .todoCategory {
@@ -153,7 +179,6 @@
     padding: 4px 16px;
     font-weight: 400;
     font-size: 16px;
-
 }
 
 #todoTitle {
@@ -189,7 +214,6 @@
 
 .assignedAndPrio div:nth-child(1) {
     display: flex;
-    /* gap: 4px; */
     flex-wrap: wrap;
 
     & span {
@@ -208,42 +232,41 @@
     }
 }
 
-#todoAssignedTo {}
-
-#todoPriority {}
 
 /* todo Box */
 
-progress[value] {
-    width: 128px;
-    height: 16px;
-}
 
-.prioIconBoard {
-    width: 32px;
-    height: 32px;
-}
 
 .emptyBox {
     background-color: rgb(231, 231, 231);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     color: rgba(168, 168, 168, 1);
-    border-radius: 10px;
+    border-radius: 24px;
     border: 1px dashed rgba(168, 168, 168, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 252px;
-    height: 48px;
-
+    height: 56px;
 }
 
+.dragAreaHighlight {
+    border: 1px dashed rgba(168, 168, 168, 1);
+    background-color: rgb(231, 231, 231);
+    border-radius: 24px;
+}
+
+
 @media(max-width: 1024px) {
+    body {
+        overflow: hidden;
+    }
+
     .mainContent {
         margin: 0;
         padding: 0;
-        height: fit-content;
         overflow-y: auto;
+        height: calc(100vh - 172px);
     }
 
     .findAndAdd {
@@ -254,11 +277,17 @@ progress[value] {
     .taskContainer {
         margin-bottom: 80px;
         min-width: 100%;
+        flex-wrap: nowrap;
+        flex-direction: column;
     }
 
     .toDoDiv {
         overflow-x: auto;
         flex-direction: row;
+        height: fit-content !important;
+        padding: 8px;
+        min-width: 100vw;
+        overflow-y: hidden;
     }
 
     .taskHeadline {
@@ -268,9 +297,22 @@ progress[value] {
     .addTaskBoxInAddTasks {
         margin-top: 0;
     }
-}
 
-@media(max-width: 550px) {
+    .todoBox {
+        height: fit-content;
+    }
+
+    .dateAndPrio {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .emptyBox {
+        width: 280px;
+        margin-inline: auto;
+    }
+
     .findAndAdd {
         flex-direction: column;
         padding: 16px;
@@ -284,14 +326,66 @@ progress[value] {
     .searchField {
         width: 100%;
         padding: 4px 8px;
+        
+        & input {
+            margin: 0;
+        }
     }
 
-    .addTaskbox {
+    .addTaskBox {
         width: 100%;
+        position: fixed;
+        top: 96px;
+        margin-top: 0;
+        height: calc(100vh - 96px - 76px);
+        left: 0;
+        align-items: center;
+        border-radius: 0;
+
+        & button {
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 110px;
+            margin-top: 8px;
+        }
+    }
+
+    .categoryAndClose h1 {
+        font-size: 24px;
+    }
+
+   
+
+    .addTaskHeadline {
+        display: none;
+    }
+
+    .detailViewBox {
+        width: 90%;
+        height: 90%;
+        z-index: 100 !important;
+
+        & h1 {
+            font-size: 24px;
+        }
+    }
+
+    .priorityBox {
+        & span {
+            display: none;
+        }
+    }
+
+}
+
+
+
+@media(min-width: 1024px) {
+    .mainContent {
+        display: flex !important;
     }
 
     .toDoDiv {
-        padding: 8px;
-        min-width: 100%;
+        min-height: 600px;
     }
 }

@@ -1,3 +1,4 @@
+/** insert HTML templates when loading the pages */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[template]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -14,6 +15,7 @@ async function includeHTML() {
   setActiveSiteClass('li a', 'active-site-legal-topics');
   showInitials();
 }
+
 /** hide Elements on extern legal topics, befor logged in */
 function hideEelements() {
   document.getElementById('headerInfo').style.display = 'none';
@@ -21,15 +23,13 @@ function hideEelements() {
   document.getElementById('mobileNavLinks').style.display = 'none';
 }
 
+/** click initial icon in header */
 function showLogoutMenu() {
   let logoutMenu = document.getElementById('logout-menu');
   logoutMenu.classList.toggle('d-none');
 }
 
-function fadeIn() {
-  $('#animatedDiv').fadeIn(3000);
-}
-
+/** back arrow in various pages */
 function goBack() {
   if (!window.history.back()) {
     window.close();
@@ -49,7 +49,7 @@ function setActiveSiteClass(selector, activeClass) {
       for (let i = 0; i < footerLinks.length; i++) {
         if (footerLinks[i].href && footerLinks[i].href.includes(activePage)) {
           let imageName = footerLinks[i].id.split("-")[0];
-          let imagePath = `/assets/img/mobile_${imageName}_blue.png`;
+          let imagePath = `./assets/img/mobile_${imageName}_blue.png`;
           footerLinks[i].getElementsByTagName("img")[0].src = imagePath;
         }
       }

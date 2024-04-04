@@ -17,6 +17,7 @@
         width: 100%;
         background-color: var(--clr-main1);
         color: white;
+
         .sum-counter {
             height: 100%;
             width: 156px !important;
@@ -40,7 +41,7 @@
 
             .img-counter,
             div {
-                scale: 1.1;
+                scale: 1.025;
             }
         }
     }
@@ -96,7 +97,7 @@
         display: flex;
     }
 
-    .sum-Content {
+    .sum-content {
         margin: 0 8px !important;
     }
 
@@ -126,17 +127,21 @@
         }
     }
 
-    .text-section{
+    .text-section {
         position: relative;
         margin: 0 40px 0 40px;
         left: 0;
-        ol{
+
+        ol {
             padding-left: 40px;
         }
     }
 }
 
 @media screen and (max-width:720px) {
+    body::-webkit-scrollbar {
+        display: none;
+    }
     .btn-box {
         flex-direction: column;
         align-items: center;
@@ -311,10 +316,12 @@
 
     .sum-overview {
         max-width: 350px !important;
-        .sum-button{
+
+        .sum-button {
             height: 104px;
             width: 100%;
-            .sum-counter{                
+
+            .sum-counter {
                 width: 100%;
                 padding-left: 10%;
                 flex-direction: row;
