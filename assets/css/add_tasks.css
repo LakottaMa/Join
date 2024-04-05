@@ -78,7 +78,7 @@ textarea:hover {
     & img {
         position: absolute;
         bottom: 16px;
-        right: 22px;
+        right: 16px;
         width: 19px;
         height: 19px;
     }
@@ -440,11 +440,18 @@ textarea:hover {
         min-height: 120px;
     }
 
+    .priority div {
+        gap: 8px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
     .priorityBox {
-        width: 30%;
+        width: 90px;
+        gap: 4px;
         font-size: 16px;
         padding: 4px;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     .clearBtn {

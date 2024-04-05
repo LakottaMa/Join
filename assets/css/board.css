@@ -341,7 +341,6 @@ input[type="text"]:disabled {
         & button {
             margin-left: 0;
             margin-right: 0;
-            margin-bottom: 110px;
             margin-top: 8px;
         }
     }
@@ -349,8 +348,6 @@ input[type="text"]:disabled {
     .categoryAndClose h1 {
         font-size: 24px;
     }
-
-   
 
     .addTaskHeadline {
         display: none;
@@ -365,13 +362,6 @@ input[type="text"]:disabled {
             font-size: 24px;
         }
     }
-
-    .priorityBox {
-        & span {
-            display: none;
-        }
-    }
-
 }
 
 @media(min-width: 1024px) {
