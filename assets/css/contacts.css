@@ -16,7 +16,7 @@ h3 {
     overflow-x: hidden;
     margin-top: 96px;
     padding: 0 28px 0 52px;
-    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.2);    
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.2);
 }
 
 ::-webkit-scrollbar {
@@ -291,7 +291,7 @@ h3 {
     flex-direction: column;
     align-items: center;
     background-color: white;
-    border-color: #E3E3E3; 
+    border-color: #E3E3E3;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
 }
@@ -465,11 +465,11 @@ input {
     .overlayContactPopup {
         position: static;
         max-width: 396px;
-        height: 760px;    
-        margin: 100px 0;    
+        height: 760px;
+        margin: 100px 0;
     }
 
-    form{
+    form {
         height: 432px;
     }
 
@@ -494,7 +494,7 @@ input {
         }
     }
 
-    #bottomPopup{
+    #bottomPopup {
         border: solid 1px #E3E3E3;
     }
 
@@ -570,7 +570,17 @@ input {
 @media screen and (max-width:430px) {
 
     .overlayContactPopup {
-        width: 300px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .back {
+        overflow-y: visible;
+    }
+    
+    .input-field {
+        width: auto;
     }
 
     #topPopup {
@@ -583,7 +593,9 @@ input {
         }
     }
 
-    .input-field {
-        width: 280px;
+    #bottomPopup {
+        border-radius: 0;
+        border: none;
     }
+
 }
