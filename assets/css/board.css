@@ -22,6 +22,14 @@
     }
 }
 
+.colorMain2 {
+    color: var(--clr-main1);
+}
+
+.colorlightGrey {
+   color: rgba(168, 168, 168, 1); 
+}
+
 [draggable="true"] {
     background-color: rgba(255, 255, 255, 1);
   }
@@ -231,6 +239,36 @@ input[type="text"]:disabled {
         margin-right: -6px;
     }
 }
+
+/* progressbar */
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 8px;
+    width: 128px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: rgba(244, 244, 244, 1);
+    height: 8px;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--clr-main1);
+    height: 8px;
+    border-radius: 8px;
+}
+
+/* progress[value] {
+    width: 128px;
+    height: 16px;
+} */
+
+/* progressbar */
 
 /* todo Box */
 .emptyBox {
