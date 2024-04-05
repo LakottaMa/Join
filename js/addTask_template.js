@@ -146,7 +146,7 @@ function printDetails(task, index) {
              <span class="todoCategory" id="detailCategory${index}">${task.category}</span>
              <img class="cp" onclick="hideDetailBox()" src="./assets/img/close.png" alt="close icon">
           </div>
-          <h1>${task.title}</h1>
+          <h1 class="detailTitle">${task.title}</h1>
           <span class="openSans400-19">${task.description}</span>
           <div class="dateAndPrio">
              <span class="keyString">Due date:</span>

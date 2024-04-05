@@ -257,6 +257,10 @@ input[type="text"]:disabled {
         overflow: hidden;
     }
 
+    .detailTitle {
+        font-size: 24px !important;
+    }
+
     .mainContent {
         margin: 0;
         padding: 0;
@@ -298,7 +302,6 @@ input[type="text"]:disabled {
     }
 
     .dateAndPrio {
-        flex-direction: column;
         align-items: flex-start;
         gap: 16px;
     }
