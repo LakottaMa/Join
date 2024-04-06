@@ -41,6 +41,7 @@ function LoginMatchError() {
 }
 
 /** greeting-slider on mobile screen below 480px width */
+
 function greetingScreen() {
   let greetingMobile = document.getElementById('greetingMobile');
   let sumContent = document.getElementById('sumContent');

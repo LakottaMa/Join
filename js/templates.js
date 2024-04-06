@@ -1,26 +1,31 @@
-/** insert HTML templates when loading the pages */
+/**
+ * Function to include HTML templates into specified elements on the page asynchronously. *
+ * @return {Promise<void>} This function returns a Promise that resolves when all HTML templates are included.
+ */
 async function includeHTML() {
-  let includeElements = document.querySelectorAll("[template]");
-  for (let i = 0; i < includeElements.length; i++) {
-    const element = includeElements[i];
+  const includeElements = document.querySelectorAll("[template]");
+  const promises = Array.from(includeElements).map(element => {
     const file = element.getAttribute("template");
-    let resp = await fetch(file);
-    if (resp.ok) {
-      element.innerHTML = await resp.text();
-    } else {
-      element.innerHTML = "Page not found";
-    }
-  }
+    return fetch(file).then(resp => resp.ok ? resp.text() : Promise.reject());
+  });
+  const htmls = await Promise.all(promises);
+  includeElements.forEach((element, i) => {
+    element.innerHTML = htmls[i] || "Page not found";
+  });
   setActiveSiteClass('nav a', 'active-site');
   setActiveSiteClass('li a', 'active-site-legal-topics');
   showInitials();
 }
 
-/** hide Elements on extern legal topics, befor logged in */
+/**
+ * Hides specified elements on the page. *
+ * @param {string} id - The id of the element to hide.
+ */
 function hideEelements() {
-  document.getElementById('headerInfo').style.display = 'none';
-  document.getElementById('navLinks').style.display = 'none';
-  document.getElementById('mobileNavLinks').style.display = 'none';
+  const elements = ['headerInfo', 'navLinks', 'mobileNavLinks'];
+  elements.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
 }
 
 /** click initial icon in header to show menu */
@@ -34,50 +39,71 @@ document.addEventListener('click', function(event) {
   let logoutMenu = document.getElementById('logout-menu');
   let headerInfo = document.getElementById('headerInfo');
   let targetElement = event.target;
-  if (!logoutMenu.contains(targetElement) && !headerInfo.contains(targetElement)) {
+  let isOnIndexOrSignUp = document.querySelector('body[onload="initSignUp()"]') || document.querySelector('body[onload="init()"]');
+  if (!isOnIndexOrSignUp && !logoutMenu.contains(targetElement) && !headerInfo.contains(targetElement)) {
       logoutMenu.classList.add('d-none');
   }
 });
 
-/** back arrow in various pages */
+/**
+ * Function to navigate back in the browser history.
+ */
 function goBack() {
-  if (!window.history.back()) {
-    window.close();
+  const hasPreviousPage = window.history.length > 1;
+  if (hasPreviousPage) {
+    window.history.go(-1);
   } else {
-    window.history.back();
+    window.close();
   }
 }
 
-/** active html with corresponding bg color of the link */
+/**
+ * Sets the active class for the link that matches the current page. *
+ * @param {string} selector - The CSS selector of the links to be checked.
+ * @param {string} activeClass - The class name to be added to the active link.
+ */
 function setActiveSiteClass(selector, activeClass) {
-  let activePage = window.location.pathname;
-  document.querySelectorAll(selector).forEach(link => {
+  const activePage = window.location.pathname;
+  const links = document.querySelectorAll(selector);
+  const mobileNavLinks = document.getElementById("mobileNavLinks");
+  const mobileLinks = mobileNavLinks.getElementsByTagName("a");
+  links.forEach(link => {
     if (link.href && link.href.includes(activePage)) {
       link.classList.add(activeClass);
-      let footer = document.getElementById("mobileNavLinks");
-      let footerLinks = footer.getElementsByTagName("a");
-      for (let i = 0; i < footerLinks.length; i++) {
-        if (footerLinks[i].href && footerLinks[i].href.includes(activePage)) {
-          let imageName = footerLinks[i].id.split("-")[0];
-          let imagePath = `./assets/img/mobile_${imageName}_blue.png`;
-          footerLinks[i].getElementsByTagName("img")[0].src = imagePath;
-        }
-      }
+      updateMobileLinks(activePage, mobileLinks);
     }
   });
 }
 
-/** show initials in header who is logged in */
+/**
+ * Updates the mobile links on the page based on the active page. *
+ * @param {string} activePage - The active page to compare links with.
+ * @param {Array} links - An array of link elements to check and update.
+ */
+function updateMobileLinks(activePage, links) {
+  for (let i = 0; i < links.length; i++) {
+    const link = links[i];
+    if (link.href && link.href.includes(activePage)) {
+      const imageName = link.id.split("-")[0];
+      const imagePath = `./assets/img/mobile_${imageName}_blue.png`;
+      link.getElementsByTagName("img")[0].src = imagePath;
+    }
+  }
+}
+
+/**
+ * Function to display user initials in a specified container if the user is logged in.
+ */
 function showInitials() {
-  let initialcontainer = document.getElementById('userInitial');
-  let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+  const initialcontainer = document.getElementById('userInitial');
+  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
   if (!isLoggedIn || isLoggedIn.trim() === '') {
     initialcontainer.innerHTML = '';
     hideEelements();
     return;
   }
-  let names = isLoggedIn.split(' ');
-  let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
+  const names = isLoggedIn.split(' ');
+  const initials = names.map(word => word.charAt(0).toUpperCase()).join('');
   initialcontainer.innerHTML = initials;
 }
 

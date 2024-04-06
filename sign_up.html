@@ -30,13 +30,13 @@
                     <div class="error-msg-box" id="email-exist"></div>
                 </div>
                 <div class="input-field">
-                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus minlength="5"
+                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus autocomplete="" minlength="5"
                         required placeholder="Password">
                     <img id="password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
                 </div>
                 <div class="input-field">
                     <input id="confirmedPassword" type="password" onkeyup="togglePasswordEye('confirmedPassword')"
-                        autofocus minlength="5" required placeholder="Confirm Password">
+                        autofocus minlength="5" autocomplete="" required placeholder="Confirm Password">
                     <img id="confirmedPassword-icon" src="./assets/img/lock.png"
                         onclick="togglePasswordVisibility('confirmedPassword')">
                     <div class="error-msg-box" id="password-match"></div>
