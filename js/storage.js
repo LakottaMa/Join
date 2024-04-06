@@ -31,6 +31,9 @@ async function getItem(key) {
   });
 }
 
+/**
+ * Logs the user out by clearing the session storage and calling the unrememberMe function.
+ */
 function logout() {
   sessionStorage.clear();
   unrememberMe();
@@ -176,7 +179,10 @@ let localTasks = [
   }
 ];
 
-/**  function to reset the remote Storage: with shift + left-click on Logo in Landing Page */
+/**
+ * Resets the storage if shift key is pressed during the event. *
+ * @param {Event} event - The event triggering the function
+ */
 function resetStorage(event) {
   resetButton = document.getElementById('resetStorage');
   if (event.shiftKey) {
@@ -190,24 +196,38 @@ function resetStorage(event) {
   }
 }
 
-/** load user saved on web storage */
+/**
+ * Asynchronously loads users data, handling errors by falling back to local data.
+ *
+ */
 async function loadUsers() {
   try {
-    users = JSON.parse(await getItem('users'));
+    const usersJSON = await getItem('users');
+    users = usersJSON ? JSON.parse(usersJSON) : localUsers.slice();
   } catch (e) {
     console.error('Loading error:', e);
+    users = localUsers.slice();
   }
 }
 
-/** load tasks saved on web storage */
+/**
+ * Loads tasks from storage and initializes the tasks array.
+ * @return {Promise<void>} 
+ */
 async function loadTasks() {
   try {
-    tasks = JSON.parse(await getItem('tasks'));
-  } catch (e) {
-    console.error('Loading error:', e);
+    const tasksJSON = await getItem('tasks');
+    tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
+  } catch {
+    tasks = [];
   }
 }
 
+/**
+ * Saves tasks by converting them to a JSON string and storing them in local storage.
+ * @param {Array} tasks - The tasks to be saved.
+ * @return {Promise} A promise that resolves after saving the tasks.
+ */
 async function saveTasks(tasks) {
   await setItem('tasks', JSON.stringify(tasks));
 }

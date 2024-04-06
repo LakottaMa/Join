@@ -2,13 +2,15 @@
 async function initSignUp() {
   await loadUsers();
 }
+
 /** back arrow in signup page */
 function backButton() {
   window.location.href = '/index.html';
 }
-
-/** registration of a new user, with verification of the email address and password match */
-async function register() {
+/**
+ * Registration of a new user, with verification of the email address and password match.
+ */
+function register() {
   let bgColor = newBgColor();
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
@@ -16,13 +18,21 @@ async function register() {
   let confirmedPassword = document.getElementById('confirmedPassword').value;
   const isEmailAvailable = !users.some(user => user.email === email);
   if (isEmailAvailable == true) {
-    await handleSignUp(name, email, password, confirmedPassword, bgColor);
+    handleSignUp(name, email, password, confirmedPassword, bgColor);
   } else {
     displayEmailInUseError();
   }
 }
 
-/** if the entry for the login does not show any errors, move new data to the web storage */
+/**
+ * Asynchronously handles user sign up, adding user to the database if password is confirmed. *
+ * @param {string} name - The name of the user
+ * @param {string} email - The email of the user
+ * @param {string} password - The password of the user
+ * @param {string} confirmedPassword - The confirmed password of the user
+ * @param {string} bgColor - The background color for the user
+ * @return {void} No return value
+ */
 async function handleSignUp(name, email, password, confirmedPassword, bgColor) {
   if (errorMsgPasswordConfirm(confirmedPassword, password)) {
     users.push({ name: name, email: email, password: password, phone: null, bg: bgColor });
@@ -34,7 +44,12 @@ async function handleSignUp(name, email, password, confirmedPassword, bgColor) {
   }
 }
 
-/** checks password match on signup*/
+/**
+ * Compares the confirmed password with the original password. *
+ * @param {type} confirmedPassword - The confirmed password to compare.
+ * @param {type} password - The original password to compare.
+ * @return {boolean} Returns true if the confirmed password matches the original password, otherwise false.
+ */
 function errorMsgPasswordConfirm(confirmedPassword, password) {
   if (password !== confirmedPassword) {
     return false;
@@ -42,7 +57,9 @@ function errorMsgPasswordConfirm(confirmedPassword, password) {
   return true;
 }
 
-/** check if confirmed password is correct, with error massage if not */
+/**
+ * Displays an error message when the confirmed password input does not match the original password input. *
+ */
 function displayPasswordMatchError() {
   const confirmedPassword = document.getElementById('confirmedPassword');
   const errorMsgBox = document.getElementById('password-match');
@@ -54,7 +71,9 @@ function displayPasswordMatchError() {
   });
 }
 
-/** check if registered email is in use, with error massage if in use */
+/**
+ * Display error message when email is already in use and provide functionality to clear the error message.
+ */
 function displayEmailInUseError() {
   const emailInput = document.getElementById('email');
   const errorMsgBox = document.getElementById('email-exist');
@@ -66,7 +85,9 @@ function displayEmailInUseError() {
   });
 }
 
-/** accept the policy with the checkbox */
+/**
+ * Function to handle signup process based on checkbox state.
+ */
 function checkedSignup() {
   const checkbox = document.getElementById('accept-policy');
   let button = document.getElementById('signupBtn');
@@ -77,7 +98,9 @@ function checkedSignup() {
   );
 }
 
-/** popup after successful registration */
+/**
+ * Opens a popup with an animation and redirects to the index page after a delay.
+ */
 function popup() {
   const animation = document.getElementById('popup');
   animation.classList.remove('d-none');
@@ -86,13 +109,18 @@ function popup() {
   }, 2000);
 }
 
-/** empty Form and default checkBtn */
+/**
+ * Resets the values of form fields with the IDs 'name', 'email', 'password', and 'password'.
+ */
 function resetForm() {
   const formFields = ['name', 'email', 'password', 'password'];
   formFields.forEach(field => document.getElementById(field).value = '');
 }
 
-/** toggle password icon on password input */
+/**
+ * Toggles the visibility of the password input field based on the inputId provided.
+ * @param {string} inputId - The id of the input field to toggle
+ */
 function togglePasswordEye(inputId) {
   const inputValue = document.getElementById(inputId).value.trim();
   if (inputValue) {
@@ -104,7 +132,10 @@ function togglePasswordEye(inputId) {
   }
 }
 
-/** click password symbol to display the text for entering the password */
+/**
+ * Toggles the visibility of the password in the input field based on the inputId.
+ * @param {string} inputId - The id of the input field to toggle visibility for.
+ */
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
   const inputValue = input.value.trim();
