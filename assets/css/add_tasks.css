@@ -21,6 +21,10 @@
     overflow-y: auto;
 }
 
+#title {
+    font-size: 32px;
+}
+
 .addTaskForm {
     display: flex;
     flex-direction: column;

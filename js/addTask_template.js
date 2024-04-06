@@ -62,7 +62,7 @@ function printAddTask() {
         <!-- prio section -->
 
         <!-- assigned to section -->
-        <div class="category overFlowYAuto">
+        <div class="category overFlowYAuto listenDropDown">
             <span class="subHeadlineAddTask">Assigned to (optional)</span>
             <div>
                 <div class="customSelect" id="searchUserBtn">
@@ -87,7 +87,7 @@ function printAddTask() {
         <!-- assigned to section -->
         
         <!-- task category section -->
-        <div class="category">
+        <div class="category listenDropDown">
             <span class="subHeadlineAddTask">Category</span>
             <div>
                 <div onclick="toggleTaskCategory()" class="customSelect catCon" id="taskCategoryField">

@@ -57,6 +57,7 @@ function initializeAndListen() {
     defaultValues.priority = 'Medium';
     defaultValues.status = 'To Do';
     submitWithEnter('subtaskInput');
+    clickToClose();
 }
 
 let prioUrgent;
@@ -394,3 +395,24 @@ function submitWithEnter(inputId) {
     });
 }
 
+function clickToClose() {
+    document.addEventListener('mousedown', (e) => {
+        if (!e.target.closest('.listenDropDown')) {
+            if (!checkDNone('userCategory')) {
+                hideSearchUserInput();
+            }
+            if (!checkDNone('taskCategory')) {
+                toggleTaskCategory();
+            }
+        }
+    });
+}
+
+function checkDNone(id) {
+    let element = document.getElementById(id);
+    if (element && element.classList.contains('d-none')) {
+        return true;
+    } else {
+        return false;
+    }
+}
