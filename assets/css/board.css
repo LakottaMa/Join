@@ -36,6 +36,20 @@
     align-items: center;
 }
 
+.toMuchDetailView span {
+    background-color: rgba(168, 168, 168, 1);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 16px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 8px;
+}
+
 [draggable="true"] {
     background-color: rgba(255, 255, 255, 1);
   }

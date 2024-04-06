@@ -168,7 +168,8 @@ function renderAssignedTo(contacts, i) {
    let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
    assignedToContainer.innerHTML = '';
    let maxContacts;
-   contacts.length > 4 ? maxContacts = 4 : maxContacts = contacts.length;
+   contacts.length > 3 ? maxContacts = 3 : maxContacts = contacts.length;
+   let tuMuchContainer = document.getElementById(`ifToMuch${i}`);
    for (let j = 0; j < maxContacts; j++) {
       const contact = contacts[j];
       let contactId = i.toString() + j.toString();
@@ -176,16 +177,15 @@ function renderAssignedTo(contacts, i) {
       let contactContainer = document.getElementById(`${contactId}`);
       contactContainer.style.backgroundColor = getBgColorForContact(contact);
    }
-   addMissingContacts(contacts, maxContacts, i);
+   addMissingContacts(contacts, maxContacts, tuMuchContainer);
 }
 
-function addMissingContacts(contacts, maxContacts, i) {
-   let tuMuchContainer = document.getElementById(`ifToMuch${i}`);
+function addMissingContacts(contacts, maxContacts, container) {
    let toMuch = contacts.length - maxContacts;
    if (toMuch <= 0) {
       return;
    } else {
-      tuMuchContainer.innerHTML = `<span>+${toMuch}</span>`;
+      container.innerHTML = /*html*/`<span>+${toMuch}</span>`;
    }
 }
 

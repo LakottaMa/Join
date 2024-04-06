@@ -161,7 +161,10 @@ function printDetails(task, index) {
           </div>
           <div id="assignedToDetailBox" class="assignedToDetailBox">
              <span class="keyString">Assigned To:</span>
+             <div>
              <div class="assignedToDetailView" id="assignedToDetailView${index}"></div>
+             <div class="toMuchDetailView" id="toMuchDetailContacts${index}"></div>
+             </div>
           </div>
           <div id="subtaskDetailBox" class="assignedToDetailBox">
              <span class="keyString">Subtasks</span>
