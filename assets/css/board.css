@@ -27,7 +27,7 @@
 }
 
 .colorlightGrey {
-   color: rgba(168, 168, 168, 1); 
+    color: rgba(168, 168, 168, 1);
 }
 
 .dflexCC {
@@ -52,12 +52,12 @@
 
 [draggable="true"] {
     background-color: rgba(255, 255, 255, 1);
-  }
+}
 
 input[type="text"]:disabled {
     background: rgba(255, 255, 255, 1);
     cursor: default;
-  }
+}
 
 .addTaskInBoard {
     display: flex;
@@ -379,7 +379,7 @@ progress::-webkit-progress-value {
     .searchField {
         width: 100%;
         padding: 4px 8px;
-        
+
         & input {
             margin: 0;
         }
@@ -430,5 +430,10 @@ progress::-webkit-progress-value {
 
     .toDoDiv {
         min-height: 600px;
+    }
+
+    .detailViewBox {
+        min-width: 450px;
+        min-height: 700px;
     }
 }
