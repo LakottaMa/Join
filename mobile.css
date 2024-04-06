@@ -225,27 +225,29 @@
     }
 
     .sum-button:nth-child(2) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-button:nth-child(4) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-button:nth-child(5) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-button:nth-child(6) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-overview {
-        gap: 15px;
+        justify-content: space-evenly;
+        max-width: 396px !important;
+
     }
 
     .sum-counter {
@@ -279,10 +281,6 @@
 
     .signup {
         gap: 24px;
-    }
-
-    .sum-overview {
-        max-width: 396px !important;
     }
 }
 
@@ -321,6 +319,13 @@
         }
     }
 
+    .sum-button:nth-child(1) .line {
+        margin: 0 4px;
+    }
+}
+
+@media screen and (max-width:374px) {
+
     .sum-overview {
         max-width: 350px !important;
 
@@ -335,9 +340,5 @@
                 justify-content: flex-start;
             }
         }
-    }
-
-    .sum-button:nth-child(1) .line {
-        margin: 0 4px;
     }
 }
