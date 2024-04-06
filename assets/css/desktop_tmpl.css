@@ -96,6 +96,10 @@ header {
         font-size: 23px;
         font-weight: 600;
     }
+
+    &:hover{
+        background-color: var(--clr-main2);
+    }
 }
 
 .logout-menu {

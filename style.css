@@ -92,10 +92,11 @@ a {
         box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
     }
 
-    &:focus {
-        box-shadow: inset 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+    &:active {
+        box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
         background-color: white;
         color: var(--clr-main1);
+        transition: all 1ms;
     }
 }
 
@@ -109,7 +110,7 @@ a {
     color: rgba(100, 113, 136, 1);
 
     &:hover {
-        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
         border: 1px solid var(--clr-main1);
         background-color: white;
         color: var(--clr-main1);
@@ -119,6 +120,7 @@ a {
         box-shadow: inset 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
         color: var(--clr-lightblue);
         border: 1px solid var(--clr-lightblue);
+        transition: all 1ms;
     }
 }
 
@@ -158,6 +160,8 @@ a {
 
 .back-btn {
     position: absolute;
+    width: 33px;
+    height: 33px;
     top: -8px;
     right: 0;
     border-radius: 50%;
@@ -165,7 +169,7 @@ a {
     background-color: rgba(0, 0, 0, 0);
 
     &:hover {
-        scale: 1.1;
+        scale: 1.05;
         background-color: var(--clr-main2);
     }
 }
@@ -173,7 +177,7 @@ a {
 .successfully-popup {
     position: absolute;
     top: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     backdrop-filter: blur(20px);
     opacity: 1;

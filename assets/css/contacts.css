@@ -355,6 +355,7 @@ input {
     gap: 10px;
     font-size: 23px;
     border: 1px solid #647188;
+    transition-duration: 120ms;
 
     img {
         height: 24px;
@@ -364,6 +365,13 @@ input {
         color: var(--clr-main1);
         border-color: var(--clr-main1);
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+    }
+
+    &:active {
+    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+    color: var(--clr-lightblue);
+    border: 1px solid var(--clr-lightblue);
+    transition: all 1ms;
     }
 }
 
@@ -386,6 +394,13 @@ input {
     &:hover {
         background-color: var(--clr-lightblue);
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+    }
+
+    &:active {
+        box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+        background-color: white;
+        color: var(--clr-main1);
+        transition: all 1ms;
     }
 }
 

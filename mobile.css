@@ -142,10 +142,12 @@
     body::-webkit-scrollbar {
         display: none;
     }
+
     .btn-box {
         flex-direction: column;
         align-items: center;
         gap: 18px;
+        margin: 28px 0;
 
         button {
             width: 180px;
@@ -290,10 +292,15 @@
     }
 
     .form-box {
+        margin-top: 40px;
         .back-btn {
             top: 32px;
             left: 32px;
         }
+    }
+
+    .legal-topics{
+        margin: 10px 0 18px 0;
     }
 
     .info-container h4 {
