@@ -343,12 +343,25 @@ input {
     margin-bottom: 63px;
 }
 
+.blue-btn-edit{
+    width: 174px;
+    p{
+        font-size: 23px;
+        width: 162px;
+        flex: 1;
+    }
+    svg{
+        margin-right: 10px;
+    }
+    gap: 0 !important;
+}
+
 .btnCancel,
 .btnDelete {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px 10px;
+    padding: 16px 18px;
     border-radius: 10px;
     color: #647188;
     background-color: white;
@@ -356,10 +369,6 @@ input {
     font-size: 23px;
     border: 1px solid #647188;
     transition-duration: 120ms;
-
-    img {
-        height: 24px;
-    }
 
     &:hover {
         color: var(--clr-main1);
@@ -393,8 +402,9 @@ input {
     font-size: 23px;
     transition-duration: 120ms;
 
-    img {
-        height: 24px;
+    svg {
+        width: 18px;
+        height: 18px;
     }
 
     &:hover {

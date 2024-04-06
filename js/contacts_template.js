@@ -39,8 +39,14 @@ function floatContactHTML(name, email, i) {
         </div>
         </div>
 
-        <button id="contactMobileFloat" class="blue-btn cp" onclick="showDotMenu(); notClose(event)"><img
-            src="./assets/img/menu-dots.png" alt="menu">
+        <button id="contactMobileFloat" class="blue-btn active-btn-svg cp" onclick="showDotMenu(); notClose(event)"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_19053_6692" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="0" width="33" height="32">
+<rect x="-0.00195312" width="32" height="32" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_19053_6692)">
+<path d="M15.9977 26.6666C15.2644 26.6666 14.6366 26.4055 14.1144 25.8833C13.5922 25.361 13.3311 24.7333 13.3311 23.9999C13.3311 23.2666 13.5922 22.6388 14.1144 22.1166C14.6366 21.5944 15.2644 21.3333 15.9977 21.3333C16.7311 21.3333 17.3588 21.5944 17.8811 22.1166C18.4033 22.6388 18.6644 23.2666 18.6644 23.9999C18.6644 24.7333 18.4033 25.361 17.8811 25.8833C17.3588 26.4055 16.7311 26.6666 15.9977 26.6666ZM15.9977 18.6666C15.2644 18.6666 14.6366 18.4055 14.1144 17.8833C13.5922 17.361 13.3311 16.7333 13.3311 15.9999C13.3311 15.2666 13.5922 14.6388 14.1144 14.1166C14.6366 13.5944 15.2644 13.3333 15.9977 13.3333C16.7311 13.3333 17.3588 13.5944 17.8811 14.1166C18.4033 14.6388 18.6644 15.2666 18.6644 15.9999C18.6644 16.7333 18.4033 17.361 17.8811 17.8833C17.3588 18.4055 16.7311 18.6666 15.9977 18.6666ZM15.9977 10.6666C15.2644 10.6666 14.6366 10.4055 14.1144 9.88325C13.5922 9.36103 13.3311 8.73325 13.3311 7.99992C13.3311 7.26659 13.5922 6.63881 14.1144 6.11659C14.6366 5.59436 15.2644 5.33325 15.9977 5.33325C16.7311 5.33325 17.3588 5.59436 17.8811 6.11659C18.4033 6.63881 18.6644 7.26659 18.6644 7.99992C18.6644 8.73325 18.4033 9.36103 17.8811 9.88325C17.3588 10.4055 16.7311 10.6666 15.9977 10.6666Z" fill="white"/>
+</g>
+</svg>
         </button>
 
         <div id="popupDotMenue" class="d-none" onclick="notClose(event)">
@@ -141,7 +147,7 @@ function editContactPopupHTML(i) {
             </div>
             <div id="popupBtn">
                 <button class="btnDelete cp" onclick="deleteUser(${i})">Delete</button>                
-                <button id="saveEditUser" class="btnCreate active-btn-svg cp" onclick="saveUser(${i})">Save<svg width="14" height="14" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button id="saveEditUser" class="btnCreate blue-btn-edit active-btn-svg cp" onclick="saveUser(${i})"><p>Save</p><svg width="14" height="14" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.54996 9.65L14.025 1.175C14.225 0.975 14.4625 0.875 14.7375 0.875C15.0125 0.875 15.25 0.975 15.45 1.175C15.65 1.375 15.75 1.6125 15.75 1.8875C15.75 2.1625 15.65 2.4 15.45 2.6L6.24996 11.8C6.04996 12 5.81663 12.1 5.54996 12.1C5.2833 12.1 5.04996 12 4.84996 11.8L0.549963 7.5C0.349963 7.3 0.25413 7.0625 0.262463 6.7875C0.270796 6.5125 0.374963 6.275 0.574963 6.075C0.774963 5.875 1.01246 5.775 1.28746 5.775C1.56246 5.775 1.79996 5.875 1.99996 6.075L5.54996 9.65Z" fill="white"></path>
                 </svg>
                 </button>
