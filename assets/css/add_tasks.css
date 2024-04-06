@@ -188,7 +188,7 @@ textarea:hover {
     gap: 8px;
 }
 
-.boradAddTaskBtn:focus{
+.boradAddTaskBtn:focus {
     background: rgba(9, 25, 49, 1) !important;
     color: white !important;
     border: 1px solid var(--clr-main1) !important;
@@ -211,6 +211,21 @@ textarea:hover {
     align-items: center;
     gap: 20px;
     padding: 10px 16px;
+
+    &:hover {
+        path {
+            stroke: var(--clr-lightblue);
+        }
+    }
+
+    &:active {
+        box-shadow: none !important;
+        border-color: #647188 !important;
+        color: #647188 !important;
+        path {
+            stroke: #647188;
+        }
+    }
 }
 
 .createBtn {
