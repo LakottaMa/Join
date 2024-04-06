@@ -264,3 +264,59 @@ function printSubTasks(subTask, index) {
             </div>
         </div>`;
 }
+
+/**
+ * create template for task
+ * @param {string} title 
+ * @param {string} description 
+ * @param {date} date 
+ * @param {string} taskPriority
+ * @param {Array} assignedTo 
+ * @param {string} taskCategory 
+ * @param {Array} subtasks 
+ * @returns 
+ */
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus) {
+    return {
+        "title": title.value,
+        "description": description.value,
+        "date": date,
+        "priority": taskPriority,
+        "assignedTo": assignedTo,
+        "category": taskCategory,
+        "subtasks": subtasks,
+        "status": taskStatus
+    }
+}
+/**
+ * 
+ * @returns created task
+ */
+function createTask() {
+    defaultValues.category = document.getElementById('selectedCategory').value;
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let inputDate = document.getElementById('date').value;
+    let date = new Date(inputDate).toString();
+    let taskPriority = defaultValues.priority;
+    let assignedTo = selectedUsers;
+    let subtasks = createSubtaskObject();
+    let taskCategory = defaultValues.category;
+    let taskStatus = defaultValues.status;
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
+    return newTask;
+}
+
+/**
+ * generate html from the initials
+ * @param {string} user 
+ * @param {Int} index 
+ * @returns 
+ */
+function printSelectedUsers(user, index) {
+    return /*html*/ `
+        <div id="selectedUser${index}" class="selectedUser">
+            ${getInitials(user)}
+        </div>
+    `;
+}
