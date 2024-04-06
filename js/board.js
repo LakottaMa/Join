@@ -31,6 +31,7 @@ function showDesktopTaskBox(status, box) {
       initializeAndListen();
       setPriority('medium');
       setDefaultValues(status);
+      document.getElementById('mainContent').style.position = 'fixed';
 }
 
 function showMobileTaskBox(status, mainContent, headline, box) {
@@ -58,6 +59,7 @@ function setDefaultValues(status) {
  */
 function hideAddTaskBox() {
    clearAddTask();
+   document.getElementById('mainContent').style.position = 'relative';
    if (window.location.pathname.endsWith('/board.html')) {
       let box = document.getElementById('addTaskBox');
       box.style.right = '-1000px';
@@ -165,12 +167,25 @@ function getColorForCategory(index, container) {
 function renderAssignedTo(contacts, i) {
    let assignedToContainer = document.getElementById(`todoAssignedTo${i}`);
    assignedToContainer.innerHTML = '';
-   for (let j = 0; j < contacts.length; j++) {
+   let maxContacts;
+   contacts.length > 4 ? maxContacts = 4 : maxContacts = contacts.length;
+   for (let j = 0; j < maxContacts; j++) {
       const contact = contacts[j];
       let contactId = i.toString() + j.toString();
-      assignedToContainer.innerHTML += printAssignedTo(contact, contactId)
-      let contactContainer = document.getElementById(`${contactId}`)
+      assignedToContainer.innerHTML += printAssignedTo(contact, contactId);
+      let contactContainer = document.getElementById(`${contactId}`);
       contactContainer.style.backgroundColor = getBgColorForContact(contact);
+   }
+   addMissingContacts(contacts, maxContacts, i);
+}
+
+function addMissingContacts(contacts, maxContacts, i) {
+   let tuMuchContainer = document.getElementById(`ifToMuch${i}`);
+   let toMuch = contacts.length - maxContacts;
+   if (toMuch <= 0) {
+      return;
+   } else {
+      tuMuchContainer.innerHTML = `<span>+${toMuch}</span>`;
    }
 }
 

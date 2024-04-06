@@ -200,7 +200,10 @@ function printTasksInBoard(task, index, subTasksLength) {
                <span>${subTasksLength}/${tasks[index]['subtasks'].length} Subtasks</span>
             </div>
             <div class="assignedAndPrio">
-               <div id="todoAssignedTo${index}"></div>
+                <div class="dflexCC">
+                    <div id="todoAssignedTo${index}"></div>
+                    <div class="toMuch" id="ifToMuch${index}"></div>
+               </div>
                <div id="todoPriority"><img class="prioIconBoard" src="${getPrioIcon(task.priority)}" alt=""></div>
             </div>
         </div>`;
