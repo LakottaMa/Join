@@ -368,7 +368,7 @@ input {
     }
 
     &:active {
-    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
     color: var(--clr-lightblue);
     border: 1px solid var(--clr-lightblue);
     transition: all 1ms;
@@ -397,7 +397,7 @@ input {
     }
 
     &:active {
-        box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
         background-color: white;
         color: var(--clr-main1);
         transition: all 1ms;
