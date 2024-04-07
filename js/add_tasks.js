@@ -19,6 +19,7 @@ async function initAddTask() {
 function renderAddTask(id) {
     let container = document.getElementById(id);
     container.innerHTML = printAddTask();
+    clickToClose();
 }
 
 /**
@@ -26,6 +27,7 @@ function renderAddTask(id) {
  */
 function clearAddTask() {
     let id = checkIdforAddTask();
+    removeClickToCloseListener();
     document.getElementById(id).innerHTML = '';
 }
 
@@ -57,7 +59,6 @@ function initializeAndListen() {
     defaultValues.priority = 'Medium';
     defaultValues.status = 'To Do';
     submitWithEnter('subtaskInput');
-    clickToClose();
 }
 
 let prioUrgent;
@@ -399,17 +400,23 @@ function submitWithEnter(inputId) {
     });
 }
 
-function clickToClose() {
-    document.addEventListener('mousedown', (e) => {
-        if (!e.target.closest('.listenDropDown')) {
-            if (!checkDNone('userCategory')) {
-                hideSearchUserInput();
-            }
-            if (!checkDNone('taskCategory')) {
-                toggleTaskCategory();
-            }
+let clickToCloseHandler = (e) => {
+    if (!e.target.closest('.listenDropDown')) {
+        if (!checkDNone('userCategory')) {
+            hideSearchUserInput();
         }
-    });
+        if (!checkDNone('taskCategory')) {
+            toggleTaskCategory();
+        }
+    }
+};
+
+function clickToClose() {
+    document.addEventListener('mousedown', clickToCloseHandler);
+}
+
+function removeClickToCloseListener() {
+    document.removeEventListener('mousedown', clickToCloseHandler);
 }
 
 function checkDNone(id) {

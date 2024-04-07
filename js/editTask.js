@@ -193,7 +193,6 @@ function hideEditbox() {
    document.getElementById('editView').classList.add('d-none');
    subTasks = [];
    selectedUsers = [];
-
 }
 
 function showEditBox() {

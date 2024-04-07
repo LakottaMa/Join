@@ -4,7 +4,6 @@ async function initBoard() {
    await loadTasks();
    renderTasksInBoard();
    startTouchEvents();
-   // all.forEach(addStart);
 }
 
 /**
@@ -146,7 +145,6 @@ function changeProgressValue(index) {
    } else {
       progressInPercent = calcPercent;
    }
-
    progressBar.value = progressInPercent;
 }
 
