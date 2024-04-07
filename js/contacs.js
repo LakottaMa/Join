@@ -1,3 +1,6 @@
+/**
+ * onload contact page and renders current contactlist
+ */
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -15,19 +18,29 @@ function renderContactList() {
         users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
-            if (firstLetter !== currentLetter) {
-                document.getElementById('allContacts').innerHTML += `
-                    <div class="letterBox">
-                        <div class="letter">${firstLetter}</div>
-                        <div id="${firstLetter}-content"></div>
-                    </div>`;
-            }
+            renderLetters(firstLetter, currentLetter);  
             currentLetter = firstLetter;
             document.getElementById(`${firstLetter}-content`).innerHTML +=
                 contactsHTML(i);
         }
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
+    }
+}
+
+/**
+ * render needed letters in contactlist
+ * 
+ * @param {string} firstLetter first letter of the contact
+ * @param {string} currentLetter is the first letter to compare with the next Contact
+ */
+function renderLetters(firstLetter, currentLetter){
+    if (firstLetter !== currentLetter) {
+        document.getElementById('allContacts').innerHTML += `
+            <div class="letterBox">
+                <div class="letter">${firstLetter}</div>
+                <div id="${firstLetter}-content"></div>
+            </div>`;
     }
 }
 
