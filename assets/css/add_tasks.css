@@ -498,6 +498,6 @@ textarea:hover {
     }
 
     .priorityBox span {
-        font-size: 12px;
+        display: none;
     }
 }

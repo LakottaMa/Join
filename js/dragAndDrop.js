@@ -110,7 +110,6 @@ function handleTouchStart(elem, e) {
     updatePositions();
     offsetX = elem.offsetLeft;              // Entfernung zum nächsten linken Rand des parent Elements
     offsetY = elem.offsetTop;               // Entfernung zum nächsten oberen Rand des parent Elements
-
     e.preventDefault();
     timeoutID = setTimeout(() => {
         touchMoveEnabled = true;
@@ -119,36 +118,39 @@ function handleTouchStart(elem, e) {
 }
 
 /**
- * set the coordinates for the moving task
+ * handel touch move, hightlight areas
  * @param {*} eve 
  * @param {*} elem 
  */
 function handleTouchMove(eve, elem) {
     eve.preventDefault();
     if (touchMoveEnabled) {
-        touchMoved = true;
-        let nextX = eve.changedTouches[0].clientX;  // X-Position vom ersten Touch
-        let nextY = eve.changedTouches[0].clientY;  // Y-Position vom ersten Touch
-        elem.style.position = 'absolute';           // position: absolut, damit der Task über allen anderen ist
-        elem.style.left = (nextX - startX + offsetX) + 'px';    // Berechnung der neuen Position als style left
-        elem.style.top = (nextY - startY + offsetY) + 'px';     // Berechnung der neuen Position als style top
-        elem.style.zIndex = 15;
-        if (isElementInside(progressPos, elem)) {               // Überprüfung ob der Task über einem Target ist
-            highlightArea(progress);                            // highlight area 
-        } else if (isElementInside(feedbackPos, elem)) {
-            highlightArea(feedback);
-        } else if (isElementInside(donePos, elem)) {
-            highlightArea(done);
-        } else if (isElementInside(todoPos, elem)) {
-            highlightArea(todo);
-        } else {
-            removeAllHighlight();
-        }
+        setNewPositions(elem, eve);
+        if (isElementInside(progressPos, elem)) highlightArea(progress);
+        else if (isElementInside(feedbackPos, elem)) highlightArea(feedback);
+        else if (isElementInside(donePos, elem)) highlightArea(done);
+        else if (isElementInside(todoPos, elem)) highlightArea(todo);
+        else removeAllHighlight();
     }
 }
 
 /**
- * open detailBox or move task to new area
+ * set new positions for moving task
+ * @param {*} elem 
+ * @param {*} eve 
+ */
+function setNewPositions(elem, eve) {
+    touchMoved = true;
+    let nextX = eve.changedTouches[0].clientX;  // X-Position vom ersten Touch
+    let nextY = eve.changedTouches[0].clientY;  // Y-Position vom ersten Touch
+    elem.style.position = 'absolute';           // position: absolut, damit der Task über allen anderen ist
+    elem.style.left = (nextX - startX + offsetX) + 'px';    // Berechnung der neuen Position als style left
+    elem.style.top = (nextY - startY + offsetY) + 'px';     // Berechnung der neuen Position als style top
+    elem.style.zIndex = 15;
+}
+
+/**
+ * handle touch end, show detail box or move task
  * @param {*} elem 
  * @param {*} id 
  * @param {*} taskToMove 
@@ -159,22 +161,32 @@ function handleTouchEnd(elem, id, taskToMove) {
     if (!touchMoveEnabled && !touchMoved) {         // Wenn touchmove false und touchMoved false, dann
         showDetailBox(id);                          // DetailView öffnen
     } else {                                        // Wenn nicht, Task verschieben
-        if (isElementInside(progressPos, elem)) {
-            dropElementInDiv(elem, 'In progress', taskToMove);
-        } else if (isElementInside(feedbackPos, elem)) {
-            dropElementInDiv(elem, 'Await feedback', taskToMove);
-        } else if (isElementInside(donePos, elem)) {
-            dropElementInDiv(elem, 'Done', taskToMove)
-        } else if (isElementInside(todoPos, elem)) {
-            dropElementInDiv(elem, 'To Do', taskToMove);
-        } else {
-            resetElement(elem);
-            hideDetailBox();
-        }
+        moveTask(elem, taskToMove);
     }
     touchMoveEnabled = false;
     touchMoved = false;
 }
+
+/**
+ * check drop area
+ * @param {*} elem 
+ * @param {*} taskToMove 
+ */
+function moveTask(elem, taskToMove) {
+    if (isElementInside(progressPos, elem)) {
+        dropElementInDiv(elem, 'In progress', taskToMove);
+    } else if (isElementInside(feedbackPos, elem)) {
+        dropElementInDiv(elem, 'Await feedback', taskToMove);
+    } else if (isElementInside(donePos, elem)) {
+        dropElementInDiv(elem, 'Done', taskToMove)
+    } else if (isElementInside(todoPos, elem)) {
+        dropElementInDiv(elem, 'To Do', taskToMove);
+    } else {
+        resetElement(elem);
+        hideDetailBox();
+    }
+}
+
 
 /**
  * checking whether the element is in an area

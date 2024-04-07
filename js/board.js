@@ -289,7 +289,6 @@ function searchTasks() {
    searchedTasks = filteredTasksTitle.concat(filteredTasksDescription);
    searchedTasks = [...new Set(searchedTasks)];
    if(searchedTasks.length === 0) {
-      // console.log('Keine Tasks mit diesen Suchkriterien gefunden!');
       searchedTasks = [];
       renderSearchedTasks();
    } else {

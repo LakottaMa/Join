@@ -89,30 +89,28 @@ function getImageForSubtask(subtask) {
    }
 }
 
-/**
- * render the assigned to User, or hide if none
- * @param {int} index 
- */
 function renderAssignedToDetails(index) {
    let container = document.getElementById(`assignedToDetailView${index}`);
    container.innerHTML = '';
    let contacts = tasks[index].assignedTo;
-   let maxContacts;
-   let toMuch = document.getElementById(`toMuchDetailContacts${index}`);
-   contacts.length > 3 ? maxContacts = 3 : maxContacts = contacts.length;
-   if (contacts.length < 1) {
+   let maxContacts = Math.min(3, contacts.length);
+   if (maxContacts < 1) {
       document.getElementById('assignedToDetailBox').classList.add('d-none');
    } else {
-      for (let j = 0; j < maxContacts; j++) {
-         const contact = contacts[j];
-         let contactId = index.toString() + j.toString() + 'C';
-         container.innerHTML += printAssignedToDetails(contact, contactId);
-         let contactContainer = document.getElementById(`${contactId}`)
-         contactContainer.style.backgroundColor = getBgColorForContact(contact);
-      }
-      addMissingContacts(contacts, maxContacts, toMuch)
+      renderContacts(container, contacts, maxContacts, index);
+      addMissingContacts(contacts, maxContacts, document.getElementById(`toMuchDetailContacts${index}`));
    }
 }
+
+function renderContacts(container, contacts, maxContacts, index) {
+   for (let j = 0; j < maxContacts; j++) {
+      const contact = contacts[j];
+      let contactId = `${index}${j}C`;
+      container.innerHTML += printAssignedToDetails(contact, contactId);
+      document.getElementById(contactId).style.backgroundColor = getBgColorForContact(contact);
+   }
+}
+
 
 /**
  * delete task
@@ -144,23 +142,27 @@ function editTask(index) {
    showEditBox();
    editTaskIndex = index;
    let taskToEdit = tasks[index];
+   let prio = taskToEdit['priority'];
+   fillEditFields(taskToEdit);
+   setCategoryInputToDisable();
+   renderSubTasks('subTaskContainer');
+   setPriority(prio);
+   renderUsers();
+   renderSelectedUsers();
+}
+
+function fillEditFields(taskToEdit) {
    document.getElementById('title').value = taskToEdit.title;
    document.getElementById('description').value = taskToEdit.description;
    document.getElementById('date').value = getFormatedDateUS(taskToEdit.date);
    document.getElementById('selectedCategory').value = taskToEdit.category;
-   setCategoryInputToDisable();
-   let prio = taskToEdit['priority'];
-   setPriority(prio);
    defaultValues.status = taskToEdit['status'];
    taskToEdit['subtasks'].forEach(subtask => {
       subTasks.push(subtask.name);
    });
-   renderSubTasks('subTaskContainer');
    taskToEdit['assignedTo'].forEach(user => {
       selectedUsers.push(user);
    });
-   renderUsers();
-   renderSelectedUsers();
 }
 
 /**
