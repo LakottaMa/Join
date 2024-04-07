@@ -5,8 +5,8 @@ async function initSummary() {
     sessionStorage.setItem('greetingShown', true);
   }
   await includeHTML();
-  loginStatus();
   await loadTasks();
+  loginStatus();
   counterSummery(tasks);
 }
 

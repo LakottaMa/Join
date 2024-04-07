@@ -222,7 +222,7 @@ function getPrioIcon(prio) {
  */
 function checkContainer(status) {
    switch (status) {
-      case 'To do':
+      case 'To Do':
          return document.getElementById('toDoContainer');
       case 'In progress':
          return document.getElementById('inProgressContainer');

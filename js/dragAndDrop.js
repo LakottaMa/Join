@@ -166,7 +166,7 @@ function handleTouchEnd(elem, id, taskToMove) {
         } else if (isElementInside(donePos, elem)) {
             dropElementInDiv(elem, 'Done', taskToMove)
         } else if (isElementInside(todoPos, elem)) {
-            dropElementInDiv(elem, 'ToDo', taskToMove);
+            dropElementInDiv(elem, 'To Do', taskToMove);
         } else {
             resetElement(elem);
             hideDetailBox();
