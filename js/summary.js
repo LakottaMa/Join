@@ -37,7 +37,10 @@ function greetingMessage() {
   document.getElementById('greetMobile').innerHTML = greetingMessage;
 }
 
-/** loop over the tasks-array to get the counts for each category */
+/**
+ * Generates a summary of the tasks provided and updates the corresponding HTML elements with the task counts.
+ * @param {Array} tasks - An array of task objects
+ */
 function counterSummery(tasks) {
   const tasksInBoard = document.getElementById('tib');
   const tasksToDo = document.getElementById('todo');
@@ -80,7 +83,10 @@ function counterSummery(tasks) {
   nextUrgent();
 }
 
-/** check when the next deadline for urgent tasks expires */
+/**
+ * Finds the next urgent task and updates the urgentDate element with the formatted date.
+ * @param {none}
+ */
 function nextUrgent() {
   const tasksWithDateObjects = tasks.map(task => ({
     ...task,

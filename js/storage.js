@@ -198,7 +198,6 @@ function resetStorage(event) {
 
 /**
  * Asynchronously loads users data, handling errors by falling back to local data.
- *
  */
 async function loadUsers() {
   try {

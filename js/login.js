@@ -1,4 +1,7 @@
-/** onclick pre-stored guest login, with storage of the name in sessionStorage */
+/**
+ * Find and log in a guest user if present.
+ * @param {Array} localUsers - Array of local user objects to search through.
+ */
 function guestLogIn(localUsers) {
   let guestUser = localUsers.find(user => user.name === 'Guest');
   if (guestUser) {
@@ -7,7 +10,11 @@ function guestLogIn(localUsers) {
   }
 }
 
-/** onclick Log in, with verification of user data */
+/**
+ * Function to log in the user using the email and password inputs. *
+ * @param {string} emailInput - the email input value
+ * @param {string} passwordInput - the password input value
+ */
 function logIn() {
   const emailInput = document.getElementById("email").value;
   const passwordInput = document.getElementById("password").value;
@@ -16,7 +23,12 @@ function logIn() {
   }
 }
 
-/** check function for saved user data, with error message if not correct */
+/**
+ * Checks if the provided email and password match a user in the database.
+ * @param {string} email - The email to be verified.
+ * @param {string} password - The password to be verified.
+ * @return {boolean} True if the login is verified, false otherwise.
+ */
 function verifiedLogin(email, password) {
   for (let i = 0; i < users.length; i++) {
     if (users[i].email === email && users[i].password === password) {
@@ -28,7 +40,9 @@ function verifiedLogin(email, password) {
   return false;
 }
 
-/** error message for the logIn function */
+/**
+ * Constructor for LoginMatchError class.
+ */
 function LoginMatchError() {
   const confirmedPassword = document.getElementById('password');
   const errorMsgBox = document.getElementById('loginMatch');
@@ -40,8 +54,9 @@ function LoginMatchError() {
   });
 }
 
-/** greeting-slider on mobile screen below 480px width */
-
+/**
+ * Function to display a greeting screen on mobile devices.
+ */
 function greetingScreen() {
   let greetingMobile = document.getElementById('greetingMobile');
   let sumContent = document.getElementById('sumContent');
