@@ -98,6 +98,10 @@ function successfullyPopupAddTask() {
     });
     setTimeout(() => {
         clearAddTask();
+        if(window.location.pathname === '/board.html') {
+            renderTasksInBoard();
+            return;
+        }
         window.location.href = './board.html';
     }, 1000);
 
