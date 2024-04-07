@@ -488,4 +488,16 @@ textarea:hover {
     .addTaskSection {
         width: 100%;
     }
+
+    #title {
+        font-size: 16px;
+    }
+
+    li {
+        font-size: 14px;
+    }
+
+    .priorityBox span {
+        font-size: 12px;
+    }
 }
