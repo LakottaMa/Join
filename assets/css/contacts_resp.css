@@ -23,7 +23,7 @@
     .contactList {
         margin-top: 0;
         width: 100vw;
-        overflow-y: visible;
+        /* overflow-y: visible; */
         transform: translateX(0);
         padding: 0 24px;
     }
@@ -60,9 +60,9 @@
     }
 
     .overlayContactPopup {
-        position: static;
         max-width: 396px;
-        height: 760px;
+        width: 90%;
+        height: 90%;
         border: none;
     }
 
@@ -168,6 +168,22 @@
         width: auto;
     }
 
+    form {
+        height: 320px;
+    }
+
+    #topPopup {
+        height: 180px;
+    }
+
+    #popupBtn {
+        margin: 24px 0;
+    }
+
+    #closePopup {
+        padding: 24px 24px 12px 0;
+    }
+
     #topPopup {
         span {
             font-size: 40px;
@@ -176,5 +192,11 @@
         p {
             font-size: 15px;
         }
+    }
+
+    .overlayContactPopup {
+        position: absolute !important;
+        top: 16px;
+        margin: 0 5% !important;
     }
 }

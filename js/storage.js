@@ -220,7 +220,6 @@ async function loadTasks() {
   } catch {
     tasks = [];
   }
-  console.table(tasks);
 }
 
 /**
