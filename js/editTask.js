@@ -201,3 +201,46 @@ function showEditBox() {
    renderAddTask('editTaskContainer');
    initializeAndListen();
 }
+
+/**
+ * handle click to close dropdown menu
+ * @param {event} e 
+ */
+let clickToCloseHandler = (e) => {
+   if (!e.target.closest('.listenDropDown')) {
+       if (!checkDNone('userCategory')) {
+           hideSearchUserInput();
+       }
+       if (!checkDNone('taskCategory')) {
+           toggleTaskCategory();
+       }
+   }
+};
+
+/**
+* add event listener
+*/
+function clickToClose() {
+   document.addEventListener('mousedown', clickToCloseHandler);
+}
+
+/**
+* remove event listener
+*/
+function removeClickToCloseListener() {
+   document.removeEventListener('mousedown', clickToCloseHandler);
+}
+
+/**
+* check if element with id has css display: none
+* @param {*} id 
+* @returns 
+*/
+function checkDNone(id) {
+   let element = document.getElementById(id);
+   if (element && element.classList.contains('d-none')) {
+       return true;
+   } else {
+       return false;
+   }
+}

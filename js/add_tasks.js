@@ -399,31 +399,3 @@ function submitWithEnter(inputId) {
         }
     });
 }
-
-let clickToCloseHandler = (e) => {
-    if (!e.target.closest('.listenDropDown')) {
-        if (!checkDNone('userCategory')) {
-            hideSearchUserInput();
-        }
-        if (!checkDNone('taskCategory')) {
-            toggleTaskCategory();
-        }
-    }
-};
-
-function clickToClose() {
-    document.addEventListener('mousedown', clickToCloseHandler);
-}
-
-function removeClickToCloseListener() {
-    document.removeEventListener('mousedown', clickToCloseHandler);
-}
-
-function checkDNone(id) {
-    let element = document.getElementById(id);
-    if (element && element.classList.contains('d-none')) {
-        return true;
-    } else {
-        return false;
-    }
-}
