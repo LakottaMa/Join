@@ -18,7 +18,7 @@
             <a href="./sign_up.html"><button class="blue-btn cp">Sign up</button></a>
         </div>
     </header>
-    <div id="loadingScreen" class="loading-animation"><img class="loding-logo" src="./assets/img/loding_logo.png"></div>
+    <div id="loadingScreen" class="loading-animation"><img id="loadingScreenImg" class="loding-logo" src="./assets/img/loding_logo.png"></div>
     <div class="login-container">
         <div>
             <div class="form-box">
@@ -26,11 +26,11 @@
                     <h1>Log in</h1>
                     <img class="underline" src="./assets/img/underline_login.png">
                     <div class="input-field">
-                        <input type="email" id="email" autofocus required placeholder="Email">
+                        <input type="email" id="email" autofocus autocomplete="email" required placeholder="Email">
                         <img src="./assets/img/mail.png">
                     </div>
                     <div class="input-field">
-                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus autocomplete="" required
+                        <input type="password" id="password" onkeyup="togglePasswordEye('password')" autofocus autocomplete="current-password" required
                             minlength="5" placeholder="Password">
                         <img id="password-icon" onclick="togglePasswordVisibility('password')"
                             src="./assets/img/lock.png">

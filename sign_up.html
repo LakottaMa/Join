@@ -22,22 +22,22 @@
                 <h1>Sign up</h1>
                 <img class="underline" src="./assets/img/underline_login.png">
                 <div class="input-field">
-                    <input id="name" type="text" autofocus required placeholder="Name">
+                    <input id="name" type="text" autofocus autocomplete="name" required placeholder="Name">
                     <img src="./assets/img/person.png">
                 </div>
                 <div class="input-field">
-                    <input id="email" class="" type="email" autofocus required placeholder="Email">
+                    <input id="email" class="" type="email" autofocus autocomplete="email" required placeholder="Email">
                     <img src="./assets/img/mail.png">
                     <div class="error-msg-box" id="email-exist"></div>
                 </div>
                 <div class="input-field">
-                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus autocomplete="" minlength="5"
+                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus autocomplete="new-password" minlength="5"
                         required placeholder="Password">
                     <img id="password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
                 </div>
                 <div class="input-field">
                     <input id="confirmedPassword" type="password" onkeyup="togglePasswordEye('confirmedPassword')"
-                        autofocus minlength="5" autocomplete="" required placeholder="Confirm Password">
+                        autofocus minlength="5" autocomplete="new-password" required placeholder="Confirm Password">
                     <img id="confirmedPassword-icon" src="./assets/img/lock.png"
                         onclick="togglePasswordVisibility('confirmedPassword')">
                     <div class="error-msg-box" id="password-match"></div>
@@ -53,8 +53,8 @@
         </div>
     </div>
     <footer class="legal-topics">
-        <a href="./privacy_policy.html">Privacy Policy</a>
-        <a href="./legal_notice.html">Legal notice</a>
+        <a href="./privacy_policy.html" target="_blank">Privacy Policy</a>
+        <a href="./legal_notice.html" target="_blank">Legal notice</a>
     </footer>
     <div class="successfully-popup d-none" id="popup">
     <div class="successfully-popover-text">You Signed Up successfully</div>

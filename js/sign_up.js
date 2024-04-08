@@ -3,10 +3,6 @@ async function initSignUp() {
   await loadUsers();
 }
 
-/** back arrow in signup page */
-function backButton() {
-  window.location.href = '/index.html';
-}
 /**
  * Registration of a new user, with verification of the email address and password match.
  */

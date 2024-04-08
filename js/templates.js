@@ -1,17 +1,17 @@
 /**
- * Function to include HTML templates into specified elements on the page asynchronously. *
- * @return {Promise<void>} This function returns a Promise that resolves when all HTML templates are included.
+ * Asynchronously includes HTML content from specified files into the matching elements with the "template" attribute.
+ *
+ * @return {Promise} A promise that resolves when all HTML content is successfully included.
  */
 async function includeHTML() {
   const includeElements = document.querySelectorAll("[template]");
-  const promises = Array.from(includeElements).map(element => {
+  const promises = Array.from(includeElements).map(async element => {
     const file = element.getAttribute("template");
-    return fetch(file).then(resp => resp.ok ? resp.text() : Promise.reject());
+    const resp = await fetch(file);
+    const html = resp.ok ? await resp.text() : null;
+    element.innerHTML = html || "Page not found";
   });
-  const htmls = await Promise.all(promises);
-  includeElements.forEach((element, i) => {
-    element.innerHTML = htmls[i] || "Page not found";
-  });
+  await Promise.all(promises);
   setActiveSiteClass('nav a', 'active-site');
   setActiveSiteClass('li a', 'active-site-legal-topics');
   showInitials();
@@ -44,18 +44,6 @@ document.addEventListener('click', function(event) {
       logoutMenu.classList.add('d-none');
   }
 });
-
-/**
- * Function to navigate back in the browser history.
- */
-function goBack() {
-  const hasPreviousPage = window.history.length > 1;
-  if (hasPreviousPage) {
-    window.history.go(-1);
-  } else {
-    window.close();
-  }
-}
 
 /**
  * Sets the active class for the link that matches the current page. *

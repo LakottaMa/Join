@@ -46,3 +46,15 @@ function rememberMe() {
     }
   }
 }
+
+/** back arrow in signup page */
+function backButton() {
+  window.location.href = '/index.html';
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('loadingScreenImg').style.display = 'none';
+}
+
+/** Closes the current window */
+function goBack() {
+    window.close();
+}
