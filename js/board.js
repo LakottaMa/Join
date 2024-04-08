@@ -324,5 +324,10 @@ function renderSearchedTasks() {
    checkContainerEmpty();
 }
 
+function showMoveWidget(index, event) {
+   event.stopPropagation();
+   document.getElementById(`moveArea${index}`).classList.remove('d-none');
+}
+
 
 
