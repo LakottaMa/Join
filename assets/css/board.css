@@ -157,6 +157,19 @@ input[type="text"]:disabled {
     justify-content: flex-start;
 }
 
+.categoryAndMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    & svg:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 30px;
+        width: 30px;
+    }
+}
+
 .taskBox {
     display: flex;
     flex-direction: column;
