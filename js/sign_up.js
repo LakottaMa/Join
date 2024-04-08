@@ -74,7 +74,7 @@ function displayEmailInUseError() {
   const emailInput = document.getElementById('email');
   const errorMsgBox = document.getElementById('email-exist');
   emailInput.classList.add('inputerror');
-  errorMsgBox.textContent = 'Email already in use. Please try a different one.';
+  errorMsgBox.textContent = 'Email already in use.';
   emailInput.addEventListener('keyup', () => {
     errorMsgBox.textContent = '';
     emailInput.classList.remove('inputerror');
