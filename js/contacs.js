@@ -208,21 +208,36 @@ function BtnClickable() {
  * overwrite and save the contact content * 
  * @param {integer} i to overwrite the correct contact
  */
-async function saveUser(i) {
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+function saveUser(i) {
     let name = document.getElementById('contactName').value;
     let email = document.getElementById('contactEmail').value;
     let phone = document.getElementById('contactPhone').value;
     users[i]['name'] = name;
     users[i]['email'] = email;
     users[i]['phone'] = phone;
-    await setItem('users', JSON.stringify(users));
+    saveStorageUser(i);
     document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
+    screenMobile();
+    closePopup();
+}
+
+/**
+ * Saves the 'users' data to storage and retrieves it.
+ */
+async function saveStorageUser(){
+    await setItem('users', JSON.stringify(users));
+    await getItem('users');
+}
+
+/**
+ * Function to check screen width and show contact list for mobile devices.
+ */
+function screenMobile(){
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (screenWidth <= 1024) {
         showContactListMobil();
     }
-    closePopup();
 }
 
 /**
