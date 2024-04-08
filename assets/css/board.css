@@ -180,6 +180,11 @@ input[type="text"]:disabled {
     }
 }
 
+.btnsBoardAddTask {
+    display: flex;
+    gap: 16px;
+}
+
 .toDoDiv {
     display: flex;
     flex-direction: column;
@@ -435,5 +440,9 @@ progress::-webkit-progress-value {
     .detailViewBox {
         min-width: 450px;
         min-height: 700px;
+    }
+
+    .btnsBoardAddTask button:nth-child(1) {
+        display: none;
     }
 }

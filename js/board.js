@@ -43,6 +43,13 @@ function showMobileTaskBox(status, mainContent, headline, box) {
       setDefaultValues(status);
 }
 
+function hideMobileAddTaskBox() {
+   clearAddTask();
+   document.getElementById('mainContent').classList.remove('dNone');
+   document.getElementById('addTaskBox').classList.add('d-none');
+   document.getElementById('addTaskHeadline').classList.remove('d-none');
+}
+
 /**
  * set default values
  * @param {string} status 
