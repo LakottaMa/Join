@@ -210,7 +210,7 @@
     height: 32px;
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 600px) {
     .detailViewBox {
         padding: 32px 16px;
     }
