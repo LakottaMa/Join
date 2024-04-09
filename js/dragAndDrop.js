@@ -1,4 +1,8 @@
 let all;
+const todo = document.getElementById('toDoContainer');
+const progress = document.getElementById('inProgressContainer');
+const feedback = document.getElementById('awaitFeedbackContainer');
+const done = document.getElementById('doneContainer');
 let todoPos = todo.getBoundingClientRect();
 let progressPos = progress.getBoundingClientRect();
 let feedbackPos = feedback.getBoundingClientRect();
@@ -11,10 +15,7 @@ let offsetY;
 let touchMoveEnabled = false;
 let touchMoved = false;
 let timeoutID;
-const todo = document.getElementById('toDoContainer');
-const progress = document.getElementById('inProgressContainer');
-const feedback = document.getElementById('awaitFeedbackContainer');
-const done = document.getElementById('doneContainer');
+
 
 function startDragging(id) {
     elementToDrag = id;

@@ -472,11 +472,16 @@ textarea:hover {
     }
 
     .priorityBox {
-        width: 90px;
+        width: 80px;
         gap: 4px;
         font-size: 16px;
         padding: 4px;
         justify-content: space-between;
+
+        & svg {
+            height: 12;
+            width: 12;
+        }
     }
 
     .clearBtn {

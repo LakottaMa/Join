@@ -209,4 +209,9 @@
     width: 32px;
     height: 32px;
 }
-/* detail box above */
+
+@media(max-width: 1024px) {
+    .detailViewBox {
+        padding: 32px 16px;
+    }
+}

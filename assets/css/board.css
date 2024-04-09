@@ -419,7 +419,6 @@ progress::-webkit-progress-value {
 
     .detailViewBox {
         width: 90%;
-        height: 90%;
         z-index: 100 !important;
 
         & h1 {
@@ -439,7 +438,7 @@ progress::-webkit-progress-value {
 
     .detailViewBox {
         min-width: 450px;
-        min-height: 700px;
+        min-height: 600px;
     }
 
     .btnsBoardAddTask button:nth-child(1) {
