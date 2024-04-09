@@ -1,4 +1,20 @@
+let all;
+let todoPos = todo.getBoundingClientRect();
+let progressPos = progress.getBoundingClientRect();
+let feedbackPos = feedback.getBoundingClientRect();
+let donePos = done.getBoundingClientRect();
 let elementToDrag;
+let startX;
+let startY;
+let offsetX;
+let offsetY;
+let touchMoveEnabled = false;
+let touchMoved = false;
+let timeoutID;
+const todo = document.getElementById('toDoContainer');
+const progress = document.getElementById('inProgressContainer');
+const feedback = document.getElementById('awaitFeedbackContainer');
+const done = document.getElementById('doneContainer');
 
 function startDragging(id) {
     elementToDrag = id;
@@ -21,11 +37,7 @@ function highlight(id) {
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('dragAreaHighlight');
 }
-// cursor above
 
-// touch below
-
-let all;
 /**
  * start touch events for all tasks with class todoBox
  */
@@ -33,11 +45,6 @@ function startTouchEvents() {
     all = document.querySelectorAll('.todoBox');
     all.forEach(addStart);
 }
-
-const todo = document.getElementById('toDoContainer');
-const progress = document.getElementById('inProgressContainer');
-const feedback = document.getElementById('awaitFeedbackContainer');
-const done = document.getElementById('doneContainer');
 
 /**
  * hightlight the area for touchend
@@ -58,11 +65,6 @@ function removeAllHighlight() {
     done.classList.remove('dragAreaHighlight');
 }
 
-let todoPos = todo.getBoundingClientRect();
-let progressPos = progress.getBoundingClientRect();
-let feedbackPos = feedback.getBoundingClientRect();
-let donePos = done.getBoundingClientRect();
-
 /**
  * update the position from the target areas
  */
@@ -72,14 +74,6 @@ function updatePositions() {
     feedbackPos = feedback.getBoundingClientRect();
     donePos = done.getBoundingClientRect();
 }
-
-let startX; // Start Position in X
-let startY; // Start Position in Y
-let offsetX;    // offset X wird für position absolute benötigt
-let offsetY;    // offset Y wird für position absolute benötigt
-let touchMoveEnabled = false;   // boolean wird true, wenn 500ms vom timeout vergangen sind
-let touchMoved = false; // boolean wird true, wenn der Task bewegt wurde
-let timeoutID;  // timeoutID wird bei touchend zurück gesetzt
 
 /**
  * activate event listener for touch events
@@ -105,11 +99,11 @@ function addStart(elem) {
  * @param {*} e 
  */
 function handleTouchStart(elem, e) {
-    startX = e.changedTouches[0].clientX;   // X-Position vom ersten Touch
-    startY = e.changedTouches[0].clientY;   // Y-Position vom ersten Touch
+    startX = e.changedTouches[0].clientX;
+    startY = e.changedTouches[0].clientY;
     updatePositions();
-    offsetX = elem.offsetLeft;              // Entfernung zum nächsten linken Rand des parent Elements
-    offsetY = elem.offsetTop;               // Entfernung zum nächsten oberen Rand des parent Elements
+    offsetX = elem.offsetLeft;
+    offsetY = elem.offsetTop;
     e.preventDefault();
     timeoutID = setTimeout(() => {
         touchMoveEnabled = true;
@@ -141,11 +135,11 @@ function handleTouchMove(eve, elem) {
  */
 function setNewPositions(elem, eve) {
     touchMoved = true;
-    let nextX = eve.changedTouches[0].clientX;  // X-Position vom ersten Touch
-    let nextY = eve.changedTouches[0].clientY;  // Y-Position vom ersten Touch
-    elem.style.position = 'absolute';           // position: absolut, damit der Task über allen anderen ist
-    elem.style.left = (nextX - startX + offsetX) + 'px';    // Berechnung der neuen Position als style left
-    elem.style.top = (nextY - startY + offsetY) + 'px';     // Berechnung der neuen Position als style top
+    let nextX = eve.changedTouches[0].clientX;
+    let nextY = eve.changedTouches[0].clientY;
+    elem.style.position = 'absolute';
+    elem.style.left = (nextX - startX + offsetX) + 'px';
+    elem.style.top = (nextY - startY + offsetY) + 'px';
     elem.style.zIndex = 15;
 }
 
@@ -156,11 +150,11 @@ function setNewPositions(elem, eve) {
  * @param {*} taskToMove 
  */
 function handleTouchEnd(elem, id, taskToMove) {
-    clearTimeout(timeoutID);                        // timeout zurück setzen
+    clearTimeout(timeoutID);           
     elem.style.zIndex = 0;
-    if (!touchMoveEnabled && !touchMoved) {         // Wenn touchmove false und touchMoved false, dann
-        showDetailBox(id);                          // DetailView öffnen
-    } else {                                        // Wenn nicht, Task verschieben
+    if (!touchMoveEnabled && !touchMoved) {        
+        showDetailBox(id);                        
+    } else {                                       
         moveTask(elem, taskToMove);
     }
     touchMoveEnabled = false;
@@ -186,7 +180,6 @@ function moveTask(elem, taskToMove) {
         hideDetailBox();
     }
 }
-
 
 /**
  * checking whether the element is in an area
@@ -258,4 +251,3 @@ function resetElementPos(elem) {
     elem.style.left = 0 + "px";
     elem.style.top = 0 + "px";
 }
-

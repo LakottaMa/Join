@@ -1,3 +1,5 @@
+let searchedTasks;
+
 async function initBoard() {
    await includeHTML();
    await loadUsers();
@@ -207,7 +209,6 @@ function getBgColorForContact(contact) {
    } else {
       return 'rgb(175, 170, 170)';
    }
-
 }
 
 /**
@@ -282,8 +283,6 @@ function getContainerName(id) {
    return containerNames[id] || 'Unknown Container';
 }
 
-let searchedTasks;
-
 /**
  * push the search output in array and remove duplicates with set
  */
@@ -299,7 +298,6 @@ function searchTasks() {
    } else {
       checkRenderTasks();
    }
-   
 }
 
 /**
@@ -323,6 +321,3 @@ function renderSearchedTasks() {
    }
    checkContainerEmpty();
 }
-
-
-

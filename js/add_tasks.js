@@ -2,6 +2,10 @@ let subTasks = [];
 let searchedUsers = [];
 let selectedUsers = [];
 let defaultValues = [{ status: 'To Do' }, { category: 'User Story' }, { priority: 'Medium' }];
+let taskCategoryArrowDropdown = false;
+let prioUrgent;
+let prioMedium;
+let prioLow;
 
 async function initAddTask() {
     await includeHTML();
@@ -61,10 +65,6 @@ function initializeAndListen() {
     submitWithEnter('subtaskInput');
 }
 
-let prioUrgent;
-let prioMedium;
-let prioLow;
-
 /**
  * push new Task to tasks array
  */
@@ -105,7 +105,6 @@ function successfullyPopupAddTask() {
         }
         window.location.href = './board.html';
     }, 1000);
-
 }
 
 /**
@@ -126,7 +125,6 @@ function resetInputsAndSelections() {
     setPriority('Medium');
 }
 
-let taskCategoryArrowDropdown = false;
 /**
  * toggle task category options and rotate dropdown icon
  */
@@ -398,4 +396,47 @@ function submitWithEnter(inputId) {
             addSubTasks(event);
         }
     });
+}
+
+/**
+ * create template for task
+ * @param {string} title 
+ * @param {string} description 
+ * @param {date} date 
+ * @param {string} taskPriority
+ * @param {Array} assignedTo 
+ * @param {string} taskCategory 
+ * @param {Array} subtasks 
+ * @returns 
+ */
+function createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus) {
+    return {
+        "title": title.value,
+        "description": description.value,
+        "date": date,
+        "priority": taskPriority,
+        "assignedTo": assignedTo,
+        "category": taskCategory,
+        "subtasks": subtasks,
+        "status": taskStatus
+    }
+}
+
+/**
+ * 
+ * @returns created task
+ */
+function createTask() {
+    defaultValues.category = document.getElementById('selectedCategory').value;
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let inputDate = document.getElementById('date').value;
+    let date = new Date(inputDate).toString();
+    let taskPriority = defaultValues.priority;
+    let assignedTo = selectedUsers;
+    let subtasks = createSubtaskObject();
+    let taskCategory = defaultValues.category;
+    let taskStatus = defaultValues.status;
+    let newTask = createTaskObject(title, description, date, taskPriority, assignedTo, taskCategory, subtasks, taskStatus);
+    return newTask;
 }

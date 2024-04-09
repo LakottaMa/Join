@@ -1,3 +1,5 @@
+let editTaskIndex;
+
 function showDetailBox(index) {
    document.getElementById('detailViewBox').classList.remove('slideToBottom');
    document.getElementById('detailViewBg').classList.remove('d-none');
@@ -43,6 +45,7 @@ function getFormatedDateUS(dateString) {
    let day = String(date.getDate()).padStart(2, '0');
    return `${year}-${month}-${day}`;
 }
+
 /**
  * render Task Details Screen
  * @param {int} index 
@@ -111,7 +114,6 @@ function renderContacts(container, contacts, maxContacts, index) {
    }
 }
 
-
 /**
  * delete task
  * @param {int} index 
@@ -135,8 +137,6 @@ async function toggleSubtasks(taskIndex, subtaskIndex) {
    renderTasksInBoard();
    await saveTasks(tasks);
 }
-
-let editTaskIndex;
 
 function editTask(index) {
    showEditBox();
