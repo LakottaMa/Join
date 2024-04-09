@@ -8,7 +8,7 @@
 
 function floatContactHTML(name, email, i) {
     let bgColor = users[i]['bg'];
-    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
+    let names = users[i]['name'].split(' '); 
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     return /*html*/ `
         <div id="floatMobil">
@@ -111,7 +111,7 @@ function createContactPopupHTML() {
  */
 function editContactPopupHTML(i) {
     let bgColor = users[i]['bg'];
-    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
+    let names = users[i]['name'].split(' '); 
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
     return  /*html*/`
     <div id="closePopup">
