@@ -15,6 +15,7 @@ function renderContactList() {
         users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
+<<<<<<< Updated upstream
             if (firstLetter !== currentLetter) {
                 document.getElementById('allContacts').innerHTML += `
                     <div class="letterBox">
@@ -22,6 +23,9 @@ function renderContactList() {
                         <div id="${firstLetter}-content"></div>
                     </div>`;
             }
+=======
+            renderLetters(firstLetter, currentLetter);
+>>>>>>> Stashed changes
             currentLetter = firstLetter;
             document.getElementById(`${firstLetter}-content`).innerHTML +=
                 contactsHTML(i);
@@ -32,6 +36,25 @@ function renderContactList() {
 }
 
 /**
+<<<<<<< Updated upstream
+=======
+ * render needed letters in contactlist
+ * 
+ * @param {string} firstLetter first letter of the contact
+ * @param {string} currentLetter is the first letter to compare with the next Contact
+ */
+function renderLetters(firstLetter, currentLetter) {
+    if (firstLetter !== currentLetter) {
+        document.getElementById('allContacts').innerHTML += `
+            <div class="letterBox">
+                <div class="letter">${firstLetter}</div>
+                <div id="${firstLetter}-content"></div>
+            </div>`;
+    }
+}
+
+/**
+>>>>>>> Stashed changes
  * render contacts from the array * 
  * @param {integer} i to render the correct contact
  * @returns html for the contact
@@ -58,9 +81,12 @@ function deleteUser(userIndex) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (userIndex !== -1) {
         users.splice(userIndex, 1);
+<<<<<<< Updated upstream
         alert("User deleted successfully!");
     } else {
         alert("User not found.");
+=======
+>>>>>>> Stashed changes
     }
     setItem('users', JSON.stringify(users));
     document.getElementById('floatingContact').innerHTML = '';
@@ -149,8 +175,11 @@ async function createNewContact() {
         await setItem('users', JSON.stringify(users));
         successfullyPopupAddContact();
         closePopup();
+<<<<<<< Updated upstream
     } else {
         console.error('Please fill out all fields');
+=======
+>>>>>>> Stashed changes
     }
 }
 
@@ -204,20 +233,20 @@ function BtnClickable() {
  * @param {integer} i to overwrite the correct contact
  */
 async function saveUser(i) {
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    let name = document.getElementById('contactName').value;
-    let email = document.getElementById('contactEmail').value;
-    let phone = document.getElementById('contactPhone').value;
-    users[i]['name'] = name;
-    users[i]['email'] = email;
-    users[i]['phone'] = phone;
-    await setItem('users', JSON.stringify(users));
-    document.getElementById('floatingContact').innerHTML = '';
-    renderContactList();
-    if (screenWidth <= 1024) {
-        showContactListMobil();
-    }
-    closePopup();
+        let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let name = document.getElementById('contactName').value;
+        let email = document.getElementById('contactEmail').value;
+        let phone = document.getElementById('contactPhone').value;
+        users[i]['name'] = name;
+        users[i]['email'] = email;
+        users[i]['phone'] = phone;
+        await setItem('users', JSON.stringify(users));
+        document.getElementById('floatingContact').innerHTML = '';
+        renderContactList();
+        if (screenWidth <= 1024) {
+            showContactListMobil();
+        }
+        closePopup();
 }
 
 /**
@@ -259,7 +288,14 @@ function showEditPopup(i) {
 function closePopup() {
     document.getElementById('contactPopup').classList.add('d-none');
     document.getElementById('background').classList.remove('back');
+<<<<<<< Updated upstream
     document.getElementById('popupDotMenue').classList.add('d-none');
+=======
+    let dotPopup = document.getElementById('popupDotMenue');
+    if (dotPopup) {
+        document.getElementById('popupDotMenue').classList.add('d-none');
+    }
+>>>>>>> Stashed changes
 }
 
 /**
@@ -282,7 +318,14 @@ function showDotMenu() {
  * hide submenue from the detailview in in the mobile version * 
  */
 function closeDotMenue() {
+<<<<<<< Updated upstream
     document.getElementById('popupDotMenue').classList.add('d-none');
+=======
+    let dotPopup = document.getElementById('popupDotMenue');
+    if (dotPopup) {
+        document.getElementById('popupDotMenue').classList.add('d-none');
+    }
+>>>>>>> Stashed changes
 }
 
 /**
