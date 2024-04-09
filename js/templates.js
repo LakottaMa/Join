@@ -1,6 +1,5 @@
 /**
  * Asynchronously includes HTML content from specified files into the matching elements with the "template" attribute.
- *
  * @return {Promise} A promise that resolves when all HTML content is successfully included.
  */
 async function includeHTML() {

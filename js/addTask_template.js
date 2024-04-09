@@ -1,6 +1,5 @@
 function printAddTask() {
     return /*html*/ `
-        <!-- form section -->
         <form id="addTaskForm" class="addTaskForm" onsubmit="addTask(); return false">
             <input type="text" placeholder="Enter a title" required id="title" class="title-input">
             <label class="subHeadlineAddTask" for="description"><b>Description</b> (optional)</label>
@@ -10,10 +9,7 @@ function printAddTask() {
             </div>
             <label class="subHeadlineAddTask" for="date"><b>Due date</b></label>
             <input type="date" id="date" class="date-input" required>
-        </form>            
-        <!-- form section -->
-
-        <!-- prio section -->
+        </form>
         <div class="priority">
             <span class="subHeadlineAddTask">Priority</span>
             <div>
@@ -59,9 +55,6 @@ function printAddTask() {
                 </div>
             </div>
         </div>
-        <!-- prio section -->
-
-        <!-- assigned to section -->
         <div class="category overFlowYAuto listenDropDown">
             <span class="subHeadlineAddTask">Assigned to (optional)</span>
             <div>
@@ -84,9 +77,6 @@ function printAddTask() {
                 <div id="userCategory" class="options d-none"></div>
             </div>
         </div>
-        <!-- assigned to section -->
-        
-        <!-- task category section -->
         <div class="category listenDropDown">
             <span class="subHeadlineAddTask">Category</span>
             <div>
@@ -108,9 +98,6 @@ function printAddTask() {
                 </div>
             </div>
         </div>
-        <!-- task category section -->
-        
-        <!-- subtask section -->
         <div class="category">
             <span class="subHeadlineAddTask">Subtasks (optional)</span>
             <div onclick="showSubtaskInput()" class="subtask" id="addSubTaskBtn">
@@ -134,9 +121,7 @@ function printAddTask() {
             </div>
             <hr class="dividerHorizontal">
             <div id="subTaskContainer" class="subtask-input"></div>            
-        </div>
-        <!-- subtask section -->
-    `;
+        </div>`;
 }
 
 function printDetails(task, index) {
@@ -275,6 +260,5 @@ function printSelectedUsers(user, index) {
     return /*html*/ `
         <div id="selectedUser${index}" class="selectedUser">
             ${getInitials(user)}
-        </div>
-    `;
+        </div>`;
 }

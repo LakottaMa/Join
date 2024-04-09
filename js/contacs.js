@@ -30,7 +30,6 @@ function renderContactList() {
 
 /**
  * render needed letters in contactlist
- * 
  * @param {string} firstLetter first letter of the contact
  * @param {string} currentLetter is the first letter to compare with the next Contact
  */

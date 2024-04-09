@@ -76,6 +76,7 @@ async function addTask() {
     successfullyPopupAddTask();
     hideAddTaskBox();
 }
+
 /**
  * convert subtasks to object with boolean
  * @returns object with subtask
@@ -145,6 +146,9 @@ function showSearchUserInput() {
     document.getElementById('dropUpImg').classList.remove('d-none');
 }
 
+/**
+ * Hides the search user input field and toggles visibility of certain elements.
+ */
 function hideSearchUserInput() {
     document.getElementById('userCategory').classList.add('d-none');
     document.getElementById('dropDownImg').classList.remove('d-none');
@@ -237,6 +241,10 @@ function showEditSubTaskInputField(index) {
     fillSubtaskEditField(index);
 }
 
+/**
+ * Updates the input field with the value of the subtask at the specified index.
+ * @param {number} index - The index of the subtask to be filled in the input field.
+ */
 function fillSubtaskEditField(index) {
     let subtask = subTasks[index];
     let input = document.getElementById(`newSubTask${index}`);
@@ -423,7 +431,6 @@ function createTaskObject(title, description, date, taskPriority, assignedTo, ta
 }
 
 /**
- * 
  * @returns created task
  */
 function createTask() {

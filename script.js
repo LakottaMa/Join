@@ -1,3 +1,6 @@
+let checkBoxLogin = false;
+let historyLength = window.history.length;
+
 /**
  * Initializes the application by loading users and tasks.
  */
@@ -27,8 +30,6 @@ function unrememberMe() {
   }
 }
 
-/** log in data will be remembered in localStorage */
-let checkBoxLogin = false;
 /**
  * Function to remember user login information if the 'Remember Me' checkbox is checked.
  * @param {type} paramName - description of parameter
@@ -54,7 +55,23 @@ function backButton() {
   document.getElementById('loadingScreenImg').style.display = 'none';
 }
 
-/** Closes the current window */
+/**
+ * Function to go back one page in the browser history.
+ */
 function goBack() {
+  console.log('Going back one page...');
+  console.log('History length before checking:', window.history.length);
+  window.history.go(-1);
+  if (window.history.length <= historyLength) {
+    console.log('Closing window...');
     window.close();
+  } else {
+    console.log('Decrementing history length...');
+    historyLength--;
+  }
+  console.log('Final history length:', window.history.length);
 }
+
+
+
+

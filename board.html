@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
@@ -12,7 +11,6 @@
     <link rel="stylesheet" href="./assets/css/boardTaskDetailBox.css">
     <title>Join</title>
 </head>
-
 <body onload="initBoard()">
     <div template="./assets/templates/desktop_template.html"></div>
     <div class="addTaskBox d-none" id="addTaskBox">
@@ -20,11 +18,9 @@
             <h1>Add Task</h1>
             <img class="cp" onclick="hideAddTaskBox()" src="./assets/img/close.png" alt="">
         </div>
-        <!-- new add task below -->
         <div>
             <div class="addTaskInBoard" id="addTaskInBoardContainer"></div>
         </div>
-        <!-- new add task above -->
         <div class="btnsBoardAddTask">
             <button onclick="hideMobileAddTaskBox()" class="white-btn cp">Cancel</button>
             <button class="blue-btn cp" form="addTaskForm">Create Task</button>
@@ -105,5 +101,4 @@
     <script src="./js/templates.js"></script>
     <script src="./script.js"></script>
 </body>
-
 </html>
