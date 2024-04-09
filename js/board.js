@@ -1,5 +1,8 @@
 let searchedTasks;
 
+/**
+ * init board
+ */
 async function initBoard() {
    await includeHTML();
    await loadUsers();
@@ -23,6 +26,11 @@ function showAddTaskBox(status) {
    }
 }
 
+/**
+ * show task box for desktop
+ * @param {*} status 
+ * @param {*} box 
+ */
 function showDesktopTaskBox(status, box) {
    box.classList.remove('d-none');
       setTimeout(() => {
@@ -35,6 +43,13 @@ function showDesktopTaskBox(status, box) {
       document.getElementById('mainContent').style.position = 'fixed';
 }
 
+/**
+ * show task box for mobile
+ * @param {*} status 
+ * @param {*} mainContent 
+ * @param {*} headline 
+ * @param {*} box 
+ */
 function showMobileTaskBox(status, mainContent, headline, box) {
       box.classList.remove('d-none');
       mainContent.classList.add('dNone');
@@ -45,6 +60,9 @@ function showMobileTaskBox(status, mainContent, headline, box) {
       setDefaultValues(status);
 }
 
+/**
+ * hide task box
+ */
 function hideMobileAddTaskBox() {
    clearAddTask();
    document.getElementById('mainContent').classList.remove('dNone');
@@ -187,6 +205,13 @@ function renderAssignedTo(contacts, i) {
    addMissingContacts(contacts, maxContacts, tuMuchContainer);
 }
 
+/**
+ * add missing contacts
+ * @param {*} contacts 
+ * @param {*} maxContacts 
+ * @param {*} container 
+ * @returns 
+ */
 function addMissingContacts(contacts, maxContacts, container) {
    let toMuch = contacts.length - maxContacts;
    if (toMuch <= 0) {
