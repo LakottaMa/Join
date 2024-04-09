@@ -1,5 +1,9 @@
 let editTaskIndex;
 
+/**
+ * show task detail box
+ * @param {*} index 
+ */
 function showDetailBox(index) {
    document.getElementById('detailViewBox').classList.remove('slideToBottom');
    document.getElementById('detailViewBg').classList.remove('d-none');
@@ -9,6 +13,9 @@ function showDetailBox(index) {
    renderDetails(index);
 }
 
+/**
+ * hide task detail box
+ */
 function hideDetailBox() {
    document.getElementById('detailViewBox').classList.remove('slideFromBottom');
    document.getElementById('detailViewBox').classList.add('slideToBottom');
@@ -92,6 +99,10 @@ function getImageForSubtask(subtask) {
    }
 }
 
+/**
+ * render assigned to details
+ * @param {*} index 
+ */
 function renderAssignedToDetails(index) {
    let container = document.getElementById(`assignedToDetailView${index}`);
    container.innerHTML = '';
@@ -105,6 +116,13 @@ function renderAssignedToDetails(index) {
    }
 }
 
+/**
+ * render contacts
+ * @param {*} container 
+ * @param {*} contacts 
+ * @param {*} maxContacts 
+ * @param {*} index 
+ */
 function renderContacts(container, contacts, maxContacts, index) {
    for (let j = 0; j < maxContacts; j++) {
       const contact = contacts[j];
@@ -138,6 +156,10 @@ async function toggleSubtasks(taskIndex, subtaskIndex) {
    await saveTasks(tasks);
 }
 
+/**
+ * prepare values for task edit
+ * @param {*} index 
+ */
 function editTask(index) {
    showEditBox();
    editTaskIndex = index;
@@ -151,6 +173,10 @@ function editTask(index) {
    renderSelectedUsers();
 }
 
+/**
+ * push values to input fields
+ * @param {*} taskToEdit 
+ */
 function fillEditFields(taskToEdit) {
    document.getElementById('title').value = taskToEdit.title;
    document.getElementById('description').value = taskToEdit.description;
@@ -188,6 +214,9 @@ async function saveEditedTask() {
    renderTasksInBoard();
 }
 
+/**
+ * hide task edit window
+ */
 function hideEditbox() {
    document.getElementById('detailView').classList.remove('d-none');
    document.getElementById('editView').classList.add('d-none');
@@ -195,6 +224,9 @@ function hideEditbox() {
    selectedUsers = [];
 }
 
+/**
+ * show task edit window
+ */
 function showEditBox() {
    document.getElementById('detailView').classList.add('d-none');
    document.getElementById('editView').classList.remove('d-none');
