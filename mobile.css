@@ -224,6 +224,10 @@
         margin: 0;
     }
 
+    .sum-content {
+        padding: 114px 0 104px 0 !important;
+    }
+
     .sum-button:nth-child(2) {
         width: 160px;
         height: 152px;
