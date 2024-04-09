@@ -116,6 +116,7 @@ async function addTask() {
     successfullyPopupAddTask();
     hideAddTaskBox();
 }
+
 /**
  * convert subtasks to object with boolean
  * @returns object with subtask

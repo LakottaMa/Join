@@ -6,7 +6,6 @@
  * @param {integer} i to select the correct contact
  * @returns html
  */
-
 function floatContactHTML(name, email, i) {
     let bgColor = users[i]['bg'];
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
