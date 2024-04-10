@@ -2,6 +2,10 @@ body {
     background-color: var(--clr-main1);
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 h1 {
     margin: 48px 0 8px 0;
 }
@@ -52,58 +56,4 @@ footer a {
 
 .underline {
     width: 40%;
-}
-
-.popup {
-    position: absolute;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    backdrop-filter: blur(20px);
-    opacity: 1;
-    animation: change-background 2s forwards;
-    animation-delay: 2s;
-    z-index: 100;
-}
-
-.sign-up-popover {
-    position: relative;
-    top: 94%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: move-to-middle 0.2s forwards linear;
-    cursor: none;
-    text-align: center;
-    font-size: 23px;
-    width: 326px;
-    height: 74px;
-    padding: 23px 18px;
-    background-color: var(--clr-main1);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    z-index: 1000;
-}
-
-@keyframes move-to-middle {
-    from {
-        left: 50%;
-        top: 94%;
-    }
-
-    to {
-        left: 50%;
-        top: 45%;
-    }
-}
-
-@keyframes change-background {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        z-index: -100;
-    }
 }

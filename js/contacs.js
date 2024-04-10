@@ -1,3 +1,6 @@
+/**
+ * onload contact page and renders current contactlist
+ */
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -5,6 +8,9 @@ async function initContacts() {
     renderContactList();
 }
 
+/**
+ * render needed letters in contactlist * 
+ */
 function renderContactList() {
     document.getElementById('allContacts').innerHTML = '';
     try {
@@ -12,14 +18,7 @@ function renderContactList() {
         users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
-            if (firstLetter !== currentLetter) {
-                document.getElementById('allContacts').innerHTML += `
-                    <div class="letterBox">
-                        <div class="letter">${firstLetter}</div>
-                        <div id="${firstLetter}-content"></div>
-                    </div>
-                    `;
-            }
+            renderLetters(firstLetter, currentLetter);  
             currentLetter = firstLetter;
             document.getElementById(`${firstLetter}-content`).innerHTML +=
                 contactsHTML(i);
@@ -27,41 +26,64 @@ function renderContactList() {
     } catch (error) {
         console.error("Error fetching or parsing users data:", error);
     }
-
 }
-// console.log('contact',contact) //wieder löschen!!
 
+/**
+ * render needed letters in contactlist
+ * @param {string} firstLetter first letter of the contact
+ * @param {string} currentLetter is the first letter to compare with the next Contact
+ */
+function renderLetters(firstLetter, currentLetter){
+    if (firstLetter !== currentLetter) {
+        document.getElementById('allContacts').innerHTML += `
+            <div class="letterBox">
+                <div class="letter">${firstLetter}</div>
+                <div id="${firstLetter}-content"></div>
+            </div>`;
+    }
+}
+
+/**
+ * render contacts from the array * 
+ * @param {integer} i to render the correct contact
+ * @returns html for the contact
+ */
 function contactsHTML(i) {
     let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
     let initials = names.map(word => word.charAt(0).toUpperCase()).join('');  //join wird verwendet um die elemente des arrays in eine zeichenkette zu verwandeln
     let bgColor = users[i]['bg'];
     return `
-        <div class="contactSmall cp" id="contactSmall-${i}" onclick="showFloatContact(${i})">
+        <div class="contactSmall cp" id="smallContact${i}" onclick="showFloatContact(${i})">
             <div class="initials" style="background-color:${bgColor};">${initials}</div>
             <div>
                 <span>${users[i]['name']}</span>
                 <p>${users[i]['email']}</p>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
+/**
+ * delete the user from the array * 
+ * @param {integer} userIndex to delete the correct contact
+ */
 function deleteUser(userIndex) {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (userIndex !== -1) {
         users.splice(userIndex, 1);
-        alert("User deleted successfully!");
-    } else {
-        alert("User not found.");
-    }
-
+    } 
     setItem('users', JSON.stringify(users));
+    document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
-    console.log('user wurde gelöscht');
-    console.table(users);
-    document.getElementById('floatingContact').innerHTML += '';
+    if (screenWidth <= 1024) {
+        showContactListMobil();
+    }
     closePopup();
 }
 
+/**
+ * add clicked contact at the list an color * 
+ * @param {integer} index to at the correct contact
+ */
 function addBgContact(index) {
     let contacts = document.querySelectorAll('.contactSmall');
     for (let x = 0; x < contacts.length; x++) {
@@ -75,54 +97,38 @@ function addBgContact(index) {
     };
 }
 
+/**
+ * show detailview from the selected contact * 
+ * @param {integer} i to show the correct contact
+ */
 function showFloatContact(i) {
     addBgContact(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-
+    document.getElementById('contactMobile').classList.add('d-none');
     document.getElementById('floatingContact').classList.remove('d-none');
     document.getElementById('floatingContact').innerHTML = '';
     document.getElementById('floatingContact').innerHTML = floatContactHTML(name, email, i);
 }
 
-function floatContactHTML(name, email, i) {
-    let bgColor = users[i]['bg'];
-    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-    return `
-        <div class="floatingTop">
-            <div id="${i}" class="initialsFloating" style="background-color:${bgColor};">${initials}</div>
-            <div class="floatingInteracts">
-                <span>${name}</span>
-                <div class="floatingBtn">
-                     <p class="cp" onclick="editContact(${i})"><img src="./assets/img/edit.png" alt="edit">Edit</p>
-                     <p class="cp" onclick="deleteUser(${i})"><img src="./assets/img/delete.png" alt="trashcan">Delete</p>
-                </div>
-            </div>
-        </div>
-        <div class="floatingBottom">
-            <h2>Contact Information</h2>
-        <div>
-            <h3>Email</h3>
-            <div id="emailFloating">${email}</div>
-        </div>
-        <div>
-            <h3>Phone</h3>
-            <div id="phoneFloating">${checkPhone(i)}</div>
-        </div>
-`;
-}
-
+/**
+ * checks whether the contact has a telephone number * 
+ * @param {integer} i to check the correct contact
+ * @returns the phonenumber if available
+ */
 function checkPhone(i) {
     let phone = users[i]['phone'];
     if (phone) {
         return phone
-
     } else
         phone = '';
     return phone
 }
 
+/**
+ * create random color * 
+ * @returns the random color
+ */
 function newBgColor() {
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
@@ -131,12 +137,14 @@ function newBgColor() {
     return bgColor
 }
 
+/**
+ * create new contact and stores it in the array * 
+ */
 async function createNewContact() {
     let bgColor = newBgColor();
     let name = document.getElementById('contactName').value;
     let email = document.getElementById('contactEmail').value;
     let phone = document.getElementById('contactPhone').value;
-
     if (name && email && phone) {
         users.push({
             name: name,
@@ -145,114 +153,170 @@ async function createNewContact() {
             bg: bgColor,
         });
         await setItem('users', JSON.stringify(users));
-        renderContactList();
+        successfullyPopupAddContact();
         closePopup();
-
-    } else {
-        console.error('Please fill out all fields');
-    }
+    } 
 }
 
+/**
+ * show popup after create an new contact * 
+ */
+function successfullyPopupAddContact() {
+    const animation = document.getElementById('popupCreateContact');
+    animation.classList.remove('d-none');
+    setTimeout(() => {
+        renderContactList();
+    }, 2000);
+}
+
+/**
+ * load the current contactinfos to the inputfields and displays it * 
+ * @param {integer} i show the correct contact
+ */
 function editContact(i) {
-    showEditPopup(i)
+    showEditPopup(i);
     let name = users[i]['name'];
     let email = users[i]['email'];
-
     document.getElementById('contactName').value = `${name}`;
     document.getElementById('contactEmail').value = `${email}`;
     document.getElementById('contactPhone').value = `${checkPhone(i)}`;
-
-    //console.log('name',name) //wieder löschen!!
+    BtnClickable();
 }
 
-function saveUser(i) {
-    let newName = document.getElementById('contactName').value;
-    let newEmail = document.getElementById('contactEmail').value;
-    let newPhone = document.getElementById('contactPhone').value;
+/**
+ * prevents the save button from being pressed if the inputfields are empty * 
+ */
+function BtnClickable() {
+    document.getElementById('editForm').addEventListener('input', function () {
+        let name = document.getElementById('contactName').value;
+        let email = document.getElementById('contactEmail').value;
+        let phone = document.getElementById('contactPhone').value;
+        let submitButton = document.getElementById('saveEditUser');
 
-    users[i]['name'] = newName;
-    users[i]['email'] = newEmail;
-    users[i]['phone'] = newPhone;
+        if (name && email && phone) {
+            submitButton.disabled = false;
+            submitButton.classList.remove('btn-disabled');
+        } else {
+            submitButton.disabled = true;
+            submitButton.classList.add('btn-disabled');
+        }
+    });
+}
+
+/**
+ * overwrite and save the contact content * 
+ * @param {integer} i to overwrite the correct contact
+ */
+function saveUser(i) {
+    let name = document.getElementById('contactName').value;
+    let email = document.getElementById('contactEmail').value;
+    let phone = document.getElementById('contactPhone').value;
+    users[i]['name'] = name;
+    users[i]['email'] = email;
+    users[i]['phone'] = phone;
+    saveStorageUser(i);
+    document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
+    screenMobile();
     closePopup();
 }
 
-function createContactPopupHTML() {
-    document.getElementById('contactName').value = '';
-    document.getElementById('contactEmail').value = '';
-    document.getElementById('contactPhone').value = '';
-    document.getElementById('topPopup').innerHTML = '';
-    document.getElementById('topPopup').innerHTML += `
-        <img src="./assets/img/logo.png" alt="logo">
-        <span>Add contact</span>
-        <p>Tasks are better with a team!</p>
-        `;
-
-    document.getElementById('avatar').innerHTML = '';
-    document.getElementById('avatar').innerHTML = `
-        <img class="avatar" src="./assets/img/avatar_placeholder.png" alt="avatar">
-        `;
-
-    document.getElementById('popupBtn').innerHTML = '';
-    document.getElementById('popupBtn').innerHTML += `
-        <button class="btnCancel cp" onclick="closePopup()">Cancel
-            <img src="./assets/img/close_black.svg" alt="check">
-        </button>
-        <button class="btnCreate cp">Create contact
-        <img src="./assets/img/check._white.png" alt="check">
-        </button>
-        `;
-    //document.getElementById('form').onsubmit = "createNewContact(); return false";
+/**
+ * Saves the 'users' data to storage and retrieves it.
+ */
+async function saveStorageUser(){
+    await setItem('users', JSON.stringify(users));
+    await getItem('users');
 }
 
-function editContactPopupHTML(i) {
-    let bgColor = users[i]['bg'];
-    let names = users[i]['name'].split(' '); //map iteriert durch jedes wort im array name
-    let initials = names.map(word => word.charAt(0).toUpperCase()).join('');
-
-    document.getElementById('topPopup').innerHTML = '';
-    document.getElementById('topPopup').innerHTML += `
-        <img src="./assets/img/logo.png" alt="logo">
-        <span>Edit contact</span>
-        `;
-
-    document.getElementById('avatar').innerHTML = '';
-    document.getElementById('avatar').innerHTML = `
-        <div id="${i}" class="initialsFloating" style="background-color:${bgColor};"
-        >${initials}</div>
-        `;
-
-    document.getElementById('popupBtn').innerHTML = '';
-    document.getElementById('popupBtn').innerHTML += `
-        <button class="btnCancel cp" onclick="deleteUser(${i})">Delete
-        </button>
-        <button class="btnCreate cp" onclick="saveUser(${i})">Save<img
-            src="./assets/img/check._white.png" alt="check">
-        </button>
-        `;
-    //document.getElementById('form').onsubmit = saveUser(); return false;
+/**
+ * Function to check screen width and show contact list for mobile devices.
+ */
+function screenMobile(){
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (screenWidth <= 1024) {
+        showContactListMobil();
+    }
 }
 
+/**
+ * show popup for adding a new contact * 
+ */
 function showAddPopup() {
-    createContactPopupHTML();
     document.getElementById('contactPopup').classList.remove('d-none');
     document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('contactPopup').innerHTML = '';
+    document.getElementById('contactPopup').innerHTML = createContactPopupHTML();
+    document.getElementById('contactPopup').style.animation = 'slidingRight 0.2s ease-in-out';
+    document.getElementById('contactPopup').style.left = '';
     document.getElementById('closePopup').style.borderTopLeftRadius = '30px';
     document.getElementById('closePopup').style.borderTopRightRadius = '0px';
     document.getElementById('background').classList.add('back');
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactPhone').value = '';
 }
 
+/**
+ * show popup to edit a contact * 
+ * @param {integer} i to edit the correct contact
+ */
 function showEditPopup(i) {
-    editContactPopupHTML(i);
     document.getElementById('contactPopup').classList.remove('d-none');
-    document.getElementById('contactPopup').style.right = 0;
+    document.getElementById('contactPopup').innerHTML = '';
+    document.getElementById('contactPopup').innerHTML = editContactPopupHTML(i);
+    document.getElementById('contactPopup').style.animation = 'slidingLeft 0.2s ease-in-out';
+    document.getElementById('contactPopup').style.left = 0;
     document.getElementById('closePopup').style.borderTopLeftRadius = '0px';
     document.getElementById('closePopup').style.borderTopRightRadius = '30px';
     document.getElementById('background').classList.add('back');
 }
 
+/**
+ * close the Add- or the Editpopup * 
+ */
 function closePopup() {
     document.getElementById('contactPopup').classList.add('d-none');
     document.getElementById('background').classList.remove('back');
-    document.getElementById('contactPopup').style.transform = 'translateX (0px)';
+    let dotPopup = document.getElementById('popupDotMenue');
+    if (dotPopup) {
+        document.getElementById('popupDotMenue').classList.add('d-none');
+    }    
 }
+
+/**
+ * displays the contacts in the mobile version * 
+ */
+function showContactListMobil() {
+    document.getElementById('contactMobile').classList.remove('d-none');
+    document.getElementById('contactList').classList.remove('d-none');
+    document.getElementById('floatingContact').classList.add('d-none');
+}
+
+/**
+ * displays submenue from the detailview in the mobile version * 
+ */
+function showDotMenu() {
+    document.getElementById('popupDotMenue').classList.remove('d-none');
+}
+
+/**
+ * hide submenue from the detailview in in the mobile version * 
+ */
+function closeDotMenue() {
+    let dotPopup = document.getElementById('popupDotMenue');
+    if (dotPopup) {
+        document.getElementById('popupDotMenue').classList.add('d-none');
+    } 
+}
+
+/**
+ * stops the close function for popups * 
+ * @param {event} event prevent the function from the parent 
+ */
+function notClose(event) {
+    event.stopPropagation();
+}
+
+
+

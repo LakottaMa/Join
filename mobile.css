@@ -7,7 +7,7 @@
     background-color: white;
     justify-content: space-evenly;
     box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.2);
-
+    z-index: 99;
 }
 
 @media screen and (max-width:1024px) {
@@ -17,6 +17,7 @@
         width: 100%;
         background-color: var(--clr-main1);
         color: white;
+
         .sum-counter {
             height: 100%;
             width: 156px !important;
@@ -40,7 +41,7 @@
 
             .img-counter,
             div {
-                scale: 1.1;
+                scale: 1.025;
             }
         }
     }
@@ -93,10 +94,10 @@
     }
 
     .mobile-links {
-        display: flex !important;
+        display: flex;
     }
 
-    .sum-Content {
+    .sum-content {
         margin: 0 8px !important;
     }
 
@@ -125,13 +126,28 @@
             font-size: 19px;
         }
     }
+
+    .text-section {
+        position: relative;
+        margin: 0 40px 0 40px;
+        left: 0;
+
+        ol {
+            padding-left: 40px;
+        }
+    }
 }
 
 @media screen and (max-width:720px) {
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
     .btn-box {
         flex-direction: column;
         align-items: center;
         gap: 18px;
+        margin: 28px 0;
 
         button {
             width: 180px;
@@ -208,28 +224,34 @@
         margin: 0;
     }
 
+    .sum-content {
+        padding: 114px 0 104px 0 !important;
+    }
+
     .sum-button:nth-child(2) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-button:nth-child(4) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-button:nth-child(5) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-button:nth-child(6) {
-        width: 186px;
+        width: 160px;
         height: 152px;
     }
 
     .sum-overview {
-        gap: 15px;
+        justify-content: space-evenly;
+        max-width: 396px !important;
+
     }
 
     .sum-counter {
@@ -264,10 +286,6 @@
     .signup {
         gap: 24px;
     }
-
-    .sum-overview {
-        max-width: 396px !important;
-    }
 }
 
 @media screen and (max-width:440px) {
@@ -276,10 +294,15 @@
     }
 
     .form-box {
+        margin-top: 40px;
         .back-btn {
             top: 32px;
             left: 32px;
         }
+    }
+
+    .legal-topics{
+        margin: 10px 0 18px 0;
     }
 
     .info-container h4 {
@@ -300,21 +323,26 @@
         }
     }
 
+    .sum-button:nth-child(1) .line {
+        margin: 0 4px;
+    }
+}
+
+@media screen and (max-width:374px) {
+
     .sum-overview {
         max-width: 350px !important;
-        .sum-button{
+
+        .sum-button {
             height: 104px;
             width: 100%;
-            .sum-counter{                
+
+            .sum-counter {
                 width: 100%;
                 padding-left: 10%;
                 flex-direction: row;
                 justify-content: flex-start;
             }
         }
-    }
-
-    .sum-button:nth-child(1) .line {
-        margin: 0 4px;
     }
 }
