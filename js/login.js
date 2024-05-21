@@ -68,7 +68,7 @@ function greetingScreen() {
       sumContent.style.display = 'flex';
       document.getElementById('greetMobile').style.display = 'none';
       document.getElementById('greetingNameMobile').style.display = 'none';
-    }, 1300)    
-  }  
+    }, 1300)
+  }
 }
 

@@ -59,19 +59,10 @@ function backButton() {
  * Function to go back one page in the browser history.
  */
 function goBack() {
-  console.log('Going back one page...');
-  console.log('History length before checking:', window.history.length);
   window.history.go(-1);
   if (window.history.length <= historyLength) {
-    console.log('Closing window...');
     window.close();
   } else {
-    console.log('Decrementing history length...');
     historyLength--;
   }
-  console.log('Final history length:', window.history.length);
 }
-
-
-
-
