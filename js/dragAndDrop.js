@@ -170,11 +170,11 @@ function setNewPositions(elem, eve) {
  * @param {*} taskToMove 
  */
 function handleTouchEnd(elem, id, taskToMove) {
-    clearTimeout(timeoutID);           
+    clearTimeout(timeoutID);
     elem.style.zIndex = 0;
-    if (!touchMoveEnabled && !touchMoved) {        
-        showDetailBox(id);                        
-    } else {                                       
+    if (!touchMoveEnabled && !touchMoved) {
+        showDetailBox(id);
+    } else {
         moveTask(elem, taskToMove);
     }
     touchMoveEnabled = false;

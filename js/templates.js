@@ -34,13 +34,13 @@ function showLogoutMenu() {
 }
 
 /** close logout menu on click outside the menu*/
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
   let logoutMenu = document.getElementById('logout-menu');
   let headerInfo = document.getElementById('headerInfo');
   let targetElement = event.target;
   let isOnIndexOrSignUp = document.querySelector('body[onload="initSignUp()"]') || document.querySelector('body[onload="init()"]');
   if (!isOnIndexOrSignUp && !logoutMenu.contains(targetElement) && !headerInfo.contains(targetElement)) {
-      logoutMenu.classList.add('d-none');
+    logoutMenu.classList.add('d-none');
   }
 });
 

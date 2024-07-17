@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="./mobile.css">
     <title>Join</title>
 </head>
+
 <body onload="initSignUp()">
     <header class="login-header">
         <img class="logo" src="./assets/img/logo.png">
@@ -31,8 +33,8 @@
                     <div class="error-msg-box" id="email-exist"></div>
                 </div>
                 <div class="input-field">
-                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus autocomplete="new-password" minlength="5"
-                        required placeholder="Password">
+                    <input id="password" type="password" onkeyup="togglePasswordEye('password')" autofocus
+                        autocomplete="new-password" minlength="5" required placeholder="Password">
                     <img id="password-icon" src="./assets/img/lock.png" onclick="togglePasswordVisibility('password')">
                 </div>
                 <div class="input-field">
@@ -57,10 +59,12 @@
         <a href="./legal_notice.html" target="_blank">Legal notice</a>
     </footer>
     <div class="successfully-popup d-none" id="popup">
-    <div class="successfully-popover-text">You Signed Up successfully</div>
+        <div class="successfully-popover-text">You Signed Up successfully</div>
     </div>
     <script src="./js/contacs.js"></script>
     <script src="./script.js"></script>
     <script src="./js/storage.js"></script>
-    <script src="./js/sign_up.js"></script></body>
+    <script src="./js/sign_up.js"></script>
+</body>
+
 </html>

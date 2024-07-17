@@ -286,7 +286,7 @@ h3 {
     flex-direction: column;
     align-items: center;
     background-color: white;
-    border:solid 1px #E3E3E3;
+    border: solid 1px #E3E3E3;
     border-bottom: none;
 }
 
@@ -337,16 +337,19 @@ input {
     margin-bottom: 63px;
 }
 
-.blue-btn-edit{
+.blue-btn-edit {
     width: 174px;
-    p{
+
+    p {
         font-size: 23px;
         width: 162px;
         flex: 1;
     }
-    svg{
+
+    svg {
         margin-right: 10px;
     }
+
     gap: 0 !important;
 }
 
@@ -368,6 +371,7 @@ input {
         color: var(--clr-main1);
         border-color: var(--clr-main1);
         box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px 0px;
+
         path {
             stroke: var(--clr-lightblue);
         }
@@ -377,6 +381,7 @@ input {
         box-shadow: none;
         border-color: #647188 !important;
         color: rgba(100, 113, 136, 1) !important;
+
         path {
             stroke: #647188;
         }

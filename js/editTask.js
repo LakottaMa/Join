@@ -2,7 +2,7 @@ let editTaskIndex;
 
 /**
  * show task detail box
- * @param {*} index 
+ * @param {*} index
  */
 function showDetailBox(index) {
    document.getElementById('detailViewBox').classList.remove('slideToBottom');
@@ -236,16 +236,16 @@ function showEditBox() {
 
 /**
  * handle click to close dropdown menu
- * @param {event} e 
+ * @param {event} e
  */
 let clickToCloseHandler = (e) => {
    if (!e.target.closest('.listenDropDown')) {
-       if (!checkDNone('userCategory')) {
-           hideSearchUserInput();
-       }
-       if (!checkDNone('taskCategory')) {
-           toggleTaskCategory();
-       }
+      if (!checkDNone('userCategory')) {
+         hideSearchUserInput();
+      }
+      if (!checkDNone('taskCategory')) {
+         toggleTaskCategory();
+      }
    }
 };
 
@@ -271,8 +271,8 @@ function removeClickToCloseListener() {
 function checkDNone(id) {
    let element = document.getElementById(id);
    if (element && element.classList.contains('d-none')) {
-       return true;
+      return true;
    } else {
-       return false;
+      return false;
    }
 }

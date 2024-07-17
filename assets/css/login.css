@@ -10,7 +10,7 @@ h1 {
     margin: 38px 0 8px 0;
 }
 
-.loading-background{
+.loading-background {
     position: absolute;
     top: 0;
     width: 100vw;
@@ -100,7 +100,7 @@ h1 {
     font-size: 23px;
 }
 
-.login-container > div{
+.login-container>div {
     width: 96%;
 }
 

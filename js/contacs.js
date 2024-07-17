@@ -18,7 +18,7 @@ function renderContactList() {
         users.sort((a, b) => a.name.localeCompare(b.name));
         for (let i = 0; i < users.length; i++) {
             let firstLetter = users[i]['name'][0].toUpperCase();
-            renderLetters(firstLetter, currentLetter);  
+            renderLetters(firstLetter, currentLetter);
             currentLetter = firstLetter;
             document.getElementById(`${firstLetter}-content`).innerHTML +=
                 contactsHTML(i);
@@ -33,7 +33,7 @@ function renderContactList() {
  * @param {string} firstLetter first letter of the contact
  * @param {string} currentLetter is the first letter to compare with the next Contact
  */
-function renderLetters(firstLetter, currentLetter){
+function renderLetters(firstLetter, currentLetter) {
     if (firstLetter !== currentLetter) {
         document.getElementById('allContacts').innerHTML += `
             <div class="letterBox">
@@ -70,7 +70,7 @@ function deleteUser(userIndex) {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (userIndex !== -1) {
         users.splice(userIndex, 1);
-    } 
+    }
     setItem('users', JSON.stringify(users));
     document.getElementById('floatingContact').innerHTML = '';
     renderContactList();
@@ -155,7 +155,7 @@ async function createNewContact() {
         await setItem('users', JSON.stringify(users));
         successfullyPopupAddContact();
         closePopup();
-    } 
+    }
 }
 
 /**
@@ -224,7 +224,7 @@ function saveUser(i) {
 /**
  * Saves the 'users' data to storage and retrieves it.
  */
-async function saveStorageUser(){
+async function saveStorageUser() {
     await setItem('users', JSON.stringify(users));
     await getItem('users');
 }
@@ -232,7 +232,7 @@ async function saveStorageUser(){
 /**
  * Function to check screen width and show contact list for mobile devices.
  */
-function screenMobile(){
+function screenMobile() {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (screenWidth <= 1024) {
         showContactListMobil();
@@ -281,7 +281,7 @@ function closePopup() {
     let dotPopup = document.getElementById('popupDotMenue');
     if (dotPopup) {
         document.getElementById('popupDotMenue').classList.add('d-none');
-    }    
+    }
 }
 
 /**
@@ -307,7 +307,7 @@ function closeDotMenue() {
     let dotPopup = document.getElementById('popupDotMenue');
     if (dotPopup) {
         document.getElementById('popupDotMenue').classList.add('d-none');
-    } 
+    }
 }
 
 /**

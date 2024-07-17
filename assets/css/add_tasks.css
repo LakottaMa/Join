@@ -226,6 +226,7 @@ textarea:hover {
         box-shadow: none !important;
         border-color: #647188 !important;
         color: #647188 !important;
+
         path {
             stroke: #647188;
         }

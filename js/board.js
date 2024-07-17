@@ -33,14 +33,14 @@ function showAddTaskBox(status) {
  */
 function showDesktopTaskBox(status, box) {
    box.classList.remove('d-none');
-      setTimeout(() => {
-         box.style.right = 0;
-      }, 100);
-      renderAddTask('addTaskInBoardContainer');
-      initializeAndListen();
-      setPriority('medium');
-      setDefaultValues(status);
-      document.getElementById('mainContent').style.position = 'fixed';
+   setTimeout(() => {
+      box.style.right = 0;
+   }, 100);
+   renderAddTask('addTaskInBoardContainer');
+   initializeAndListen();
+   setPriority('medium');
+   setDefaultValues(status);
+   document.getElementById('mainContent').style.position = 'fixed';
 }
 
 /**
@@ -51,13 +51,13 @@ function showDesktopTaskBox(status, box) {
  * @param {*} box 
  */
 function showMobileTaskBox(status, mainContent, headline, box) {
-      box.classList.remove('d-none');
-      mainContent.classList.add('dNone');
-      headline.classList.add('d-none');
-      renderAddTask('addTaskInBoardContainer');
-      initializeAndListen();
-      setPriority('medium');
-      setDefaultValues(status);
+   box.classList.remove('d-none');
+   mainContent.classList.add('dNone');
+   headline.classList.add('d-none');
+   renderAddTask('addTaskInBoardContainer');
+   initializeAndListen();
+   setPriority('medium');
+   setDefaultValues(status);
 }
 
 /**
@@ -294,7 +294,6 @@ function checkContainerEmpty() {
 }
 
 /**
- * 
  * @param {int} id of task container
  * @returns the name of the container
  */
@@ -317,7 +316,7 @@ function searchTasks() {
    let filteredTasksDescription = tasks.filter(task => task.description.toLowerCase().includes(input.value.toLowerCase()));
    searchedTasks = filteredTasksTitle.concat(filteredTasksDescription);
    searchedTasks = [...new Set(searchedTasks)];
-   if(searchedTasks.length === 0) {
+   if (searchedTasks.length === 0) {
       searchedTasks = [];
       renderSearchedTasks();
    } else {

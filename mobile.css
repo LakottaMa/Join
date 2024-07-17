@@ -295,13 +295,14 @@
 
     .form-box {
         margin-top: 40px;
+
         .back-btn {
             top: 32px;
             left: 32px;
         }
     }
 
-    .legal-topics{
+    .legal-topics {
         margin: 10px 0 18px 0;
     }
 

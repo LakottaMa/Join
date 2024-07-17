@@ -100,7 +100,7 @@ function successfullyPopupAddTask() {
     });
     setTimeout(() => {
         clearAddTask();
-        if(window.location.pathname === '/board.html') {
+        if (window.location.pathname === '/board.html') {
             renderTasksInBoard();
             return;
         }
